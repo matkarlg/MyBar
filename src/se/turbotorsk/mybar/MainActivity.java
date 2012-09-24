@@ -94,7 +94,7 @@ public class MainActivity extends FragmentActivity {
             	layoutId = R.layout.menu_mybar;
                 break;
             case 2:
-            	layoutId = R.layout.menu_toprated;
+            	layoutId = R.layout.menu_thecollection;
                 break;
             }
 
