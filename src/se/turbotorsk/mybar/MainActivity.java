@@ -88,7 +88,7 @@ public class MainActivity extends FragmentActivity {
             int layoutId = 0;
             switch (position) {
             case 0:
-            	layoutId = R.layout.menu_myfavourites;
+            	layoutId = R.layout.menu_myfavorites;
                 break;
             case 1:
             	layoutId = R.layout.menu_mybar;
