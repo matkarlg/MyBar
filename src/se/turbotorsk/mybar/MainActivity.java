@@ -1,22 +1,24 @@
 package se.turbotorsk.mybar;
 
-import android.app.ActionBar;
-import android.app.FragmentTransaction;
+//import android.app.ActionBar;
+//import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.os.Parcelable;
+//import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
+//import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.NavUtils;
+//import android.support.v4.app.NavUtils;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
+//import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
+//import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+//import android.view.ViewGroup;
+//import android.widget.TextView;
 
 public class MainActivity extends FragmentActivity {
 
@@ -36,15 +38,18 @@ public class MainActivity extends FragmentActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main);
         // Create the adapter that will return a fragment for each of the three primary sections
         // of the app.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        mSectionsPagerAdapter = new SectionsPagerAdapter();
 
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        mViewPager.setCurrentItem(1);
+        
+        
 
     }
 
@@ -55,33 +60,17 @@ public class MainActivity extends FragmentActivity {
     }
 
     
-
-
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to one of the primary
      * sections of the app.
      */
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+    public class SectionsPagerAdapter extends PagerAdapter {
 
-        public SectionsPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int i) {
-            Fragment fragment = new DummySectionFragment();
-            Bundle args = new Bundle();
-            args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, i + 1);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        @Override
         public int getCount() {
             return 3;
         }
 
-        @Override
+        
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0: return getString(R.string.title_section1).toUpperCase();
@@ -90,25 +79,46 @@ public class MainActivity extends FragmentActivity {
             }
             return null;
         }
-    }
+        
+        public Object instantiateItem(View collection, int position) {
+       	 
+            LayoutInflater inflater = (LayoutInflater) collection.getContext()
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-    /**
-     * A dummy fragment representing a section of the app, but that simply displays dummy text.
-     */
-    public static class DummySectionFragment extends Fragment {
-        public DummySectionFragment() {
+            int layoutId = 0;
+            switch (position) {
+            case 0:
+            	layoutId = R.layout.menu_myfavourites;
+                break;
+            case 1:
+            	layoutId = R.layout.menu_mybar;
+                break;
+            case 2:
+            	layoutId = R.layout.menu_toprated;
+                break;
+            }
+
+            View view = inflater.inflate(layoutId, null);
+
+            ((ViewPager) collection).addView(view, 0);
+
+            return view;
         }
-
-        public static final String ARG_SECTION_NUMBER = "section_number";
-
         @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            TextView textView = new TextView(getActivity());
-            textView.setGravity(Gravity.CENTER);
-            Bundle args = getArguments();
-            textView.setText(Integer.toString(args.getInt(ARG_SECTION_NUMBER)));
-            return textView;
+        public boolean isViewFromObject(View arg0, Object arg1) {
+            return arg0 == ((View) arg1);
+
         }
+        @Override
+        public void destroyItem(View arg0, int arg1, Object arg2) {
+            ((ViewPager) arg0).removeView((View) arg2);
+ 
+        }
+        @Override
+        public Parcelable saveState() {
+            return null;
+        }
+
     }
+     
 }
