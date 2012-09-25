@@ -20,6 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <provider android:exported="false" android:authorities="@string/contentprovider" android:name=".database.MyBarContentProvider"></provider>
     </application>
 
 </manifest>
