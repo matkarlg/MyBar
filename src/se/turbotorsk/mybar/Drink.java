@@ -3,10 +3,11 @@
  */
 package se.turbotorsk.mybar;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.text.ParseException;
+import android.util.Log;
 
 /**
  * Drink class
@@ -44,7 +45,7 @@ public class Drink {
 		try {
 			this.date = dateFormat.parse("" + year + "-" + month + "-" + day);
 		} catch (ParseException e) {
-			e.printStackTrace();
+			Log.e(e.getClass().getName(), "ParseException: " + e.getMessage(), e);
 		}
 	}
     
@@ -57,7 +58,7 @@ public class Drink {
 		try {
 			this.date = dateFormat.parse(date.toString());
 		} catch (ParseException e) {
-			e.printStackTrace();
+			Log.e(e.getClass().getName(), "ParseException: " + e.getMessage(), e);
 		}
 	}
 
