@@ -7,20 +7,32 @@ package se.turbotorsk.mybar;
 //import android.util.Log;
 
 /**
- * Drink class
+ * A drink object contains information about a drink.
  * 
  * @author Karlgren
  * 
  */
 public class Drink {
+
 	private int _id = 0;
 	private String name = "";
+	private String url = "";
 	private String glass = "";
 	private String ingredient = "";
 	private String description = "";
 	private int rating = 0;
-	// IMG blob;
-
+	
+	public Drink(int _id, String name, String url, String glass,
+			String ingredient, String description, int rating) {
+		this._id = _id;
+		this.name = name;
+		this.url = url;
+		this.glass = glass;
+		this.ingredient = ingredient;
+		this.description = description;
+		this.rating = rating;
+	}
+	
 	/*private Calendar calendar = Calendar.getInstance();
 	private Date date = new Date(calendar.getTime().getTime());
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -92,5 +104,13 @@ public class Drink {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 }
