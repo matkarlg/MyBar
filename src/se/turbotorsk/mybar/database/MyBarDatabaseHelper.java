@@ -5,11 +5,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 /**
- * SQLite helper object to manage our database. Uses DrinkTable.java (and in the future maybe more)
+ * SQLite helper object to manage and create our database. Uses DrinkTable.java (and in the future maybe more)
  * as a template for every table that should be in the database.
  * Uses onUpgrade() to update the database if a newer version of the database is out.
  * (a software update may change the DATABASE_VERSION to a higher number calling onUpgrade())
- * Uses onCreate() to create the database first time the application runs.
+ * Uses onCreate() to create the database.
  * 
  * @author Karlgren
  * 
