@@ -4,7 +4,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 /**
- * A table template. Creates the database table structure for the drinks (mirrored in remote database)
+ * A table template. Creates the database table structure for the drinks
+ * (mirrored in remote database).
  * 
  * @author Karlgren
  * 
@@ -20,7 +21,7 @@ public class DrinkTable {
 	public static final String COLUMN_DESCRIPTION = "description";
 	public static final String COLUMN_RATING = "rating";
 	
-	// Database creation SQL statement
+	// Database table creation SQL statement
 	private static final String DATABASE_CREATE = "CREATE TABLE " + TABLE_DRINK
 			+ "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
 			+ COLUMN_NAME + " TEXT NOT NULL, "
@@ -35,10 +36,15 @@ public class DrinkTable {
 	}
 	
 	public static void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
+		// Print upgrade warning to LogCat
 		Log.w(DrinkTable.class.getName(), "Upgrading " + TABLE_DRINK
-				+ " table template from version "+ oldVersion
+				+ " table from version "+ oldVersion
 				+" to " + newVersion	+ ", which will destroy all old data");
+		
+		// Kills the table and existing data
 		database.execSQL("DROP TABLE IF EXISTS " + TABLE_DRINK);
+		
+		// Recreates the database with a new version
 		onCreate(database);
 	}
 }
