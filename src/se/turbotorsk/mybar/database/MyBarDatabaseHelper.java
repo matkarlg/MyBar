@@ -12,7 +12,7 @@ import android.util.Log;
  * of the database is out. (a software update may change the DATABASE_VERSION to
  * a higher number calling onUpgrade()).
  * 
- * @author Karlgren
+ * @author Mathias Karlgren (matkarlg)
  * 
  */
 public class MyBarDatabaseHelper extends SQLiteOpenHelper {

@@ -9,7 +9,7 @@ package se.turbotorsk.mybar;
 /**
  * A drink object contains information about a drink.
  * 
- * @author Karlgren
+ * @author Mathias Karlgren (matkarlg)
  * 
  */
 public class Drink {

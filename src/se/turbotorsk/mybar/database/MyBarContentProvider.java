@@ -10,7 +10,11 @@ import android.net.Uri;
 import android.text.TextUtils;
 
 /**
- * MyBar's ContentProvider. For increased startup speed the
+ * MyBar's ContentProvider. MyBarContentProvider gets a database object from
+ * MyBarDatabaseHelper, changes the queries into database SQL language and
+ * executes the query.
+ * 
+ * For increased startup speed the
  * getWriteableDatabase() method is not called in the onCreate() method.
  * The getDatabase methods calls the DatabaseHelper's create and upgrade
  * methods, which in turn creates the database tables.
@@ -23,7 +27,7 @@ import android.text.TextUtils;
  * http://developer.android.com/guide/topics/providers/content-provider
  * -creating.html, which is under the Apache 2.0 License
  * 
- * @author Karlgren
+ * @author Mathias Karlgren (matkarlg)
  * 
  */
 public class MyBarContentProvider extends ContentProvider {
@@ -31,7 +35,7 @@ public class MyBarContentProvider extends ContentProvider {
 	public static final String AUTHORITY = "se.turbotorsk.mybar.database";
 	private static final int DRINK = 1;
 	private static final int DRINK_ID = 2;
-	// private static final String DEFAULT_SORT_ORDER = "_ID" + " DESC";
+	// private static final String DEFAULT_SORT_ORDER = "_id" + " DESC";
 	
     // Create the URI matcher
 	private static final UriMatcher sUriMatcher = new UriMatcher(
@@ -67,7 +71,7 @@ public class MyBarContentProvider extends ContentProvider {
 				selection += DrinkTable.COLUMN_ID + "=" + uri.getLastPathSegment();
 				
 				// Add rows that should be updated
-				// Example: SELECT * FROM drink WHERE name='margarita' AND glass='Whiskey Glass'
+				// Example: SELECT * FROM drink WHERE name='Margarita' AND glass='Whiskey Glass'
 				selection += TextUtils.isEmpty(selection) ? "" : " AND (" + selection + ")";
 				
 				// Call the code to actually do the query
@@ -200,7 +204,7 @@ public class MyBarContentProvider extends ContentProvider {
 				selection += DrinkTable.COLUMN_ID + "=" + uri.getLastPathSegment();
 				
 				// Add rows that should be updated
-				// Example: SELECT * FROM drink WHERE name='margarita' AND glass='Whiskey Glass'
+				// Example: SELECT * FROM drink WHERE name='Margarita' AND glass='Whiskey Glass'
 				selection += TextUtils.isEmpty(selection) ? "" : " AND (" + selection + ")";
 				
 				// Call the code to actually do the query
@@ -219,8 +223,8 @@ public class MyBarContentProvider extends ContentProvider {
 		return rowsAffected;
 	}
 	
-	// For JUNIT testing. A test package can call this to get a handle to the database.
-    MyBarDatabaseHelper getOpenHelperForTest() {
+	// For JUNIT testing. Gets handle to the database.
+    public MyBarDatabaseHelper getDatabaseHandle() {
         return database;
     }
 }
