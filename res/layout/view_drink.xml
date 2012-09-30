@@ -1,0 +1,54 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/drinkName"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true" />
+
+    <ImageView
+        android:id="@+id/drinkImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/drinkName"
+        android:src="@id/drinkImage" />
+
+    <TextView
+        android:id="@+id/drinkDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/drinkImage" />
+
+    <TextView
+        android:id="@+id/drinkIngredients"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/drinkDescription" />
+
+    <TextView
+        android:id="@+id/drinkRating"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_above="@+id/drinkDescription"
+        android:layout_toRightOf="@+id/drinkImage"
+        android:textSize="45dp" />
+
+    <CheckBox
+        android:id="@+id/drinkFav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/drinkName"
+        android:text="@string/drink_favorite" />
+
+</RelativeLayout>
