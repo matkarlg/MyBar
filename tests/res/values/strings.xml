@@ -2,6 +2,5 @@
 <resources>
 
     <string name="app_name">MyBarTestTest</string>
-    <string name="contentprovider">se.turbotorsk.mybar.database</string>
 
 </resources>
