@@ -1,4 +1,4 @@
-package se.turbotorsk.mybar.database;
+package se.turbotorsk.mybar.model.database;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
@@ -28,7 +28,7 @@ import android.text.TextUtils;
  */
 public class MyBarContentProvider extends ContentProvider {
 	private MyBarDatabaseHelper database;
-	public static final String AUTHORITY = "se.turbotorsk.mybar.database";
+	public static final String AUTHORITY = "se.turbotorsk.mybar.model.database";
 	private static final int DRINK = 1;
 	private static final int DRINK_ID = 2;
 	// private static final String DEFAULT_SORT_ORDER = "_ID" + " DESC";

@@ -1,4 +1,4 @@
-package se.turbotorsk.mybar;
+package se.turbotorsk.mybar.model;
 
 //import java.text.SimpleDateFormat;
 //import java.util.Calendar;
