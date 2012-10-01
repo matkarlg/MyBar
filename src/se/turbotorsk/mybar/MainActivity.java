@@ -125,7 +125,9 @@ public class MainActivity extends FragmentActivity {
 
     }
     
-    /* This method generates the options-menu in the main window*/
+    /**
+     *  This method generates the options-menu in the main window
+     */
     public boolean onOptionsItemSelected(MenuItem item) {
     	switch (item.getItemId()) {
         	case R.id.menu_add_drink:
