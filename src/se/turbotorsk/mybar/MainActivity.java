@@ -133,6 +133,9 @@ public class MainActivity extends FragmentActivity {
         	case R.id.menu_add_drink:
         		startActivity(new Intent(this, Add_Ingredient_Activity.class));
         		return true;
+        	case R.id.menu_settings:
+        		startActivity(new Intent(this, Settings_Activity.class));
+        		return true;
         	case R.id.menu_about:
         		startActivity(new Intent(this, About_Activity.class));
         		return true;
