@@ -10,7 +10,8 @@
     <application
         android:icon="@drawable/ic_drinkicon"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" android:uiOptions="splitActionBarWhenNarrow">
+        android:theme="@style/AppTheme"
+        android:uiOptions="splitActionBarWhenNarrow" >
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main" >
@@ -20,7 +21,31 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <provider android:exported="false" android:authorities="@string/contentprovider" android:name=".database.MyBarContentProvider"></provider>
+
+        <provider
+            android:name=".database.MyBarContentProvider"
+            android:authorities="@string/contentprovider"
+            android:exported="false" >
+        </provider>
+
+        <activity
+            android:name=".Add_Ingredient_Activity"
+            android:label="@string/title_activity_add__ingredient" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".About_Activity"
+            android:label="@string/title_activity_about_" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
