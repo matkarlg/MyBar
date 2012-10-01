@@ -3,6 +3,7 @@ package se.turbotorsk.mybar;
 //import android.app.ActionBar;
 //import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 //import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import android.support.v4.view.ViewPager;
 //import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 //import android.view.MenuItem;
 import android.view.View;
 //import android.view.ViewGroup;
@@ -58,6 +60,8 @@ public class MainActivity extends FragmentActivity {
         getMenuInflater().inflate(R.menu.activity_main, menu);
         return true;
     }
+    
+    
 
     
     /**
@@ -119,6 +123,20 @@ public class MainActivity extends FragmentActivity {
             return null;
         }
 
+    }
+    
+    /* This method generates the options-menu in the main window*/
+    public boolean onOptionsItemSelected(MenuItem item) {
+    	switch (item.getItemId()) {
+        	case R.id.menu_add_drink:
+        		startActivity(new Intent(this, Add_Ingredient_Activity.class));
+        		return true;
+        	case R.id.menu_about:
+        		startActivity(new Intent(this, About_Activity.class));
+        		return true;
+        	default:
+        		return true;
+    	}
     }
      
 }
