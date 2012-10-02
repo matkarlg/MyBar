@@ -11,13 +11,22 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true" />
 
-    <ImageView
-        android:id="@+id/drinkImage"
+    <CheckBox
+        android:id="@+id/drinkFav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/drinkName"
+        android:text="@string/favorite" />
+
+    <TextView
+        android:id="@+id/drinkRating"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
         android:layout_below="@+id/drinkName"
-        android:src="@id/drinkImage" />
+        android:layout_marginRight="72dp"
+        android:textSize="45dp" />
 
     <TextView
         android:id="@+id/drinkDescription"
@@ -25,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/drinkImage" />
+        android:layout_below="@+id/drinkRating" />
 
     <TextView
         android:id="@+id/drinkIngredients"
@@ -34,21 +43,5 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/drinkDescription" />
-
-    <TextView
-        android:id="@+id/drinkRating"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_above="@+id/drinkDescription"
-        android:layout_toRightOf="@+id/drinkImage"
-        android:textSize="45dp" />
-
-    <CheckBox
-        android:id="@+id/drinkFav"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/drinkName"
-        android:text="@string/drink_favorite" />
 
 </RelativeLayout>

@@ -3,6 +3,7 @@ package se.turbotorsk.mybar;
 //import android.app.ActionBar;
 //import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 //import android.support.v4.app.Fragment;
@@ -119,6 +120,11 @@ public class MainActivity extends FragmentActivity {
             return null;
         }
 
+    }
+    
+    public void b1(View view) {
+    	Intent i = new Intent(this, view_drink_activity.class);
+    	startActivity(i);
     }
      
 }
