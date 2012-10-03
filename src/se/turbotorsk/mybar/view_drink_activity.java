@@ -1,10 +1,17 @@
 package se.turbotorsk.mybar;
 
+
 import android.os.Bundle;
 import android.app.Activity;
-import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+/**
+ * This activity push the information about a drink to the GUI
+ * 
+ * @author Viktor
+ *
+ */
 
 public class view_drink_activity extends Activity {
 	
@@ -12,6 +19,7 @@ public class view_drink_activity extends Activity {
 	TextView dDescription;
 	TextView dIngredients;
 	TextView dRating;
+	ImageView dImage;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -22,18 +30,22 @@ public class view_drink_activity extends Activity {
         dDescription = (TextView) findViewById(R.id.drinkDescription);
         dIngredients = (TextView) findViewById(R.id.drinkIngredients);
         dRating = (TextView) findViewById(R.id.drinkRating);
+        dImage = (ImageView) findViewById(R.id.drinkImage);
         
         getDrinkInfo();
-        
        
     }
     
+    /**
+     * This method inserts the information to the Views in this activity's XML-file
+     */
     public void getDrinkInfo() {
     	dName.setText("Drink name");
     	dDescription.setText("Drink description");
     	dIngredients.setText("Drink ingredients");
-    	dRating.setText("100");
+    	dRating.setText("5");
+    	
+    	dImage.setImageResource(R.drawable.ic_drinkicon);
     }
     
-
 }
