@@ -20,7 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <provider android:exported="false" android:authorities="@string/contentprovider" android:name=".database.MyBarContentProvider"></provider>
+        <provider android:exported="false" android:authorities="se.turbotorsk.mybar.database" android:name=".database.MyBarContentProvider"></provider>
     </application>
 
 </manifest>
