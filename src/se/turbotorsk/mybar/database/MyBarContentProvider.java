@@ -31,8 +31,10 @@ import android.text.TextUtils;
  * 
  */
 public class MyBarContentProvider extends ContentProvider {
-	private MyBarDatabaseHelper database;
 	public static final String AUTHORITY = "se.turbotorsk.mybar.database";
+	public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/" + DrinkTable.TABLE_DRINK);
+	
+	private MyBarDatabaseHelper database;
 	private static final int DRINK = 1;
 	private static final int DRINK_ID = 2;
 	// private static final String DEFAULT_SORT_ORDER = "_id" + " DESC";
