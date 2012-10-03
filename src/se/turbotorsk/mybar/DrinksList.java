@@ -23,7 +23,7 @@ public class DrinksList extends ListActivity {
         
         //Adds everything to an adapter. We are also chosing which layout the program should use. This is where we're going to choose our own layout when that works.
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                R.layout.rowlayout, R.id.label, values);
+                R.layout.rowlayout, R.id.drink, values);
         
         //Sets the adapter that we just did
         setListAdapter(adapter);
