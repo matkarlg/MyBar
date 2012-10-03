@@ -1,5 +1,7 @@
 package se.turbotorsk.mybar.model;
 
+import android.content.ContentValues;
+
 //import java.text.SimpleDateFormat;
 //import java.util.Calendar;
 //import java.util.Date;
@@ -9,7 +11,7 @@ package se.turbotorsk.mybar.model;
 /**
  * A drink object contains information about a drink.
  * 
- * @author Karlgren
+ * @author Mathias Karlgren (matkarlg)
  * 
  */
 public class Drink {
@@ -21,6 +23,7 @@ public class Drink {
 	private String ingredient = "";
 	private String description = "";
 	private int rating = 0;
+	private ContentValues values = null;
 	
 	public Drink(int _id, String name, String url, String glass,
 			String ingredient, String description, int rating) {
@@ -31,6 +34,14 @@ public class Drink {
 		this.ingredient = ingredient;
 		this.description = description;
 		this.rating = rating;
+		
+		values = new ContentValues();
+		values.put("name", name);
+	    values.put("url", url);
+	    values.put("glass", glass);
+	    values.put("ingredient", ingredient);
+	    values.put("description", description);
+	    values.put("rating", rating);
 	}
 	
 	/*private Calendar calendar = Calendar.getInstance();
@@ -58,6 +69,10 @@ public class Drink {
 					e);
 		}
 	}*/
+	
+	public ContentValues getContentValues() {
+		return values;
+	}
 	
 	public int get_id() {
 		return _id;

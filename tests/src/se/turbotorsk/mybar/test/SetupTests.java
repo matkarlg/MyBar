@@ -3,7 +3,7 @@ package se.turbotorsk.mybar.test;
 /**
  * A test suite containing tests for MyBar
  * 
- * @author Karlgren
+ * @author Mathias Karlgren (matkarlg)
  *
  */
 import junit.framework.Test;

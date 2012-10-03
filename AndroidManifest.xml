@@ -20,13 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <provider android:exported="false" android:authorities="@string/contentprovider" android:name=".model.database.MyBarContentProvider"></provider>
-
-        <provider
-            android:name=".database.MyBarContentProvider"
-            android:authorities="@string/contentprovider"
-            android:exported="false" >
-        </provider>
+        <provider android:exported="false" android:authorities="se.turbotorsk.mybar.model.database" android:name=".controller.MyBarContentProvider"></provider>
 
         <activity
             android:name=".Add_Ingredient_Activity" >

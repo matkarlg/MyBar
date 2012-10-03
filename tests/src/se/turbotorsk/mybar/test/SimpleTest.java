@@ -3,7 +3,7 @@ package se.turbotorsk.mybar.test;
 /**
  * 
  * 
- * @author Karlgren
+ * @author Mathias Karlgren (matkarlg)
  *
  */
 import junit.framework.Assert;
