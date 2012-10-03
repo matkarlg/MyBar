@@ -2,21 +2,27 @@ package se.turbotorsk.mybar;
 
 //import android.app.ActionBar;
 //import android.app.FragmentTransaction;
+import se.turbotorsk.mybar.database.DrinkTable;
+import se.turbotorsk.mybar.database.MyBarContentProvider;
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
-//import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-//import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-//import android.support.v4.app.NavUtils;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-//import android.view.Gravity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
-//import android.view.MenuItem;
 import android.view.View;
+//import android.support.v4.app.Fragment;
+//import android.support.v4.app.FragmentManager;
+//import android.support.v4.app.NavUtils;
+//import android.view.Gravity;
+//import android.view.MenuItem;
 //import android.view.ViewGroup;
 //import android.widget.TextView;
 
@@ -49,7 +55,47 @@ public class MainActivity extends FragmentActivity {
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mViewPager.setCurrentItem(1);
         
+        /**
+         * Test Code SQLITE
+         */
+        Uri myBarUri = null;
+        // SQLite uses autoincrement in the _id field
+        Drink[] testDrinks = {
+        		new Drink(0, "Margarita", "/margarita.jpg", "Martini Glass", "Rom", "Mix rom and ice", 5), 
+        		new Drink(0, "Tequila", "/tequila.jpg", "Shot Glass", "Tequila", "Pour Tequila in glass", 5)
+        };
         
+        // Insert test
+        for (Drink testDrink : testDrinks) {
+        	ContentValues values = testDrink.getContentValues();
+        	myBarUri = getContentResolver().insert(MyBarContentProvider.CONTENT_URI, values);
+        	Log.d(this.getClass().getName(), "Test insert. Created row: " + myBarUri.toString());
+        }
+        
+	    // Choose which columns you want to query. null queries all columns
+	    String[] projection = { DrinkTable.COLUMN_NAME,	DrinkTable.COLUMN_DESCRIPTION, DrinkTable.COLUMN_RATING };
+	    
+	    // Query database
+	    Cursor cursor = getContentResolver().query(MyBarContentProvider.CONTENT_URI, projection, null, null, null);
+	    
+	    // Successful query?
+	    if (cursor != null) {
+	    	
+	    	// Is there any data from the requested Query
+	    	if (cursor.moveToFirst()) {
+	    		
+	    		// Test Print
+	    		Log.d(this.getClass().getName(), cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_NAME)));
+	    		Log.d(this.getClass().getName(), cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_DESCRIPTION)));
+	    		Log.d(this.getClass().getName(), cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_RATING)));
+	    	}
+	    	
+	    	// Close the cursor
+	    	cursor.close();
+	    }
+        /**
+         * End of SQLite Test Code
+         */
 
     }
 
