@@ -3,23 +3,16 @@
     android:id="@+id/GridLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:columnCount="2" >
-
-    <Button
-        android:id="@+id/testbutton"
-        android:layout_column="0"
-        android:layout_gravity="left|bottom"
-        android:layout_row="0"
-        android:text="@string/app_name" 
-        android:onClick="b1"/>
-
+    android:columnCount="1" >
+
     <ListView
         android:id="@+id/listView1"
         android:layout_width="match_parent"
-        android:layout_height="383dp"
+        android:layout_height="wrap_content"
         android:layout_column="0"
         android:layout_gravity="left"
         android:layout_row="0" >
+
     </ListView>
 
 </GridLayout>
