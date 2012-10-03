@@ -29,31 +29,13 @@
         </provider>
 
         <activity
-            android:name=".Add_Ingredient_Activity"
-            android:label="@string/title_activity_add__ingredient" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:name=".Add_Ingredient_Activity" >
         </activity>
         <activity
-            android:name=".About_Activity"
-            android:label="@string/title_activity_about_" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:name=".About_Activity" >
         </activity>
         <activity
-            android:name=".Settings_Activity"
-            android:label="@string/title_activity_settings_" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:name=".Settings_Activity" >
         </activity>
         <activity
             android:name=".view_drink_activity" >
