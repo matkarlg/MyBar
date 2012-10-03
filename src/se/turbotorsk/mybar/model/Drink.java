@@ -17,12 +17,12 @@ public class Drink {
 	private int _id = 0;
 	private String name = "";
 	private String url = "";
-	private String glass = "";
+	private int glass = 0;
 	private String ingredient = "";
 	private String description = "";
 	private int rating = 0;
 	
-	public Drink(int _id, String name, String url, String glass,
+	public Drink(int _id, String name, String url, int glass,
 			String ingredient, String description, int rating) {
 		this._id = _id;
 		this.name = name;
@@ -90,11 +90,11 @@ public class Drink {
 		this.rating = rating;
 	}
 
-	public String getGlass() {
+	public int getGlass() {
 		return glass;
 	}
 
-	public void setGlass(String glass) {
+	public void setGlass(int glass) {
 		this.glass = glass;
 	}
 
