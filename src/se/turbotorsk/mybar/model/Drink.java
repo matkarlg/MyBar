@@ -1,4 +1,4 @@
-package se.turbotorsk.mybar;
+package se.turbotorsk.mybar.model;
 
 import android.content.ContentValues;
 

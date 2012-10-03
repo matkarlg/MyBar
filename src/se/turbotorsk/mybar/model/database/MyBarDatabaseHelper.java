@@ -1,4 +1,4 @@
-package se.turbotorsk.mybar.database;
+package se.turbotorsk.mybar.model.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

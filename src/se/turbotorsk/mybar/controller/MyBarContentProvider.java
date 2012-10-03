@@ -1,5 +1,7 @@
-package se.turbotorsk.mybar.database;
+package se.turbotorsk.mybar.controller;
 
+import se.turbotorsk.mybar.model.database.DrinkTable;
+import se.turbotorsk.mybar.model.database.MyBarDatabaseHelper;
 import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.UriMatcher;
@@ -31,7 +33,7 @@ import android.text.TextUtils;
  * 
  */
 public class MyBarContentProvider extends ContentProvider {
-	public static final String AUTHORITY = "se.turbotorsk.mybar.database";
+	public static final String AUTHORITY = "se.turbotorsk.mybar.model.database";
 	public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/" + DrinkTable.TABLE_DRINK);
 	
 	private MyBarDatabaseHelper database;
