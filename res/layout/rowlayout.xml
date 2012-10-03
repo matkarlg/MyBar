@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="3dip"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
         android:layout_marginRight="5dip">
  
         <ImageView
@@ -17,16 +17,14 @@
             android:layout_width="50dip"
             android:layout_height="50dip"
             android:src="@drawable/ic_drinkicon"/>
- 
     </LinearLayout>
     
     
-	<!-- Drink title  -->
+	
     <TextView
         android:id="@+id/drink"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/drinkpicture"
+        android:layout_height="wrap_content" 
         android:text="@+id/drink"
         android:typeface="sans"
         android:textColor="#040404"
@@ -35,7 +33,7 @@
         
     </TextView>
     
-    <!-- Drink Ingredients -->
+
     <TextView
         android:id="@+id/ingredients"
         android:layout_width="wrap_content"
@@ -43,8 +41,7 @@
         android:layout_below="@id/drink"
         android:textColor="#343434"
         android:textSize="10dip"
-        android:layout_marginTop="1dip"
-        android:layout_toRightOf="@+id/drinkpicture"
+        android:layout_marginTop="1dip"       
         android:text="ing1, ing2, ing3, ing4, ing5" />
 
     
