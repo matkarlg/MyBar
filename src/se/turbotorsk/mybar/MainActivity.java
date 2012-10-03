@@ -2,6 +2,7 @@ package se.turbotorsk.mybar;
 
 //import android.app.ActionBar;
 //import android.app.FragmentTransaction;
+import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 //import android.view.ViewGroup;
 //import android.widget.TextView;
+import android.widget.ArrayAdapter;
 
 public class MainActivity extends FragmentActivity {
 
@@ -50,8 +52,6 @@ public class MainActivity extends FragmentActivity {
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mViewPager.setCurrentItem(1);
-        
-        
 
     }
 
@@ -143,5 +143,14 @@ public class MainActivity extends FragmentActivity {
         		return true;
     	}
     }
+    
+    public void myBarKnapp(View view){
+    	Intent intent = new Intent(this, DrinksList.class);
+    	startActivity(intent);
+    }
      
+    public void myFavoritesKnapp(View view){
+    	Intent intent = new Intent(this, MyFavorites.class);
+    	startActivity(intent);
+    }
 }
