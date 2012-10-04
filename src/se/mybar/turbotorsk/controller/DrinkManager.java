@@ -9,26 +9,41 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 */
 
 
-package se.turbotorsk.mybar.model;
+package se.mybar.turbotorsk.controller;
+import java.util.LinkedList;
+import se.turbotorsk.mybar.model.Drink;
+import se.turbotorsk.mybar.model.Ingredient;
 
-public class Ingredient {
-	
-	private int id = 0;
-	private String name = "";
-	private String url = "";
-	private int type = 0;
-	private String description = "";
-	
-	public Ingredient(int id, String name, String url, int glass, String description)
+
+public class DrinkManager {
+	private LinkedList<Drink> myBar = null; 
+
+	public DrinkManager(){;}
+
+	public LinkedList<Drink> getMyBar(LinkedList<Ingredient> ingredientList, LinkedList<Drink> drinkList)
 	{
-		this.id = id;
-		this.name = name;
-		this.url = url;
-		this.description = description;
+		String[] drinks;
+		int ingredientID = 0, count = 0;
+		boolean found = false; 
+		for(Drink drink : drinkList ){
+			drinks = drink.getIngredient().split(";");
+			for(int countID = 0;  countID <= drinks.length; countID+=2){
+				ingredientID = Integer.parseInt(drinks[count]);
+				found = false; 
+				for(Ingredient ingredient : ingredientList){
+					if(ingredient.getId() == ingredientID) {
+						found = true; 
+						break;
+					}
+				}
+				if (found == false) {
+					break;
+				}
+			myBar.add(drink);
+			}	
+		}
+			return myBar;
 	}
 
-	public int getId() {
-		return id;
-	}
 
 }

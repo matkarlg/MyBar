@@ -2,6 +2,7 @@ package se.turbotorsk.mybar;
 
 //import android.app.ActionBar;
 //import android.app.FragmentTransaction;
+import se.turbotorsk.mybar.model.Data;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 //import android.support.v4.app.NavUtils;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 //import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -50,9 +52,13 @@ public class MainActivity extends FragmentActivity {
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mViewPager.setCurrentItem(1);
+        Data data = new Data(); //Creates the model object.
+       // Log.d(this.getClass().getName(),data.getDrinkNameArray()[1]);
+        
+        //String[] lista = data.getDrinkNameArray();
         
         
-
+ 
     }
 
     @Override

@@ -1,4 +1,4 @@
-package se.turbotorsk.mybar.controller;
+package se.turbotorsk.mybar.model;
 
 import se.turbotorsk.mybar.model.database.DrinkTable;
 import se.turbotorsk.mybar.model.database.MyBarDatabaseHelper;
