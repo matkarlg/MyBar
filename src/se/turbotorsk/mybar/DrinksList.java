@@ -3,6 +3,7 @@ package se.turbotorsk.mybar;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.ListActivity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -40,5 +41,6 @@ public class DrinksList extends ListActivity {
       String item = (String) getListAdapter().getItem(position);
       //We will replace this to start another activity instead. Dont know how to do that yet.
       Toast.makeText(this, item + " selected", Toast.LENGTH_LONG).show();
+      startActivity(new Intent(this, View_Drink_Activity.class));
     }
 }

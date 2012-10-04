@@ -22,7 +22,7 @@ public class Add_Ingredient_Activity extends ListActivity {
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 	  String item = (String) getListAdapter().getItem(position);
 	  Toast.makeText(this, "Added " + item, Toast.LENGTH_LONG).show();
-	  finish();
+	 finish();
 	}
 	
 	

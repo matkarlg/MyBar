@@ -46,30 +46,15 @@
         <activity
             android:name=".DrinksList"
             android:label="@string/title_activity_drinks_list" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".MyFavorites"
             android:label="@string/title_activity_my_favorites" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".View_Drink_Activity" >
             android:name=".CollectionActivity"
             android:label="@string/title_activity_collection" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".CollectionActivity"></activity>
     </application>
