@@ -12,5 +12,6 @@
     <string name="title_activity_settings_">Settings</string>
     <string name="favorite">Favorite</string>
     <string name="about">This is our shitty drink recipe app, uninstall ASAP.</string>
+    <string name="title_activity_view__drink_">View_Drink_Activity</string>
 
 </resources>
