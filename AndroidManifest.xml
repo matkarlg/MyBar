@@ -32,7 +32,7 @@
             android:name=".Settings_Activity" >
         </activity>
         <activity
-            android:name=".view_drink_activity" >
+            android:name=".View_Drink_Activity" >
         </activity>
     </application>
 

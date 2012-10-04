@@ -13,7 +13,7 @@ import android.widget.TextView;
  *
  */
 
-public class view_drink_activity extends Activity {
+public class View_Drink_Activity extends Activity {
 	
 	TextView dName;
 	TextView dDescription;
