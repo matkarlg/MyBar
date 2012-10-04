@@ -2,15 +2,10 @@
  * A drink object contains information about a drink.
  * 
  * @author Dag Fridén
- * 
- */
-
-/**
+ * @version 0.1
  * @copywright Dag Fridén
  * 
  */
-
-
 
 package se.turbotorsk.mybar.model;
 
@@ -22,7 +17,9 @@ public class Data {
 	private final boolean EDATA = false;
 	private final boolean FAKE = true;
 	private Drink exampleDrink1 = null, exampleDrink2 = null;
+	private LinkedList<Ingredient> fakeIngredientList = null;
 	private LinkedList<Drink> fakeDrinkList = null;
+	private Ingredient fakeIngredient1 = null, fakeIngredient2 = null, fakeIngredient3 = null; 
 	//private XXXXXXXX sqlite;
 	//private XXXXXXXX jsonParser;
 	//private XXXXXXXX httpGet;
@@ -33,8 +30,12 @@ public class Data {
 		if(EDATA);
 		if(FAKE){
 			fakeDrinkList = new LinkedList<Drink>();
-			fakeDrinkList.add(exampleDrink1 = new Drink(1, "testDrink1", "http://www.google.se", 1,"ingredient1", "description1",3));
-			fakeDrinkList.add(exampleDrink2 = new Drink(2, "testDrink2", "http://www.google.se", 2,"ingredient2", "description2",2));
+			fakeDrinkList.add(exampleDrink1 = new Drink(1, "1;2;2;1", "http://www.google.se", 1,"ingredient1", "description1",3));
+			fakeDrinkList.add(exampleDrink2 = new Drink(2, "1;3;3;1", "http://www.google.se", 2,"ingredient2", "description2",2));
+			fakeIngredientList= new LinkedList<Ingredient>();
+			fakeIngredientList.add(fakeIngredient1 = new Ingredient(1, "Vodka", "http://www.google.se", 2, "Nice Vodka!"));
+			fakeIngredientList.add(fakeIngredient2 = new Ingredient(2, "Dark Rom", "http://www.google.se", 2, "Nice Rom!"));
+			fakeIngredientList.add(fakeIngredient3 = new Ingredient(3, "Lime", "http://www.google.se", 2, "Nice Lime!"));
 		}
 		
 	}
@@ -98,7 +99,6 @@ public class Data {
 		if(SQLITE);
 		if(EDATA);
 		if(FAKE){ return fakeDrinkList; }
-		
 		return null; 
 	}
 	
@@ -119,6 +119,12 @@ public class Data {
 	 */
 	public LinkedList<Drink> searchIngredientName(String searchName)
 	{
+		return null;
+	}
+	
+	public LinkedList<Ingredient> getIngredientList()
+	{
+		if(FAKE){ return fakeIngredientList; }
 		return null;
 	}
 }
