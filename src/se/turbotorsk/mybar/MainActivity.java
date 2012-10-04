@@ -1,12 +1,32 @@
 package se.turbotorsk.mybar;
 
 import android.app.TabActivity;
+//import android.app.ActionBar;
+//import android.app.FragmentTransaction;
+import se.turbotorsk.mybar.model.Data;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+
+import android.os.Parcelable;
+//import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+//import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+//import android.support.v4.app.NavUtils;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.util.Log;
+//import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
+//import android.view.MenuItem;
+import android.view.View;
+//import android.view.ViewGroup;
+//import android.widget.TextView;
 
 @SuppressWarnings("deprecation")
 public class MainActivity extends TabActivity {
@@ -16,9 +36,11 @@ public class MainActivity extends TabActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		
-		TabHost tabHost = getTabHost(); 
-		
+		Data data = new Data(); //Creates the model object.
+       // Log.d(this.getClass().getName(),data.getDrinkNameArray()[1]);
+        
+        //String[] lista = data.getDrinkNameArray(); tabHost = getTabHost(); 
+		TabHost tabHost = getTabHost();
 		// Favorites tab
 		// We should rename MyFavorites to Favorites, but thats not a big issue.
 		Intent intentFavorites = new Intent().setClass(this, MyFavorites.class);
