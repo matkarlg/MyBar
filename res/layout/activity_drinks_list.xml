@@ -3,6 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
+    <!-- This view isnt used, i think we can remove it if we change some lines in DrinkList.java /AC -->
+    
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
