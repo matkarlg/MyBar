@@ -7,7 +7,7 @@ import android.util.Log;
  * A table template. Creates the database table structure for the drinks
  * (mirrored in remote database).
  * 
- * @author Karlgren
+ * @author Mathias Karlgren (matkarlg)
  * 
  */
 public class DrinkTable {
