@@ -1,7 +1,5 @@
-package se.turbotorsk.mybar.controller;
+package se.turbotorsk.mybar.model.database;
 
-import se.turbotorsk.mybar.model.database.DrinkTable;
-import se.turbotorsk.mybar.model.database.MyBarDatabaseHelper;
 import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.UriMatcher;

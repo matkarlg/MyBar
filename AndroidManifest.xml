@@ -10,7 +10,8 @@
     <application
         android:icon="@drawable/ic_drinkicon"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" android:uiOptions="splitActionBarWhenNarrow">
+        android:theme="@style/AppTheme"
+        android:uiOptions="splitActionBarWhenNarrow" >
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main" >
@@ -20,20 +21,57 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <provider android:exported="false" android:authorities="se.turbotorsk.mybar.model.database" android:name=".controller.MyBarContentProvider"></provider>
+        <provider android:exported="false" android:authorities="se.turbotorsk.mybar.model.database" android:name=".model.database.MyBarContentProvider"></provider>
 
-        <activity
-            android:name=".Add_Ingredient_Activity" >
+
+        <provider
+            android:name=".model.database.MyBarContentProvider"
+            android:authorities="@string/contentprovider"
+            android:exported="false" >
+        </provider>
+        <provider
+            android:name=".database.MyBarContentProvider"
+            android:authorities="@string/contentprovider"
+            android:exported="false" >
+        </provider>
+
+        <activity android:name=".Add_Ingredient_Activity" >
+        </activity>
+        <activity android:name=".About_Activity" >
+        </activity>
+        <activity android:name=".Settings_Activity" >
+        </activity>
+        <activity android:name=".view_drink_activity" >
         </activity>
         <activity
-            android:name=".About_Activity" >
+            android:name=".DrinksList"
+            android:label="@string/title_activity_drinks_list" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
-            android:name=".Settings_Activity" >
+            android:name=".MyFavorites"
+            android:label="@string/title_activity_my_favorites" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".View_Drink_Activity" >
+            android:name=".CollectionActivity"
+            android:label="@string/title_activity_collection" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+        <activity android:name=".CollectionActivity"></activity>
     </application>
 
 </manifest>
