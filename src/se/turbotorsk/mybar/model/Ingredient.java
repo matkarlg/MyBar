@@ -10,7 +10,7 @@ public class Ingredient {
 	
 	public Ingredient(int id, String name, String url, int glass, String description)
 	{
-		this.setId(id);
+		this.id = id;
 		this.name = name;
 		this.url = url;
 		this.description = description;
