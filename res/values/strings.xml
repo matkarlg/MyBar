@@ -9,8 +9,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_add__ingredient">Add Ingredient</string>
     <string name="title_activity_about_">About</string>
-    <string name="about">insert about-text here</string>
     <string name="title_activity_settings_">Settings</string>
     <string name="favorite">Favorite</string>
+    <string name="about">This is our shitty drink recipe app, uninstall ASAP.</string>
 
 </resources>

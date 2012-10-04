@@ -6,19 +6,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
-//import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-//import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-//import android.support.v4.app.NavUtils;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-//import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-//import android.view.MenuItem;
 import android.view.View;
+//import android.support.v4.app.Fragment;
+//import android.support.v4.app.FragmentManager;
+//import android.support.v4.app.NavUtils;
+//import android.view.Gravity;
+//import android.view.MenuItem;
 //import android.view.ViewGroup;
 //import android.widget.TextView;
 
@@ -137,7 +137,7 @@ public class MainActivity extends FragmentActivity {
         		startActivity(new Intent(this, Settings_Activity.class));
         		return true;
         	case R.id.menu_about:
-        		startActivity(new Intent(this, About_Activity.class));
+        		AboutBox.Show(MainActivity.this);
         		return true;
         	default:
         		return true;
