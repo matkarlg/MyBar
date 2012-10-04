@@ -3,25 +3,30 @@
     android:id="@+id/GridLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:columnCount="2" >
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_column="0"
-        android:layout_columnSpan="2"
-        android:layout_gravity="center_horizontal"
-        android:layout_row="1"
-        android:onClick="myBarKnapp"
-        android:text="MyBar" />
+    android:columnCount="3"
+    android:minWidth="150dip" >
 
     <Button
+        android:id="@+id/button1"
+        android:layout_column="1"
+        android:layout_gravity="center"
+        android:layout_row="1"
+        android:gravity="center_vertical|center_horizontal"
+        android:minWidth="150dip"
+        android:onClick="myBarKnapp"
+        android:text="MyBar"
+        android:typeface="sans" />
+
+    <Button
         android:id="@+id/button2"
-        android:layout_column="0"
-        android:layout_columnSpan="2"
-        android:layout_gravity="center_horizontal"
+        android:layout_column="1"
+        android:layout_gravity="left"
         android:layout_row="2"
+        android:layout_rowSpan="2"
+        android:gravity="center_vertical|center_horizontal"
+        android:minWidth="150dip"
         android:onClick="myFavoritesKnapp"
-        android:text="MyFavorites" />
+        android:text="Favorites" />
 
     <Space
         android:layout_width="1dp"
@@ -30,9 +35,60 @@
         android:layout_row="0" />
 
     <Space
+        android:layout_width="6dp"
+        android:layout_height="1dp"
+        android:layout_column="1"
+        android:layout_row="0" />
+
+    <Space
+        android:layout_width="119dp"
+        android:layout_height="1dp"
+        android:layout_column="2"
+        android:layout_row="0" />
+
+    <Space
         android:layout_width="1dp"
-        android:layout_height="80dp"
+        android:layout_height="16dp"
         android:layout_column="0"
-        android:layout_row="1" />
+        android:layout_row="2" />
+
+    <Space
+        android:layout_width="1dp"
+        android:layout_height="36dp"
+        android:layout_column="0"
+        android:layout_row="3" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_column="1"
+        android:layout_gravity="left"
+        android:layout_row="4"
+        android:gravity="center_vertical|center_horizontal"
+        android:minWidth="150dip"
+        android:onClick="collectionKnapp"
+        android:text="Collection" />
+
+    <Space
+        android:layout_width="100dp"
+        android:layout_height="48dp"
+        android:layout_column="0"
+        android:layout_row="5" />
+
+    <Space
+        android:layout_width="100dp"
+        android:layout_height="48dp"
+        android:layout_column="1"
+        android:layout_row="5" />
+
+    <Space
+        android:layout_width="100dp"
+        android:layout_height="48dp"
+        android:layout_column="1"
+        android:layout_row="5" />
+
+    <Space
+        android:layout_width="100dp"
+        android:layout_height="304dp"
+        android:layout_row="5" />
 
 </GridLayout>

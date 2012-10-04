@@ -15,5 +15,6 @@
     <string name="favorite">Favorite</string>
     <string name="title_activity_drinks_list">DrinksList</string>
     <string name="title_activity_my_favorites">MyFavorites</string>
+    <string name="title_activity_collection">CollectionActivity</string>
 
 </resources>

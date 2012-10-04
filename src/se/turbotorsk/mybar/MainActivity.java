@@ -153,4 +153,10 @@ public class MainActivity extends FragmentActivity {
     	Intent intent = new Intent(this, MyFavorites.class);
     	startActivity(intent);
     }
+    
+    public void collectionKnapp(View view){
+    	Intent intent = new Intent(this, CollectionActivity.class);
+    	startActivity(intent);
+    }
+    
 }
