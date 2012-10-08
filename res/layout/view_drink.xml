@@ -3,25 +3,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/spaces" >
-    <RelativeLayout
+
+    <RelativeLayout
         android:id="@+id/dLayout"
         android:layout_width="match_parent"
         android:layout_height="440dp" >
-        <TextView
+
+        <TextView
             android:id="@+id/drinkName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:textSize="50dp" />
-        <TextView
+            android:text="Drinkname"
+            android:textSize="40dp" />
+
+        <TextView
             android:id="@+id/drinkRating"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/drinkName"
-            android:textSize="30dp" />
+            android:text="1/5"
+            android:textSize="20dp" />
 
         <CheckBox
             android:id="@+id/drinkFav"
@@ -32,30 +37,30 @@
             android:text="@string/favorite" />
 
         <TextView
-            android:id="@+id/drinkDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/drinkFav"
-            android:layout_toLeftOf="@+id/drinkRating" />
-        <TextView
             android:id="@+id/drinkIngredients"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/drinkDescription" />
-        <ImageView
+            android:layout_below="@+id/drinkFav"
+            android:text="Ingredients" />
+
+        <TextView
+            android:id="@+id/drinkDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/drinkIngredients"
+            android:layout_marginTop="26dp"
+            android:text="Description" />
+
+        <ImageView
             android:id="@+id/drinkImage"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_alignBottom="@+id/drinkFav"
-            android:layout_alignParentLeft="true"
-            android:layout_alignTop="@+id/drinkRating"
-            android:src="@drawable/ic_drinkicon"
-            android:contentDescription="@+id/drinkImage" >
-            
-        </ImageView>
+            android:layout_above="@+id/drinkIngredients"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@+id/drinkImage"
+            android:src="@drawable/ic_drinkicon" />
 
     </RelativeLayout>
 
