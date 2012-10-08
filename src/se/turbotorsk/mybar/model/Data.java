@@ -68,6 +68,12 @@ public class Data {
 		return null; 
 	}
 	
+	public String getIngredientById(int ID)
+	{
+		return null; 
+	}
+
+	
 	public String[] getDrinkNameArray()
 	{
 		String[] drinks; 
