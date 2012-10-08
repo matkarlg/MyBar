@@ -23,6 +23,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 package se.turbotorsk.mybar.model;
 
+import se.turbotorsk.mybar.controller.Controller;
 import android.content.ContentValues;
 
 //import java.text.SimpleDateFormat;
@@ -92,6 +93,25 @@ public class Drink {
 					e);
 		}
 	}*/
+	
+	/**
+	* Return a representatiof of the ingredients in the drink for the the drink view activity.
+	* @return
+	*/
+	public String getIngredientString()
+	{	
+		Controller controller = Controller.controller;
+		int arrayCount = 0, maxStringLength = (25 -4); 
+		StringBuffer nameBuff = new StringBuffer();
+		for(String sid : ingredient.split(";")){
+			if((arrayCount % 2) == 0 ){
+			String name = controller.getData().getIngredientById(Integer.parseInt(sid));
+			if((name.length() - maxStringLength) <= 0) nameBuff.append(name); nameBuff.append(",");
+			}
+		}
+		
+		return null;
+	}
 	
 	public ContentValues getContentValues() {
 		return values;
