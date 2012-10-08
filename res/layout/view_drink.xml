@@ -3,13 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/spaces" >
-
-    <RelativeLayout
+    <RelativeLayout
         android:id="@+id/dLayout"
         android:layout_width="match_parent"
         android:layout_height="440dp" >
-
-        <TextView
+        <TextView
             android:id="@+id/drinkName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -17,15 +15,14 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:textSize="50dp" />
-
-        <TextView
+        <TextView
             android:id="@+id/drinkRating"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/drinkName"
             android:textSize="30dp" />
-
+
         <CheckBox
             android:id="@+id/drinkFav"
             android:layout_width="wrap_content"
@@ -33,7 +30,7 @@
             android:layout_alignParentRight="true"
             android:layout_below="@+id/drinkRating"
             android:text="@string/favorite" />
-
+
         <TextView
             android:id="@+id/drinkDescription"
             android:layout_width="wrap_content"
@@ -41,16 +38,14 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/drinkFav"
             android:layout_toLeftOf="@+id/drinkRating" />
-
-        <TextView
+        <TextView
             android:id="@+id/drinkIngredients"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/drinkDescription" />
-
-        <ImageView
+        <ImageView
             android:id="@+id/drinkImage"
             android:layout_width="70dp"
             android:layout_height="70dp"
