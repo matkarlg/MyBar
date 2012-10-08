@@ -35,6 +35,9 @@ public class View_Drink_Activity extends Activity {
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
+    	
+    
+    	
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_drink);
         
@@ -52,7 +55,12 @@ public class View_Drink_Activity extends Activity {
      * This method inserts the information to the Views in this activity's XML-file
      */
     public void getDrinkInfo() {
-    	dName.setText("Drink name");
+    	
+    	//Receiving intents from activity
+    	Bundle bundle = getIntent().getExtras();
+    	String drinkName = bundle.getString("drinkname");
+    	
+    	dName.setText(drinkName);
     	dDescription.setText("Drink description");
     	dIngredients.setText("Drink ingredients");
     	dRating.setText("5");

@@ -33,7 +33,7 @@ import android.widget.TabHost.TabSpec;
 
 @SuppressWarnings("deprecation")
 public class MainActivity extends TabActivity {
-public Controller controller = null;
+public static Controller controller = null;
 
    @Override
 	public void onCreate(Bundle savedInstanceState) {
