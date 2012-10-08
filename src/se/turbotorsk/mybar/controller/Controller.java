@@ -1,6 +1,8 @@
 package se.turbotorsk.mybar.controller;
 
+import android.content.ContentResolver;
 import se.turbotorsk.mybar.model.Data;
+import se.turbotorsk.mybar.model.Drink;
 
 public class Controller {
 	
@@ -9,11 +11,21 @@ public class Controller {
 	
 	public Controller()
 	{
-		data = new Data();
+		data = new Data(null);
+	}
+
+	
+	public String[] getDrinkNamesAsArray(ContentResolver contentResolver)
+	{
+		String[] array = null;
+		int i = 0;
+		for(Drink drink : data.getAllDrinks(contentResolver)){
+			array[i++] = drink.getName();	
+		}
+		return array;
 	}
 	
-	public Data getData()
-	{
-		return data;
+	public Drink getIngredientById(int id){
+		return null;
 	}
 }
