@@ -23,6 +23,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+
 public class DrinksList extends ListActivity {
 
     @Override
@@ -31,7 +32,7 @@ public class DrinksList extends ListActivity {
         //setContentView(R.layout.activity_drinks_list);
         
         //Storing some random variables
-        Controller controller = new Controller();
+        Controller controller = Controller.controller;
         String[] values = controller.getData().getDrinkNameArray();
         
         //Adds everything to an adapter. We are also chosing which layout the program should use. This is where we're going to choose our own layout when that works.
