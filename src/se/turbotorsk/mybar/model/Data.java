@@ -23,14 +23,13 @@ import java.util.LinkedList;
 
 import se.turbotorsk.mybar.model.database.DrinkTable;
 import se.turbotorsk.mybar.model.database.MyBarContentProvider;
-import android.app.Application;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 import android.util.Log;
 
-public class Data extends Application {
+public class Data {
 	
 	private final boolean SQLITE = true;
 	private final boolean EDATA = false;
