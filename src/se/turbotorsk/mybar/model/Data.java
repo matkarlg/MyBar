@@ -74,17 +74,17 @@ public class Data {
 		if(SQLITE);
 		if(EDATA);
 		if(FAKE){
-			drinks = new String[20];
-			drinks[0] ="Cola och tonic";
-			drinks[1] ="Cola lime";
-			drinks[2] ="Cola gin";
-			drinks[3] ="Cola citrus";
-			drinks[4] ="Cola hallon";
-			drinks[5] ="Cola light";
-			drinks[6] ="Cola sun";
-			drinks[7] ="Cola looka";
-			drinks[8] ="Cola with ice";
-			drinks[9] ="Rom and cocke";
+			drinks = new String[10];
+			drinks[0] ="Tonic";
+			drinks[1] ="Fanta";
+			drinks[2] ="Fruktsoda";
+			drinks[3] ="Vira Blåtira";
+			drinks[4] ="Hallonsoda";
+			drinks[5] ="Mjölk";
+			drinks[6] ="Saft";
+			drinks[7] ="Vatten";
+			drinks[8] ="Coca-Cola";
+			drinks[9] ="Coca-Cola Light (disgusting)";
 			
 			return drinks;
 		}

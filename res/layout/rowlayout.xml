@@ -32,17 +32,16 @@
         android:textStyle="bold" >
         
     </TextView>
-    
-
+    
     <TextView
         android:id="@+id/ingredients"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/drink"
+        android:layout_marginTop="1dip"
+        android:text="ing1, ing2, ing3, ing4, ing5"
         android:textColor="#343434"
-        android:textSize="10dip"
-        android:layout_marginTop="1dip"       
-        android:text="ing1, ing2, ing3, ing4, ing5" />
+        android:textSize="10dip" />
     
      <TextView
          android:id="@+id/rating"
