@@ -26,12 +26,7 @@
 
         <provider
             android:name=".model.database.MyBarContentProvider"
-            android:authorities="@string/contentprovider"
-            android:exported="false" >
-        </provider>
-        <provider
-            android:name=".database.MyBarContentProvider"
-            android:authorities="@string/contentprovider"
+            android:authorities="se.turbotorsk.mybar.model.database"
             android:exported="false" >
         </provider>
 
