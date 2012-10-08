@@ -42,6 +42,16 @@ public class Data extends Application {
 	//private XXXXXXXX sqlite;
 	//private XXXXXXXX jsonParser;
 	//private XXXXXXXX httpGet;
+	
+	/**
+	 * How to query database
+	 */
+//	Data data = new Data(getContentResolver()); //Creates the model object.
+//	
+//	for (Drink drinks : data.getAllDrinks(getContentResolver())) {
+//		Log.d(this.getClass().getName(), "" + drinks.get_id() + " " + drinks.getName());
+//	}
+	
     
 	public Data(ContentResolver contentResolver)
 	{
