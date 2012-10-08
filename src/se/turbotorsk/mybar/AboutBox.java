@@ -26,11 +26,7 @@ import android.widget.TextView;
 
 public class AboutBox {
 	  static String VersionName(Context context) {
-	    try {
-	      return context.getPackageManager().getPackageInfo(context.getPackageName(),0).versionName;
-	    } catch (NameNotFoundException e) {
-	      return "Unknown";
-	    }
+	      return "0.4"; //context.getPackageManager().getPackageInfo(context.getPackageName(),0).versionName;
 	  }
 	  public static void Show(Activity callingActivity) {
 	    //Use a Spannable to allow for links highlighting

@@ -11,7 +11,7 @@
     <string name="title_activity_about_">About</string>
     <string name="title_activity_settings_">Settings</string>
     <string name="favorite">Favorite</string>
-    <string name="about">This is our shitty drink recipe app, uninstall ASAP.</string>
+    <string name="about">MyBar is a personalized drink recipe app. MyBar is developed by TeamLegendaryAwesome.</string>
     <string name="title_activity_view__drink_">View_Drink_Activity</string>
     <string name="title_activity_drinks_list">DrinksList</string>
     <string name="title_activity_my_favorites">MyFavorites</string>
