@@ -20,8 +20,6 @@ import android.widget.TextView;
 
 /**
  * This activity push the information about a drink to the GUI
- * 
- * @author Viktor
  *
  */
 
@@ -58,12 +56,16 @@ public class View_Drink_Activity extends Activity {
     	
     	//Receiving intents from activity
     	Bundle bundle = getIntent().getExtras();
-    	String drinkName = bundle.getString("drinkname");
+    	String name = bundle.getString("drinkname");
+    	String rating = bundle.getString("rating");
+    	String description = bundle.getString("descrip");
+    	String ingredients = bundle.getString("ingredients");
     	
-    	dName.setText(drinkName);
-    	dDescription.setText("Drink description");
-    	dIngredients.setText("Drink ingredients");
-    	dRating.setText("5");
+    	dName.setText(name);
+    	dRating.setText(rating);
+    	dDescription.setText(description);
+    	dIngredients.setText(ingredients);
+    	
     	
     	dImage.setImageResource(R.drawable.ic_drinkicon);
     }
