@@ -13,15 +13,14 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 package se.turbotorsk.mybar;
 
 import se.turbotorsk.mybar.controller.Controller;
-import android.os.Bundle;
-import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.content.ContentResolver;
 
 
 public class DrinksList extends ListActivity {
@@ -33,7 +32,8 @@ public class DrinksList extends ListActivity {
         
         //Storing some random variables
         Controller controller = Controller.controller;
-        String[] values = controller.getData().getDrinkNameArray();
+        ContentResolver contentResolver = null;
+		String[] values = controller.getDrinkNamesAsArray(contentResolver);
         
         //Adds everything to an adapter. We are also chosing which layout the program should use. This is where we're going to choose our own layout when that works.
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
