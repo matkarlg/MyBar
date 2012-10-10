@@ -117,6 +117,9 @@ public class Data {
 			            int rating = cursor.getInt(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_RATING));
 			            drinkList.add(new Drink(_id, name, url, glass, ingredient, description, rating));
 			        }while (cursor.moveToNext());
+			        
+			        // Close the cursor
+			    	cursor.close();
 		    		
 		    		return drinkList;
 		    	}
@@ -194,11 +197,21 @@ public class Data {
 	    		String description = cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_DESCRIPTION));
 	    		int rating = cursor.getInt(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_RATING));
 	    		Drink drink = new Drink(_id, name, url, glass, ingredient, description, rating);
+	    		
+	    		// Close the cursor
+		    	cursor.close();
+		    	
 	    		return drink;
 	    	}
-
-	    	// Close the cursor
-	    	cursor.close();
+	    	else {
+	    		// ID doesn't exist. Return Drink with ID = 0
+	    		Drink drink = new Drink(0, "", "", "", "", "", 0);
+	    		
+	    		// Close the cursor
+		    	cursor.close();
+		    	
+	    		return drink;
+	    	}
 	    }
         /**
          * End of SQLite getDrinkByID()
