@@ -34,7 +34,7 @@ public class Share extends Activity {
     private void share() {
     	Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
     	sharingIntent.setType("text/plain");
-    	String shareBody = "Insert the message to send here";
+    	String shareBody = "Get the awesome app 'MyBar' from mybar.turbotorsk.se!";
     	sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject Here");
     	sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
     	startActivity(Intent.createChooser(sharingIntent, "Share via"));
