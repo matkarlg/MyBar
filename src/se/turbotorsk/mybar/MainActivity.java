@@ -13,10 +13,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 package se.turbotorsk.mybar;
 
 import se.turbotorsk.mybar.controller.Controller;
-import se.turbotorsk.mybar.controller.CoreLib;
-import se.turbotorsk.mybar.model.Data;
 import android.app.TabActivity;
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
