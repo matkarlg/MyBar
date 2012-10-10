@@ -13,8 +13,10 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 package se.turbotorsk.mybar;
 
 import se.turbotorsk.mybar.controller.Controller;
+import se.turbotorsk.mybar.controller.CoreLib;
 import se.turbotorsk.mybar.model.Data;
 import android.app.TabActivity;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -33,14 +35,15 @@ import android.widget.TabHost.TabSpec;
 
 @SuppressWarnings("deprecation")
 public class MainActivity extends TabActivity {
-public static Controller controller = null;
 
    @Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		controller = new Controller();
        // Log.d(this.getClass().getName(),data.getDrinkNameArray()[1]);
+		Controller controller = Controller.controller;
+
+		
         
         //String[] lista = data.getDrinkNameArray(); tabHost = getTabHost(); 
 		TabHost tabHost = getTabHost();
