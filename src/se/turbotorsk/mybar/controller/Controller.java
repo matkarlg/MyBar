@@ -7,7 +7,6 @@ import se.turbotorsk.mybar.model.Data;
 import se.turbotorsk.mybar.model.Drink;
 
 public class Controller {
-	private ContentResolver contentResolver = null;
 	public final static Controller controller = new Controller();
 	//private CoreLib cl = new CoreLib();
 	private Data data = null;
@@ -32,7 +31,7 @@ public class Controller {
 	{
 		String[] array = null;
 		int i = 0;
-		for(Drink drink : data.getAllDrinks(this.contentResolver)){
+		for(Drink drink : data.getAllDrinks()){
 			array[i++] = drink.getName();	
 		}
 		return array;
