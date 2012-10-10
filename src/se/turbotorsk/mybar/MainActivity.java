@@ -96,6 +96,9 @@ public static Controller controller = null;
         	case R.id.menu_about:
         		AboutBox.Show(MainActivity.this);
         		return true;
+        	case R.id.menu_share:
+        		startActivity(new Intent(this, Share.class));
+        		return true;
         	default:
         		return true;
     	}

@@ -22,8 +22,6 @@
             </intent-filter>
         </activity>
 
-
-
         <provider
             android:name=".model.database.MyBarContentProvider"
             android:authorities="se.turbotorsk.mybar.model.database"
@@ -46,12 +44,14 @@
             android:name=".MyFavorites"
             android:label="@string/title_activity_my_favorites" >
         </activity>
-        <activity
-            android:name=".View_Drink_Activity" >
+        <activity android:name=".View_Drink_Activity" >
             android:name=".CollectionActivity"
-            android:label="@string/title_activity_collection" >
+            android:label="@string/title_activity_collection" >
         </activity>
-        <activity android:name=".CollectionActivity"></activity>
+        <activity android:name=".CollectionActivity" >
+        </activity>
+        <activity android:name=".Share" >
+        </activity>
     </application>
 
 </manifest>
