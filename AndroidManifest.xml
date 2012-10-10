@@ -45,8 +45,6 @@
             android:label="@string/title_activity_my_favorites" >
         </activity>
         <activity android:name=".View_Drink_Activity" >
-            android:name=".CollectionActivity"
-            android:label="@string/title_activity_collection" >
         </activity>
         <activity android:name=".CollectionActivity" >
         </activity>
