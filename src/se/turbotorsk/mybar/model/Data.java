@@ -12,7 +12,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 /**
  * A drink object contains information about a drink.
  * 
- * @author Dag Frid�n
+ * @author Dag Friden, Mathias Karlgren
  * @version 0.1
  * 
  */
@@ -21,6 +21,7 @@ package se.turbotorsk.mybar.model;
 
 import java.util.LinkedList;
 
+import se.turbotorsk.mybar.controller.MyBarApplication;
 import se.turbotorsk.mybar.model.database.DrinkTable;
 import se.turbotorsk.mybar.model.database.MyBarContentProvider;
 import android.content.ContentResolver;
@@ -31,8 +32,7 @@ import android.util.Log;
 
 public class Data {
 	
-	private ContentResolver contentResolver = null;
-	private final boolean SQLITE = false;
+	private final boolean SQLITE = true;
 	private final boolean EDATA = false;
 	private final boolean FAKE = false;
 	private Drink exampleDrink1 = null, exampleDrink2 = null;
@@ -44,18 +44,16 @@ public class Data {
 	//private XXXXXXXX httpGet;
 	
 	/**
-	 * How to query database
+	 * How to query all drinks in database.
 	 */
-//	Data data = new Data(getContentResolver()); //Creates the model object.
-//	
-//	for (Drink drinks : data.getAllDrinks(getContentResolver())) {
+//	Data data = new Data(); //Creates the model object.
+//
+//	for (Drink drinks : data.getAllDrinks()) {
 //		Log.d(this.getClass().getName(), "" + drinks.get_id() + " " + drinks.getName());
 //	}
 	
-    
-	public Data(ContentResolver contentResolver)
+	public Data()
 	{
-		contentResolver = this.contentResolver; 
 		if(SQLITE) {
 			Uri myBarUri = null;
 	        
@@ -68,7 +66,7 @@ public class Data {
 	        // Insert testDrinks
 	        for (Drink testDrink : testDrinks) {
 	        	ContentValues values = testDrink.getContentValues();
-	        	myBarUri = contentResolver.insert(MyBarContentProvider.CONTENT_URI, values);
+	        	myBarUri = MyBarApplication.ContentResolver().insert(MyBarContentProvider.CONTENT_URI, values);
 	        	Log.d(this.getClass().getName(), "Test insert. Created row: " + myBarUri.toString());
 	        }
 		}
@@ -88,7 +86,7 @@ public class Data {
 	 * This method return all Drinks from the local SQLite database.
 	 * @return Drink object.
 	 */
-	public LinkedList<Drink> getAllDrinks(ContentResolver contentResolver)
+	public LinkedList<Drink> getAllDrinks()
 	{
 		if(SQLITE) {
 			
@@ -101,7 +99,7 @@ public class Data {
 		    //String[] projection = { DrinkTable.COLUMN_NAME,	DrinkTable.COLUMN_DESCRIPTION, DrinkTable.COLUMN_RATING };
 	        
 		    // Query database
-		    Cursor cursor = contentResolver.query(MyBarContentProvider.CONTENT_URI, null, null, null, null);
+		    Cursor cursor = MyBarApplication.ContentResolver().query(MyBarContentProvider.CONTENT_URI, null, null, null, null);
 		    
 		    // Successful query?
 		    if (cursor != null) {
@@ -164,7 +162,7 @@ public class Data {
 	 * @param ID
 	 * @return
 	 */
-	public Drink getDrinkByID(int ID, ContentResolver contentResolver)
+	public Drink getDrinkByID(int ID)
 	{
 		if(SQLITE){
 		
@@ -175,7 +173,7 @@ public class Data {
 	    //String[] projection = { DrinkTable.COLUMN_NAME,	DrinkTable.COLUMN_DESCRIPTION, DrinkTable.COLUMN_RATING };
 
 	    // Query database
-	    Cursor cursor = contentResolver.query(MyBarContentProvider.CONTENT_URI, null, DrinkTable.COLUMN_ID + "=" + ID, null, null);
+	    Cursor cursor = MyBarApplication.ContentResolver().query(MyBarContentProvider.CONTENT_URI, null, DrinkTable.COLUMN_ID + "=" + ID, null, null);
 
 	    // Successful query?
 	    if (cursor != null) {
