@@ -31,7 +31,8 @@ import android.util.Log;
 
 public class Data {
 	
-	private final boolean SQLITE = true;
+	private ContentResolver contentResolver = null;
+	private final boolean SQLITE = false;
 	private final boolean EDATA = false;
 	private final boolean FAKE = false;
 	private Drink exampleDrink1 = null, exampleDrink2 = null;
@@ -54,6 +55,7 @@ public class Data {
     
 	public Data(ContentResolver contentResolver)
 	{
+		contentResolver = this.contentResolver; 
 		if(SQLITE) {
 			Uri myBarUri = null;
 	        
