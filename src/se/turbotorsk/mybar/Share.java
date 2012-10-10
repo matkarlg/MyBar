@@ -14,11 +14,11 @@ package se.turbotorsk.mybar;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.widget.ImageButton;
 
+/**
+ * This class handles the share-function in the application
+ */
 public class Share extends Activity {
-	
-	ImageButton shareButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,6 +28,9 @@ public class Share extends Activity {
         share();
     }
 
+    /**
+     * The method that is used to send the information that will be sended
+     */
     private void share() {
     	Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
     	sharingIntent.setType("text/plain");
