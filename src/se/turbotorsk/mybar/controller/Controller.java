@@ -7,11 +7,11 @@ import se.turbotorsk.mybar.model.Data;
 import se.turbotorsk.mybar.model.Drink;
 
 public class Controller {
-	public final static Controller controller = new Controller();
+	//public final static Controller controller = new Controller();
 	//private CoreLib cl = new CoreLib();
-	private Data data = null;
-	private int myBarID = 1;
-	private DrinkManager dm = null;
+	private static Data data = null;
+	private static int myBarID = 1;
+	private static DrinkManager dm = null;
 	//		ContentResolver contentResolver = CoreLib.ContentResolver();
 	public Controller()
 	{
@@ -21,13 +21,13 @@ public class Controller {
 		//data = new Data(contentResolver);	
 	}
 
-	public LinkedList<Drink> getMyBar()
+	public static LinkedList<Drink> getMyBar()
 	{
 		//dm.getMyBar(data.getMyIngredients(this.myBarID), data.getAllDrinks(this.contentResolver));			Implement this in data....
 		return null;
 	}
 	
-	public String[] getDrinkNamesAsArray()
+	public static String[] getDrinkNamesAsArray()
 	{
 		String[] array = null;
 		int i = 0;
@@ -38,44 +38,44 @@ public class Controller {
 	}
 	
 	
-	public Drink getIngredientById(int id){
+	public static Drink getIngredientById(int id){
 		return null;
 	}
 	//-----------------------------------------------------Methods for getting and setting favorite drinks ----------------------------------
 	
 	
-	public boolean addFavoriteDrink(int id){
+	public static boolean addFavoriteDrink(int id){
 		return false;
 	}
 	
-	public LinkedList<Drink> getFavoritDrinks()
+	public static LinkedList<Drink> getFavoritDrinks()
 	{
 		return null;
 	}
 	
 	// -----------------------------------------------------Methods for Ingredient categories ------------------------------------
 	
-	public boolean addMyBarCat(String Name)
+	public static boolean addMyBarCat(String Name)
 	{
 		return false; //data.AddMyBarCat(String name);							Add this method in data. 
 	}
 	
-	public boolean addIngredientToList(int ingredientID)
+	public static boolean addIngredientToList(int ingredientID)
 	{
 		// data.AddIngredientToList(ingredientID, this.myBarID); 				Add this method in data. 
 		return false; 
 	}
 	
-	public boolean changeMyBarID(int myBarID)
+	public static boolean changeMyBarID(int myBarID)
 	{
 		if(true){ //Kolla om ID finns
-			this.myBarID = myBarID;
+			Controller.myBarID = myBarID;
 			return true;
 		}	
 		else return false; 
 	}
 	
-	public String[][] listMyBarIngredientCategories()
+	public static String[][] listMyBarIngredientCategories()
 	{
 		//data.listMyBarIngredientCategories(this.myBarID);						Add this method in data.
 		return null;

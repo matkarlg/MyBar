@@ -31,9 +31,9 @@ public class DrinksList extends ListActivity {
         //setContentView(R.layout.activity_drinks_list);
         
         //Storing some random variables
-        Controller controller = Controller.controller;
+        //Controller controller = Controller.controller;
 
-        String[] values = {"hello"}; //controller.getDrinkNamesAsArray(this); // THIS HAS TO BE REDONE! 
+        String[] values = {"hello"}; //Controller.getDrinkNamesAsArray(this);
         
         //Adds everything to an adapter. We are also chosing which layout the program should use. This is where we're going to choose our own layout when that works.
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,

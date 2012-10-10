@@ -100,12 +100,12 @@ public class Drink {
 	*/
 	public String getIngredientString()
 	{	
-		Controller controller = Controller.controller;
+		//Controller controller = Controller.controller;
 		int arrayCount = 0, maxStringLength = (25 -4); 
 		StringBuffer nameBuff = new StringBuffer();
 		for(String sid : ingredient.split(";")){
 			if((arrayCount % 2) == 0 ){
-			String name = controller.getIngredientById(Integer.parseInt(sid)).getName();
+			String name = Controller.getIngredientById(Integer.parseInt(sid)).getName();
 			if((name.length() - maxStringLength) <= 0) nameBuff.append(name); nameBuff.append(",");
 			}
 		}

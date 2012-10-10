@@ -38,7 +38,7 @@ public class MainActivity extends TabActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
        // Log.d(this.getClass().getName(),data.getDrinkNameArray()[1]);
-		Controller controller = Controller.controller;
+	   //Controller controller = Controller.controller;
 
 		
         
