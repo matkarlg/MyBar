@@ -31,19 +31,18 @@ import android.util.Log;
 
 public class Data {
 	
-	private final boolean SQLITE = true;
-	private final boolean EDATA = false;
-	private final boolean FAKE = false;
-	private Drink exampleDrink1 = null, exampleDrink2 = null;
-	private LinkedList<Ingredient> fakeIngredientList = null;
-	private LinkedList<Drink> fakeDrinkList = null;
+	private static final boolean SQLITE = true;
+	private static final boolean EDATA = false;
+	private static final boolean FAKE = false;
+	private static Drink exampleDrink1 = null, exampleDrink2 = null;
+	private static LinkedList<Ingredient> fakeIngredientList = null;
+	private static LinkedList<Drink> fakeDrinkList = null;
 //	private Ingredient fakeIngredient1 = null, fakeIngredient2 = null, fakeIngredient3 = null;
 	//private XXXXXXXX sqlite;
 	//private XXXXXXXX jsonParser;
 	//private XXXXXXXX httpGet;
 	
-	public Data()
-	{
+	public static int insertTestData() {
 		if(SQLITE) {
 			Uri myBarUri = null;
 	        
@@ -57,7 +56,7 @@ public class Data {
 	        for (Drink testDrink : testDrinks) {
 	        	ContentValues values = testDrink.getContentValues();
 	        	myBarUri = MyBarApplication.ContentResolver().insert(MyBarContentProvider.CONTENTURI_DRINK, values);
-	        	Log.d(this.getClass().getName(), "Inserted Drink. Created row: " + myBarUri.toString());
+	        	Log.d(Data.class.getClass().getName(), "Inserted Drink. Created row: " + myBarUri.toString());
 	        }
 	        
 	        // SQLite uses autoincrement in the _id field
@@ -70,7 +69,7 @@ public class Data {
 	        for (Ingredient testIngredient : testIngredients) {
 	        	ContentValues values = testIngredient.getContentValues();
 	        	myBarUri = MyBarApplication.ContentResolver().insert(MyBarContentProvider.CONTENTURI_INGREDIENT, values);
-	        	Log.d(this.getClass().getName(), "Inserted Ingredient. Created row: " + myBarUri.toString());
+	        	Log.d(Data.class.getClass().getName(), "Inserted Ingredient. Created row: " + myBarUri.toString());
 	        }
 		}
 		if(EDATA);
@@ -83,13 +82,23 @@ public class Data {
 //			fakeIngredientList.add(fakeIngredient2 = new Ingredient(2, "Dark Rom", "http://www.google.se", 2, "Nice Rom!"));
 //			fakeIngredientList.add(fakeIngredient3 = new Ingredient(3, "Lime", "http://www.google.se", 2, "Nice Lime!"));
 		}
+		return 0;
+	}
+	
+	public static int deleteTestData() {
+		int rowsDeleted = 0;
+		if(SQLITE) {
+			rowsDeleted += MyBarApplication.ContentResolver().delete(MyBarContentProvider.CONTENTURI_DRINK, null, null);
+			rowsDeleted += MyBarApplication.ContentResolver().delete(MyBarContentProvider.CONTENTURI_INGREDIENT, null, null);
+		}
+		return rowsDeleted;
 	}
 	
 	/**
 	 * This method return all Drinks from the local SQLite database.
 	 * @return Drink object.
 	 */
-	public LinkedList<Drink> getAllDrinks()
+	public static LinkedList<Drink> getAllDrinks()
 	{
 		if(SQLITE) {
 			
@@ -143,7 +152,7 @@ public class Data {
 	 * This method return all Ingredients from the local SQLite database.
 	 * @return Ingredient object.
 	 */
-	public LinkedList<Ingredient> getAllIngredients()
+	public static LinkedList<Ingredient> getAllIngredients()
 	{
 		if(SQLITE) {
 			
@@ -192,36 +201,13 @@ public class Data {
 		return null; 
 	}
 	
-	public String[] getDrinkNameArray()
-	{
-		String[] drinks; 
-		if(SQLITE);
-		if(EDATA);
-		if(FAKE){
-			drinks = new String[20];
-			drinks[0] ="Cola och tonic";
-			drinks[1] ="Cola lime";
-			drinks[2] ="Cola gin";
-			drinks[3] ="Cola citrus";
-			drinks[4] ="Cola hallon";
-			drinks[5] ="Cola light";
-			drinks[6] ="Cola sun";
-			drinks[7] ="Cola looka";
-			drinks[8] ="Cola with ice";
-			drinks[9] ="Rom and cocke";
-			
-			return drinks;
-		}
-		return null; 
-	}
-		
 	/**
 	 * This method return a Drink (thumbnail, name, rating, description) 
 	 * SQL Query: SELECT * WHERE _id = id
 	 * @param ID
 	 * @return
 	 */
-	public Drink getDrinkByID(int ID)
+	public static Drink getDrinkByID(int ID)
 	{
 		if(SQLITE){
 		
@@ -285,7 +271,7 @@ public class Data {
 	 * @param ID
 	 * @return
 	 */
-	public Ingredient getIngredientByID(int ID)
+	public static Ingredient getIngredientByID(int ID)
 	{
 		if(SQLITE){
 		
@@ -321,7 +307,7 @@ public class Data {
 	    		return ingredient;
 	    	}
 	    	else {
-	    		// ID doesn't exist. Return Drink with ID = 0
+	    		// ID doesn't exist. Return Ingredient with ID = 0
 	    		Ingredient ingredient = new Ingredient(0, "", "", "", 0, "");
 	    		
 	    		// Close the cursor
@@ -340,12 +326,35 @@ public class Data {
 		return null;
 	}
 	
+	public static String[] getDrinkNameArray()
+	{
+		String[] drinks; 
+		if(SQLITE);
+		if(EDATA);
+		if(FAKE){
+			drinks = new String[20];
+			drinks[0] ="Cola och tonic";
+			drinks[1] ="Cola lime";
+			drinks[2] ="Cola gin";
+			drinks[3] ="Cola citrus";
+			drinks[4] ="Cola hallon";
+			drinks[5] ="Cola light";
+			drinks[6] ="Cola sun";
+			drinks[7] ="Cola looka";
+			drinks[8] ="Cola with ice";
+			drinks[9] ="Rom and cocke";
+			
+			return drinks;
+		}
+		return null; 
+	}
+	
 	/**
 	 * Returns a LinkedList with the current users favorit drinks. 
 	 * SQL Query: SELECT * from Favorites;
 	 * @return
 	 */
-	public LinkedList<Drink> getFavoritDrinks()
+	public static LinkedList<Drink> getFavoritDrinks()
 	{
 		if(SQLITE);
 		if(EDATA);
@@ -359,7 +368,7 @@ public class Data {
 	 * @param searchName
 	 * @return A LinkedList with the Drink containing the searchName string
 	 */
-	public LinkedList<Drink> searchDrinkName(String searchName)
+	public static LinkedList<Drink> searchDrinkName(String searchName)
 	{
 		if(FAKE){ return fakeDrinkList; }
 		return null;
@@ -369,20 +378,9 @@ public class Data {
 	 * @param searchName
 	 * @return A LinkedList with the ingredients containing the searchName string
 	 */
-	public LinkedList<Drink> searchIngredientName(String searchName)
+	public static LinkedList<Drink> searchIngredientName(String searchName)
 	{
 		if(FAKE) {return fakeDrinkList;};
-		return null;
-	}
-	
-	public LinkedList<Ingredient> getIngredientList()
-	{
-		if(FAKE){ return fakeIngredientList; }
-		return null;
-	}
-	
-	public String getIngredientById(int ID)
-	{
 		return null;
 	}
 }
