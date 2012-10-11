@@ -18,7 +18,6 @@ import se.turbotorsk.mybar.model.Drink;
 import android.util.Log;
 
 public class Controller {
-	private final static Data data = new Data();
 	private static int myBarID = 1;
 	private final static DrinkManager dm = new DrinkManager();
 
@@ -31,12 +30,12 @@ public class Controller {
 	public static String[] getDrinkNamesAsArray() {
 		LinkedList<String> nameList = new LinkedList<String>();
 
-		for (int i = 0; i < data.getAllDrinks().size(); i++) {
-			nameList.add(data.getAllDrinks().get(i).getName());
+		for (int i = 0; i < Data.getAllDrinks().size(); i++) {
+			nameList.add(Data.getAllDrinks().get(i).getName());
 			
 			Log.d(Controller.class.getClass().getName(), ""
-					+ data.getAllDrinks().get(i).get_id() + " "
-					+ data.getAllDrinks().get(i).getName());
+					+ Data.getAllDrinks().get(i).get_id() + " "
+					+ Data.getAllDrinks().get(i).getName());
 		}
 
 		String[] array = new String[nameList.size()];

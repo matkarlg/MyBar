@@ -11,15 +11,11 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 package se.turbotorsk.mybar;
 
-import se.turbotorsk.mybar.controller.Controller;
-
 import se.turbotorsk.mybar.model.Data;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 
@@ -30,11 +26,9 @@ public class CollectionActivity extends ListActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		
-		Data data = new Data();
-		adapter = new DrinkAdapter(this, R.layout.rowlayout, data.getAllDrinks());
-
+		adapter = new DrinkAdapter(this, R.layout.rowlayout, Data.getAllDrinks());
+		
 		// Sets the adapter that we just did
 		setListAdapter(adapter);
 	}
