@@ -17,5 +17,6 @@
     <string name="title_activity_my_favorites">MyFavorites</string>
     <string name="title_activity_collection">CollectionActivity</string>
     <string name="title_activity_share">Share</string>
+    <string name="title_activity_my_bar">MyBarActivity</string>
 
 </resources>
