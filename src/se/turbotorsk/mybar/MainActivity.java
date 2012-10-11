@@ -13,6 +13,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 package se.turbotorsk.mybar;
 
 import se.turbotorsk.mybar.controller.Controller;
+import se.turbotorsk.mybar.model.Data;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,7 +33,6 @@ import android.widget.TabHost.TabSpec;
 
 @SuppressWarnings("deprecation")
 public class MainActivity extends TabActivity {
-
    @Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -40,7 +40,7 @@ public class MainActivity extends TabActivity {
        // Log.d(this.getClass().getName(),data.getDrinkNameArray()[1]);
 	   //Controller controller = Controller.controller;
 
-		
+		Data.insertTestData();
         
         //String[] lista = data.getDrinkNameArray(); tabHost = getTabHost(); 
 		TabHost tabHost = getTabHost();
@@ -74,6 +74,12 @@ public class MainActivity extends TabActivity {
 		
 		//Set Mybar as default tab (the middle tab)
 		tabHost.setCurrentTab(1);
+	}
+   
+	@Override
+	public void onDestroy() {
+		Data.deleteTestData();
+		super.onDestroy();
 	}
 
     @Override
