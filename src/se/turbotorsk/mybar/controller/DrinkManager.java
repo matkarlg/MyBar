@@ -13,6 +13,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 package se.turbotorsk.mybar.controller;
 import java.util.LinkedList;
+
 import se.turbotorsk.mybar.model.Drink;
 import se.turbotorsk.mybar.model.Ingredient;
 
@@ -33,7 +34,7 @@ public class DrinkManager {
 				ingredientID = Integer.parseInt(drinks[count]);
 				found = false; 
 				for(Ingredient ingredient : ingredientList){
-					if(ingredient.getId() == ingredientID) {
+					if(ingredient.get_id() == ingredientID) {
 						found = true; 
 						break;
 					}
