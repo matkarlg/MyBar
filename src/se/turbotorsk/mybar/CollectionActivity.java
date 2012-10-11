@@ -12,6 +12,8 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 package se.turbotorsk.mybar;
 
 import se.turbotorsk.mybar.controller.Controller;
+
+import se.turbotorsk.mybar.model.Data;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,19 +22,18 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+
 public class CollectionActivity extends ListActivity {
 
+	DrinkAdapter adapter;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// setContentView(R.layout.activity_drinks_list);
 
-		// Adds everything to an adapter. We are also chosing which layout the
-		// program should use. This is where we're going to choose our own
-		// layout when that works.
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				R.layout.rowlayout, R.id.drink,
-				Controller.getDrinkNamesAsArray());
+		
+		Data data = new Data();
+		adapter = new DrinkAdapter(this, R.layout.rowlayout, data.getAllDrinks());
 
 		// Sets the adapter that we just did
 		setListAdapter(adapter);
@@ -53,13 +54,10 @@ public class CollectionActivity extends ListActivity {
 		// Toast.makeText(this, item + " selected", Toast.LENGTH_LONG).show();
 
 		Intent intent = new Intent(this, View_Drink_Activity.class);
-		intent.putExtra("drinkname", (String) getListAdapter()
-				.getItem(position));
-		intent.putExtra("rating", (String) "1/5");
-		intent.putExtra("ingredients", (String) "En massa ingredienser h�r...");
-		intent.putExtra(
-				"descrip",
-				(String) "En f�rklaring p� drinken h�r... kanske lite fakta osv?  - - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eu diam eu sapien fringilla bibendum in at lacus. Cras id sagittis velit. Proin vel arcu libero, id elementum ligula. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Ut eleifend tincidunt facilisis. Nullam ut egestas sapien. Vestibulum tempus nibh sit amet felis ornare sit amet mattis neque placerat. Vivamus porta venenatis nulla nec scelerisque. Vivamus rhoncus vulputate diam tincidunt porta. Nulla et nunc quis metus mollis vehicula ut eget sapien. Sed quis est sem. Aliquam elementum ullamcorper nisi, sed imperdiet orci blandit ac. Sed eleifend, ligula ut cursus iaculis, libero ligula luctus nunc, facilisis vestibulum odio turpis in mi. Praesent ac augue quis mi scelerisque mollis. Aenean convallis, tortor id vestibulum sodales, elit elit lobortis metus, eget sollicitudin arcu turpis ac massa. Nulla nec arcu in purus consectetur iaculis. Vestibulum ac eros in est ullamcorper ornare. Proin rhoncus posuere mauris nec commodo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nam rhoncus bibendum auctor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi at lorem ut risus eleifend consequat. Integer et porttitor ipsum. Suspendisse id tortor enim, ac convallis tellus. Vivamus convallis, arcu vitae pharetra aliquet, augue massa pulvinar nunc, nec auctor eros felis at diam. Nullam nec quam erat, sit amet porttitor libero. Mauris elit purus, faucibus at posuere condimentum, mollis sed mauris.");
+		intent.putExtra("drinkname", adapter.getDrinkName(position));
+		intent.putExtra("rating", adapter.getRating(position));
+		intent.putExtra("ingredients", adapter.getIngredients(position));
+		intent.putExtra("descrip", adapter.getDescrip(position));
 		startActivity(intent);
 	}
 }
