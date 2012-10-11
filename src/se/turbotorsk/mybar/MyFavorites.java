@@ -12,21 +12,39 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 package se.turbotorsk.mybar;
 
+import se.turbotorsk.mybar.model.Data;
+import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.app.Activity;
 import android.view.Menu;
+import android.view.View;
+import android.widget.ListView;
 
-public class MyFavorites extends Activity {
+public class MyFavorites extends ListActivity {
+	
+	DrinkAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_favorites);
-    }
+		Data data = new Data();
+		adapter = new DrinkAdapter(this, R.layout.rowlayout, data.getAllDrinks()); //Needs to be changed to data.getFavorites() soon
+		// Sets the adapter that we just did
+		setListAdapter(adapter);    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_main, menu);
-        return true;
-    }
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		// String item = (String) getListAdapter().getItem(position);
+		// We will replace this to start another activity instead. Dont know how
+		// to do that yet.
+		// Toast.makeText(this, item + " selected", Toast.LENGTH_LONG).show();
+
+		Intent intent = new Intent(this, View_Drink_Activity.class);
+		intent.putExtra("drinkname", adapter.getDrinkName(position));
+		intent.putExtra("rating", adapter.getRating(position));
+		intent.putExtra("ingredients", adapter.getIngredients(position));
+		intent.putExtra("descrip", adapter.getDescrip(position));
+		startActivity(intent);
+	}
 }
+

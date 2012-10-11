@@ -53,7 +53,7 @@ public class MainActivity extends TabActivity {
 			.setContent(intentFavorites);
 		
 		// MyBar tab
-		Intent intentMyBar = new Intent().setClass(this, DrinksList.class);
+		Intent intentMyBar = new Intent().setClass(this, MyBarActivity.class);
 		TabSpec tabSpecMyBar = tabHost
 			.newTabSpec("MyBar")
 			.setIndicator("MyBar")
@@ -102,6 +102,5 @@ public class MainActivity extends TabActivity {
         	default:
         		return true;
     	}
-    }
-     
+    }  
 }
