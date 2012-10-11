@@ -3,9 +3,9 @@ New BSD License
 Copyright (c) 2012, MyBar Team All rights reserved.
 mybar@turbotorsk.se
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
-•	Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-•	Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-•	Neither the name of the MyBar nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+ï¿½	Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+ï¿½	Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+ï¿½	Neither the name of the MyBar nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
@@ -34,21 +34,19 @@ import android.text.TextUtils;
  * Done: single row and multiple row support
  * TODO: Add sortOrder support, extensive JUNIT testing!, more javadoc and comments.
  * 
- * TODO: Ta bort? Min kod. Some comments may be similar to Android
- * Documentation about ContentProviders.
- * http://developer.android.com/guide/topics/providers/content-provider
- * -creating.html, which is under the Apache 2.0 License
- * 
  * @author Mathias Karlgren (matkarlg)
  * 
  */
 public class MyBarContentProvider extends ContentProvider {
 	public static final String AUTHORITY = "se.turbotorsk.mybar.model.database";
-	public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/" + DrinkTable.TABLE_DRINK);
+	public static final Uri CONTENTURI_DRINK = Uri.parse("content://" + AUTHORITY + "/" + DrinkTable.TABLE_DRINK);
+	public static final Uri CONTENTURI_INGREDIENT = Uri.parse("content://" + AUTHORITY + "/" + IngredientTable.TABLE_INGREDIENT);
 	
 	private MyBarDatabaseHelper database;
 	private static final int DRINK = 1;
 	private static final int DRINK_ID = 2;
+	private static final int INGREDIENT = 3;
+	private static final int INGREDIENT_ID = 4;
 	// private static final String DEFAULT_SORT_ORDER = "_id" + " DESC";
 	
     // Create the URI matcher
@@ -60,6 +58,12 @@ public class MyBarContentProvider extends ContentProvider {
 
 		//Sets the code for a single row to DRINK_ID.
 		sUriMatcher.addURI(AUTHORITY, DrinkTable.TABLE_DRINK + "/#", DRINK_ID);
+		
+		//Sets the integer value for multiple rows in IngredientTable to INGREDIENT.
+		sUriMatcher.addURI(AUTHORITY, IngredientTable.TABLE_INGREDIENT, INGREDIENT);
+		
+		//Sets the code for a single row to INGREDIENT_ID.
+		sUriMatcher.addURI(AUTHORITY, IngredientTable.TABLE_INGREDIENT + "/#", INGREDIENT_ID);
 	}
 
 	@Override
@@ -74,13 +78,11 @@ public class MyBarContentProvider extends ContentProvider {
 		switch (sUriMatcher.match(uri)) {
 			// If the incoming URI was for the whole table
 			case DRINK:
-				
 				rowsAffected = sqlDB.delete(DrinkTable.TABLE_DRINK, selection, selectionArgs);
-				
 				break;
+			
 			// If the incoming URI was for a single row
 			case DRINK_ID:
-				
 				// Add ID to query statement
 				selection += DrinkTable.COLUMN_ID + "=" + uri.getLastPathSegment();
 				
@@ -90,7 +92,24 @@ public class MyBarContentProvider extends ContentProvider {
 				
 				// Call the code to actually do the query
 				rowsAffected = sqlDB.delete(DrinkTable.TABLE_DRINK, selection, selectionArgs);
+				break;
+
+			// If the incoming URI was for the whole table
+			case INGREDIENT:
+				rowsAffected = sqlDB.delete(IngredientTable.TABLE_INGREDIENT, selection, selectionArgs);
+				break;
+			
+			// If the incoming URI was for a single row
+			case INGREDIENT_ID:
+				// Add ID to query statement
+				selection += IngredientTable.COLUMN_ID + "=" + uri.getLastPathSegment();
 				
+				// Add rows that should be updated
+				// Example: SELECT * FROM drink WHERE name='Margarita' AND glass='Whiskey Glass'
+				selection += TextUtils.isEmpty(selection) ? "" : " AND (" + selection + ")";
+				
+				// Call the code to actually do the query
+				rowsAffected = sqlDB.delete(IngredientTable.TABLE_INGREDIENT, selection, selectionArgs);
 				break;
 		default:
 			// Error handling
@@ -121,9 +140,12 @@ public class MyBarContentProvider extends ContentProvider {
 		switch (sUriMatcher.match(uri)) {
 			// If the incoming URI was for the whole table
 			case DRINK:
-				
 				rowAffected = sqlDB.insert(DrinkTable.TABLE_DRINK, null, values);
+				break;
 				
+			// If the incoming URI was for the whole table
+			case INGREDIENT:
+				rowAffected = sqlDB.insert(IngredientTable.TABLE_INGREDIENT, null, values);
 				break;
 		default:
 			// Error handling
@@ -144,8 +166,6 @@ public class MyBarContentProvider extends ContentProvider {
 	}
 	
    /**
-    * This method is called when a client calls
-    * {@link android.content.ContentResolver#query(Uri, String[], String, String[], String)}.
     * Queries the database and returns a cursor containing the results.
     *
     * @return A cursor containing the results of the query. The cursor exists but is empty if
@@ -158,13 +178,21 @@ public class MyBarContentProvider extends ContentProvider {
 
 		// Create convenience class to help with creation of our SQL queries
 		SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
-		queryBuilder.setTables(DrinkTable.TABLE_DRINK);
+		switch (sUriMatcher.match(uri)) {
+			case DRINK:
+			case DRINK_ID:
+				queryBuilder.setTables(DrinkTable.TABLE_DRINK);
+				break;
+			case INGREDIENT:
+			case INGREDIENT_ID:
+				queryBuilder.setTables(IngredientTable.TABLE_INGREDIENT);
+				break;
+		}
 
 		// Choose the table to query based on the code returned for the incoming URI
 		switch (sUriMatcher.match(uri)) {
 			// If the incoming URI was for the whole table
 			case DRINK:
-	
 				break;
 			// If the incoming URI was for a single row
 			case DRINK_ID:
@@ -175,6 +203,20 @@ public class MyBarContentProvider extends ContentProvider {
 				
 				// Adding the ID to the original query
 				queryBuilder.appendWhere(DrinkTable.COLUMN_ID + "=" + uri.getLastPathSegment());
+				break;
+				
+			// If the incoming URI was for the whole table
+			case INGREDIENT:
+				break;
+			// If the incoming URI was for a single row
+			case INGREDIENT_ID:
+				/*
+				 * Alternative without queryBuilder: selection = selection +
+				 * "_ID = " + uri.getLastPathSegment();
+				 */
+				
+				// Adding the ID to the original query
+				queryBuilder.appendWhere(IngredientTable.TABLE_INGREDIENT + "=" + uri.getLastPathSegment());
 				break;
 		default:
 			// Error handling
@@ -207,9 +249,7 @@ public class MyBarContentProvider extends ContentProvider {
 		switch (sUriMatcher.match(uri)) {
 			// If the incoming URI was for the whole table
 			case DRINK:
-				
 				rowsAffected = sqlDB.update(DrinkTable.TABLE_DRINK, values, selection, selectionArgs);
-				
 				break;
 			// If the incoming URI was for a single row
 			case DRINK_ID:
@@ -223,8 +263,26 @@ public class MyBarContentProvider extends ContentProvider {
 				
 				// Call the code to actually do the query
 				rowsAffected = sqlDB.update(DrinkTable.TABLE_DRINK, values, selection, selectionArgs);
-				
 				break;
+				
+			// If the incoming URI was for the whole table
+			case INGREDIENT:
+				rowsAffected = sqlDB.update(DrinkTable.TABLE_DRINK, values, selection, selectionArgs);
+				break;
+			// If the incoming URI was for a single row
+			case INGREDIENT_ID:
+				
+				// Add ID to query statement
+				selection += IngredientTable.COLUMN_ID + "=" + uri.getLastPathSegment();
+				
+				// Add rows that should be updated
+				// Example: SELECT * FROM drink WHERE name='Margarita' AND glass='Whiskey Glass'
+				selection += TextUtils.isEmpty(selection) ? "" : " AND (" + selection + ")";
+				
+				// Call the code to actually do the query
+				rowsAffected = sqlDB.update(IngredientTable.TABLE_INGREDIENT, values, selection, selectionArgs);
+				break;
+
 		default:
 			// Error handling
 			throw new IllegalArgumentException("IllegalArgumentException URI: " + uri);
