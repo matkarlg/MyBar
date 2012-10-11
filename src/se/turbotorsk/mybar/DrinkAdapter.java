@@ -1,9 +1,9 @@
 package se.turbotorsk.mybar;
 
 import java.util.LinkedList;
-import java.util.List;
 
 import se.turbotorsk.mybar.model.Drink;
+import se.turbotorsk.mybar.model.Ingredient;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,6 +49,7 @@ public View getView(int position, View convertView, ViewGroup parent) {
         TextView tt = (TextView) v.findViewById(R.id.drink);
         TextView tt1 = (TextView) v.findViewById(R.id.ingredients);
         TextView tt3 = (TextView) v.findViewById(R.id.rating);
+        TextView tt4 = (TextView) v.findViewById(R.id.drinkDescription);
         ImageView iv = (ImageView) v.findViewById(R.id.list_image);
 
         
@@ -67,8 +68,26 @@ public View getView(int position, View convertView, ViewGroup parent) {
     }
 
     return v;
+	}
 
-}
-
+	public String getDrinkName(int position){
+		Drink drink = items.get(position);
+		return drink.getName();
+	}
+	
+	public String getIngredients(int position){
+		Drink drink = items.get(position);
+		return drink.getIngredient();
+	}
+	
+	public String getRating(int position){
+		Drink drink = items.get(position);
+		return Integer.toString(drink.getRating());
+	}
+	
+	public String getDescrip(int position){
+		Drink drink = items.get(position);
+		return drink.getDescription();
+	}
 
 }
