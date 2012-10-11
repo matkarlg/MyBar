@@ -3,9 +3,9 @@ New BSD License
 Copyright (c) 2012, MyBar Team All rights reserved.
 mybar@turbotorsk.se
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
-•	Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-•	Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-•	Neither the name of the MyBar nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+ï¿½	Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+ï¿½	Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+ï¿½	Neither the name of the MyBar nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
@@ -34,17 +34,13 @@ import android.text.TextUtils;
  * Done: single row and multiple row support
  * TODO: Add sortOrder support, extensive JUNIT testing!, more javadoc and comments.
  * 
- * TODO: Ta bort? Min kod. Some comments may be similar to Android
- * Documentation about ContentProviders.
- * http://developer.android.com/guide/topics/providers/content-provider
- * -creating.html, which is under the Apache 2.0 License
- * 
  * @author Mathias Karlgren (matkarlg)
  * 
  */
 public class MyBarContentProvider extends ContentProvider {
 	public static final String AUTHORITY = "se.turbotorsk.mybar.model.database";
-	public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/" + DrinkTable.TABLE_DRINK);
+	public static final Uri CONTENTURI_DRINK = Uri.parse("content://" + AUTHORITY + "/" + DrinkTable.TABLE_DRINK);
+	public static final Uri CONTENTURI_INGREDIENT = Uri.parse("content://" + AUTHORITY + "/" + IngredientTable.TABLE_INGREDIENT);
 	
 	private MyBarDatabaseHelper database;
 	private static final int DRINK = 1;

@@ -39,7 +39,7 @@ public class MyBarDatabaseHelper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase database) {
 		// Populate the database using our table classes
 		DrinkTable.onCreate(database);
-		IngredientsTable.onCreate(database);
+		IngredientTable.onCreate(database);
 	}
 
 	// Method is called during an upgrade of the database
@@ -50,6 +50,6 @@ public class MyBarDatabaseHelper extends SQLiteOpenHelper {
 		Log.w(this.getClass().getName(), "Upgrading database from version "
 				+ oldVersion + " to " + newVersion);
 		DrinkTable.onUpgrade(database, oldVersion, newVersion);
-		IngredientsTable.onUpgrade(database, oldVersion, newVersion);
+		IngredientTable.onUpgrade(database, oldVersion, newVersion);
 	}
 }

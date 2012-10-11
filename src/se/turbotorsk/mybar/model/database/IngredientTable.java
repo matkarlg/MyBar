@@ -22,7 +22,7 @@ import android.util.Log;
  * @author Mathias Karlgren (matkarlg)
  * 
  */
-public class IngredientsTable {
+public class IngredientTable {
 	// Database table template
 	public static final String TABLE_INGREDIENT = "ingredient";
 	public static final String COLUMN_ID = "_id";
@@ -47,7 +47,7 @@ public class IngredientsTable {
 	
 	public static void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
 		// Print upgrade warning to LogCat
-		Log.w(IngredientsTable.class.getName(), "Upgrading " + TABLE_INGREDIENT
+		Log.w(IngredientTable.class.getName(), "Upgrading " + TABLE_INGREDIENT
 				+ " table from version "+ oldVersion
 				+" to " + newVersion	+ ", which will destroy all old data");
 		
