@@ -45,6 +45,8 @@ public class MyBarContentProvider extends ContentProvider {
 	private MyBarDatabaseHelper database;
 	private static final int DRINK = 1;
 	private static final int DRINK_ID = 2;
+	private static final int INGREDIENT = 3;
+	private static final int INGREDIENT_ID = 4;
 	// private static final String DEFAULT_SORT_ORDER = "_id" + " DESC";
 	
     // Create the URI matcher
@@ -56,6 +58,12 @@ public class MyBarContentProvider extends ContentProvider {
 
 		//Sets the code for a single row to DRINK_ID.
 		sUriMatcher.addURI(AUTHORITY, DrinkTable.TABLE_DRINK + "/#", DRINK_ID);
+		
+		//Sets the integer value for multiple rows in IngredientTable to INGREDIENT.
+		sUriMatcher.addURI(AUTHORITY, IngredientTable.TABLE_INGREDIENT, INGREDIENT);
+		
+		//Sets the code for a single row to INGREDIENT_ID.
+		sUriMatcher.addURI(AUTHORITY, IngredientTable.TABLE_INGREDIENT + "/#", INGREDIENT_ID);
 	}
 
 	@Override
@@ -70,13 +78,11 @@ public class MyBarContentProvider extends ContentProvider {
 		switch (sUriMatcher.match(uri)) {
 			// If the incoming URI was for the whole table
 			case DRINK:
-				
 				rowsAffected = sqlDB.delete(DrinkTable.TABLE_DRINK, selection, selectionArgs);
-				
 				break;
+			
 			// If the incoming URI was for a single row
 			case DRINK_ID:
-				
 				// Add ID to query statement
 				selection += DrinkTable.COLUMN_ID + "=" + uri.getLastPathSegment();
 				
@@ -86,7 +92,24 @@ public class MyBarContentProvider extends ContentProvider {
 				
 				// Call the code to actually do the query
 				rowsAffected = sqlDB.delete(DrinkTable.TABLE_DRINK, selection, selectionArgs);
+				break;
+
+			// If the incoming URI was for the whole table
+			case INGREDIENT:
+				rowsAffected = sqlDB.delete(IngredientTable.TABLE_INGREDIENT, selection, selectionArgs);
+				break;
+			
+			// If the incoming URI was for a single row
+			case INGREDIENT_ID:
+				// Add ID to query statement
+				selection += IngredientTable.COLUMN_ID + "=" + uri.getLastPathSegment();
 				
+				// Add rows that should be updated
+				// Example: SELECT * FROM drink WHERE name='Margarita' AND glass='Whiskey Glass'
+				selection += TextUtils.isEmpty(selection) ? "" : " AND (" + selection + ")";
+				
+				// Call the code to actually do the query
+				rowsAffected = sqlDB.delete(IngredientTable.TABLE_INGREDIENT, selection, selectionArgs);
 				break;
 		default:
 			// Error handling
@@ -117,9 +140,12 @@ public class MyBarContentProvider extends ContentProvider {
 		switch (sUriMatcher.match(uri)) {
 			// If the incoming URI was for the whole table
 			case DRINK:
-				
 				rowAffected = sqlDB.insert(DrinkTable.TABLE_DRINK, null, values);
+				break;
 				
+			// If the incoming URI was for the whole table
+			case INGREDIENT:
+				rowAffected = sqlDB.insert(IngredientTable.TABLE_INGREDIENT, null, values);
 				break;
 		default:
 			// Error handling
@@ -140,8 +166,6 @@ public class MyBarContentProvider extends ContentProvider {
 	}
 	
    /**
-    * This method is called when a client calls
-    * {@link android.content.ContentResolver#query(Uri, String[], String, String[], String)}.
     * Queries the database and returns a cursor containing the results.
     *
     * @return A cursor containing the results of the query. The cursor exists but is empty if
@@ -160,7 +184,6 @@ public class MyBarContentProvider extends ContentProvider {
 		switch (sUriMatcher.match(uri)) {
 			// If the incoming URI was for the whole table
 			case DRINK:
-	
 				break;
 			// If the incoming URI was for a single row
 			case DRINK_ID:
@@ -171,6 +194,20 @@ public class MyBarContentProvider extends ContentProvider {
 				
 				// Adding the ID to the original query
 				queryBuilder.appendWhere(DrinkTable.COLUMN_ID + "=" + uri.getLastPathSegment());
+				break;
+				
+			// If the incoming URI was for the whole table
+			case INGREDIENT:
+				break;
+			// If the incoming URI was for a single row
+			case INGREDIENT_ID:
+				/*
+				 * Alternative without queryBuilder: selection = selection +
+				 * "_ID = " + uri.getLastPathSegment();
+				 */
+				
+				// Adding the ID to the original query
+				queryBuilder.appendWhere(IngredientTable.TABLE_INGREDIENT + "=" + uri.getLastPathSegment());
 				break;
 		default:
 			// Error handling
@@ -203,9 +240,7 @@ public class MyBarContentProvider extends ContentProvider {
 		switch (sUriMatcher.match(uri)) {
 			// If the incoming URI was for the whole table
 			case DRINK:
-				
 				rowsAffected = sqlDB.update(DrinkTable.TABLE_DRINK, values, selection, selectionArgs);
-				
 				break;
 			// If the incoming URI was for a single row
 			case DRINK_ID:
@@ -219,8 +254,26 @@ public class MyBarContentProvider extends ContentProvider {
 				
 				// Call the code to actually do the query
 				rowsAffected = sqlDB.update(DrinkTable.TABLE_DRINK, values, selection, selectionArgs);
-				
 				break;
+				
+			// If the incoming URI was for the whole table
+			case INGREDIENT:
+				rowsAffected = sqlDB.update(DrinkTable.TABLE_DRINK, values, selection, selectionArgs);
+				break;
+			// If the incoming URI was for a single row
+			case INGREDIENT_ID:
+				
+				// Add ID to query statement
+				selection += IngredientTable.COLUMN_ID + "=" + uri.getLastPathSegment();
+				
+				// Add rows that should be updated
+				// Example: SELECT * FROM drink WHERE name='Margarita' AND glass='Whiskey Glass'
+				selection += TextUtils.isEmpty(selection) ? "" : " AND (" + selection + ")";
+				
+				// Call the code to actually do the query
+				rowsAffected = sqlDB.update(IngredientTable.TABLE_INGREDIENT, values, selection, selectionArgs);
+				break;
+
 		default:
 			// Error handling
 			throw new IllegalArgumentException("IllegalArgumentException URI: " + uri);
