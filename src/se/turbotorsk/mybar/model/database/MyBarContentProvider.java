@@ -178,7 +178,16 @@ public class MyBarContentProvider extends ContentProvider {
 
 		// Create convenience class to help with creation of our SQL queries
 		SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
-		queryBuilder.setTables(DrinkTable.TABLE_DRINK);
+		switch (sUriMatcher.match(uri)) {
+			case DRINK:
+			case DRINK_ID:
+				queryBuilder.setTables(DrinkTable.TABLE_DRINK);
+				break;
+			case INGREDIENT:
+			case INGREDIENT_ID:
+				queryBuilder.setTables(IngredientTable.TABLE_INGREDIENT);
+				break;
+		}
 
 		// Choose the table to query based on the code returned for the incoming URI
 		switch (sUriMatcher.match(uri)) {
