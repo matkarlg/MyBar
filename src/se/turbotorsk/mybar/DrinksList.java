@@ -38,11 +38,11 @@ public class DrinksList extends ListActivity {
 		setListAdapter(adapter);
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.activity_drinks_list, menu);
-		return true;
-	}
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_main, menu);
+        return true;
+    }
 
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
