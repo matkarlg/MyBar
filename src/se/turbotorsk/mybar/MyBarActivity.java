@@ -16,11 +16,12 @@ public class MyBarActivity extends ListActivity {
 		super.onCreate(savedInstanceState);
 
 		
-		Data data = new Data();
+/*		Data data = new Data();
 		adapter = new IngredientAdapter(this, R.layout.rowlayout, data.getAllIngredients());
 
 		// Sets the adapter that we just did
 		setListAdapter(adapter);
+*/
 	}
 	
 	/*@Override

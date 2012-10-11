@@ -16,7 +16,7 @@ public class DrinkAdapter extends ArrayAdapter<LinkedList> {
 
 public DrinkAdapter(Context context, int textViewResourceId) {
     super(context, textViewResourceId);
-    // TODO Auto-generated constructor stub
+    // TODO Auto-generated constructor stub s
 }
 
 private LinkedList<Drink> items;
