@@ -17,34 +17,16 @@ public class MyBarActivity extends ListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		//Temp solution below...
-//		String[] ingredients = this.getResources().getStringArray(R.array.ingredient_list);
-//		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, 	android.R.layout.simple_list_item_1, ingredients);
+		IngredientAdapter adapter = new IngredientAdapter(this, R.layout.rowlayout, Data.getAllIngredients());
 
-		adapter = new IngredientAdapter(this, R.layout.rowlayout, Data.getAllIngredients());
-
-		// Sets the adapter that we just did
 		setListAdapter(adapter);
 
 	}
-	//Enable below after created new ingredient activity with getintents.
-	@Override
+	/*@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
-		// String item = (String) getListAdapter().getItem(position);
-		// We will replace this to start another activity instead. Dont know how
-		// to do that yet.
-		// Toast.makeText(this, item + " selected", Toast.LENGTH_LONG).show();
-
-		Intent intent = new Intent(this, View_Drink_Activity.class);
-		intent.putExtra("ingredientname", adapter.getIngredientName(position));
-		intent.putExtra("ingredientdescrip", adapter.getDescription(position));
-		startActivity(intent);
-	}
-	//Temp solution below
-//	@Override
-//	protected void onListItemClick(ListView l, View v, int position, long id) {
-//	  String item = (String) getListAdapter().getItem(position);
-//	  Toast.makeText(this, "Deleted " + item, Toast.LENGTH_LONG).show();
-//	}
+	  String item = (String) getListAdapter().getItem(position);
+	  Toast.makeText(this, "Deleted " + item, Toast.LENGTH_LONG).show();
+	  
+	}*/
 
 }

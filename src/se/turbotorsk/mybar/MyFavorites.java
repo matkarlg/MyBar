@@ -27,7 +27,7 @@ public class MyFavorites extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-		adapter = new DrinkAdapter(this, R.layout.rowlayout, Data.getAllDrinks()); //Needs to be changed to data.getFavorites() soon
+		adapter = new DrinkAdapter(this, R.layout.rowlayout, Data.getAllDrinks());
 		// Sets the adapter that we just did
 		setListAdapter(adapter);    }
 
