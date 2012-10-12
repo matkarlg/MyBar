@@ -20,6 +20,7 @@ package se.turbotorsk.mybar.model;
 
 import java.util.LinkedList;
 
+import se.turbotorsk.mybar.controller.Controller;
 import se.turbotorsk.mybar.controller.MyBarApplication;
 import se.turbotorsk.mybar.model.database.DrinkTable;
 import se.turbotorsk.mybar.model.database.IngredientTable;
@@ -326,10 +327,25 @@ public class Data {
 		return null;
 	}
 	
-	public static String[] getDrinkNameArray()
+	public static String[] getDrinkNameAsArray()
 	{
-		String[] drinks; 
-		if(SQLITE);
+		String[] drinks;
+		if(SQLITE) {
+			LinkedList<String> nameList = new LinkedList<String>();
+			
+			for (int i = 0; i < Data.getAllDrinks().size(); i++) {
+				nameList.add(Data.getAllDrinks().get(i).getName());
+				
+				Log.d(Controller.class.getClass().getName(), ""
+						+ Data.getAllDrinks().get(i).get_id() + " "
+						+ Data.getAllDrinks().get(i).getName());
+			}
+			
+			String[] array = new String[nameList.size()];
+			nameList.toArray(array);
+			
+			return array;
+		}
 		if(EDATA);
 		if(FAKE){
 			drinks = new String[20];
