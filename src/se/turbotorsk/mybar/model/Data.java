@@ -50,7 +50,7 @@ public class Data {
 			// SQLite uses autoincrement in the _id field
 	        Drink[] testDrinks = {
 	        		new Drink(0, "Margarita", "/margarita.jpg", "Martini Glass", "Rom", "Mix rom and ice", 5, 0), 
-	        		new Drink(0, "Tequila", "/tequila.jpg", "Shot Glass", "Tequila", "Pour Tequila in glass", 5, 1)
+	        		new Drink(0, "Tequila", "/tequila.jpg", "Shot Glass", "Tequila", "Pour Tequila in glass", 5, 0)
 	        };
 	        
 	        // Insert testDrinks
@@ -137,9 +137,13 @@ public class Data {
 		    		
 		    		return drinkList;
 		    	}
-		    	
-		    	// Close the cursor
-		    	cursor.close();
+		    	else {
+		    		// Close the cursor
+			    	cursor.close();
+		    		
+			    	// No drinks in Query. Return Empty LinkedList<Drink>.
+		    		return new LinkedList<Drink>();
+		    	}
 		    }
 		    /**
 	         * End of SQLite getAllDrinks()
@@ -190,9 +194,13 @@ public class Data {
 		    		
 		    		return ingredientList;
 		    	}
-		    	
-		    	// Close the cursor
-		    	cursor.close();
+		    	else {
+		    		// Close the cursor
+			    	cursor.close();
+		    		
+			    	// No ingredients in Query. Return Empty LinkedList<Ingredient>.
+		    		return new LinkedList<Ingredient>();
+		    	}
 		    }
 		    /**
 	         * End of SQLite getAllIngredients()
@@ -371,9 +379,13 @@ public class Data {
 		    		
 		    		return drinkList;
 		    	}
-		    	
-		    	// Close the cursor
-		    	cursor.close();
+		    	else {
+		    		// Close the cursor
+			    	cursor.close();
+		    		
+			    	// No Favorites. Return Empty LinkedList<Drink>.
+		    		return new LinkedList<Drink>();
+		    	}
 		    }
 		    /**
 	         * End of SQLite getAllFavorites()
@@ -382,6 +394,118 @@ public class Data {
 		if(EDATA);
 		if(FAKE);
 		return null; 
+	}
+	
+	/**
+	 * This method sets a Drink to a favorite
+	 * @param ID
+	 * @return 1 if OK. 0 if ID doesn't exist.
+	 */
+	public static int setFavoriteByID(int ID)
+	{
+		if(SQLITE){
+		
+		/**
+         * SQLITE setFavoriteByID()
+         */
+		ContentValues values = new ContentValues();
+		
+	    // Choose which columns you want to query. null queries all columns
+	    String[] projection = { DrinkTable.COLUMN_ID, DrinkTable.COLUMN_NAME };
+
+	    // Query database
+	    Cursor cursor = MyBarApplication.ContentResolver().query(MyBarContentProvider.CONTENTURI_DRINK, projection, DrinkTable.COLUMN_ID + "=" + ID, null, null);
+
+	    // Successful query?
+	    if (cursor != null) {
+
+	    	// Is there any data from the requested Query
+	    	if (cursor.moveToFirst()) {
+	    		
+	    		values.put("favorite", 1);
+	    		int rowUpdated = MyBarApplication.ContentResolver().update(MyBarContentProvider.CONTENTURI_DRINK, values, DrinkTable.COLUMN_ID + "=" + ID, null);
+	    		
+	    		// Print the favorited drink
+	    		Log.d(Data.class.getClass().getName(), "Favorited Drink: " +
+	    				cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_NAME)) + " How many rows favorited: " + Integer.toString(rowUpdated));
+	    		
+	    		// Close the cursor
+		    	cursor.close();
+		    	
+	    		return 1;
+	    	}
+	    	else {
+	    		// Close the cursor
+		    	cursor.close();
+		    	
+		    	// ID doesn't exist. Return 0
+	    		return 0;
+	    	}
+	    }
+        /**
+         * End of SQLite setFavoriteByID()
+         */
+		}
+		if(EDATA);
+		if(FAKE);
+		
+		return 0;
+	}
+	
+	/**
+	 * This method sets a Drink to a favorite
+	 * @param name
+	 * @return 1 if OK. 0 if name doesn't exist.
+	 */
+	public static int setFavoriteByName(String name)
+	{
+		if(SQLITE){
+		
+		/**
+         * SQLITE setFavoriteByName()
+         */
+		ContentValues values = new ContentValues();
+		
+	    // Choose which columns you want to query. null queries all columns
+	    String[] projection = { DrinkTable.COLUMN_ID, DrinkTable.COLUMN_NAME };
+		
+	    // Query database
+	    Cursor cursor = MyBarApplication.ContentResolver().query(MyBarContentProvider.CONTENTURI_DRINK, projection, DrinkTable.COLUMN_NAME + " = ? ", new String[]{name}, null);
+
+	    // Successful query?
+	    if (cursor != null) {
+
+	    	// Is there any data from the requested Query
+	    	if (cursor.moveToFirst()) {
+	    		
+	    		values.put("favorite", 1);
+	    		int rowUpdated = MyBarApplication.ContentResolver().update(MyBarContentProvider.CONTENTURI_DRINK, values, DrinkTable.COLUMN_NAME + " = ? ", new String[]{name});
+	    		
+	    		// Print the favorited drink
+	    		Log.d(Data.class.getClass().getName(), "Favorited Drink: " +
+	    				cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_NAME)) + " How many rows favorited: " + Integer.toString(rowUpdated));
+	    		
+	    		// Close the cursor
+		    	cursor.close();
+		    	
+	    		return 1;
+	    	}
+	    	else {
+	    		// Close the cursor
+		    	cursor.close();
+		    	
+		    	// name doesn't exist. Return 0
+	    		return 0;
+	    	}
+	    }
+        /**
+         * End of SQLite setFavoriteByName()
+         */
+		}
+		if(EDATA);
+		if(FAKE);
+		
+		return 0;
 	}
 	
 	public static String[] getDrinkNameAsArray()
@@ -419,20 +543,7 @@ public class Data {
 			
 			return drinks;
 		}
-		return null; 
-	}
-	
-	/**
-	 * Returns a LinkedList with the current users favorite drinks. 
-	 * SQL Query: SELECT * from Favorites;
-	 * @return
-	 */
-	public static LinkedList<Drink> getFavoritDrinks()
-	{
-		if(SQLITE);
-		if(EDATA);
-		if(FAKE){ return fakeDrinkList; }
-		return null; 
+		return null;
 	}
 	
 	/**
@@ -446,6 +557,7 @@ public class Data {
 		if(FAKE){ return fakeDrinkList; }
 		return null;
 	}
+	
 	/**
 	 * Search for ingredients in the database.
 	 * @param searchName
