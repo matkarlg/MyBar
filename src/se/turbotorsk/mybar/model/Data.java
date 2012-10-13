@@ -50,7 +50,7 @@ public class Data {
 			// SQLite uses autoincrement in the _id field
 	        Drink[] testDrinks = {
 	        		new Drink(0, "Margarita", "/margarita.jpg", "Martini Glass", "Rom", "Mix rom and ice", 5, 0), 
-	        		new Drink(0, "Tequila", "/tequila.jpg", "Shot Glass", "Tequila", "Pour Tequila in glass", 5, 0)
+	        		new Drink(0, "Tequila", "/tequila.jpg", "Shot Glass", "Tequila", "Pour Tequila in glass", 5, 1)
 	        };
 	        
 	        // Insert testDrinks
@@ -327,6 +327,61 @@ public class Data {
 		if(FAKE);
 		
 		return null;
+	}
+	
+	/**
+	 * This method return all Drinks with Favorite column set, from the local SQLite database.
+	 * @return Drink object.
+	 */
+	public static LinkedList<Drink> getAllFavorites()
+	{
+		if(SQLITE) {
+			
+			/**
+	         * SQLITE getAllFavorites()
+	         */
+			LinkedList<Drink> drinkList = new LinkedList<Drink>();
+	        
+		    // Choose which columns you want to query. null queries all columns
+		    //String[] projection = { DrinkTable.COLUMN_NAME,	DrinkTable.COLUMN_DESCRIPTION, DrinkTable.COLUMN_RATING };
+	        
+		    // Query database
+		    Cursor cursor = MyBarApplication.ContentResolver().query(MyBarContentProvider.CONTENTURI_DRINK, null, "favorite=1", null, null);
+		    
+		    // Successful query?
+		    if (cursor != null) {
+		    	
+		    	// Is there any data from the requested Query
+		    	if (cursor.moveToFirst()) {
+		    		
+			        do {
+			            int _id = cursor.getInt(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_ID));
+			            String name = cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_NAME));
+			            String url = cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_URL));
+			            String glass = cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_GLASS));
+			            String ingredient = cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_INGREDIENT));
+			            String description = cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_DESCRIPTION));
+			            int rating = cursor.getInt(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_RATING));
+			            int favorite = cursor.getInt(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_FAVORITE));
+			            drinkList.add(new Drink(_id, name, url, glass, ingredient, description, rating, favorite));
+			        }while (cursor.moveToNext());
+			        
+			        // Close the cursor
+			    	cursor.close();
+		    		
+		    		return drinkList;
+		    	}
+		    	
+		    	// Close the cursor
+		    	cursor.close();
+		    }
+		    /**
+	         * End of SQLite getAllFavorites()
+	         */
+		}
+		if(EDATA);
+		if(FAKE);
+		return null; 
 	}
 	
 	public static String[] getDrinkNameAsArray()
