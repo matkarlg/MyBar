@@ -156,7 +156,14 @@ public class MyBarContentProvider extends ContentProvider {
 		getContext().getContentResolver().notifyChange(uri, null);
 		
 		// Insert method should return the new rows _id value
-		return Uri.parse(DrinkTable.TABLE_DRINK + "/" + rowAffected);
+		switch (sUriMatcher.match(uri)) {
+			case DRINK:
+				return Uri.parse(DrinkTable.TABLE_DRINK + "/" + rowAffected);
+			case INGREDIENT:
+				return Uri.parse(IngredientTable.TABLE_INGREDIENT + "/" + rowAffected);
+			default:
+				return Uri.parse("Unrecognized Table" + "/" + rowAffected);
+		}
 	}
 	
 	@Override
