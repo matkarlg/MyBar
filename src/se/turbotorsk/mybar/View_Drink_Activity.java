@@ -13,6 +13,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 package se.turbotorsk.mybar;
 
 
+import se.turbotorsk.mybar.model.Data;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -35,6 +36,8 @@ public class View_Drink_Activity extends Activity {
 	TextView dRating;
 	ImageView dImage;
 	CheckBox checkBox;
+	String name;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	
@@ -62,7 +65,7 @@ public class View_Drink_Activity extends Activity {
     	
     	//Receiving intents from activity
     	Bundle bundle = getIntent().getExtras();
-    	String name = bundle.getString("drinkname");
+    	name = bundle.getString("drinkname");
     	String rating = bundle.getString("rating");
     	String description = bundle.getString("descrip");
     	String ingredients = bundle.getString("ingredients");
@@ -83,7 +86,7 @@ public class View_Drink_Activity extends Activity {
     	  public void onClick(View v) {
                     //is the checkbox checked?
     		if (((CheckBox) v).isChecked()) {
-    			//Data.setFavorite();
+    			Data.setFavoriteByName(name);
     			Toast.makeText(View_Drink_Activity.this,"Added to Favorites", Toast.LENGTH_LONG).show();
     		}
     		
