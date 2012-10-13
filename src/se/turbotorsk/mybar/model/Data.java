@@ -49,8 +49,8 @@ public class Data {
 	        
 			// SQLite uses autoincrement in the _id field
 	        Drink[] testDrinks = {
-	        		new Drink(0, "Margarita", "/margarita.jpg", "Martini Glass", "Rom", "Mix rom and ice", 5), 
-	        		new Drink(0, "Tequila", "/tequila.jpg", "Shot Glass", "Tequila", "Pour Tequila in glass", 5)
+	        		new Drink(0, "Margarita", "/margarita.jpg", "Martini Glass", "Rom", "Mix rom and ice", 5, 0), 
+	        		new Drink(0, "Tequila", "/tequila.jpg", "Shot Glass", "Tequila", "Pour Tequila in glass", 5, 0)
 	        };
 	        
 	        // Insert testDrinks
@@ -76,8 +76,8 @@ public class Data {
 		if(EDATA);
 		if(FAKE){ //Creates "fake" data to be used when FAKE is true (for testing purpose).
 			fakeDrinkList = new LinkedList<Drink>();
-			fakeDrinkList.add(exampleDrink1 = new Drink(1, "1;2;2;1", "http://www.google.se", "test1","ingredient1", "description1",3));
-			fakeDrinkList.add(exampleDrink2 = new Drink(2, "1;3;3;1", "http://www.google.se", "test2","ingredient2", "description2",2));
+			fakeDrinkList.add(exampleDrink1 = new Drink(1, "1;2;2;1", "http://www.google.se", "test1","ingredient1", "description1",3,0));
+			fakeDrinkList.add(exampleDrink2 = new Drink(2, "1;3;3;1", "http://www.google.se", "test2","ingredient2", "description2",2,0));
 //			fakeIngredientList= new LinkedList<Ingredient>();
 //			fakeIngredientList.add(fakeIngredient1 = new Ingredient(1, "Vodka", "http://www.google.se", 2, "Nice Vodka!"));
 //			fakeIngredientList.add(fakeIngredient2 = new Ingredient(2, "Dark Rom", "http://www.google.se", 2, "Nice Rom!"));
@@ -128,7 +128,8 @@ public class Data {
 			            String ingredient = cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_INGREDIENT));
 			            String description = cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_DESCRIPTION));
 			            int rating = cursor.getInt(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_RATING));
-			            drinkList.add(new Drink(_id, name, url, glass, ingredient, description, rating));
+			            int favorite = cursor.getInt(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_FAVORITE));
+			            drinkList.add(new Drink(_id, name, url, glass, ingredient, description, rating, favorite));
 			        }while (cursor.moveToNext());
 			        
 			        // Close the cursor
@@ -239,7 +240,8 @@ public class Data {
 	    		String ingredient = cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_INGREDIENT));
 	    		String description = cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_DESCRIPTION));
 	    		int rating = cursor.getInt(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_RATING));
-	    		Drink drink = new Drink(_id, name, url, glass, ingredient, description, rating);
+	    		int favorite = cursor.getInt(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_FAVORITE));
+	    		Drink drink = new Drink(_id, name, url, glass, ingredient, description, rating, favorite);
 	    		
 	    		// Close the cursor
 		    	cursor.close();
@@ -248,7 +250,7 @@ public class Data {
 	    	}
 	    	else {
 	    		// ID doesn't exist. Return Drink with ID = 0
-	    		Drink drink = new Drink(0, "", "", "", "", "", 0);
+	    		Drink drink = new Drink(0, "", "", "", "", "", 0, 0);
 	    		
 	    		// Close the cursor
 		    	cursor.close();
@@ -366,7 +368,7 @@ public class Data {
 	}
 	
 	/**
-	 * Returns a LinkedList with the current users favorit drinks. 
+	 * Returns a LinkedList with the current users favorite drinks. 
 	 * SQL Query: SELECT * from Favorites;
 	 * @return
 	 */
