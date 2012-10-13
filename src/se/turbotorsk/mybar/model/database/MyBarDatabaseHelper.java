@@ -28,7 +28,7 @@ import android.util.Log;
  */
 public class MyBarDatabaseHelper extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "turbotorsk_mybar.db";
-	private static final int DATABASE_VERSION = 1;
+	private static final int DATABASE_VERSION = 3;
 
 	public MyBarDatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);

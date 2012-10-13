@@ -20,6 +20,7 @@ package se.turbotorsk.mybar.model;
 
 import java.util.LinkedList;
 
+import se.turbotorsk.mybar.controller.Controller;
 import se.turbotorsk.mybar.controller.MyBarApplication;
 import se.turbotorsk.mybar.model.database.DrinkTable;
 import se.turbotorsk.mybar.model.database.IngredientTable;
@@ -31,33 +32,32 @@ import android.util.Log;
 
 public class Data {
 	
-	private final boolean SQLITE = true;
-	private final boolean EDATA = false;
-	private final boolean FAKE = false;
-	private Drink exampleDrink1 = null, exampleDrink2 = null;
-	private LinkedList<Ingredient> fakeIngredientList = null;
-	private LinkedList<Drink> fakeDrinkList = null;
+	private static final boolean SQLITE = true;
+	private static final boolean EDATA = false;
+	private static final boolean FAKE = false;
+	private static Drink exampleDrink1 = null, exampleDrink2 = null;
+	private static LinkedList<Ingredient> fakeIngredientList = null;
+	private static LinkedList<Drink> fakeDrinkList = null;
 //	private Ingredient fakeIngredient1 = null, fakeIngredient2 = null, fakeIngredient3 = null;
 	//private XXXXXXXX sqlite;
 	//private XXXXXXXX jsonParser;
 	//private XXXXXXXX httpGet;
 	
-	public Data()
-	{
+	public static int insertTestData() {
 		if(SQLITE) {
 			Uri myBarUri = null;
 	        
 			// SQLite uses autoincrement in the _id field
 	        Drink[] testDrinks = {
-	        		new Drink(0, "Margarita", "/margarita.jpg", "Martini Glass", "Rom", "Mix rom and ice", 5), 
-	        		new Drink(0, "Tequila", "/tequila.jpg", "Shot Glass", "Tequila", "Pour Tequila in glass", 5)
+	        		new Drink(0, "Margarita", "/margarita.jpg", "Martini Glass", "Rom", "Mix rom and ice", 5, 0), 
+	        		new Drink(0, "Tequila", "/tequila.jpg", "Shot Glass", "Tequila", "Pour Tequila in glass", 5, 0)
 	        };
 	        
 	        // Insert testDrinks
 	        for (Drink testDrink : testDrinks) {
 	        	ContentValues values = testDrink.getContentValues();
 	        	myBarUri = MyBarApplication.ContentResolver().insert(MyBarContentProvider.CONTENTURI_DRINK, values);
-	        	Log.d(this.getClass().getName(), "Inserted Drink. Created row: " + myBarUri.toString());
+	        	Log.d(Data.class.getClass().getName(), "Inserted Drink. Created row: " + myBarUri.toString());
 	        }
 	        
 	        // SQLite uses autoincrement in the _id field
@@ -70,26 +70,36 @@ public class Data {
 	        for (Ingredient testIngredient : testIngredients) {
 	        	ContentValues values = testIngredient.getContentValues();
 	        	myBarUri = MyBarApplication.ContentResolver().insert(MyBarContentProvider.CONTENTURI_INGREDIENT, values);
-	        	Log.d(this.getClass().getName(), "Inserted Ingredient. Created row: " + myBarUri.toString());
+	        	Log.d(Data.class.getClass().getName(), "Inserted Ingredient. Created row: " + myBarUri.toString());
 	        }
 		}
 		if(EDATA);
 		if(FAKE){ //Creates "fake" data to be used when FAKE is true (for testing purpose).
 			fakeDrinkList = new LinkedList<Drink>();
-			fakeDrinkList.add(exampleDrink1 = new Drink(1, "1;2;2;1", "http://www.google.se", "test1","ingredient1", "description1",3));
-			fakeDrinkList.add(exampleDrink2 = new Drink(2, "1;3;3;1", "http://www.google.se", "test2","ingredient2", "description2",2));
+			fakeDrinkList.add(exampleDrink1 = new Drink(1, "1;2;2;1", "http://www.google.se", "test1","ingredient1", "description1",3,0));
+			fakeDrinkList.add(exampleDrink2 = new Drink(2, "1;3;3;1", "http://www.google.se", "test2","ingredient2", "description2",2,0));
 //			fakeIngredientList= new LinkedList<Ingredient>();
 //			fakeIngredientList.add(fakeIngredient1 = new Ingredient(1, "Vodka", "http://www.google.se", 2, "Nice Vodka!"));
 //			fakeIngredientList.add(fakeIngredient2 = new Ingredient(2, "Dark Rom", "http://www.google.se", 2, "Nice Rom!"));
 //			fakeIngredientList.add(fakeIngredient3 = new Ingredient(3, "Lime", "http://www.google.se", 2, "Nice Lime!"));
 		}
+		return 0;
+	}
+	
+	public static int deleteTestData() {
+		int rowsDeleted = 0;
+		if(SQLITE) {
+			rowsDeleted += MyBarApplication.ContentResolver().delete(MyBarContentProvider.CONTENTURI_DRINK, null, null);
+			rowsDeleted += MyBarApplication.ContentResolver().delete(MyBarContentProvider.CONTENTURI_INGREDIENT, null, null);
+		}
+		return rowsDeleted;
 	}
 	
 	/**
 	 * This method return all Drinks from the local SQLite database.
 	 * @return Drink object.
 	 */
-	public LinkedList<Drink> getAllDrinks()
+	public static LinkedList<Drink> getAllDrinks()
 	{
 		if(SQLITE) {
 			
@@ -118,7 +128,8 @@ public class Data {
 			            String ingredient = cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_INGREDIENT));
 			            String description = cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_DESCRIPTION));
 			            int rating = cursor.getInt(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_RATING));
-			            drinkList.add(new Drink(_id, name, url, glass, ingredient, description, rating));
+			            int favorite = cursor.getInt(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_FAVORITE));
+			            drinkList.add(new Drink(_id, name, url, glass, ingredient, description, rating, favorite));
 			        }while (cursor.moveToNext());
 			        
 			        // Close the cursor
@@ -126,9 +137,13 @@ public class Data {
 		    		
 		    		return drinkList;
 		    	}
-		    	
-		    	// Close the cursor
-		    	cursor.close();
+		    	else {
+		    		// Close the cursor
+			    	cursor.close();
+		    		
+			    	// No drinks in Query. Return Empty LinkedList<Drink>.
+		    		return new LinkedList<Drink>();
+		    	}
 		    }
 		    /**
 	         * End of SQLite getAllDrinks()
@@ -143,7 +158,7 @@ public class Data {
 	 * This method return all Ingredients from the local SQLite database.
 	 * @return Ingredient object.
 	 */
-	public LinkedList<Ingredient> getAllIngredients()
+	public static LinkedList<Ingredient> getAllIngredients()
 	{
 		if(SQLITE) {
 			
@@ -179,9 +194,13 @@ public class Data {
 		    		
 		    		return ingredientList;
 		    	}
-		    	
-		    	// Close the cursor
-		    	cursor.close();
+		    	else {
+		    		// Close the cursor
+			    	cursor.close();
+		    		
+			    	// No ingredients in Query. Return Empty LinkedList<Ingredient>.
+		    		return new LinkedList<Ingredient>();
+		    	}
 		    }
 		    /**
 	         * End of SQLite getAllIngredients()
@@ -192,36 +211,13 @@ public class Data {
 		return null; 
 	}
 	
-	public String[] getDrinkNameArray()
-	{
-		String[] drinks; 
-		if(SQLITE);
-		if(EDATA);
-		if(FAKE){
-			drinks = new String[20];
-			drinks[0] ="Cola och tonic";
-			drinks[1] ="Cola lime";
-			drinks[2] ="Cola gin";
-			drinks[3] ="Cola citrus";
-			drinks[4] ="Cola hallon";
-			drinks[5] ="Cola light";
-			drinks[6] ="Cola sun";
-			drinks[7] ="Cola looka";
-			drinks[8] ="Cola with ice";
-			drinks[9] ="Rom and cocke";
-			
-			return drinks;
-		}
-		return null; 
-	}
-		
 	/**
 	 * This method return a Drink (thumbnail, name, rating, description) 
 	 * SQL Query: SELECT * WHERE _id = id
 	 * @param ID
 	 * @return
 	 */
-	public Drink getDrinkByID(int ID)
+	public static Drink getDrinkByID(int ID)
 	{
 		if(SQLITE){
 		
@@ -252,7 +248,8 @@ public class Data {
 	    		String ingredient = cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_INGREDIENT));
 	    		String description = cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_DESCRIPTION));
 	    		int rating = cursor.getInt(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_RATING));
-	    		Drink drink = new Drink(_id, name, url, glass, ingredient, description, rating);
+	    		int favorite = cursor.getInt(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_FAVORITE));
+	    		Drink drink = new Drink(_id, name, url, glass, ingredient, description, rating, favorite);
 	    		
 	    		// Close the cursor
 		    	cursor.close();
@@ -261,7 +258,7 @@ public class Data {
 	    	}
 	    	else {
 	    		// ID doesn't exist. Return Drink with ID = 0
-	    		Drink drink = new Drink(0, "", "", "", "", "", 0);
+	    		Drink drink = new Drink(0, "", "", "", "", "", 0, 0);
 	    		
 	    		// Close the cursor
 		    	cursor.close();
@@ -285,7 +282,7 @@ public class Data {
 	 * @param ID
 	 * @return
 	 */
-	public Ingredient getIngredientByID(int ID)
+	public static Ingredient getIngredientByID(int ID)
 	{
 		if(SQLITE){
 		
@@ -321,7 +318,7 @@ public class Data {
 	    		return ingredient;
 	    	}
 	    	else {
-	    		// ID doesn't exist. Return Drink with ID = 0
+	    		// ID doesn't exist. Return Ingredient with ID = 0
 	    		Ingredient ingredient = new Ingredient(0, "", "", "", 0, "");
 	    		
 	    		// Close the cursor
@@ -341,16 +338,212 @@ public class Data {
 	}
 	
 	/**
-	 * Returns a LinkedList with the current users favorit drinks. 
-	 * SQL Query: SELECT * from Favorites;
-	 * @return
+	 * This method return all Drinks with Favorite column set, from the local SQLite database.
+	 * @return Drink object.
 	 */
-	public LinkedList<Drink> getFavoritDrinks()
+	public static LinkedList<Drink> getAllFavorites()
 	{
-		if(SQLITE);
+		if(SQLITE) {
+			
+			/**
+	         * SQLITE getAllFavorites()
+	         */
+			LinkedList<Drink> drinkList = new LinkedList<Drink>();
+	        
+		    // Choose which columns you want to query. null queries all columns
+		    //String[] projection = { DrinkTable.COLUMN_NAME,	DrinkTable.COLUMN_DESCRIPTION, DrinkTable.COLUMN_RATING };
+	        
+		    // Query database
+		    Cursor cursor = MyBarApplication.ContentResolver().query(MyBarContentProvider.CONTENTURI_DRINK, null, "favorite=1", null, null);
+		    
+		    // Successful query?
+		    if (cursor != null) {
+		    	
+		    	// Is there any data from the requested Query
+		    	if (cursor.moveToFirst()) {
+		    		
+			        do {
+			            int _id = cursor.getInt(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_ID));
+			            String name = cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_NAME));
+			            String url = cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_URL));
+			            String glass = cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_GLASS));
+			            String ingredient = cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_INGREDIENT));
+			            String description = cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_DESCRIPTION));
+			            int rating = cursor.getInt(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_RATING));
+			            int favorite = cursor.getInt(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_FAVORITE));
+			            drinkList.add(new Drink(_id, name, url, glass, ingredient, description, rating, favorite));
+			        }while (cursor.moveToNext());
+			        
+			        // Close the cursor
+			    	cursor.close();
+		    		
+		    		return drinkList;
+		    	}
+		    	else {
+		    		// Close the cursor
+			    	cursor.close();
+		    		
+			    	// No Favorites. Return Empty LinkedList<Drink>.
+		    		return new LinkedList<Drink>();
+		    	}
+		    }
+		    /**
+	         * End of SQLite getAllFavorites()
+	         */
+		}
 		if(EDATA);
-		if(FAKE){ return fakeDrinkList; }
+		if(FAKE);
 		return null; 
+	}
+	
+	/**
+	 * This method sets a Drink to a favorite
+	 * @param ID
+	 * @return 1 if OK. 0 if ID doesn't exist.
+	 */
+	public static int setFavoriteByID(int ID)
+	{
+		if(SQLITE){
+		
+		/**
+         * SQLITE setFavoriteByID()
+         */
+		ContentValues values = new ContentValues();
+		
+	    // Choose which columns you want to query. null queries all columns
+	    String[] projection = { DrinkTable.COLUMN_ID, DrinkTable.COLUMN_NAME };
+
+	    // Query database
+	    Cursor cursor = MyBarApplication.ContentResolver().query(MyBarContentProvider.CONTENTURI_DRINK, projection, DrinkTable.COLUMN_ID + "=" + ID, null, null);
+
+	    // Successful query?
+	    if (cursor != null) {
+
+	    	// Is there any data from the requested Query
+	    	if (cursor.moveToFirst()) {
+	    		
+	    		values.put("favorite", 1);
+	    		int rowUpdated = MyBarApplication.ContentResolver().update(MyBarContentProvider.CONTENTURI_DRINK, values, DrinkTable.COLUMN_ID + "=" + ID, null);
+	    		
+	    		// Print the favorited drink
+	    		Log.d(Data.class.getClass().getName(), "Favorited Drink: " +
+	    				cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_NAME)) + " How many rows favorited: " + Integer.toString(rowUpdated));
+	    		
+	    		// Close the cursor
+		    	cursor.close();
+		    	
+	    		return 1;
+	    	}
+	    	else {
+	    		// Close the cursor
+		    	cursor.close();
+		    	
+		    	// ID doesn't exist. Return 0
+	    		return 0;
+	    	}
+	    }
+        /**
+         * End of SQLite setFavoriteByID()
+         */
+		}
+		if(EDATA);
+		if(FAKE);
+		
+		return 0;
+	}
+	
+	/**
+	 * This method sets a Drink to a favorite
+	 * @param name
+	 * @return 1 if OK. 0 if name doesn't exist.
+	 */
+	public static int setFavoriteByName(String name)
+	{
+		if(SQLITE){
+		
+		/**
+         * SQLITE setFavoriteByName()
+         */
+		ContentValues values = new ContentValues();
+		
+	    // Choose which columns you want to query. null queries all columns
+	    String[] projection = { DrinkTable.COLUMN_ID, DrinkTable.COLUMN_NAME };
+		
+	    // Query database
+	    Cursor cursor = MyBarApplication.ContentResolver().query(MyBarContentProvider.CONTENTURI_DRINK, projection, DrinkTable.COLUMN_NAME + " = ? ", new String[]{name}, null);
+
+	    // Successful query?
+	    if (cursor != null) {
+
+	    	// Is there any data from the requested Query
+	    	if (cursor.moveToFirst()) {
+	    		
+	    		values.put("favorite", 1);
+	    		int rowUpdated = MyBarApplication.ContentResolver().update(MyBarContentProvider.CONTENTURI_DRINK, values, DrinkTable.COLUMN_NAME + " = ? ", new String[]{name});
+	    		
+	    		// Print the favorited drink
+	    		Log.d(Data.class.getClass().getName(), "Favorited Drink: " +
+	    				cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_NAME)) + " How many rows favorited: " + Integer.toString(rowUpdated));
+	    		
+	    		// Close the cursor
+		    	cursor.close();
+		    	
+	    		return 1;
+	    	}
+	    	else {
+	    		// Close the cursor
+		    	cursor.close();
+		    	
+		    	// name doesn't exist. Return 0
+	    		return 0;
+	    	}
+	    }
+        /**
+         * End of SQLite setFavoriteByName()
+         */
+		}
+		if(EDATA);
+		if(FAKE);
+		
+		return 0;
+	}
+	
+	public static String[] getDrinkNameAsArray()
+	{
+		String[] drinks;
+		if(SQLITE) {
+			LinkedList<String> nameList = new LinkedList<String>();
+			
+			for (int i = 0; i < Data.getAllDrinks().size(); i++) {
+				nameList.add(Data.getAllDrinks().get(i).getName());
+				
+				Log.d(Controller.class.getClass().getName(), ""
+						+ Data.getAllDrinks().get(i).get_id() + " "
+						+ Data.getAllDrinks().get(i).getName());
+			}
+			
+			String[] array = new String[nameList.size()];
+			nameList.toArray(array);
+			
+			return array;
+		}
+		if(EDATA);
+		if(FAKE){
+			drinks = new String[20];
+			drinks[0] ="Cola och tonic";
+			drinks[1] ="Cola lime";
+			drinks[2] ="Cola gin";
+			drinks[3] ="Cola citrus";
+			drinks[4] ="Cola hallon";
+			drinks[5] ="Cola light";
+			drinks[6] ="Cola sun";
+			drinks[7] ="Cola looka";
+			drinks[8] ="Cola with ice";
+			drinks[9] ="Rom and cocke";
+			
+			return drinks;
+		}
+		return null;
 	}
 	
 	/**
@@ -359,30 +552,20 @@ public class Data {
 	 * @param searchName
 	 * @return A LinkedList with the Drink containing the searchName string
 	 */
-	public LinkedList<Drink> searchDrinkName(String searchName)
+	public static LinkedList<Drink> searchDrinkName(String searchName)
 	{
 		if(FAKE){ return fakeDrinkList; }
 		return null;
 	}
+	
 	/**
 	 * Search for ingredients in the database.
 	 * @param searchName
 	 * @return A LinkedList with the ingredients containing the searchName string
 	 */
-	public LinkedList<Drink> searchIngredientName(String searchName)
+	public static LinkedList<Drink> searchIngredientName(String searchName)
 	{
 		if(FAKE) {return fakeDrinkList;};
-		return null;
-	}
-	
-	public LinkedList<Ingredient> getIngredientList()
-	{
-		if(FAKE){ return fakeIngredientList; }
-		return null;
-	}
-	
-	public String getIngredientById(int ID)
-	{
 		return null;
 	}
 }

@@ -47,10 +47,11 @@ public class Drink {
 	private String ingredient = "";
 	private String description = "";
 	private int rating = 0;
+	private int favorite = 0;
 	private ContentValues values = null;
 	
 	public Drink(int _id, String name, String url, String glass,
-			String ingredient, String description, int rating) {
+			String ingredient, String description, int rating, int favorite) {
 		this._id = _id;
 		this.name = name;
 		this.url = url;
@@ -58,6 +59,7 @@ public class Drink {
 		this.ingredient = ingredient;
 		this.description = description;
 		this.rating = rating;
+		this.favorite = favorite;
 		
 		values = new ContentValues();
 		values.put("name", name);
@@ -66,6 +68,7 @@ public class Drink {
 	    values.put("ingredient", ingredient);
 	    values.put("description", description);
 	    values.put("rating", rating);
+	    values.put("favorite", favorite);
 	}
 	
 	/*private Calendar calendar = Calendar.getInstance();
@@ -95,7 +98,7 @@ public class Drink {
 	}*/
 	
 	/**
-	* Return a representatiof of the ingredients in the drink for the the drink view activity.
+	* Return a representation of the ingredients in the drink for the the drink view activity.
 	* @return
 	*/
 	public String getIngredientString()
@@ -170,5 +173,13 @@ public class Drink {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public int getFavorite() {
+		return favorite;
+	}
+
+	public void setFavorite(int favorite) {
+		this.favorite = favorite;
 	}
 }
