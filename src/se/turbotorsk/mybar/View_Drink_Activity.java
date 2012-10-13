@@ -43,6 +43,7 @@ public class View_Drink_Activity extends Activity {
 	ImageView dImage;
 	CheckBox checkBox;
 	String name;
+
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -105,6 +106,7 @@ public class View_Drink_Activity extends Activity {
                     //is the checkbox checked?
     		if (((CheckBox) v).isChecked()) {
     			Data.setFavoriteByName(name);
+    			MyFavorites.updateList();
     			Toast.makeText(View_Drink_Activity.this,"Added to Favorites", Toast.LENGTH_LONG).show();
     		}
     		

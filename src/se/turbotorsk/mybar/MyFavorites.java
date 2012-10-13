@@ -22,16 +22,18 @@ import android.view.View;
 import android.widget.ListView;
 
 public class MyFavorites extends ListActivity {
-	
-	DrinkAdapter adapter;
+	public static DrinkAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+       
         StrictMode.ThreadPolicy policy = new StrictMode.
 				ThreadPolicy.Builder().permitAll().build();
 				StrictMode.setThreadPolicy(policy);
+		
 		adapter = new DrinkAdapter(this, R.layout.rowlayout, Data.getAllFavorites());
+		
 		// Sets the adapter that we just did
 		setListAdapter(adapter);    
 		}
@@ -47,5 +49,10 @@ public class MyFavorites extends ListActivity {
 		intent.putExtra("url", adapter.getUrl(position));
 		startActivity(intent);
 	}
+	
+	public static void updateList(){
+		adapter.notifyDataSetChanged();	
+	}
+	
 }
 
