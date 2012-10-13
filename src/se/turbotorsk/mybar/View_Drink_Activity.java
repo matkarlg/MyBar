@@ -13,8 +13,14 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 package se.turbotorsk.mybar;
 
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import se.turbotorsk.mybar.model.Data;
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -69,14 +75,26 @@ public class View_Drink_Activity extends Activity {
     	String rating = bundle.getString("rating");
     	String description = bundle.getString("descrip");
     	String ingredients = bundle.getString("ingredients");
+    	String url = bundle.getString("url");
     	
     	dName.setText(name);
     	dRating.setText(rating);
     	dDescription.setText(description);
     	dIngredients.setText(ingredients);
+    	//dImage.setImageResource(R.drawable.ic_drinkicon);
     	
-    	
-    	dImage.setImageResource(R.drawable.ic_drinkicon);
+    	URL url2;
+		try {
+			url2 = new URL(url);
+			Bitmap bmp = BitmapFactory.decodeStream(url2.openConnection().getInputStream());
+        	dImage.setImageBitmap(bmp);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
     
     public void checkBoxListener() {

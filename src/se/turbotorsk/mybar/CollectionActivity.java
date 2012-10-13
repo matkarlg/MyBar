@@ -15,6 +15,7 @@ import se.turbotorsk.mybar.model.Data;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.View;
 import android.widget.ListView;
 
@@ -26,19 +27,15 @@ public class CollectionActivity extends ListActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		StrictMode.ThreadPolicy policy = new StrictMode.
+				ThreadPolicy.Builder().permitAll().build();
+				StrictMode.setThreadPolicy(policy);
 		
 		adapter = new DrinkAdapter(this, R.layout.rowlayout, Data.getAllDrinks());
 		
 		// Sets the adapter that we just did
 		setListAdapter(adapter);
 	}
-
-//Behövs ej längre?
-//	@Override
-//	public boolean onCreateOptionsMenu(Menu menu) {
-//		getMenuInflater().inflate(R.menu.activity_drinks_list, menu);
-//		return true;
-//	}
 
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
@@ -52,6 +49,7 @@ public class CollectionActivity extends ListActivity {
 		intent.putExtra("rating", adapter.getRating(position));
 		intent.putExtra("ingredients", adapter.getIngredients(position));
 		intent.putExtra("descrip", adapter.getDescrip(position));
+		intent.putExtra("url", adapter.getUrl(position));
 		startActivity(intent);
 	}
 }
