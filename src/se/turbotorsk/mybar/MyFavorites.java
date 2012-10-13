@@ -44,6 +44,7 @@ public class MyFavorites extends ListActivity {
 		intent.putExtra("rating", adapter.getRating(position));
 		intent.putExtra("ingredients", adapter.getIngredients(position));
 		intent.putExtra("descrip", adapter.getDescrip(position));
+		intent.putExtra("url", adapter.getUrl(position));
 		startActivity(intent);
 	}
 }
