@@ -49,8 +49,12 @@ public class Data {
 	        
 			// SQLite uses autoincrement in the _id field
 	        Drink[] testDrinks = {
-	        		new Drink(0, "Margarita", "/margarita.jpg", "Martini Glass", "Rom", "Mix rom and ice", 5, 0), 
-	        		new Drink(0, "Tequila", "/tequila.jpg", "Shot Glass", "Tequila", "Pour Tequila in glass", 5, 0)
+	        		new Drink(0, "Margarita", "/margarita.jpg", "Martini Glass", "ingredients here", "Margarita instructions", 5, 0),
+	        		new Drink(0, "Tequila", "/tequila.jpg", "Shot Glass", "ingredients here", "Pour Tequila in shot glass", 5, 0),
+	        		new Drink(0, "Cosmopolitan", "/cosmopolitan.jpg", "Martini Glass", "ingredients here", "Cosmopolitan instructions", 5, 0),
+	        		new Drink(0, "Cuba Libre", "/cubalibre.jpg", "Highball Glass", "ingredients here", "Cuba Libre instructions", 5, 0),
+	        		new Drink(0, "Martini", "/martini.jpg", "Martini Glass", "ingredients here", "Pour Martini in glass", 5, 0),
+	        		new Drink(0, "Irish Coffee", "/irishcoffee.jpg", "Coffee Glass", "ingredients here", "Irish Coffee instructions", 5, 0)
 	        };
 	        
 	        // Insert testDrinks
@@ -521,7 +525,7 @@ public class Data {
 		if(SQLITE){
 		
 		/**
-         * SQLITE setDrink()
+         * SQLITE setDrink(String name, String column, int set)
          */
 		ContentValues values = new ContentValues();
 		
@@ -550,6 +554,9 @@ public class Data {
 	    		return 0;
 	    	}
 	    	else {
+	    		// Error message in logcat
+	    		Log.e(Data.class.getClass().getName(), "name doesn't exist");
+	    		
 	    		// Close the cursor
 		    	cursor.close();
 		    	
@@ -558,7 +565,69 @@ public class Data {
 	    	}
 	    }
         /**
-         * End of SQLite setDrink()
+         * End of SQLite setDrink(String name, String column, int set)
+         */
+		}
+		if(EDATA);
+		if(FAKE);
+		
+		return 1;
+	}
+	
+	/**
+	 * Sets the columns in the Drink table to different values
+	 * 
+	 * @param ID _id of the Drink to update
+	 * @param column The column to update
+	 * @param set The value to update the column with
+	 * @return 0 if successful
+	 */
+	public static int setDrink(int ID, String column, int set)
+	{
+		if(SQLITE){
+		
+		/**
+         * SQLITE setDrink(int ID, String column, int set)
+         */
+		ContentValues values = new ContentValues();
+		
+	    // Choose which columns you want to query. null queries all columns
+	    String[] projection = { DrinkTable.COLUMN_ID, DrinkTable.COLUMN_NAME };
+		
+	    // Query database
+	    Cursor cursor = MyBarApplication.ContentResolver().query(MyBarContentProvider.CONTENTURI_DRINK, projection, DrinkTable.COLUMN_ID + "=" + ID, null, null);
+
+	    // Successful query?
+	    if (cursor != null) {
+
+	    	// Is there any data from the requested Query
+	    	if (cursor.moveToFirst()) {
+	    		
+	    		values.put(column, set);
+	    		int rowUpdated = MyBarApplication.ContentResolver().update(MyBarContentProvider.CONTENTURI_DRINK, values, DrinkTable.COLUMN_ID + "=" + ID, null);
+	    		
+	    		// Print the updated drink
+	    		Log.d(Data.class.getClass().getName(), "Drink: " +
+	    				cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_NAME)) + ". Rows updated in this query: " + Integer.toString(rowUpdated));
+	    		
+	    		// Close the cursor
+		    	cursor.close();
+		    	
+	    		return 0;
+	    	}
+	    	else {
+	    		// Error message in logcat
+	    		Log.e(Data.class.getClass().getName(), "ID doesn't exist");
+	    		
+	    		// Close the cursor
+		    	cursor.close();
+		    	
+		    	// ID doesn't exist. Return 1
+	    		return 1;
+	    	}
+	    }
+        /**
+         * End of SQLite setDrink(int ID, String column, int set)
          */
 		}
 		if(EDATA);
