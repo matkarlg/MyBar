@@ -55,7 +55,7 @@
             android:name=".MyFavorites"
             android:label="@string/title_activity_my_favorites" >
         </activity>
-        <activity android:name=".View_Drink_Activity" >
+        <activity android:name=".ViewDrinkActivity" >
         </activity>
         <activity android:name=".Share" >
         </activity>

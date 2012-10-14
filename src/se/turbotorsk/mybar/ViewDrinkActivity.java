@@ -26,7 +26,7 @@ import android.widget.Toast;
  * 
  */
 
-public class View_Drink_Activity extends Activity {
+public class ViewDrinkActivity extends Activity {
 
 	TextView dName;
 	TextView dDescription;
@@ -121,7 +121,7 @@ public class View_Drink_Activity extends Activity {
 				// is the checkbox checked?
 				if (((CheckBox) v).isChecked()) {
 					Data.setFavoriteByName(name);
-					Toast.makeText(View_Drink_Activity.this,
+					Toast.makeText(ViewDrinkActivity.this,
 							"Added to Favorites", Toast.LENGTH_LONG).show();
 				}
 

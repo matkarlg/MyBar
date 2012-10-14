@@ -47,7 +47,7 @@ public class CollectionActivity extends ListActivity {
 		// to do that yet.
 		// Toast.makeText(this, item + " selected", Toast.LENGTH_LONG).show();
 
-		Intent intent = new Intent(this, View_Drink_Activity.class);
+		Intent intent = new Intent(this, ViewDrinkActivity.class);
 		intent.putExtra("drinkname", adapter.getDrinkName(position));
 		intent.putExtra("rating", adapter.getRating(position));
 		intent.putExtra("ingredients", adapter.getIngredients(position));
