@@ -19,7 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class Add_Ingredient_Activity extends ListActivity {
+public class AddIngredientActivity extends ListActivity {
 	
 
 	@Override

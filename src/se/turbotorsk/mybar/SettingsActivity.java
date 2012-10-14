@@ -21,7 +21,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class Settings_Activity extends Activity {
+public class SettingsActivity extends Activity {
 	Button profileButton;
 	TextView profile1;
 	
@@ -34,7 +34,7 @@ public class Settings_Activity extends Activity {
         profileButton.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
-				Intent intent1 = new Intent(Settings_Activity.this, Profiles.class);
+				Intent intent1 = new Intent(SettingsActivity.this, Profiles.class);
 				startActivity(intent1);
 				Intent i = getIntent();
 				Bundle bundle = i.getExtras();
@@ -54,10 +54,10 @@ public class Settings_Activity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
     	switch (item.getItemId()) {
         	case R.id.menu_settings:
-        		startActivity(new Intent(this, Settings_Activity.class));
+        		startActivity(new Intent(this, SettingsActivity.class));
         		return true;
         	case R.id.menu_about:
-        		AboutBox.Show(Settings_Activity.this);
+        		AboutBox.Show(SettingsActivity.this);
         		return true;
         	default:
         		return true;
