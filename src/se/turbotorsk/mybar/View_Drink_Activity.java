@@ -12,7 +12,6 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 package se.turbotorsk.mybar;
 
-
 import se.turbotorsk.mybar.model.Data;
 import android.app.Activity;
 import android.os.Bundle;
@@ -36,7 +35,7 @@ public class View_Drink_Activity extends Activity {
 	TextView dRating;
 	ImageView dImage;
 	CheckBox checkBox;
-	String name;
+	String name, rating, description, ingredients;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,7 +52,7 @@ public class View_Drink_Activity extends Activity {
         dImage = (ImageView) findViewById(R.id.drinkImage);
         checkBox = (CheckBox) findViewById(R.id.drinkFav);
         
-        getDrinkInfo();
+        setDrinkInfo();
         checkBoxListener();
        
     }
@@ -61,21 +60,40 @@ public class View_Drink_Activity extends Activity {
     /**
      * This method inserts the information to the Views in this activity's XML-file
      */
-    public void getDrinkInfo() {
+    public void setDrinkInfo() {
     	
     	//Receiving intents from activity
     	Bundle bundle = getIntent().getExtras();
     	name = bundle.getString("drinkname");
-    	String rating = bundle.getString("rating");
-    	String description = bundle.getString("descrip");
-    	String ingredients = bundle.getString("ingredients");
+    	rating = bundle.getString("rating");
+    	description = bundle.getString("descrip");
+    	ingredients = bundle.getString("ingredients");
     	
+    	setDrinkName();
+    	setDrinkRating();
+    	setDrinkDescription();
+    	setDrinkIngredients();
+    	setDrinkImage();
+    	
+    }
+    
+    public void setDrinkName() {
     	dName.setText(name);
+    }
+    
+    public void setDrinkRating() {
     	dRating.setText(rating);
+    }
+    
+    public void setDrinkDescription() {
     	dDescription.setText(description);
+    }
+    
+    public void setDrinkIngredients() {
     	dIngredients.setText(ingredients);
-    	
-    	
+    }
+    
+    public void setDrinkImage() {
     	dImage.setImageResource(R.drawable.ic_drinkicon);
     }
     
@@ -93,4 +111,5 @@ public class View_Drink_Activity extends Activity {
     	  }
     	});
     }
+   
 }
