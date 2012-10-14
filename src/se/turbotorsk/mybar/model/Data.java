@@ -49,8 +49,12 @@ public class Data {
 	        
 			// SQLite uses autoincrement in the _id field
 	        Drink[] testDrinks = {
-	        		new Drink(0, "Margarita", "/margarita.jpg", "Martini Glass", "Rom", "Mix rom and ice", 5, 0), 
-	        		new Drink(0, "Tequila", "/tequila.jpg", "Shot Glass", "Tequila", "Pour Tequila in glass", 5, 0)
+	        		new Drink(0, "Margarita", "/margarita.jpg", "Martini Glass", "ingredients here", "Margarita instructions", 5, 0),
+	        		new Drink(0, "Tequila", "/tequila.jpg", "Shot Glass", "ingredients here", "Pour Tequila in shot glass", 5, 0),
+	        		new Drink(0, "Cosmopolitan", "/cosmopolitan.jpg", "Martini Glass", "ingredients here", "Cosmopolitan instructions", 5, 0),
+	        		new Drink(0, "Cuba Libre", "/cubalibre.jpg", "Highball Glass", "ingredients here", "Cuba Libre instructions", 5, 0),
+	        		new Drink(0, "Martini", "/martini.jpg", "Martini Glass", "ingredients here", "Pour Martini in glass", 5, 0),
+	        		new Drink(0, "Irish Coffee", "/irishcoffee.jpg", "Coffee Glass", "ingredients here", "Irish Coffee instructions", 5, 0)
 	        };
 	        
 	        // Insert testDrinks
