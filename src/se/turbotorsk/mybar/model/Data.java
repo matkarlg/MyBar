@@ -399,7 +399,7 @@ public class Data {
 	/**
 	 * This method sets a Drink to a favorite
 	 * @param ID
-	 * @return 1 if OK. 0 if ID doesn't exist.
+	 * @return 0 if OK. 1 if ID doesn't exist.
 	 */
 	public static int setFavoriteByID(int ID)
 	{
@@ -432,14 +432,14 @@ public class Data {
 	    		// Close the cursor
 		    	cursor.close();
 		    	
-	    		return 1;
+	    		return 0;
 	    	}
 	    	else {
 	    		// Close the cursor
 		    	cursor.close();
 		    	
-		    	// ID doesn't exist. Return 0
-	    		return 0;
+		    	// ID doesn't exist. Return 1
+	    		return 1;
 	    	}
 	    }
         /**
@@ -449,13 +449,13 @@ public class Data {
 		if(EDATA);
 		if(FAKE);
 		
-		return 0;
+		return 1;
 	}
 	
 	/**
 	 * This method sets a Drink to a favorite
 	 * @param name
-	 * @return 1 if OK. 0 if name doesn't exist.
+	 * @return 0 if OK. 1 if name doesn't exist.
 	 */
 	public static int setFavoriteByName(String name)
 	{
@@ -488,14 +488,14 @@ public class Data {
 	    		// Close the cursor
 		    	cursor.close();
 		    	
-	    		return 1;
+	    		return 0;
 	    	}
 	    	else {
 	    		// Close the cursor
 		    	cursor.close();
 		    	
-		    	// name doesn't exist. Return 0
-	    		return 0;
+		    	// name doesn't exist. Return 1
+	    		return 1;
 	    	}
 	    }
         /**
@@ -505,7 +505,66 @@ public class Data {
 		if(EDATA);
 		if(FAKE);
 		
-		return 0;
+		return 1;
+	}
+	
+	/**
+	 * Sets the columns in the Drink table to different values
+	 * 
+	 * @param name Name of the Drink to update
+	 * @param column The column to update
+	 * @param set The value to update the column with
+	 * @return 0 if successful
+	 */
+	public static int setDrink(String name, String column, int set)
+	{
+		if(SQLITE){
+		
+		/**
+         * SQLITE setDrink()
+         */
+		ContentValues values = new ContentValues();
+		
+	    // Choose which columns you want to query. null queries all columns
+	    String[] projection = { DrinkTable.COLUMN_ID, DrinkTable.COLUMN_NAME };
+		
+	    // Query database
+	    Cursor cursor = MyBarApplication.ContentResolver().query(MyBarContentProvider.CONTENTURI_DRINK, projection, DrinkTable.COLUMN_NAME + " = ? ", new String[]{name}, null);
+
+	    // Successful query?
+	    if (cursor != null) {
+
+	    	// Is there any data from the requested Query
+	    	if (cursor.moveToFirst()) {
+	    		
+	    		values.put(column, set);
+	    		int rowUpdated = MyBarApplication.ContentResolver().update(MyBarContentProvider.CONTENTURI_DRINK, values, DrinkTable.COLUMN_NAME + " = ? ", new String[]{name});
+	    		
+	    		// Print the updated drink
+	    		Log.d(Data.class.getClass().getName(), "Drink: " +
+	    				cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_NAME)) + ". Rows updated in this query: " + Integer.toString(rowUpdated));
+	    		
+	    		// Close the cursor
+		    	cursor.close();
+		    	
+	    		return 0;
+	    	}
+	    	else {
+	    		// Close the cursor
+		    	cursor.close();
+		    	
+		    	// name doesn't exist. Return 1
+	    		return 1;
+	    	}
+	    }
+        /**
+         * End of SQLite setDrink()
+         */
+		}
+		if(EDATA);
+		if(FAKE);
+		
+		return 1;
 	}
 	
 	public static String[] getDrinkNameAsArray()
