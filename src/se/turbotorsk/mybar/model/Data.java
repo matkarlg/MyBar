@@ -554,6 +554,9 @@ public class Data {
 	    		return 0;
 	    	}
 	    	else {
+	    		// Error message in logcat
+	    		Log.e(Data.class.getClass().getName(), "name doesn't exist");
+	    		
 	    		// Close the cursor
 		    	cursor.close();
 		    	
@@ -613,6 +616,9 @@ public class Data {
 	    		return 0;
 	    	}
 	    	else {
+	    		// Error message in logcat
+	    		Log.e(Data.class.getClass().getName(), "ID doesn't exist");
+	    		
 	    		// Close the cursor
 		    	cursor.close();
 		    	
