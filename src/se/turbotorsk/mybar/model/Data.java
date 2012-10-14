@@ -525,7 +525,7 @@ public class Data {
 		if(SQLITE){
 		
 		/**
-         * SQLITE setDrink()
+         * SQLITE setDrink(String name, String column, int set)
          */
 		ContentValues values = new ContentValues();
 		
@@ -562,7 +562,66 @@ public class Data {
 	    	}
 	    }
         /**
-         * End of SQLite setDrink()
+         * End of SQLite setDrink(String name, String column, int set)
+         */
+		}
+		if(EDATA);
+		if(FAKE);
+		
+		return 1;
+	}
+	
+	/**
+	 * Sets the columns in the Drink table to different values
+	 * 
+	 * @param ID _id of the Drink to update
+	 * @param column The column to update
+	 * @param set The value to update the column with
+	 * @return 0 if successful
+	 */
+	public static int setDrink(int ID, String column, int set)
+	{
+		if(SQLITE){
+		
+		/**
+         * SQLITE setDrink(int ID, String column, int set)
+         */
+		ContentValues values = new ContentValues();
+		
+	    // Choose which columns you want to query. null queries all columns
+	    String[] projection = { DrinkTable.COLUMN_ID, DrinkTable.COLUMN_NAME };
+		
+	    // Query database
+	    Cursor cursor = MyBarApplication.ContentResolver().query(MyBarContentProvider.CONTENTURI_DRINK, projection, DrinkTable.COLUMN_ID + "=" + ID, null, null);
+
+	    // Successful query?
+	    if (cursor != null) {
+
+	    	// Is there any data from the requested Query
+	    	if (cursor.moveToFirst()) {
+	    		
+	    		values.put(column, set);
+	    		int rowUpdated = MyBarApplication.ContentResolver().update(MyBarContentProvider.CONTENTURI_DRINK, values, DrinkTable.COLUMN_ID + "=" + ID, null);
+	    		
+	    		// Print the updated drink
+	    		Log.d(Data.class.getClass().getName(), "Drink: " +
+	    				cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_NAME)) + ". Rows updated in this query: " + Integer.toString(rowUpdated));
+	    		
+	    		// Close the cursor
+		    	cursor.close();
+		    	
+	    		return 0;
+	    	}
+	    	else {
+	    		// Close the cursor
+		    	cursor.close();
+		    	
+		    	// ID doesn't exist. Return 1
+	    		return 1;
+	    	}
+	    }
+        /**
+         * End of SQLite setDrink(int ID, String column, int set)
          */
 		}
 		if(EDATA);
