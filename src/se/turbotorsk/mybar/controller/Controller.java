@@ -41,6 +41,13 @@ public class Controller {
 	public static LinkedList<Drink> getFavoritDrinks() {
 		return null;
 	}
+	
+	public static int isFavorite(int id){
+		Log.d(Controller.class.getName(), "id" + id);
+		Drink drink = Data.getDrinkByID(id);
+		Log.d(Controller.class.getName(), "" + drink.getFavorite());
+		return drink.getFavorite();
+	}
 
 	// -----------------------------------------------------Methods for
 	// Ingredient categories ------------------------------------

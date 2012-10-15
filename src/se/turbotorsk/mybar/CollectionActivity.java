@@ -48,6 +48,7 @@ public class CollectionActivity extends ListActivity {
 		intent.putExtra("ingredients", adapter.getIngredients(position));
 		intent.putExtra("descrip", adapter.getDescrip(position));
 		intent.putExtra("url", adapter.getUrl(position));
+		intent.putExtra("id", adapter.getId(position));
 		startActivity(intent);
 		}
 }

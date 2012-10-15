@@ -22,12 +22,12 @@ import android.view.View;
 import android.widget.ListView;
 
 public class MyFavorites extends ListActivity {
-	public static DrinkAdapter adapter;
+	public DrinkAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       
+        
         StrictMode.ThreadPolicy policy = new StrictMode.
 				ThreadPolicy.Builder().permitAll().build();
 				StrictMode.setThreadPolicy(policy);
@@ -47,11 +47,13 @@ public class MyFavorites extends ListActivity {
 		intent.putExtra("ingredients", adapter.getIngredients(position));
 		intent.putExtra("descrip", adapter.getDescrip(position));
 		intent.putExtra("url", adapter.getUrl(position));
+		intent.putExtra("id", adapter.getId(position));
 		startActivity(intent);
 	}
 	
-	public static void updateList(){
-		adapter.notifyDataSetChanged();	
+	public void updateList(){
+		adapter = new DrinkAdapter(this, R.layout.rowlayout, Data.getAllFavorites());
+		//adapter.notifyDataSetChanged();	
 	}
 	
 }

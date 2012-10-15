@@ -119,5 +119,10 @@ public View getView(int position, View convertView, ViewGroup parent) {
 		Drink drink = items.get(position);
 		return url;
 	}
+	
+	public int getId(int position){
+		Drink drink = items.get(position);
+		return drink.get_id();
+	}
 
 }
