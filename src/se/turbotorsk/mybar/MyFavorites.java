@@ -25,7 +25,7 @@ import android.widget.ListView;
  */
 public class MyFavorites extends ListActivity {
 
-	public static DrinkAdapter adapter;
+	public DrinkAdapter adapter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -58,13 +58,15 @@ public class MyFavorites extends ListActivity {
 		intent.putExtra("ingredients", adapter.getIngredients(position));
 		intent.putExtra("descrip", adapter.getDescrip(position));
 		intent.putExtra("url", adapter.getUrl(position));
+		intent.putExtra("id", adapter.getId(position));
 		startActivity(intent);
 	}
 
 	/**
 	 * This method updates the list in MyFavorites
 	 */
-	public static void updateList() {
-		adapter.notifyDataSetChanged();
+	public void updateList(){
+		adapter = new DrinkAdapter(this, R.layout.rowlayout, Data.getAllFavorites());
+		//adapter.notifyDataSetChanged();	
 	}
 }

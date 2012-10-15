@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import se.turbotorsk.mybar.controller.Controller;
 import se.turbotorsk.mybar.model.Data;
 import android.app.Activity;
 import android.graphics.Bitmap;
@@ -40,6 +41,7 @@ public class ViewDrinkActivity extends Activity {
 	TextView dRating;
 	ImageView dImage;
 	CheckBox checkBox;
+	int id;
 	String name, rating, description, ingredients;
 
 	@Override
@@ -57,6 +59,10 @@ public class ViewDrinkActivity extends Activity {
 
 		setDrinkInfo();
 		checkBoxListener();
+		
+		if(Controller.isFavorite(id) == 1){
+			checkBox.setChecked(true);
+		}
 
 	}
 
@@ -72,6 +78,7 @@ public class ViewDrinkActivity extends Activity {
 		description = bundle.getString("descrip");
 		ingredients = bundle.getString("ingredients");
 		String url = bundle.getString("url");
+		id = bundle.getInt("id");
 
 		// Set all the information about the drink
 		setDrinkName();
@@ -143,12 +150,14 @@ public class ViewDrinkActivity extends Activity {
 				// is the checkbox checked?
 				if (((CheckBox) v).isChecked()) {
 					Data.setDrink(name, "favorite", 1);
-					MyFavorites.updateList();
 					Toast.makeText(ViewDrinkActivity.this,
 							"Added to Favorites", Toast.LENGTH_LONG).show();
 				} else {
 					Data.setDrink(name, "favorite", 0);
+					Toast.makeText(ViewDrinkActivity.this,
+							"Removed from Favorites", Toast.LENGTH_LONG).show();
 				}
+				//MyFavorites.updateList();
 
 			}
 		});
