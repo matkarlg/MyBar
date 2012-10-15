@@ -16,6 +16,7 @@ import se.turbotorsk.mybar.model.Data;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ListView;
@@ -25,7 +26,6 @@ import android.widget.ListView;
  */
 public class MyFavorites extends ListActivity {
 
-	DrinkAdapter adapter;
 	public static DrinkAdapter adapter;
 
     @Override
@@ -59,5 +59,9 @@ public class MyFavorites extends ListActivity {
 		intent.putExtra("descrip", adapter.getDescrip(position));
 		intent.putExtra("url", adapter.getUrl(position));
 		startActivity(intent);
+	}
+	
+	public static void updateList(){
+		adapter.notifyDataSetChanged();
 	}
 }
