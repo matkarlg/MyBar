@@ -35,12 +35,22 @@ public class DrinkAdapter extends ArrayAdapter<LinkedList> {
 
 	private LinkedList<Drink> items;
 
+	/**
+	 * Constructor for DrinkAdapter
+	 * 
+	 * @param context
+	 * @param resource
+	 * @param items
+	 */
 	public DrinkAdapter(Context context, int resource, LinkedList items) {
 		super(context, resource, items);
 		this.items = items;
 
 	}
 
+	/**
+	 * This method gets the view for all drinks
+	 */
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -81,21 +91,45 @@ public class DrinkAdapter extends ArrayAdapter<LinkedList> {
 		return v;
 	}
 
+	/**
+	 * This method is fetching the name of the drink
+	 * 
+	 * @param position
+	 * @return name
+	 */
 	public String getDrinkName(int position) {
 		Drink drink = items.get(position);
 		return drink.getName();
 	}
 
+	/**
+	 * This method is fetching the ingredients of the drink
+	 * 
+	 * @param position
+	 * @return ingredients
+	 */
 	public String getIngredients(int position) {
 		Drink drink = items.get(position);
 		return drink.getIngredient();
 	}
 
+	/**
+	 * This method is fetching the rating of the drink
+	 * 
+	 * @param position
+	 * @return rating
+	 */
 	public String getRating(int position) {
 		Drink drink = items.get(position);
 		return Integer.toString(drink.getRating());
 	}
 
+	/**
+	 * This method is fetching the description of the drink
+	 * 
+	 * @param position
+	 * @return description
+	 */
 	public String getDescrip(int position) {
 		Drink drink = items.get(position);
 		return drink.getDescription();

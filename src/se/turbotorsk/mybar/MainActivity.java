@@ -20,15 +20,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
-//import android.app.ActionBar;
-//import android.app.FragmentTransaction;
-//import android.support.v4.app.Fragment;
-//import android.support.v4.app.FragmentManager;
-//import android.support.v4.app.NavUtils;
-//import android.view.Gravity;
-//import android.view.MenuItem;
-//import android.view.ViewGroup;
-//import android.widget.TextView;
 
 /**
  * This activity handles the main-window in the application
@@ -72,6 +63,9 @@ public class MainActivity extends TabActivity {
 		tabHost.setCurrentTab(1);
 	}
 
+	/**
+	 * This method handles what happens when destroying data
+	 */
 	@Override
 	public void onDestroy() {
 		Data.deleteTestData();

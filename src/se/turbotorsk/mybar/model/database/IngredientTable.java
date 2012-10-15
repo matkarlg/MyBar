@@ -39,10 +39,22 @@ public class IngredientTable {
 			+ COLUMN_TYPE + " TEXT NOT NULL, " + COLUMN_ALCOHOLCONTENT
 			+ " INT NOT NULL, " + COLUMN_DESCRIPTION + " TEXT NOT NULL" + ");";
 
+	/**
+	 * This method creates the database
+	 * 
+	 * @param database
+	 */
 	public static void onCreate(SQLiteDatabase database) {
 		database.execSQL(DATABASE_CREATE);
 	}
 
+	/**
+	 * This method handles the upgrade of the database
+	 * 
+	 * @param database
+	 * @param oldVersion
+	 * @param newVersion
+	 */
 	public static void onUpgrade(SQLiteDatabase database, int oldVersion,
 			int newVersion) {
 		// Print upgrade warning to LogCat

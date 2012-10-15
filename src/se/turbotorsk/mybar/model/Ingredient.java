@@ -39,6 +39,16 @@ public class Ingredient {
 	private String description = "";
 	private ContentValues values = null;
 
+	/**
+	 * This method returns the information about an ingredient
+	 * 
+	 * @param _id
+	 * @param name
+	 * @param url
+	 * @param type
+	 * @param alcoholcontent
+	 * @param description
+	 */
 	public Ingredient(int _id, String name, String url, String type,
 			int alcoholcontent, String description) {
 		this._id = _id;
@@ -56,54 +66,119 @@ public class Ingredient {
 		values.put("description", description);
 	}
 
+	/**
+	 * This method gets the values of the content
+	 * 
+	 * @return values
+	 */
 	public ContentValues getContentValues() {
 		return values;
 	}
 
+	/**
+	 * This method gets the id
+	 * 
+	 * @return id
+	 */
 	public int get_id() {
 		return _id;
 	}
 
+	/**
+	 * This method sets the id
+	 * 
+	 * @param _id
+	 */
 	public void set_id(int _id) {
 		this._id = _id;
 	}
 
+	/**
+	 * This method gets the name
+	 * 
+	 * @return name
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * This method sets the name
+	 * 
+	 * @param name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * This method gets the url
+	 * 
+	 * @return url
+	 */
 	public String getUrl() {
 		return url;
 	}
 
+	/**
+	 * This method sets the url
+	 * 
+	 * @param url
+	 */
 	public void setUrl(String url) {
 		this.url = url;
 	}
 
+	/**
+	 * This method gets the type
+	 * 
+	 * @return type
+	 */
 	public String getType() {
 		return type;
 	}
 
+	/**
+	 * This method sets the type
+	 * 
+	 * @param type
+	 */
 	public void setType(String type) {
 		this.type = type;
 	}
 
+	/**
+	 * This method gets the alcoholcontent
+	 * 
+	 * @return alcoholcontent
+	 */
 	public int getAlcoholcontent() {
 		return alcoholcontent;
 	}
 
+	/**
+	 * This method sets the alcoholcontent
+	 * 
+	 * @param alcoholcontent
+	 */
 	public void setAlcoholcontent(int alcoholcontent) {
 		this.alcoholcontent = alcoholcontent;
 	}
 
+	/**
+	 * This method gets the description
+	 * 
+	 * @return description
+	 */
 	public String getDescription() {
 		return description;
 	}
 
+	/**
+	 * This method sets the description
+	 * 
+	 * @param description
+	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}

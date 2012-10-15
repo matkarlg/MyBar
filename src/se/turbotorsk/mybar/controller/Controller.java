@@ -30,6 +30,10 @@ public class Controller {
 		return null;
 	}
 
+	/**
+	 * This method makes an array of all drink-names
+	 * @return array of drinks
+	 */
 	public static String[] getDrinkNamesAsArray() {
 		LinkedList<String> nameList = new LinkedList<String>();
 
@@ -47,23 +51,35 @@ public class Controller {
 		return array;
 	}
 
+	/**
+	 * This method is used for getting an ingredient by its ID
+	 * @param id
+	 * @return
+	 */
 	public static Drink getIngredientById(int id) {
 		return null;
 	}
-
-	// -----------------------------------------------------Methods for getting
-	// and setting favorite drinks ----------------------------------
-
+	
+	// ---------- Methods for get and set favorites ----------
+	
+	/**
+	 * This method is used for adding a drink to favorite
+	 * @param id
+	 * @return
+	 */
 	public static boolean addFavoriteDrink(int id) {
 		return false;
 	}
 
+	/**
+	 * This method is used for fetching all favorite-drinks
+	 * @return
+	 */
 	public static LinkedList<Drink> getFavoritDrinks() {
 		return null;
 	}
 
-	// -----------------------------------------------------Methods for
-	// Ingredient categories ------------------------------------
+	// ---------- Methods for Ingredient categories ----------
 
 	public static boolean addMyBarCat(String Name) {
 		return false; // data.AddMyBarCat(String name); Add this method in data.

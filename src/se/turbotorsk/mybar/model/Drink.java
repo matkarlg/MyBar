@@ -24,12 +24,6 @@ package se.turbotorsk.mybar.model;
 import se.turbotorsk.mybar.controller.Controller;
 import android.content.ContentValues;
 
-//import java.text.SimpleDateFormat;
-//import java.util.Calendar;
-//import java.util.Date;
-//import java.text.ParseException;
-//import android.util.Log;
-
 /**
  * A drink object contains information about a drink.
  * 
@@ -110,70 +104,155 @@ public class Drink {
 		return null;
 	}
 
+	/**
+	 * This method gets the values for the content
+	 * 
+	 * @return values
+	 */
 	public ContentValues getContentValues() {
 		return values;
 	}
 
+	/**
+	 * This method gets the id
+	 * 
+	 * @return _id
+	 */
 	public int get_id() {
 		return _id;
 	}
 
+	/**
+	 * This method sets the id
+	 * 
+	 * @param _id
+	 */
 	public void set_id(int _id) {
 		this._id = _id;
 	}
 
+	/**
+	 * This method gets the name
+	 * 
+	 * @return name
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * This method sets the name
+	 * 
+	 * @param name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * This method gets the ingredient
+	 * 
+	 * @return ingredient
+	 */
 	public String getIngredient() {
 		return ingredient;
 	}
 
+	/**
+	 * This method sets the ingredient
+	 * 
+	 * @param ingredient
+	 */
 	public void setIngredient(String ingredient) {
 		this.ingredient = ingredient;
 	}
 
+	/**
+	 * This method gets the rating
+	 * 
+	 * @return rating
+	 */
 	public int getRating() {
 		return rating;
 	}
 
+	/**
+	 * This method sets the rating
+	 * 
+	 * @param rating
+	 */
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
 
+	/**
+	 * This method gets the glass
+	 * 
+	 * @return glass
+	 */
 	public String getGlass() {
 		return glass;
 	}
 
+	/**
+	 * This method sets the glass
+	 * 
+	 * @param glass
+	 */
 	public void setGlass(String glass) {
 		this.glass = glass;
 	}
 
+	/**
+	 * This method gets the description
+	 * 
+	 * @return description
+	 */
 	public String getDescription() {
 		return description;
 	}
 
+	/**
+	 * This method sets the description
+	 * 
+	 * @param description
+	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
+	/**
+	 * This method gets the url
+	 * 
+	 * @return url
+	 */
 	public String getUrl() {
 		return url;
 	}
 
+	/**
+	 * This method sets the url
+	 * 
+	 * @param url
+	 */
 	public void setUrl(String url) {
 		this.url = url;
 	}
 
+	/**
+	 * This method gets the favorite
+	 * 
+	 * @return
+	 */
 	public int getFavorite() {
 		return favorite;
 	}
 
+	/**
+	 * This method sets the favorite
+	 * 
+	 * @param favorite
+	 */
 	public void setFavorite(int favorite) {
 		this.favorite = favorite;
 	}

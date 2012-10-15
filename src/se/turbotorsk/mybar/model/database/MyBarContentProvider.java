@@ -137,11 +137,17 @@ public class MyBarContentProvider extends ContentProvider {
 		return rowsAffected;
 	}
 
+	/**
+	 * This method gets the type by its URI
+	 */
 	@Override
 	public String getType(Uri uri) {
 		return null;
 	}
 
+	/**
+	 * This method insert values to the type with an URI
+	 */
 	@Override
 	public Uri insert(Uri uri, ContentValues values) {
 
@@ -184,6 +190,9 @@ public class MyBarContentProvider extends ContentProvider {
 		}
 	}
 
+	/**
+	 * This method creates a new database
+	 */
 	@Override
 	public boolean onCreate() {
 		database = new MyBarDatabaseHelper(getContext());
@@ -268,6 +277,9 @@ public class MyBarContentProvider extends ContentProvider {
 		return cursor;
 	}
 
+	/**
+	 * This method handles the updates
+	 */
 	@Override
 	public int update(Uri uri, ContentValues values, String selection,
 			String[] selectionArgs) {
@@ -338,7 +350,11 @@ public class MyBarContentProvider extends ContentProvider {
 		return rowsAffected;
 	}
 
-	// For JUNIT testing. Gets handle to the database.
+	/**
+	 * For JUNIT testing. Gets handle to the database.
+	 * 
+	 * @return database
+	 */
 	public MyBarDatabaseHelper getDatabaseHandle() {
 		return database;
 	}

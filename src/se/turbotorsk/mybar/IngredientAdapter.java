@@ -35,12 +35,22 @@ public class IngredientAdapter extends ArrayAdapter<LinkedList> {
 
 	private LinkedList<Ingredient> items;
 
+	/**
+	 * Constructor for IngredientAdapter
+	 * 
+	 * @param context
+	 * @param resource
+	 * @param items
+	 */
 	public IngredientAdapter(Context context, int resource, LinkedList items) {
 		super(context, resource, items);
 		this.items = items;
 
 	}
 
+	/**
+	 * This method gets the view for all ingredients
+	 */
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -70,11 +80,23 @@ public class IngredientAdapter extends ArrayAdapter<LinkedList> {
 		return v;
 	}
 
+	/**
+	 * This method is fetching the name of an ingredient
+	 * 
+	 * @param position
+	 * @return name of ingredient
+	 */
 	public String getIngredientName(int position) {
 		Ingredient ingredient = items.get(position);
 		return ingredient.getName();
 	}
 
+	/**
+	 * This method is fetching the description of a recipe
+	 * 
+	 * @param position
+	 * @return recipe description
+	 */
 	public String getDescription(int position) {
 		Ingredient ingredient = items.get(position);
 		return ingredient.getDescription();
