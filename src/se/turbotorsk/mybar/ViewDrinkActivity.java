@@ -11,8 +11,14 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 package se.turbotorsk.mybar;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import se.turbotorsk.mybar.model.Data;
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,6 +31,7 @@ import android.widget.Toast;
  * This activity push the information about a drink to the GUI
  * 
  */
+
 
 public class ViewDrinkActivity extends Activity {
 
@@ -65,6 +72,7 @@ public class ViewDrinkActivity extends Activity {
 		rating = bundle.getString("rating");
 		description = bundle.getString("descrip");
 		ingredients = bundle.getString("ingredients");
+		String url = bundle.getString("url");
 
 		// Set all the information about the drink
 		setDrinkName();
@@ -73,6 +81,19 @@ public class ViewDrinkActivity extends Activity {
 		setDrinkIngredients();
 		setDrinkImage();
 
+		URL url2;
+		try {
+			url2 = new URL(url);
+			Bitmap bmp = BitmapFactory.decodeStream(url2.openConnection().getInputStream());
+        	dImage.setImageBitmap(bmp);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	/**
@@ -121,9 +142,13 @@ public class ViewDrinkActivity extends Activity {
 			public void onClick(View v) {
 				// is the checkbox checked?
 				if (((CheckBox) v).isChecked()) {
-					Data.setFavoriteByName(name);
+					Data.setDrink(name,"favorite",1);
+					MyFavorites.updateList();
 					Toast.makeText(ViewDrinkActivity.this,
 							"Added to Favorites", Toast.LENGTH_LONG).show();
+				}
+				else {
+					Data.setDrink(name, "favorite", 0);
 				}
 
 			}

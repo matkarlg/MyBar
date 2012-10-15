@@ -17,6 +17,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
+import android.os.StrictMode;
+import android.widget.Toast;
 
 /**
  * This activity handles the Collection
@@ -29,16 +31,21 @@ public class CollectionActivity extends ListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+				.permitAll().build();
+		StrictMode.setThreadPolicy(policy);
+
 		adapter = new DrinkAdapter(this, R.layout.rowlayout,
 				Data.getAllDrinks());
 
 		// Sets the adapter that we just did
 		setListAdapter(adapter);
 	}
-	
+
 	/**
 	 * This method handles what happens when pressing a item in the list
 	 */
+
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		// String item = (String) getListAdapter().getItem(position);
@@ -51,6 +58,7 @@ public class CollectionActivity extends ListActivity {
 		intent.putExtra("rating", adapter.getRating(position));
 		intent.putExtra("ingredients", adapter.getIngredients(position));
 		intent.putExtra("descrip", adapter.getDescrip(position));
+		intent.putExtra("url", adapter.getUrl(position));
 		startActivity(intent);
 	}
 }
