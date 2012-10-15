@@ -37,21 +37,24 @@ import android.text.TextUtils;
  */
 public class MyBarContentProvider extends ContentProvider {
 	public static final String AUTHORITY = "se.turbotorsk.mybar.model.database";
-	public static final Uri CONTENTURI_DRINK = Uri.parse("content://"
-			+ AUTHORITY + "/" + DrinkTable.TABLE_DRINK);
-	public static final Uri CONTENTURI_INGREDIENT = Uri.parse("content://"
-			+ AUTHORITY + "/" + IngredientTable.TABLE_INGREDIENT);
+	public static final Uri CONTENTURI_DRINK = Uri.parse("content://" + AUTHORITY + "/"
+			+ DrinkTable.TABLE_DRINK);
+	public static final Uri CONTENTURI_INGREDIENT = Uri.parse("content://" + AUTHORITY + "/"
+			+ IngredientTable.TABLE_INGREDIENT);
+	public static final Uri CONTENTURI_MYBAR = Uri.parse("content://" + AUTHORITY + "/"
+			+ MyBarTable.TABLE_MYBAR);
 
 	private MyBarDatabaseHelper database;
 	private static final int DRINK = 1;
 	private static final int DRINK_ID = 2;
 	private static final int INGREDIENT = 3;
 	private static final int INGREDIENT_ID = 4;
+	private static final int MYBAR = 5;
+	private static final int MYBAR_ID = 6;
 	// private static final String DEFAULT_SORT_ORDER = "_id" + " DESC";
 
 	// Create the URI matcher
-	private static final UriMatcher sUriMatcher = new UriMatcher(
-			UriMatcher.NO_MATCH);
+	private static final UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 	static {
 		// Sets the integer value for multiple rows in DrinkTable to DRINK.
 		sUriMatcher.addURI(AUTHORITY, DrinkTable.TABLE_DRINK, DRINK);
@@ -61,12 +64,16 @@ public class MyBarContentProvider extends ContentProvider {
 
 		// Sets the integer value for multiple rows in IngredientTable to
 		// INGREDIENT.
-		sUriMatcher.addURI(AUTHORITY, IngredientTable.TABLE_INGREDIENT,
-				INGREDIENT);
+		sUriMatcher.addURI(AUTHORITY, IngredientTable.TABLE_INGREDIENT, INGREDIENT);
 
 		// Sets the code for a single row to INGREDIENT_ID.
-		sUriMatcher.addURI(AUTHORITY, IngredientTable.TABLE_INGREDIENT + "/#",
-				INGREDIENT_ID);
+		sUriMatcher.addURI(AUTHORITY, IngredientTable.TABLE_INGREDIENT + "/#", INGREDIENT_ID);
+
+		// Sets the integer value for multiple rows in MyBarTable to MYBAR.
+		sUriMatcher.addURI(AUTHORITY, MyBarTable.TABLE_MYBAR, MYBAR);
+
+		// Sets the code for a single row to MYBAR_ID.
+		sUriMatcher.addURI(AUTHORITY, MyBarTable.TABLE_MYBAR + "/#", MYBAR_ID);
 	}
 
 	@Override
@@ -82,8 +89,7 @@ public class MyBarContentProvider extends ContentProvider {
 		switch (sUriMatcher.match(uri)) {
 		// If the incoming URI was for the whole table
 		case DRINK:
-			rowsAffected = sqlDB.delete(DrinkTable.TABLE_DRINK, selection,
-					selectionArgs);
+			rowsAffected = sqlDB.delete(DrinkTable.TABLE_DRINK, selection, selectionArgs);
 			break;
 
 		// If the incoming URI was for a single row
@@ -94,40 +100,34 @@ public class MyBarContentProvider extends ContentProvider {
 			// Add rows that should be updated
 			// Example: SELECT * FROM drink WHERE name='Margarita' AND
 			// glass='Whiskey Glass'
-			selection += TextUtils.isEmpty(selection) ? "" : " AND ("
-					+ selection + ")";
+			selection += TextUtils.isEmpty(selection) ? "" : " AND (" + selection + ")";
 
 			// Call the code to actually do the query
-			rowsAffected = sqlDB.delete(DrinkTable.TABLE_DRINK, selection,
-					selectionArgs);
+			rowsAffected = sqlDB.delete(DrinkTable.TABLE_DRINK, selection, selectionArgs);
 			break;
 
-		// If the incoming URI was for the whole table
 		case INGREDIENT:
-			rowsAffected = sqlDB.delete(IngredientTable.TABLE_INGREDIENT,
-					selection, selectionArgs);
+			rowsAffected = sqlDB.delete(IngredientTable.TABLE_INGREDIENT, selection, selectionArgs);
 			break;
 
-		// If the incoming URI was for a single row
 		case INGREDIENT_ID:
-			// Add ID to query statement
-			selection += IngredientTable.COLUMN_ID + "="
-					+ uri.getLastPathSegment();
+			selection += IngredientTable.COLUMN_ID + "=" + uri.getLastPathSegment();
+			selection += TextUtils.isEmpty(selection) ? "" : " AND (" + selection + ")";
+			rowsAffected = sqlDB.delete(IngredientTable.TABLE_INGREDIENT, selection, selectionArgs);
+			break;
 
-			// Add rows that should be updated
-			// Example: SELECT * FROM drink WHERE name='Margarita' AND
-			// glass='Whiskey Glass'
-			selection += TextUtils.isEmpty(selection) ? "" : " AND ("
-					+ selection + ")";
+		case MYBAR:
+			rowsAffected = sqlDB.delete(MyBarTable.TABLE_MYBAR, selection, selectionArgs);
+			break;
 
-			// Call the code to actually do the query
-			rowsAffected = sqlDB.delete(IngredientTable.TABLE_INGREDIENT,
-					selection, selectionArgs);
+		case MYBAR_ID:
+			selection += MyBarTable.COLUMN_ID + "=" + uri.getLastPathSegment();
+			selection += TextUtils.isEmpty(selection) ? "" : " AND (" + selection + ")";
+			rowsAffected = sqlDB.delete(MyBarTable.TABLE_MYBAR, selection, selectionArgs);
 			break;
 		default:
 			// Error handling
-			throw new IllegalArgumentException("IllegalArgumentException URI: "
-					+ uri);
+			throw new IllegalArgumentException("IllegalArgumentException URI: " + uri);
 		}
 
 		// Notify registered observers
@@ -137,17 +137,11 @@ public class MyBarContentProvider extends ContentProvider {
 		return rowsAffected;
 	}
 
-	/**
-	 * This method gets the type by its URI
-	 */
 	@Override
 	public String getType(Uri uri) {
 		return null;
 	}
 
-	/**
-	 * This method insert values to the type with an URI
-	 */
 	@Override
 	public Uri insert(Uri uri, ContentValues values) {
 
@@ -166,13 +160,16 @@ public class MyBarContentProvider extends ContentProvider {
 
 		// If the incoming URI was for the whole table
 		case INGREDIENT:
-			rowAffected = sqlDB.insert(IngredientTable.TABLE_INGREDIENT, null,
-					values);
+			rowAffected = sqlDB.insert(IngredientTable.TABLE_INGREDIENT, null, values);
+			break;
+
+		// If the incoming URI was for the whole table
+		case MYBAR:
+			rowAffected = sqlDB.insert(MyBarTable.TABLE_MYBAR, null, values);
 			break;
 		default:
 			// Error handling
-			throw new IllegalArgumentException("IllegalArgumentException URI: "
-					+ uri);
+			throw new IllegalArgumentException("IllegalArgumentException URI: " + uri);
 		}
 
 		// Notify registered observers
@@ -183,16 +180,14 @@ public class MyBarContentProvider extends ContentProvider {
 		case DRINK:
 			return Uri.parse(DrinkTable.TABLE_DRINK + "/" + rowAffected);
 		case INGREDIENT:
-			return Uri.parse(IngredientTable.TABLE_INGREDIENT + "/"
-					+ rowAffected);
+			return Uri.parse(IngredientTable.TABLE_INGREDIENT + "/" + rowAffected);
+		case MYBAR:
+			return Uri.parse(MyBarTable.TABLE_MYBAR + "/" + rowAffected);
 		default:
 			return Uri.parse("Unrecognized Table" + "/" + rowAffected);
 		}
 	}
 
-	/**
-	 * This method creates a new database
-	 */
 	@Override
 	public boolean onCreate() {
 		database = new MyBarDatabaseHelper(getContext());
@@ -209,8 +204,8 @@ public class MyBarContentProvider extends ContentProvider {
 	 *             if the incoming URI pattern is invalid.
 	 */
 	@Override
-	public Cursor query(Uri uri, String[] projection, String selection,
-			String[] selectionArgs, String sortOrder) {
+	public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,
+			String sortOrder) {
 
 		// Create convenience class to help with creation of our SQL queries
 		SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
@@ -223,6 +218,10 @@ public class MyBarContentProvider extends ContentProvider {
 		case INGREDIENT_ID:
 			queryBuilder.setTables(IngredientTable.TABLE_INGREDIENT);
 			break;
+		case MYBAR:
+		case MYBAR_ID:
+			queryBuilder.setTables(MyBarTable.TABLE_MYBAR);
+			break;
 		}
 
 		// Choose the table to query based on the code returned for the incoming
@@ -239,36 +238,32 @@ public class MyBarContentProvider extends ContentProvider {
 			 */
 
 			// Adding the ID to the original query
-			queryBuilder.appendWhere(DrinkTable.COLUMN_ID + "="
-					+ uri.getLastPathSegment());
+			queryBuilder.appendWhere(DrinkTable.COLUMN_ID + "=" + uri.getLastPathSegment());
 			break;
 
-		// If the incoming URI was for the whole table
 		case INGREDIENT:
 			break;
-		// If the incoming URI was for a single row
 		case INGREDIENT_ID:
-			/*
-			 * Alternative without queryBuilder: selection = selection +
-			 * "_ID = " + uri.getLastPathSegment();
-			 */
-
-			// Adding the ID to the original query
 			queryBuilder.appendWhere(IngredientTable.TABLE_INGREDIENT + "="
 					+ uri.getLastPathSegment());
 			break;
+
+		case MYBAR:
+			break;
+		case MYBAR_ID:
+			queryBuilder.appendWhere(MyBarTable.TABLE_MYBAR + "=" + uri.getLastPathSegment());
+			break;
 		default:
 			// Error handling
-			throw new IllegalArgumentException("IllegalArgumentException URI: "
-					+ uri);
+			throw new IllegalArgumentException("IllegalArgumentException URI: " + uri);
 		}
 
 		// Get read/write permissions to the database
 		SQLiteDatabase sqlDB = database.getWritableDatabase();
 
 		// Call the code to actually do the query
-		Cursor cursor = queryBuilder.query(sqlDB, projection, selection,
-				selectionArgs, null, null, sortOrder);
+		Cursor cursor = queryBuilder.query(sqlDB, projection, selection, selectionArgs, null, null,
+				sortOrder);
 
 		// Tell the cursor which URI to watch over, to make sure it catches
 		// changes in source data
@@ -277,12 +272,8 @@ public class MyBarContentProvider extends ContentProvider {
 		return cursor;
 	}
 
-	/**
-	 * This method handles the updates
-	 */
 	@Override
-	public int update(Uri uri, ContentValues values, String selection,
-			String[] selectionArgs) {
+	public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
 
 		// Get read/write permissions to the database
 		SQLiteDatabase sqlDB = database.getWritableDatabase();
@@ -294,8 +285,7 @@ public class MyBarContentProvider extends ContentProvider {
 		switch (sUriMatcher.match(uri)) {
 		// If the incoming URI was for the whole table
 		case DRINK:
-			rowsAffected = sqlDB.update(DrinkTable.TABLE_DRINK, values,
-					selection, selectionArgs);
+			rowsAffected = sqlDB.update(DrinkTable.TABLE_DRINK, values, selection, selectionArgs);
 			break;
 		// If the incoming URI was for a single row
 		case DRINK_ID:
@@ -306,41 +296,35 @@ public class MyBarContentProvider extends ContentProvider {
 			// Add rows that should be updated
 			// Example: SELECT * FROM drink WHERE name='Margarita' AND
 			// glass='Whiskey Glass'
-			selection += TextUtils.isEmpty(selection) ? "" : " AND ("
-					+ selection + ")";
+			selection += TextUtils.isEmpty(selection) ? "" : " AND (" + selection + ")";
 
 			// Call the code to actually do the query
-			rowsAffected = sqlDB.update(DrinkTable.TABLE_DRINK, values,
-					selection, selectionArgs);
+			rowsAffected = sqlDB.update(DrinkTable.TABLE_DRINK, values, selection, selectionArgs);
 			break;
 
-		// If the incoming URI was for the whole table
 		case INGREDIENT:
-			rowsAffected = sqlDB.update(DrinkTable.TABLE_DRINK, values,
-					selection, selectionArgs);
+			rowsAffected = sqlDB.update(IngredientTable.TABLE_INGREDIENT, values, selection,
+					selectionArgs);
 			break;
-		// If the incoming URI was for a single row
 		case INGREDIENT_ID:
+			selection += IngredientTable.COLUMN_ID + "=" + uri.getLastPathSegment();
+			selection += TextUtils.isEmpty(selection) ? "" : " AND (" + selection + ")";
+			rowsAffected = sqlDB.update(IngredientTable.TABLE_INGREDIENT, values, selection,
+					selectionArgs);
+			break;
 
-			// Add ID to query statement
-			selection += IngredientTable.COLUMN_ID + "="
-					+ uri.getLastPathSegment();
-
-			// Add rows that should be updated
-			// Example: SELECT * FROM drink WHERE name='Margarita' AND
-			// glass='Whiskey Glass'
-			selection += TextUtils.isEmpty(selection) ? "" : " AND ("
-					+ selection + ")";
-
-			// Call the code to actually do the query
-			rowsAffected = sqlDB.update(IngredientTable.TABLE_INGREDIENT,
-					values, selection, selectionArgs);
+		case MYBAR:
+			rowsAffected = sqlDB.update(MyBarTable.TABLE_MYBAR, values, selection, selectionArgs);
+			break;
+		case MYBAR_ID:
+			selection += MyBarTable.COLUMN_ID + "=" + uri.getLastPathSegment();
+			selection += TextUtils.isEmpty(selection) ? "" : " AND (" + selection + ")";
+			rowsAffected = sqlDB.update(MyBarTable.TABLE_MYBAR, values, selection, selectionArgs);
 			break;
 
 		default:
 			// Error handling
-			throw new IllegalArgumentException("IllegalArgumentException URI: "
-					+ uri);
+			throw new IllegalArgumentException("IllegalArgumentException URI: " + uri);
 		}
 
 		// Notify registered observers
@@ -350,11 +334,7 @@ public class MyBarContentProvider extends ContentProvider {
 		return rowsAffected;
 	}
 
-	/**
-	 * For JUNIT testing. Gets handle to the database.
-	 * 
-	 * @return database
-	 */
+	// For JUNIT testing. Gets handle to the database.
 	public MyBarDatabaseHelper getDatabaseHandle() {
 		return database;
 	}

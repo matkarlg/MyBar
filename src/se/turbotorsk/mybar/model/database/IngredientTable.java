@@ -32,31 +32,16 @@ public class IngredientTable {
 	public static final String COLUMN_DESCRIPTION = "description";
 
 	// Database table creation SQL statement
-	private static final String DATABASE_CREATE = "CREATE TABLE "
-			+ TABLE_INGREDIENT + "(" + COLUMN_ID
-			+ " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NAME
-			+ " TEXT NOT NULL, " + COLUMN_URL + " TEXT NOT NULL, "
-			+ COLUMN_TYPE + " TEXT NOT NULL, " + COLUMN_ALCOHOLCONTENT
+	private static final String DATABASE_CREATE = "CREATE TABLE " + TABLE_INGREDIENT + "("
+			+ COLUMN_ID + " INTEGER PRIMARY KEY, " + COLUMN_NAME + " TEXT NOT NULL, " + COLUMN_URL
+			+ " TEXT NOT NULL, " + COLUMN_TYPE + " TEXT NOT NULL, " + COLUMN_ALCOHOLCONTENT
 			+ " INT NOT NULL, " + COLUMN_DESCRIPTION + " TEXT NOT NULL" + ");";
 
-	/**
-	 * This method creates the database
-	 * 
-	 * @param database
-	 */
 	public static void onCreate(SQLiteDatabase database) {
 		database.execSQL(DATABASE_CREATE);
 	}
 
-	/**
-	 * This method handles the upgrade of the database
-	 * 
-	 * @param database
-	 * @param oldVersion
-	 * @param newVersion
-	 */
-	public static void onUpgrade(SQLiteDatabase database, int oldVersion,
-			int newVersion) {
+	public static void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
 		// Print upgrade warning to LogCat
 		Log.w(IngredientTable.class.getName(), "Upgrading " + TABLE_INGREDIENT
 				+ " table from version " + oldVersion + " to " + newVersion

@@ -28,7 +28,7 @@ import android.util.Log;
  */
 public class MyBarDatabaseHelper extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "turbotorsk_mybar.db";
-	private static final int DATABASE_VERSION = 3;
+	private static final int DATABASE_VERSION = 4;
 
 	public MyBarDatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -44,11 +44,10 @@ public class MyBarDatabaseHelper extends SQLiteOpenHelper {
 
 	// Method is called during an upgrade of the database
 	@Override
-	public void onUpgrade(SQLiteDatabase database, int oldVersion,
-			int newVersion) {
+	public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
 		// Upgrade our database with the new table versions
-		Log.w(this.getClass().getName(), "Upgrading database from version "
-				+ oldVersion + " to " + newVersion);
+		Log.w(this.getClass().getName(), "Upgrading database from version " + oldVersion + " to "
+				+ newVersion);
 		DrinkTable.onUpgrade(database, oldVersion, newVersion);
 		IngredientTable.onUpgrade(database, oldVersion, newVersion);
 	}

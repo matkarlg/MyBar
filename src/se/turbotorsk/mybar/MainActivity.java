@@ -33,6 +33,7 @@ public class MainActivity extends TabActivity {
 		// Log.d(this.getClass().getName(),data.getDrinkNameArray()[1]);
 		// Controller controller = Controller.controller;
 
+		this.deleteDatabase("turbotorsk_mybar.db");
 		Data.insertTestData();
 
 		// String[] lista = data.getDrinkNameArray(); tabHost = getTabHost();
@@ -61,15 +62,6 @@ public class MainActivity extends TabActivity {
 
 		// Set Mybar as default tab (the middle tab)
 		tabHost.setCurrentTab(1);
-	}
-
-	/**
-	 * This method handles what happens when destroying data
-	 */
-	@Override
-	public void onDestroy() {
-		Data.deleteTestData();
-		super.onDestroy();
 	}
 
 	/**
