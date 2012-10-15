@@ -47,14 +47,14 @@ public class Data {
 		if(SQLITE) {
 			Uri myBarUri = null;
 	        
-			// SQLite uses autoincrement in the _id field
+			// Drinks uses autoincrement in the _id field
 	        Drink[] testDrinks = {
-	        		new Drink(0, "Margarita", "/margarita.jpg", "Martini Glass", "ingredients here", "Margarita instructions", 5, 0),
-	        		new Drink(0, "Tequila", "/tequila.jpg", "Shot Glass", "ingredients here", "Pour Tequila in shot glass", 5, 0),
-	        		new Drink(0, "Cosmopolitan", "/cosmopolitan.jpg", "Martini Glass", "ingredients here", "Cosmopolitan instructions", 5, 0),
-	        		new Drink(0, "Cuba Libre", "/cubalibre.jpg", "Highball Glass", "ingredients here", "Cuba Libre instructions", 5, 0),
-	        		new Drink(0, "Martini", "/martini.jpg", "Martini Glass", "ingredients here", "Pour Martini in glass", 5, 0),
-	        		new Drink(0, "Irish Coffee", "/irishcoffee.jpg", "Coffee Glass", "ingredients here", "Irish Coffee instructions", 5, 0)
+	        		new Drink(0, "Margarita", "http://repro.mybar.turbotorsk.se/img/no_img.png", "Martini Glass", "ingredients here", "Margarita instructions", 5, 0),
+	        		new Drink(0, "Tequila", "http://repro.mybar.turbotorsk.se/img/no_img.png", "Shot Glass", "ingredients here", "Pour Tequila in shot glass", 5, 0),
+	        		new Drink(0, "Cosmopolitan", "http://repro.mybar.turbotorsk.se/img/no_img.png", "Martini Glass", "ingredients here", "Cosmopolitan instructions", 5, 0),
+	        		new Drink(0, "Cuba Libre", "http://repro.mybar.turbotorsk.se/img/no_img.png", "Highball Glass", "ingredients here", "Cuba Libre instructions", 5, 0),
+	        		new Drink(0, "Martini", "http://repro.mybar.turbotorsk.se/img/no_img.png", "Martini Glass", "ingredients here", "Pour Martini in glass", 5, 0),
+	        		new Drink(0, "Irish Coffee", "http://repro.mybar.turbotorsk.se/img/no_img.png", "Coffee Glass", "ingredients here", "Irish Coffee instructions", 5, 0)
 	        };
 	        
 	        // Insert testDrinks
@@ -64,10 +64,10 @@ public class Data {
 	        	Log.d(Data.class.getClass().getName(), "Inserted Drink. Created row: " + myBarUri.toString());
 	        }
 	        
-	        // SQLite uses autoincrement in the _id field
+	        // No autoincrement in Ingredients. Set the _id field manually
 	        Ingredient[] testIngredients = {
-	        		new Ingredient(0, "Koskenkorva Vodka", "/koskenkorvavodka.jpg", "Vodka", 40, "<insert description>"), 
-	        		new Ingredient(0, "Baileys", "/baileys.jpg", "Liqueur", 20, "<insert description>")
+	        		new Ingredient(1, "Koskenkorva Vodka", "/koskenkorvavodka.jpg", "Vodka", 40, "<insert description>"), 
+	        		new Ingredient(2, "Baileys", "/baileys.jpg", "Liqueur", 20, "<insert description>")
 	        };
 	        
 	        // Insert testIngredients
