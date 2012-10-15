@@ -27,23 +27,6 @@ public class Controller {
 		return null;
 	}
 
-	public static String[] getDrinkNamesAsArray() {
-		LinkedList<String> nameList = new LinkedList<String>();
-
-		for (int i = 0; i < Data.getAllDrinks().size(); i++) {
-			nameList.add(Data.getAllDrinks().get(i).getName());
-			
-			Log.d(Controller.class.getClass().getName(), ""
-					+ Data.getAllDrinks().get(i).get_id() + " "
-					+ Data.getAllDrinks().get(i).getName());
-		}
-
-		String[] array = new String[nameList.size()];
-		nameList.toArray(array);
-
-		return array;
-	}
-
 	public static Drink getIngredientById(int id) {
 		return null;
 	}
@@ -83,6 +66,10 @@ public class Controller {
 	public static String[][] listMyBarIngredientCategories() {
 		// data.listMyBarIngredientCategories(this.myBarID); Add this method in
 		// data.
+		return null;
+	}
+	public static LinkedList<Drink> getAllDrinksAsList()
+	{
 		return null;
 	}
 }

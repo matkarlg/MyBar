@@ -16,35 +16,43 @@ import se.turbotorsk.mybar.model.Data;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ListView;
 
 public class MyFavorites extends ListActivity {
-	
-	DrinkAdapter adapter;
+	public static DrinkAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+       
+        StrictMode.ThreadPolicy policy = new StrictMode.
+				ThreadPolicy.Builder().permitAll().build();
+				StrictMode.setThreadPolicy(policy);
+		
 		adapter = new DrinkAdapter(this, R.layout.rowlayout, Data.getAllFavorites());
+		
 		// Sets the adapter that we just did
 		setListAdapter(adapter);    
 		}
 
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
-		// String item = (String) getListAdapter().getItem(position);
-		// We will replace this to start another activity instead. Dont know how
-		// to do that yet.
-		// Toast.makeText(this, item + " selected", Toast.LENGTH_LONG).show();
 
 		Intent intent = new Intent(this, ViewDrinkActivity.class);
 		intent.putExtra("drinkname", adapter.getDrinkName(position));
 		intent.putExtra("rating", adapter.getRating(position));
 		intent.putExtra("ingredients", adapter.getIngredients(position));
 		intent.putExtra("descrip", adapter.getDescrip(position));
+		intent.putExtra("url", adapter.getUrl(position));
 		startActivity(intent);
 	}
+	
+	public static void updateList(){
+		adapter.notifyDataSetChanged();	
+	}
+	
 }
 
