@@ -32,7 +32,6 @@ import android.widget.Toast;
  * 
  */
 
-
 public class ViewDrinkActivity extends Activity {
 
 	TextView dName;
@@ -84,8 +83,9 @@ public class ViewDrinkActivity extends Activity {
 		URL url2;
 		try {
 			url2 = new URL(url);
-			Bitmap bmp = BitmapFactory.decodeStream(url2.openConnection().getInputStream());
-        	dImage.setImageBitmap(bmp);
+			Bitmap bmp = BitmapFactory.decodeStream(url2.openConnection()
+					.getInputStream());
+			dImage.setImageBitmap(bmp);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -93,7 +93,7 @@ public class ViewDrinkActivity extends Activity {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	/**
@@ -142,12 +142,11 @@ public class ViewDrinkActivity extends Activity {
 			public void onClick(View v) {
 				// is the checkbox checked?
 				if (((CheckBox) v).isChecked()) {
-					Data.setDrink(name,"favorite",1);
+					Data.setDrink(name, "favorite", 1);
 					MyFavorites.updateList();
 					Toast.makeText(ViewDrinkActivity.this,
 							"Added to Favorites", Toast.LENGTH_LONG).show();
-				}
-				else {
+				} else {
 					Data.setDrink(name, "favorite", 0);
 				}
 

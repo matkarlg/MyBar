@@ -16,7 +16,7 @@ import android.widget.TextView;
  * This activity handles the drinks
  */
 public class DrinkAdapter extends ArrayAdapter<LinkedList> {
-	
+
 	String url = "http://www.amacisland.com/images/sadSmiley.png";
 
 	public DrinkAdapter(Context context, int textViewResourceId) {
@@ -125,8 +125,14 @@ public class DrinkAdapter extends ArrayAdapter<LinkedList> {
 		Drink drink = items.get(position);
 		return drink.getDescription();
 	}
-	
-	public String getUrl(int position){
+
+	/**
+	 * This method gets the url
+	 * 
+	 * @param position
+	 * @return url
+	 */
+	public String getUrl(int position) {
 		Drink drink = items.get(position);
 		return url;
 	}
