@@ -34,7 +34,7 @@ public class IngredientTable {
 	
 	// Database table creation SQL statement
 	private static final String DATABASE_CREATE = "CREATE TABLE " + TABLE_INGREDIENT
-			+ "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+			+ "(" + COLUMN_ID + " INTEGER PRIMARY KEY, "
 			+ COLUMN_NAME + " TEXT NOT NULL, "
 			+ COLUMN_URL + " TEXT NOT NULL, "
 			+ COLUMN_TYPE + " TEXT NOT NULL, "
