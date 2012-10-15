@@ -1,10 +1,15 @@
 package se.turbotorsk.mybar;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.LinkedList;
 
 import se.turbotorsk.mybar.model.Drink;
 import se.turbotorsk.mybar.model.Ingredient;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +22,7 @@ import android.widget.TextView;
  */
 public class DrinkAdapter extends ArrayAdapter<LinkedList> {
 
-	String url = "http://www.amacisland.com/images/sadSmiley.png";
+	String url = "http://repro.mybar.turbotorsk.se/img/no_img.png";
 
 	public DrinkAdapter(Context context, int textViewResourceId) {
 		super(context, textViewResourceId);
@@ -76,6 +81,25 @@ public class DrinkAdapter extends ArrayAdapter<LinkedList> {
 			if (tt3 != null) {
 
 				tt3.setText(Integer.toString(p.getRating()));
+			}
+			if(tt4 != null) {
+				tt4.setText(p.getDescription());
+			}
+			if (iv != null) {
+				URL url2;
+				try {
+					url2 = new URL(url);
+					Bitmap bmp = BitmapFactory.decodeStream(url2.openConnection()
+							.getInputStream());
+					iv.setImageBitmap(bmp);
+				} catch (MalformedURLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 			}
 		}
 
