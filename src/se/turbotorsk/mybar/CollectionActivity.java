@@ -18,28 +18,27 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 
-
+/**
+ * This activity handles the Collection
+ */
 public class CollectionActivity extends ListActivity {
 
 	DrinkAdapter adapter;
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		adapter = new DrinkAdapter(this, R.layout.rowlayout, Data.getAllDrinks());
-		
+
+		adapter = new DrinkAdapter(this, R.layout.rowlayout,
+				Data.getAllDrinks());
+
 		// Sets the adapter that we just did
 		setListAdapter(adapter);
 	}
-
-//Behövs ej längre?
-//	@Override
-//	public boolean onCreateOptionsMenu(Menu menu) {
-//		getMenuInflater().inflate(R.menu.activity_drinks_list, menu);
-//		return true;
-//	}
-
+	
+	/**
+	 * This method handles what happens when pressing a item in the list
+	 */
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		// String item = (String) getListAdapter().getItem(position);

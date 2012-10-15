@@ -16,7 +16,7 @@ import android.app.Activity;
 import android.content.Intent;
 
 /**
- * This class handles the share-function in the application
+ * This activity handles the share-function in the application
  */
 public class Share extends Activity {
 
@@ -29,7 +29,7 @@ public class Share extends Activity {
 	}
 
 	/**
-	 * The method that is used to send the information that will be sent
+	 * This method is used to send the information that will be sent
 	 */
 	private void share() {
 		Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);

@@ -66,6 +66,7 @@ public class ViewDrinkActivity extends Activity {
 		description = bundle.getString("descrip");
 		ingredients = bundle.getString("ingredients");
 
+		// Set all the information about the drink
 		setDrinkName();
 		setDrinkRating();
 		setDrinkDescription();

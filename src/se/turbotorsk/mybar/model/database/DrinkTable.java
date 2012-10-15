@@ -7,8 +7,7 @@ Redistribution and use in source and binary forms, with or without modification,
 �	Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
 �	Neither the name of the MyBar nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
-
+ */
 
 package se.turbotorsk.mybar.model.database;
 
@@ -33,31 +32,30 @@ public class DrinkTable {
 	public static final String COLUMN_DESCRIPTION = "description";
 	public static final String COLUMN_RATING = "rating";
 	public static final String COLUMN_FAVORITE = "favorite";
-	
+
 	// Database table creation SQL statement
 	private static final String DATABASE_CREATE = "CREATE TABLE " + TABLE_DRINK
 			+ "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-			+ COLUMN_NAME + " TEXT NOT NULL, "
-			+ COLUMN_URL + " TEXT NOT NULL, "
-			+ COLUMN_GLASS + " TEXT NOT NULL, "
-			+ COLUMN_INGREDIENT + " TEXT NOT NULL, "
-			+ COLUMN_DESCRIPTION + " TEXT NOT NULL, "
-			+ COLUMN_RATING + " INTEGER NOT NULL, "
+			+ COLUMN_NAME + " TEXT NOT NULL, " + COLUMN_URL
+			+ " TEXT NOT NULL, " + COLUMN_GLASS + " TEXT NOT NULL, "
+			+ COLUMN_INGREDIENT + " TEXT NOT NULL, " + COLUMN_DESCRIPTION
+			+ " TEXT NOT NULL, " + COLUMN_RATING + " INTEGER NOT NULL, "
 			+ COLUMN_FAVORITE + " INTEGER NOT NULL" + ");";
-	
+
 	public static void onCreate(SQLiteDatabase database) {
 		database.execSQL(DATABASE_CREATE);
 	}
-	
-	public static void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
+
+	public static void onUpgrade(SQLiteDatabase database, int oldVersion,
+			int newVersion) {
 		// Print upgrade warning to LogCat
 		Log.w(DrinkTable.class.getName(), "Upgrading " + TABLE_DRINK
-				+ " table from version "+ oldVersion
-				+" to " + newVersion	+ ", which will destroy all old data");
-		
+				+ " table from version " + oldVersion + " to " + newVersion
+				+ ", which will destroy all old data");
+
 		// Kills the table and existing data
 		database.execSQL("DROP TABLE IF EXISTS " + TABLE_DRINK);
-		
+
 		// Recreates the database with a new version
 		onCreate(database);
 	}
