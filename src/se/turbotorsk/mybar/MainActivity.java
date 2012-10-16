@@ -22,7 +22,7 @@ import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 
 /**
- * This activity handles the main-window in the application
+ * This activity handles the main-window in the application.
  */
 @SuppressWarnings("deprecation")
 public class MainActivity extends TabActivity {
@@ -44,28 +44,28 @@ public class MainActivity extends TabActivity {
 		TabSpec tabSpecFavorites = tabHost.newTabSpec("Favorites")
 				.setIndicator("Favorites").setContent(intentFavorites);
 
-		// MyBar tab
+		// MyBar tab.
 		Intent intentMyBar = new Intent().setClass(this, MyBarActivity.class);
 		TabSpec tabSpecMyBar = tabHost.newTabSpec("MyBar")
 				.setIndicator("MyBar").setContent(intentMyBar);
 
-		// MyBar tab
+		// MyBar tab.
 		Intent intentCollection = new Intent().setClass(this,
 				CollectionActivity.class);
 		TabSpec tabSpecCollection = tabHost.newTabSpec("Collection")
 				.setIndicator("Collection").setContent(intentCollection);
 
-		// add all tabs
+		// Add all tabs.
 		tabHost.addTab(tabSpecFavorites);
 		tabHost.addTab(tabSpecMyBar);
 		tabHost.addTab(tabSpecCollection);
 
-		// Set Mybar as default tab (the middle tab)
+		// Set Mybar as default tab (the middle tab).
 		tabHost.setCurrentTab(1);
 	}
 
 	/**
-	 * This method creates the Options-menu
+	 * This method creates the Options-menu.
 	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -74,7 +74,7 @@ public class MainActivity extends TabActivity {
 	}
 
 	/**
-	 * This method generates the options-menu in the main window
+	 * This method generates the options-menu in the main window.
 	 */
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {

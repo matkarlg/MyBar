@@ -20,7 +20,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 /**
- * This activity handles the Profiles
+ * This activity handles the Profiles.
  */
 public class Profiles extends ListActivity {
 
@@ -34,7 +34,7 @@ public class Profiles extends ListActivity {
 	}
 
 	/**
-	 * This method handles what happens when pressing a item in the list
+	 * This method handles what happens when pressing a item in the list.
 	 */
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
