@@ -22,7 +22,7 @@ import android.widget.TextView;
  */
 public class DrinkAdapter extends ArrayAdapter<LinkedList> {
 
-	//String url = "http://repro.mybar.turbotorsk.se/img/no_img.png";
+	// String url = "http://repro.mybar.turbotorsk.se/img/no_img.png";
 
 	public DrinkAdapter(Context context, int textViewResourceId) {
 		super(context, textViewResourceId);
@@ -82,15 +82,15 @@ public class DrinkAdapter extends ArrayAdapter<LinkedList> {
 
 				tt3.setText(Integer.toString(p.getRating()));
 			}
-			if(tt4 != null) {
+			if (tt4 != null) {
 				tt4.setText(p.getDescription());
 			}
 			if (iv != null) {
 				URL url2;
 				try {
 					url2 = new URL(p.getUrl());
-					Bitmap bmp = BitmapFactory.decodeStream(url2.openConnection()
-							.getInputStream());
+					Bitmap bmp = BitmapFactory.decodeStream(url2
+							.openConnection().getInputStream());
 					iv.setImageBitmap(bmp);
 				} catch (MalformedURLException e) {
 					// TODO Auto-generated catch block
@@ -99,7 +99,7 @@ public class DrinkAdapter extends ArrayAdapter<LinkedList> {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
+
 			}
 		}
 
@@ -160,8 +160,8 @@ public class DrinkAdapter extends ArrayAdapter<LinkedList> {
 		Drink drink = items.get(position);
 		return drink.getUrl();
 	}
-	
-	public int getId(int position){
+
+	public int getId(int position) {
 		Drink drink = items.get(position);
 		return drink.get_id();
 	}

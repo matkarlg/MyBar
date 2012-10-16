@@ -35,7 +35,8 @@ import android.widget.Toast;
  * 
  */
 
-public class ViewDrinkActivity extends Activity implements OnRatingBarChangeListener {
+public class ViewDrinkActivity extends Activity implements
+		OnRatingBarChangeListener {
 
 	TextView dName;
 	TextView dDescription;
@@ -45,7 +46,7 @@ public class ViewDrinkActivity extends Activity implements OnRatingBarChangeList
 	CheckBox checkBox;
 	int id;
 	String name, description, ingredients;
-	int rating; 
+	int rating;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -63,8 +64,8 @@ public class ViewDrinkActivity extends Activity implements OnRatingBarChangeList
 		dRating.setEnabled(true);
 		dRating.setOnRatingBarChangeListener(this);
 		checkBoxListener();
-		
-		if(Controller.isFavorite(id) == 1){
+
+		if (Controller.isFavorite(id) == 1) {
 			checkBox.setChecked(true);
 		}
 		dRating.setRating(Controller.rating(id));
@@ -160,16 +161,18 @@ public class ViewDrinkActivity extends Activity implements OnRatingBarChangeList
 				} else {
 					Data.setDrink(name, "favorite", 0);
 					Toast.makeText(ViewDrinkActivity.this,
-							"Removed from Favorites", Toast.LENGTH_SHORT).show();
+							"Removed from Favorites", Toast.LENGTH_SHORT)
+							.show();
 				}
-				//MyFavorites.updateList();
+				// MyFavorites.updateList();
 
 			}
 		});
 	}
-	
-	public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+
+	public void onRatingChanged(RatingBar ratingBar, float rating,
+			boolean fromUser) {
 		dRating.setRating((int) rating);
-		Data.setDrink(name, "rating", (int)rating);
+		Data.setDrink(name, "rating", (int) rating);
 	}
 }

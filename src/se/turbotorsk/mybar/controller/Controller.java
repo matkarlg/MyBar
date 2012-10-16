@@ -60,17 +60,17 @@ public class Controller {
 	public static LinkedList<Drink> getFavoritDrinks() {
 		return null;
 	}
-	
-	public static int isFavorite(int id){
+
+	public static int isFavorite(int id) {
 		Drink drink = Data.getDrinkByID(id);
 		return drink.getFavorite();
 	}
 
-	public static int rating(int id){
+	public static int rating(int id) {
 		Drink drink = Data.getDrinkByID(id);
 		return drink.getRating();
 	}
-	
+
 	// ---------- Methods for Ingredient categories ----------
 
 	public static boolean addMyBarCat(String Name) {
