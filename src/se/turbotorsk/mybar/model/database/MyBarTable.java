@@ -15,20 +15,20 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 /**
- * A table template. Creates the database table structure for the MyBar Table
+ * A table template. Creates the database table structure for the MyBar Table.
  * (mirrored in remote database).
  * 
  * @author Mathias Karlgren (matkarlg)
  * 
  */
 public class MyBarTable {
-	// Database table template
+	// Database table template.
 	public static final String TABLE_MYBAR = "mybar";
 	public static final String COLUMN_ID = "_id";
 	public static final String COLUMN_INGREDIENTID = "ingredientid";
 	public static final String COLUMN_LOCATION = "location";
 
-	// Database table creation SQL statement
+	// Database table creation SQL statement.
 	private static final String DATABASE_CREATE = "CREATE TABLE " + TABLE_MYBAR + "(" + COLUMN_ID
 			+ " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_INGREDIENTID + " INT NOT NULL, "
 			+ COLUMN_LOCATION + " TEXT NOT NULL, " + ");";
@@ -38,14 +38,14 @@ public class MyBarTable {
 	}
 
 	public static void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
-		// Print upgrade warning to LogCat
+		// Print upgrade warning to LogCat.
 		Log.w(MyBarTable.class.getName(), "Upgrading " + TABLE_MYBAR + " table from version "
 				+ oldVersion + " to " + newVersion + ", which will destroy all old data");
 
-		// Kills the table and existing data
+		// Kills the table and existing data.
 		database.execSQL("DROP TABLE IF EXISTS " + TABLE_MYBAR);
 
-		// Recreates the database with a new version
+		// Recreates the database with a new version.
 		onCreate(database);
 	}
 }

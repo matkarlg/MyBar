@@ -104,7 +104,7 @@ public class Drink {
 	}
 
 	/**
-	 * This method gets the values for the content
+	 * This method gets the values for the content.
 	 * 
 	 * @return values
 	 */
@@ -113,7 +113,7 @@ public class Drink {
 	}
 
 	/**
-	 * This method gets the id
+	 * This method gets the id.
 	 * 
 	 * @return _id
 	 */
@@ -122,7 +122,7 @@ public class Drink {
 	}
 
 	/**
-	 * This method sets the id
+	 * This method sets the id.
 	 * 
 	 * @param _id
 	 */
@@ -131,7 +131,7 @@ public class Drink {
 	}
 
 	/**
-	 * This method gets the name
+	 * This method gets the name.
 	 * 
 	 * @return name
 	 */
@@ -140,7 +140,7 @@ public class Drink {
 	}
 
 	/**
-	 * This method sets the name
+	 * This method sets the name.
 	 * 
 	 * @param name
 	 */
@@ -149,7 +149,7 @@ public class Drink {
 	}
 
 	/**
-	 * This method gets the ingredient
+	 * This method gets the ingredient.
 	 * 
 	 * @return ingredient
 	 */
@@ -158,7 +158,7 @@ public class Drink {
 	}
 
 	/**
-	 * This method sets the ingredient
+	 * This method sets the ingredient.
 	 * 
 	 * @param ingredient
 	 */
@@ -167,7 +167,7 @@ public class Drink {
 	}
 
 	/**
-	 * This method gets the rating
+	 * This method gets the rating.
 	 * 
 	 * @return rating
 	 */
@@ -176,7 +176,7 @@ public class Drink {
 	}
 
 	/**
-	 * This method sets the rating
+	 * This method sets the rating.
 	 * 
 	 * @param rating
 	 */
@@ -185,7 +185,7 @@ public class Drink {
 	}
 
 	/**
-	 * This method gets the glass
+	 * This method gets the glass.
 	 * 
 	 * @return glass
 	 */
@@ -194,7 +194,7 @@ public class Drink {
 	}
 
 	/**
-	 * This method sets the glass
+	 * This method sets the glass.
 	 * 
 	 * @param glass
 	 */
@@ -203,7 +203,7 @@ public class Drink {
 	}
 
 	/**
-	 * This method gets the description
+	 * This method gets the description.
 	 * 
 	 * @return description
 	 */
@@ -212,7 +212,7 @@ public class Drink {
 	}
 
 	/**
-	 * This method sets the description
+	 * This method sets the description.
 	 * 
 	 * @param description
 	 */
@@ -221,7 +221,7 @@ public class Drink {
 	}
 
 	/**
-	 * This method gets the url
+	 * This method gets the url.
 	 * 
 	 * @return url
 	 */
@@ -230,7 +230,7 @@ public class Drink {
 	}
 
 	/**
-	 * This method sets the url
+	 * This method sets the url.
 	 * 
 	 * @param url
 	 */
@@ -239,7 +239,7 @@ public class Drink {
 	}
 
 	/**
-	 * This method gets the favorite
+	 * This method gets the favorite.
 	 * 
 	 * @return
 	 */
@@ -248,7 +248,7 @@ public class Drink {
 	}
 
 	/**
-	 * This method sets the favorite
+	 * This method sets the favorite.
 	 * 
 	 * @param favorite
 	 */

@@ -40,7 +40,7 @@ public class Ingredient {
 	private ContentValues values = null;
 
 	/**
-	 * This method returns the information about an ingredient
+	 * This method returns the information about an ingredient.
 	 * 
 	 * @param _id
 	 * @param name
@@ -67,7 +67,7 @@ public class Ingredient {
 	}
 
 	/**
-	 * This method gets the values of the content
+	 * This method gets the values of the content.
 	 * 
 	 * @return values
 	 */
@@ -76,7 +76,7 @@ public class Ingredient {
 	}
 
 	/**
-	 * This method gets the id
+	 * This method gets the id.
 	 * 
 	 * @return id
 	 */
@@ -85,7 +85,7 @@ public class Ingredient {
 	}
 
 	/**
-	 * This method sets the id
+	 * This method sets the id.
 	 * 
 	 * @param _id
 	 */
@@ -94,7 +94,7 @@ public class Ingredient {
 	}
 
 	/**
-	 * This method gets the name
+	 * This method gets the name.
 	 * 
 	 * @return name
 	 */
@@ -103,7 +103,7 @@ public class Ingredient {
 	}
 
 	/**
-	 * This method sets the name
+	 * This method sets the name.
 	 * 
 	 * @param name
 	 */
@@ -112,7 +112,7 @@ public class Ingredient {
 	}
 
 	/**
-	 * This method gets the url
+	 * This method gets the url.
 	 * 
 	 * @return url
 	 */
@@ -121,7 +121,7 @@ public class Ingredient {
 	}
 
 	/**
-	 * This method sets the url
+	 * This method sets the url.
 	 * 
 	 * @param url
 	 */
@@ -130,7 +130,7 @@ public class Ingredient {
 	}
 
 	/**
-	 * This method gets the type
+	 * This method gets the type.
 	 * 
 	 * @return type
 	 */
@@ -139,7 +139,7 @@ public class Ingredient {
 	}
 
 	/**
-	 * This method sets the type
+	 * This method sets the type.
 	 * 
 	 * @param type
 	 */
@@ -148,7 +148,7 @@ public class Ingredient {
 	}
 
 	/**
-	 * This method gets the alcoholcontent
+	 * This method gets the alcoholcontent.
 	 * 
 	 * @return alcoholcontent
 	 */
@@ -157,7 +157,7 @@ public class Ingredient {
 	}
 
 	/**
-	 * This method sets the alcoholcontent
+	 * This method sets the alcoholcontent.
 	 * 
 	 * @param alcoholcontent
 	 */
@@ -166,7 +166,7 @@ public class Ingredient {
 	}
 
 	/**
-	 * This method gets the description
+	 * This method gets the description.
 	 * 
 	 * @return description
 	 */
@@ -175,7 +175,7 @@ public class Ingredient {
 	}
 
 	/**
-	 * This method sets the description
+	 * This method sets the description.
 	 * 
 	 * @param description
 	 */
