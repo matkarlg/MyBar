@@ -397,7 +397,7 @@ public class Data {
 
 					do {
 						int _id = cursor.getInt(cursor.getColumnIndexOrThrow(MyBarTable.COLUMN_ID));
-						String ingredientid = cursor.getString(cursor
+						int ingredientid = cursor.getInt(cursor
 								.getColumnIndexOrThrow(MyBarTable.COLUMN_INGREDIENTID));
 						String location = cursor.getString(cursor
 								.getColumnIndexOrThrow(MyBarTable.COLUMN_LOCATION));
