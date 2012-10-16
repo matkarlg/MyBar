@@ -23,14 +23,15 @@ import android.widget.Toast;
  */
 public class AddIngredientActivity extends ListActivity {
 
+	
+	
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		String[] ingredients = this.getResources().getStringArray(
-				R.array.ingredient_list);
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, ingredients);
-		setListAdapter(adapter);
+		setContentView(R.layout.search_layout);
+		
+		
 	}
 
 	/**
