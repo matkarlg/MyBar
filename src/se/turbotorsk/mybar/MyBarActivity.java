@@ -11,14 +11,9 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 package se.turbotorsk.mybar;
 
-import se.turbotorsk.mybar.model.Data;
+import se.turbotorsk.mybar.controller.Controller;
 import android.app.ListActivity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
 
 /**
  * This activity handles the MyBar-section.

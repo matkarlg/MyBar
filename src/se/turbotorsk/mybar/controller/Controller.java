@@ -101,7 +101,7 @@ public class Controller {
 	public static LinkedList<Ingredient> getMyIngredients(){
 		LinkedList<Ingredient> list = new LinkedList<Ingredient>(); 
 		for(MyBar mybar: Data.getAllMyBar()){
-			list.add( Data.getIngredientByID(mybar.getIngredientID());	
+			list.add( Data.getIngredientByID(mybar.getIngredientID()));	
 		}
 		return list;
 	}
