@@ -45,6 +45,10 @@ public class Data {
 	// private XXXXXXXX jsonParser;
 	// private XXXXXXXX httpGet;
 
+	/**
+	 * 
+	 * @return
+	 */
 	public static int insertTestData() {
 		if (SQLITE) {
 			Uri myBarUri = null;
@@ -109,6 +113,10 @@ public class Data {
 		return 0;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public static int deleteTestData() {
 		int rowsDeleted = 0;
 		if (SQLITE) {
@@ -119,16 +127,20 @@ public class Data {
 		}
 		return rowsDeleted;
 	}
+
 	/**
-	 * Inserts a new Drink in the DrinkTable
-	 * @param name a Drink object that should be inserted into the database
-	 * @return 0 if successful, 1 if error. See LogCat
+	 * Inserts a new Drink in the DrinkTable. Trying to insert another Drink
+	 * with the same name yields an error message.
+	 * 
+	 * @param name
+	 *            a Drink object that should be inserted into the database.
+	 * @return 0 if successful, 1 if error. See LogCat.
 	 */
 	public static int addDrink(Drink name) {
 		if (SQLITE) {
 
 			/**
-			 * SQLITE addDrink(Drink name)
+			 * SQLITE addDrink(Drink name).
 			 */
 			ContentValues values = name.getContentValues();
 
@@ -145,35 +157,109 @@ public class Data {
 
 				// Is there any data from the requested Query
 				if (cursor.moveToFirst()) {
-					
+
 					// Error message in LogCat
-					Log.e(Data.class.getClass().getName(), "addDrink(): " + name.getName() + " already exists");
-					
+					Log.e(Data.class.getClass().getName(), "addDrink(): " + name.getName()
+							+ " already exists");
+
 					// Close the cursor
 					cursor.close();
-					
+
 					// name already exists. Return 1
 					return 1;
 
 				} else {
-					MyBarApplication.ContentResolver().insert(MyBarContentProvider.CONTENTURI_DRINK, values);
-					
+					MyBarApplication.ContentResolver().insert(
+							MyBarContentProvider.CONTENTURI_DRINK, values);
+
 					// Print the added drink
 					Log.d(Data.class.getClass().getName(), "Added Drink: " + name.getName());
-					
+
 					// Close the cursor
 					cursor.close();
-					
+
 					return 0;
 				}
 			}
 			/**
-			 * End of SQLite addDrink(Drink name)
+			 * End of SQLite addDrink(Drink name).
 			 */
 		}
-		if (EDATA);
-		if (FAKE);
-		
+		if (EDATA)
+			;
+		if (FAKE)
+			;
+
+		return 1;
+	}
+
+	/**
+	 * Removes a Drink in the DrinkTable.
+	 * 
+	 * @param name
+	 *            a Drink object that should be removed from the database.
+	 * @return 0 if successful, 1 if error. See LogCat.
+	 */
+	public static int dropDrink(int ID) {
+		if (SQLITE) {
+
+			/**
+			 * SQLITE dropDrink(Drink name).
+			 */
+			ContentValues values = new ContentValues();
+
+			// Choose which columns you want to query. null queries all columns
+			String[] projection = { DrinkTable.COLUMN_ID, DrinkTable.COLUMN_NAME };
+
+			// Query database
+			Cursor cursor = MyBarApplication.ContentResolver().query(
+					MyBarContentProvider.CONTENTURI_DRINK, projection,
+					DrinkTable.COLUMN_ID + "=" + ID, null, null);
+
+			// Successful query?
+			if (cursor != null) {
+
+				// Is there any data from the requested Query
+				if (cursor.moveToFirst()) {
+
+					MyBarApplication.ContentResolver().delete(
+							MyBarContentProvider.CONTENTURI_DRINK, DrinkTable.COLUMN_ID + "=" + ID,
+							null);
+
+					// Print the removed drink
+					Log.d(Data.class.getClass().getName(),
+							"Removed Drink: "
+									+ cursor.getInt(cursor
+											.getColumnIndexOrThrow(DrinkTable.COLUMN_ID))
+									+ " "
+									+ cursor.getString(cursor
+											.getColumnIndexOrThrow(DrinkTable.COLUMN_NAME)));
+
+					// Close the cursor
+					cursor.close();
+
+					return 0;
+
+				} else {
+					// Error message in LogCat
+					Log.e(Data.class.getClass().getName(), "dropDrink(): " + ID + " doesn't exist");
+
+					// Close the cursor
+					cursor.close();
+
+					// name doesn't exist. Return 1
+					return 1;
+				}
+			}
+			/**
+			 * End of SQLite dropDrink(Drink name).
+			 */
+		}
+		if (EDATA)
+			;
+		if (FAKE)
+			;
+
 		return 1;
 	}
 
@@ -186,7 +272,7 @@ public class Data {
 		if (SQLITE) {
 
 			/**
-			 * SQLITE getAllDrinks()
+			 * SQLITE getAllDrinks().
 			 */
 			LinkedList<Drink> drinkList = new LinkedList<Drink>();
 
@@ -237,7 +323,7 @@ public class Data {
 				}
 			}
 			/**
-			 * End of SQLite getAllDrinks()
+			 * End of SQLite getAllDrinks().
 			 */
 		}
 		if (EDATA)
@@ -378,7 +464,7 @@ public class Data {
 				} else {
 					// Error message in LogCat
 					Log.e(Data.class.getClass().getName(), "ID doesn't exist");
-					
+
 					// ID doesn't exist. Return Drink with ID = 0
 					Drink drink = new Drink(0, "", "", "", "", "", 0, 0);
 
@@ -455,7 +541,7 @@ public class Data {
 				} else {
 					// Error message in LogCat
 					Log.e(Data.class.getClass().getName(), "ID doesn't exist");
-					
+
 					// ID doesn't exist. Return Ingredient with ID = 0
 					Ingredient ingredient = new Ingredient(0, "", "", "", 0, "");
 
