@@ -901,7 +901,7 @@ public class Data {
 			}
 			/**
 			 * End of SQLite setFavoriteByName().
-			 */;;
+			 */
 		}
 		if (EDATA) {}
 		if (FAKE) {}
@@ -956,7 +956,7 @@ public class Data {
 					cursor.close();
 
 					return 0;
-				} else {;
+				} else {
 					// Error message in LogCat.
 					Log.e(Data.class.getClass().getName(), "name doesn't exist");
 
