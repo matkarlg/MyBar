@@ -18,7 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
- * This activity handles the drinks
+ * This activity handles the drinks.
  */
 public class DrinkAdapter extends ArrayAdapter<LinkedList> {
 
@@ -26,13 +26,12 @@ public class DrinkAdapter extends ArrayAdapter<LinkedList> {
 
 	public DrinkAdapter(Context context, int textViewResourceId) {
 		super(context, textViewResourceId);
-		// TODO Auto-generated constructor stub s
 	}
 
 	private LinkedList<Drink> items;
 
 	/**
-	 * Constructor for DrinkAdapter
+	 * Constructor for DrinkAdapter.
 	 * 
 	 * @param context
 	 * @param resource
@@ -45,7 +44,7 @@ public class DrinkAdapter extends ArrayAdapter<LinkedList> {
 	}
 
 	/**
-	 * This method gets the view for all drinks
+	 * This method gets the view for all drinks.
 	 */
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
@@ -93,10 +92,8 @@ public class DrinkAdapter extends ArrayAdapter<LinkedList> {
 							.openConnection().getInputStream());
 					iv.setImageBitmap(bmp);
 				} catch (MalformedURLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
@@ -107,7 +104,7 @@ public class DrinkAdapter extends ArrayAdapter<LinkedList> {
 	}
 
 	/**
-	 * This method is fetching the name of the drink
+	 * This method is fetching the name of the drink.
 	 * 
 	 * @param position
 	 * @return name
@@ -118,7 +115,7 @@ public class DrinkAdapter extends ArrayAdapter<LinkedList> {
 	}
 
 	/**
-	 * This method is fetching the ingredients of the drink
+	 * This method is fetching the ingredients of the drink.
 	 * 
 	 * @param position
 	 * @return ingredients
@@ -129,7 +126,7 @@ public class DrinkAdapter extends ArrayAdapter<LinkedList> {
 	}
 
 	/**
-	 * This method is fetching the rating of the drink
+	 * This method is fetching the rating of the drink.
 	 * 
 	 * @param position
 	 * @return rating
@@ -140,7 +137,7 @@ public class DrinkAdapter extends ArrayAdapter<LinkedList> {
 	}
 
 	/**
-	 * This method is fetching the description of the drink
+	 * This method is fetching the description of the drink.
 	 * 
 	 * @param position
 	 * @return description
@@ -151,7 +148,7 @@ public class DrinkAdapter extends ArrayAdapter<LinkedList> {
 	}
 
 	/**
-	 * This method gets the url
+	 * This method gets the url.
 	 * 
 	 * @param position
 	 * @return url

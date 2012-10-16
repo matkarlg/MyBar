@@ -21,7 +21,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 /**
- * This activity handles the MyBar-section
+ * This activity handles the MyBar-section.
  */
 public class MyBarActivity extends ListActivity {
 

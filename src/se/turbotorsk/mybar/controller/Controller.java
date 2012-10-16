@@ -18,7 +18,7 @@ import se.turbotorsk.mybar.model.Drink;
 import android.util.Log;
 
 /**
- * This activity handles the Controller
+ * This activity handles the Controller.
  */
 public class Controller {
 	private static int myBarID = 1;
@@ -31,7 +31,7 @@ public class Controller {
 	}
 
 	/**
-	 * This method is used for getting an ingredient by its ID
+	 * This method is used for getting an ingredient by its ID.
 	 * 
 	 * @param id
 	 * @return
@@ -43,7 +43,7 @@ public class Controller {
 	// ---------- Methods for get and set favorites ----------
 
 	/**
-	 * This method is used for adding a drink to favorite
+	 * This method is used for adding a drink to favorite.
 	 * 
 	 * @param id
 	 * @return
@@ -53,7 +53,7 @@ public class Controller {
 	}
 
 	/**
-	 * This method is used for fetching all favorite-drinks
+	 * This method is used for fetching all favorite-drinks.
 	 * 
 	 * @return
 	 */
@@ -71,7 +71,7 @@ public class Controller {
 		return drink.getRating();
 	}
 
-	// ---------- Methods for Ingredient categories ----------
+	// Methods for Ingredient categories.
 
 	public static boolean addMyBarCat(String Name) {
 		return false; // data.AddMyBarCat(String name); Add this method in data.

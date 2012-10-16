@@ -31,8 +31,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * This activity push the information about a drink to the GUI
- * 
+ * This activity push the information about a drink to the GUI.
  */
 
 public class ViewDrinkActivity extends Activity implements
@@ -73,11 +72,11 @@ public class ViewDrinkActivity extends Activity implements
 	}
 
 	/**
-	 * This method collects all the set-methods for the information of the drink
+	 * This method collects all the set-methods for the information of the drink.
 	 */
 	public void setDrinkInfo() {
 
-		// Receiving intents from activity
+		// Receiving intents from activity.
 		Bundle bundle = getIntent().getExtras();
 		name = bundle.getString("drinkname");
 		rating = bundle.getInt("rating");
@@ -86,7 +85,7 @@ public class ViewDrinkActivity extends Activity implements
 		String url = bundle.getString("url");
 		id = bundle.getInt("id");
 
-		// Set all the information about the drink
+		// Set all the information about the drink.
 		setDrinkName();
 		setDrinkRating();
 		setDrinkDescription();
@@ -100,45 +99,43 @@ public class ViewDrinkActivity extends Activity implements
 					.getInputStream());
 			dImage.setImageBitmap(bmp);
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
 
 	/**
-	 * This method sets the name of the drink
+	 * This method sets the name of the drink.
 	 */
 	public void setDrinkName() {
 		dName.setText(name);
 	}
 
 	/**
-	 * This method sets the rating of the drink
+	 * This method sets the rating of the drink.
 	 */
 	public void setDrinkRating() {
 		dRating.setRating(rating);
 	}
 
 	/**
-	 * This method sets the description of the drink
+	 * This method sets the description of the drink.
 	 */
 	public void setDrinkDescription() {
 		dDescription.setText(description);
 	}
 
 	/**
-	 * This method sets the ingredients of the drink
+	 * This method sets the ingredients of the drink.
 	 */
 	public void setDrinkIngredients() {
 		dIngredients.setText(ingredients);
 	}
 
 	/**
-	 * This method sets the image of the drink
+	 * This method sets the image of the drink.
 	 */
 	public void setDrinkImage() {
 		dImage.setImageResource(R.drawable.ic_drinkicon);
@@ -146,7 +143,7 @@ public class ViewDrinkActivity extends Activity implements
 
 	/**
 	 * This method handle the checkbox which is used to mark the drink as
-	 * favorite
+	 * favorite.
 	 */
 	public void checkBoxListener() {
 

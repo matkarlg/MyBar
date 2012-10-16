@@ -21,10 +21,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 /**
- * This activity handles the Settings-view from Options-menu
- * 
- * @author Viktor
- * 
+ * This activity handles the Settings-view from Options-menu.
  */
 public class SettingsActivity extends Activity {
 	Button profileButton;
@@ -51,7 +48,7 @@ public class SettingsActivity extends Activity {
 	}
 
 	/**
-	 * This method creates the menu for the Settings-view
+	 * This method creates the menu for the Settings-view.
 	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -61,7 +58,7 @@ public class SettingsActivity extends Activity {
 
 	/**
 	 * This method handles what to happend when pressing a item in the
-	 * options-menu
+	 * options-menu.
 	 */
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {

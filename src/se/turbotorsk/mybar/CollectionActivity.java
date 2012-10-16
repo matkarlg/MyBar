@@ -21,7 +21,7 @@ import android.os.StrictMode;
 import android.widget.Toast;
 
 /**
- * This activity handles the Collection
+ * This activity handles the Collection.
  */
 public class CollectionActivity extends ListActivity {
 
@@ -38,12 +38,12 @@ public class CollectionActivity extends ListActivity {
 		adapter = new DrinkAdapter(this, R.layout.rowlayout,
 				Data.getAllDrinks());
 
-		// Sets the adapter that we just did
+		// Sets the adapter that we just did.
 		setListAdapter(adapter);
 	}
 
 	/**
-	 * This method handles what happens when pressing a item in the list
+	 * This method handles what happens when pressing a item in the list.
 	 */
 
 	@Override

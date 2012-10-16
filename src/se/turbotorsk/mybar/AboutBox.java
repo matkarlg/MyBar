@@ -24,7 +24,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 /**
- * This activity handles the AboutBox that is a part of the Options-menu
+ * This activity handles the AboutBox that is a part of the Options-menu.
  */
 public class AboutBox {
 	static String VersionName(Context context) {
@@ -32,34 +32,34 @@ public class AboutBox {
 	}
 
 	public static void Show(Activity callingActivity) {
-		// Use a Spannable to allow for links highlighting
+		// Use a Spannable to allow for links highlighting.
 		SpannableString aboutText = new SpannableString("Version "
 				+ VersionName(callingActivity) + "\n\n"
 				+ callingActivity.getString(R.string.about));
-		// Generate views to pass to AlertDialog.Builder and to set the text
+		// Generate views to pass to AlertDialog.Builder and to set the text.
 		View about;
 		TextView tvAbout;
 		try {
-			// Inflate the custom view
+			// Inflate the custom view.
 			LayoutInflater inflater = callingActivity.getLayoutInflater();
 			about = inflater.inflate(R.layout.aboutbox,
 					(ViewGroup) callingActivity.findViewById(R.id.aboutView));
 			tvAbout = (TextView) about.findViewById(R.id.aboutText);
 		} catch (InflateException e) {
 			// Inflater can throw exception, unlikely but default to TextView if
-			// it occurs
+			// it occurs.
 			about = tvAbout = new TextView(callingActivity);
 		}
-		// Set the about text
+		// Set the about text.
 		tvAbout.setText(aboutText);
-		// Now Linkify the text
+		// Now Linkify the text.
 		Linkify.addLinks(tvAbout, Linkify.ALL);
-		// Build and show the dialog
+		// Build and show the dialog.
 		new AlertDialog.Builder(callingActivity)
 				.setTitle(
 						"About " + callingActivity.getString(R.string.app_name))
 				.setCancelable(true).setIcon(R.drawable.ic_drinkicon)
 				.setPositiveButton("OK", null).setView(about).show();
-		// Builder method returns allow for method chaining
+		// Builder method returns allow for method chaining.
 	}
 }
