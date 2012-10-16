@@ -11,11 +11,16 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 package se.turbotorsk.mybar;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.LinkedList;
 
 import se.turbotorsk.mybar.model.Drink;
 import se.turbotorsk.mybar.model.Ingredient;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,9 +74,31 @@ public class IngredientAdapter extends ArrayAdapter<LinkedList> {
 		if (p != null) {
 
 			TextView tt = (TextView) v.findViewById(R.id.drink);
+			TextView tt2 = (TextView) v.findViewById(R.id.ingredients);
+			TextView tt3 = (TextView) v.findViewById(R.id.rating);
+			ImageView iv = (ImageView) v.findViewById(R.id.list_image);
 			if (tt != null) {
-
 				tt.setText(p.getName());
+			}
+			if (tt != null) {
+				tt2.setText(p.getType());
+			}
+			if (tt != null) {
+				tt3.setText(p.getAlcoholcontent() + "%");
+			}
+			if (iv != null) {
+				URL url2;
+				try {
+					url2 = new URL(p.getUrl());
+					Bitmap bmp = BitmapFactory.decodeStream(url2
+							.openConnection().getInputStream());
+					iv.setImageBitmap(bmp);
+				} catch (MalformedURLException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
 			}
 		}
 

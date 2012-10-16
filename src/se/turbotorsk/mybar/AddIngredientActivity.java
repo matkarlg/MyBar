@@ -11,37 +11,52 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 package se.turbotorsk.mybar;
 
-import android.app.ListActivity;
+import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 /**
  * This activity handles the functions that add ingredients.
  */
-public class AddIngredientActivity extends ListActivity {
+public class AddIngredientActivity extends Activity {
 
-	
-	
+	SearchView search;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.search_layout);
+		setContentView(R.layout.search_layout);	
 		
-		
-	}
+		search = (SearchView) findViewById(R.id.searchView1);
+	
+		search.setOnQueryTextListener(sListen);
 
 	/**
 	 * This method handles what happens when pressing a item in the list.
 	 */
-	@Override
+/*	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		String item = (String) getListAdapter().getItem(position);
 		Toast.makeText(this, "Added " + item, Toast.LENGTH_LONG).show();
 		finish();
 	}
+*/
+	}
+	
+	
+	final SearchView.OnQueryTextListener sListen = new SearchView.OnQueryTextListener( ) {
+		public boolean   onQueryTextSubmit(String query) {
+			Toast.makeText(AddIngredientActivity.this,
+				"Submitted search", Toast.LENGTH_SHORT).show();
+    	return false;
+		}
 
+	public boolean onQueryTextChange(String query) {
+		Toast.makeText(AddIngredientActivity.this,
+				"Wrote some stuff", Toast.LENGTH_SHORT).show();
+		return false;
+		}
+	};
 }
+	
