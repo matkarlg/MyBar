@@ -12,9 +12,12 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 package se.turbotorsk.mybar;
 
 import se.turbotorsk.mybar.controller.Controller;
+import se.turbotorsk.mybar.model.Data;
 import android.app.ListActivity;
 import android.os.Bundle;
-import android.os.StrictMode;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 /**
  * This activity handles the MyBar-section.
@@ -22,28 +25,24 @@ import android.os.StrictMode;
 public class MyBarActivity extends ListActivity {
 
 	IngredientAdapter adapter;
+	private static final byte UPDATE_LIST = 100;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-		.permitAll().build();
-		StrictMode.setThreadPolicy(policy);
 
 		adapter = new IngredientAdapter(this,
 				R.layout.rowlayout, Controller.getMyIngredients());
 
 		setListAdapter(adapter);
-
+		
 	}
-	/*
-	 * @Override protected void onListItemClick(ListView l, View v, int
-	 * position, long id) { String item = (String)
-	 * getListAdapter().getItem(position); Toast.makeText(this, "Deleted " +
-	 * item, Toast.LENGTH_LONG).show();
-	 * 
-	 * }
-	 */
+		
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+			Data.dropMyBar(adapter.getId(position), adapter.getPosition(position));
+			adapter.notifyDataSetChanged();
+		}
+	      
 
 }

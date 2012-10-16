@@ -16,6 +16,7 @@ import se.turbotorsk.mybar.model.Data;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TabHost;
@@ -30,10 +31,13 @@ public class MainActivity extends TabActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		// Log.d(this.getClass().getName(),data.getDrinkNameArray()[1]);
-		// Controller controller = Controller.controller;
+		
+		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+		.permitAll().build();
+		StrictMode.setThreadPolicy(policy);
 
 		this.deleteDatabase("turbotorsk_mybar.db");
+		
 		Data.insertTestData();
 		Data.addMyBar(2, "home");
 
