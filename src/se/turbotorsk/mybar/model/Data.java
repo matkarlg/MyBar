@@ -25,6 +25,7 @@ import se.turbotorsk.mybar.controller.MyBarApplication;
 import se.turbotorsk.mybar.model.database.DrinkTable;
 import se.turbotorsk.mybar.model.database.IngredientTable;
 import se.turbotorsk.mybar.model.database.MyBarContentProvider;
+import se.turbotorsk.mybar.model.database.MyBarTable;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
@@ -125,8 +126,117 @@ public class Data {
 					MyBarContentProvider.CONTENTURI_DRINK, null, null);
 			rowsDeleted += MyBarApplication.ContentResolver().delete(
 					MyBarContentProvider.CONTENTURI_INGREDIENT, null, null);
+			rowsDeleted += MyBarApplication.ContentResolver().delete(
+					MyBarContentProvider.CONTENTURI_MYBAR, null, null);
 		}
 		return rowsDeleted;
+	}
+	
+	/**
+	 * Adds a new ingredient to MyBarTable
+	 * 
+	 * @param ingredientID ID of the ingredient.
+	 * @param location "Home", "Work".
+	 * @return 0 if successful.
+	 */
+	public static int addMyBar(int ingredientID, String location) {
+		if (SQLITE) {
+
+			/**
+			 * SQLITE addMyBar(int ID, String location).
+			 */
+			ContentValues values = new ContentValues();
+			values.put("ingredientid", ingredientID);
+			values.put("location", location);
+			MyBarApplication.ContentResolver().insert(
+					MyBarContentProvider.CONTENTURI_MYBAR, values);
+
+			// Print the added drink.
+			Log.d(Data.class.getClass().getName(), "Added ID to " +
+					"MyBarTable: " + values.get("ingredientid"));
+
+			return 0;
+			/**
+			 * End of SQLite addMyBar(int ID, String location).
+			 */
+		}
+		if (EDATA) {}
+		if (FAKE) {}
+
+		return 1;
+	}
+
+	/**
+	 * Removes a row in MyBarTable
+	 * 
+	 * @param ingredientID the ingredients ID field
+	 * @param location Example: "Home", "Work".
+	 * @return 0 if successful. 0 if error. See LogCat.
+	 */
+	public static int dropMyBar(int ingredientID, String location) {
+		if (SQLITE) {
+
+			/**
+			 * SQLITE dropMyBar(int ingredientID, String location).
+			 */
+			// Choose which columns you want to query. null queries all columns.
+//			String[] projection = { MyBarTable.COLUMN_ID, MyBarTable.COLUMN_INGREDIENTID };
+
+			// Query database.
+			Cursor cursor = MyBarApplication.ContentResolver().query(
+					MyBarContentProvider.CONTENTURI_MYBAR, null,
+					MyBarTable.COLUMN_INGREDIENTID
+					+ " = ? AND " + MyBarTable.COLUMN_LOCATION + " = ? ", 
+					new String[]{Integer.toString(ingredientID), location}, null);
+
+			// Successful query?.
+			if (cursor != null) {
+
+				// Is there any data from the requested Query.
+				if (cursor.moveToFirst()) {
+
+					MyBarApplication.ContentResolver().delete(
+							MyBarContentProvider.CONTENTURI_MYBAR, MyBarTable.COLUMN_INGREDIENTID
+							+ " = ? AND " + MyBarTable.COLUMN_LOCATION + " = ? ", 
+							new String[]{Integer.toString(ingredientID), location});
+
+					// Print the removed ingredient.
+					Log.d(Data.class.getClass().getName(),
+							"Removed ID from MyBarTable: "
+									+ cursor.getInt(cursor
+											.getColumnIndexOrThrow(MyBarTable.COLUMN_ID))
+									+ " "
+									+ cursor.getString(cursor
+											.getColumnIndexOrThrow(MyBarTable.COLUMN_INGREDIENTID))
+									+ " "
+									+ cursor.getString(cursor
+											.getColumnIndexOrThrow(MyBarTable.COLUMN_LOCATION)));
+
+					// Close the cursor.
+					cursor.close();
+
+					return 0;
+
+				} else {
+					// Error message in LogCat.
+					Log.e(Data.class.getClass().getName(), "dropMyBar(): " 
+					+ ingredientID + " " + location + " doesn't exist");
+
+					// Close the cursor.
+					cursor.close();
+
+					// ingredient doesn't exist. Return 1.
+					return 1;
+				}
+			}
+			/**
+			 * End of SQLite dropMyBar(int ingredientID, String location).
+			 */
+		}
+		if (EDATA) {}
+		if (FAKE) {}
+
+		return 1;
 	}
 
 	/**
@@ -185,10 +295,8 @@ public class Data {
 			 * End of SQLite addDrink(Drink name).
 			 */
 		}
-		if (EDATA)
-			;
-		if (FAKE)
-			;
+		if (EDATA) {}
+		if (FAKE) {}
 
 		return 1;
 	}
@@ -196,7 +304,7 @@ public class Data {
 	/**
 	 * Removes a Drink in the DrinkTable.
 	 * 
-	 * @param name a Drink object that should be removed from the database.
+	 * @param ID an int _id that should be removed from the database.
 	 * @return 0 if successful, 1 if error. See LogCat.
 	 */
 	public static int dropDrink(int ID) {

@@ -31,7 +31,7 @@ public class MyBarTable {
 	// Database table creation SQL statement.
 	private static final String DATABASE_CREATE = "CREATE TABLE " + TABLE_MYBAR + "(" + COLUMN_ID
 			+ " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_INGREDIENTID + " INT NOT NULL, "
-			+ COLUMN_LOCATION + " TEXT NOT NULL, " + ");";
+			+ COLUMN_LOCATION + " TEXT NOT NULL" + ");";
 
 	public static void onCreate(SQLiteDatabase database) {
 		database.execSQL(DATABASE_CREATE);
