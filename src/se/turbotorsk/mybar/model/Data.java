@@ -81,9 +81,9 @@ public class Data {
 
 			// No autoincrement in Ingredients. Set the _id field manually.
 			Ingredient[] testIngredients = {
-					new Ingredient(1, "Koskenkorva Vodka", "/koskenkorvavodka.jpg", "Vodka", 40,
+					new Ingredient(1, "Koskenkorva Vodka", "http://repro.mybar.turbotorsk.se/img/no_img.png", "Vodka", 40,
 							"<insert description>"),
-					new Ingredient(2, "Baileys", "/baileys.jpg", "Liqueur", 20,
+					new Ingredient(2, "Baileys", "http://repro.mybar.turbotorsk.se/img/no_img.png", "Liqueur", 20,
 							"<insert description>") };
 
 			// Insert testIngredients.
@@ -1098,14 +1098,71 @@ public class Data {
 	/**
 	 * Search for ingredients in the database.
 	 * 
-	 * @param searchName
+	 * @param search Search for ingredient.
+	 * @param limit Limit returned ingredients.
 	 * @return A LinkedList with the ingredients containing the searchName
 	 *         string.
 	 */
-	public static LinkedList<Drink> searchIngredientName(String searchName) {
-		if (FAKE) {
-			return fakeDrinkList;
+	public static LinkedList<Ingredient> searchIngredients(String search, int limit) {
+		if (SQLITE) {
+
+			/**
+			 * SQLITE searchIngredients().
+			 */
+			LinkedList<Ingredient> ingredientList = new LinkedList<Ingredient>();
+
+			// Choose which columns you want to query. null queries all columns.
+			// String[] projection = { IngredientTable.COLUMN_NAME,
+			// IngredientTable.COLUMN_DESCRIPTION };
+
+			// Query database.
+			Cursor cursor = MyBarApplication.ContentResolver().query(
+					MyBarContentProvider.CONTENTURI_INGREDIENT, null, IngredientTable.COLUMN_NAME +
+					" LIKE ? ", new String[]{"%"+search+"%"}, 
+					IngredientTable.COLUMN_NAME+" LIMIT "+limit);
+
+			// Successful query?.
+			if (cursor != null) {
+
+				// Is there any data from the requested Query.
+				if (cursor.moveToFirst()) {
+
+					do {
+						int _id = cursor.getInt(cursor
+								.getColumnIndexOrThrow(IngredientTable.COLUMN_ID));
+						String name = cursor.getString(cursor
+								.getColumnIndexOrThrow(IngredientTable.COLUMN_NAME));
+						String url = cursor.getString(cursor
+								.getColumnIndexOrThrow(IngredientTable.COLUMN_URL));
+						String type = cursor.getString(cursor
+								.getColumnIndexOrThrow(IngredientTable.COLUMN_TYPE));
+						int alcoholcontent = cursor.getInt(cursor
+								.getColumnIndexOrThrow(IngredientTable.COLUMN_ALCOHOLCONTENT));
+						String description = cursor.getString(cursor
+								.getColumnIndexOrThrow(IngredientTable.COLUMN_DESCRIPTION));
+						ingredientList.add(new Ingredient(_id, name, url, type, alcoholcontent,
+								description));
+						Log.d(Data.class.getName(), "Search returned: " + name);
+					} while (cursor.moveToNext());
+
+					// Close the cursor.
+					cursor.close();
+
+					return ingredientList;
+				} else {
+					// Close the cursor.
+					cursor.close();
+
+					// No ingredients in Query. Return Empty LinkedList<Ingredient>.
+					return new LinkedList<Ingredient>();
+				}
+			}
+			/**
+			 * End of SQLite searchIngredients().
+			 */
 		}
+		if (EDATA) {}
+		if (FAKE) {}
 		return null;
 	}
 }
