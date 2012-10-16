@@ -134,9 +134,9 @@ public class DrinkAdapter extends ArrayAdapter<LinkedList> {
 	 * @param position
 	 * @return rating
 	 */
-	public String getRating(int position) {
+	public int getRating(int position) {
 		Drink drink = items.get(position);
-		return Integer.toString(drink.getRating());
+		return drink.getRating();
 	}
 
 	/**
