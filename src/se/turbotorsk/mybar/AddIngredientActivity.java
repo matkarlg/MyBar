@@ -19,7 +19,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 /**
- * This activity handles the functions that add ingredients
+ * This activity handles the functions that add ingredients.
  */
 public class AddIngredientActivity extends ListActivity {
 
@@ -34,7 +34,7 @@ public class AddIngredientActivity extends ListActivity {
 	}
 
 	/**
-	 * This method handles what happens when pressing a item in the list
+	 * This method handles what happens when pressing a item in the list.
 	 */
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {

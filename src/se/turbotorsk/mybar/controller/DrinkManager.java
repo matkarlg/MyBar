@@ -16,7 +16,7 @@ import se.turbotorsk.mybar.model.Drink;
 import se.turbotorsk.mybar.model.Ingredient;
 
 /**
- * This activity handles the Drinks
+ * This activity handles the Drinks.
  */
 public class DrinkManager {
 	private LinkedList<Drink> myBar = null;

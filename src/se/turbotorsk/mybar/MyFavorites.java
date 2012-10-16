@@ -21,7 +21,7 @@ import android.view.View;
 import android.widget.ListView;
 
 /**
- * This activity handles the MyFavorites-section
+ * This activity handles the MyFavorites-section.
  */
 public class MyFavorites extends ListActivity {
 
@@ -38,12 +38,12 @@ public class MyFavorites extends ListActivity {
 		adapter = new DrinkAdapter(this, R.layout.rowlayout,
 				Data.getAllFavorites());
 
-		// Sets the adapter that we just did
+		// Sets the adapter that we just did.
 		setListAdapter(adapter);
 	}
 
 	/**
-	 * This method handles what happens when pressing a item in the list
+	 * This method handles what happens when pressing a item in the list.
 	 */
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
@@ -63,7 +63,7 @@ public class MyFavorites extends ListActivity {
 	}
 
 	/**
-	 * This method updates the list in MyFavorites
+	 * This method updates the list in MyFavorites.
 	 */
 	public void updateList(){
 		adapter = new DrinkAdapter(this, R.layout.rowlayout, Data.getAllFavorites());

@@ -24,7 +24,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
- * This activity handles the ingredients
+ * This activity handles the ingredients.
  */
 public class IngredientAdapter extends ArrayAdapter<LinkedList> {
 
@@ -36,7 +36,7 @@ public class IngredientAdapter extends ArrayAdapter<LinkedList> {
 	private LinkedList<Ingredient> items;
 
 	/**
-	 * Constructor for IngredientAdapter
+	 * Constructor for IngredientAdapter.
 	 * 
 	 * @param context
 	 * @param resource
@@ -49,7 +49,7 @@ public class IngredientAdapter extends ArrayAdapter<LinkedList> {
 	}
 
 	/**
-	 * This method gets the view for all ingredients
+	 * This method gets the view for all ingredients.
 	 */
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
@@ -69,8 +69,6 @@ public class IngredientAdapter extends ArrayAdapter<LinkedList> {
 		if (p != null) {
 
 			TextView tt = (TextView) v.findViewById(R.id.drink);
-			ImageView iv = (ImageView) v.findViewById(R.id.list_image);
-
 			if (tt != null) {
 
 				tt.setText(p.getName());
@@ -81,7 +79,7 @@ public class IngredientAdapter extends ArrayAdapter<LinkedList> {
 	}
 
 	/**
-	 * This method is fetching the name of an ingredient
+	 * This method is fetching the name of an ingredient.
 	 * 
 	 * @param position
 	 * @return name of ingredient
@@ -92,7 +90,7 @@ public class IngredientAdapter extends ArrayAdapter<LinkedList> {
 	}
 
 	/**
-	 * This method is fetching the description of a recipe
+	 * This method is fetching the description of a recipe.
 	 * 
 	 * @param position
 	 * @return recipe description
