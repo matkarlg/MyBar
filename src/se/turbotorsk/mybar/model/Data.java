@@ -367,6 +367,63 @@ public class Data {
 
 		return 1;
 	}
+	
+	/**
+	 * This method returns everything in the MyBarTable.
+	 * 
+	 * @return MyBar object.
+	 */
+	public static LinkedList<MyBar> getAllMyBar() {
+		if (SQLITE) {
+
+			/**
+			 * SQLITE getAllMyBar().
+			 */
+			LinkedList<MyBar> mybarList = new LinkedList<MyBar>();
+
+			// Choose which columns you want to query. null queries all columns.
+			// String[] projection = { DrinkTable.COLUMN_NAME,
+			// DrinkTable.COLUMN_DESCRIPTION, DrinkTable.COLUMN_RATING };
+
+			// Query database.
+			Cursor cursor = MyBarApplication.ContentResolver().query(
+					MyBarContentProvider.CONTENTURI_MYBAR, null, null, null, null);
+
+			// Successful query?.
+			if (cursor != null) {
+
+				// Is there any data from the requested Query.
+				if (cursor.moveToFirst()) {
+
+					do {
+						int _id = cursor.getInt(cursor.getColumnIndexOrThrow(MyBarTable.COLUMN_ID));
+						String ingredientid = cursor.getString(cursor
+								.getColumnIndexOrThrow(MyBarTable.COLUMN_INGREDIENTID));
+						String location = cursor.getString(cursor
+								.getColumnIndexOrThrow(MyBarTable.COLUMN_LOCATION));
+						mybarList.add(new MyBar(_id, ingredientid, location));
+					} while (cursor.moveToNext());
+
+					// Close the cursor.
+					cursor.close();
+
+					return mybarList;
+				} else {
+					// Close the cursor.
+					cursor.close();
+
+					// No mybar in Query. Return Empty LinkedList<MyBar>.
+					return new LinkedList<MyBar>();
+				}
+			}
+			/**
+			 * End of SQLite getAllMyBar().
+			 */
+		}
+		if (EDATA) {}
+		if (FAKE) {}
+		return null;
+	}
 
 	/**
 	 * This method return all Drinks from the local SQLite database.
