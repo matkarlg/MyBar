@@ -119,6 +119,63 @@ public class Data {
 		}
 		return rowsDeleted;
 	}
+	/**
+	 * Inserts a new Drink in the DrinkTable
+	 * @param name a Drink object that should be inserted into the database
+	 * @return 1 if successful, 0 if error. See LogCat
+	 */
+	public static int addDrink(Drink name) {
+		if (SQLITE) {
+
+			/**
+			 * SQLITE addDrink(Drink name)
+			 */
+			ContentValues values = name.getContentValues();
+
+			// Choose which columns you want to query. null queries all columns
+			String[] projection = { DrinkTable.COLUMN_ID, DrinkTable.COLUMN_NAME };
+
+			// Query database
+			Cursor cursor = MyBarApplication.ContentResolver().query(
+					MyBarContentProvider.CONTENTURI_DRINK, projection,
+					DrinkTable.COLUMN_NAME + " = ? ", new String[] { name.getName() }, null);
+
+			// Successful query?
+			if (cursor != null) {
+
+				// Is there any data from the requested Query
+				if (cursor.moveToFirst()) {
+					
+					// Error message in LogCat
+					Log.e(Data.class.getClass().getName(), "addDrink(): " + name.getName() + " already exists");
+					
+					// Close the cursor
+					cursor.close();
+					
+					// name already exists. Return 1
+					return 1;
+
+				} else {
+					MyBarApplication.ContentResolver().insert(MyBarContentProvider.CONTENTURI_DRINK, values);
+					
+					// Print the added drink
+					Log.d(Data.class.getClass().getName(), "Added Drink: " + name.getName());
+					
+					// Close the cursor
+					cursor.close();
+					
+					return 0;
+				}
+			}
+			/**
+			 * End of SQLite addDrink(Drink name)
+			 */
+		}
+		if (EDATA);
+		if (FAKE);
+		
+		return 1;
+	}
 
 	/**
 	 * This method return all Drinks from the local SQLite database.
