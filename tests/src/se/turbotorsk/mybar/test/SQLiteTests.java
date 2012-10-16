@@ -8,7 +8,7 @@ package se.turbotorsk.mybar.test;
  * @author Mathias Karlgren (matkarlg)
  *
  */
-
+/*
 import se.turbotorsk.mybar.controller.MyBarContentProvider;
 import se.turbotorsk.mybar.model.Drink;
 import android.database.sqlite.SQLiteDatabase;
@@ -41,4 +41,4 @@ public class SQLiteTests extends ProviderTestCase2<MyBarContentProvider> {
     protected void tearDown() throws Exception {
         super.tearDown();
     }
-}
+}*/

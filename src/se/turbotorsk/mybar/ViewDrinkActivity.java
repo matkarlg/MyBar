@@ -25,6 +25,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.RatingBar;
+import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,16 +35,18 @@ import android.widget.Toast;
  * 
  */
 
-public class ViewDrinkActivity extends Activity {
+public class ViewDrinkActivity extends Activity implements
+		OnRatingBarChangeListener {
 
 	TextView dName;
 	TextView dDescription;
 	TextView dIngredients;
-	TextView dRating;
+	RatingBar dRating;
 	ImageView dImage;
 	CheckBox checkBox;
 	int id;
-	String name, rating, description, ingredients;
+	String name, description, ingredients;
+	int rating;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -53,16 +57,18 @@ public class ViewDrinkActivity extends Activity {
 		dName = (TextView) findViewById(R.id.drinkName);
 		dDescription = (TextView) findViewById(R.id.drinkDescription);
 		dIngredients = (TextView) findViewById(R.id.drinkIngredients);
-		dRating = (TextView) findViewById(R.id.drinkRating);
+		dRating = (RatingBar) findViewById(R.id.ratingBar1);
 		dImage = (ImageView) findViewById(R.id.drinkImage);
 		checkBox = (CheckBox) findViewById(R.id.drinkFav);
-
 		setDrinkInfo();
+		dRating.setEnabled(true);
+		dRating.setOnRatingBarChangeListener(this);
 		checkBoxListener();
-		
-		if(Controller.isFavorite(id) == 1){
+
+		if (Controller.isFavorite(id) == 1) {
 			checkBox.setChecked(true);
 		}
+		dRating.setRating(Controller.rating(id));
 
 	}
 
@@ -74,7 +80,7 @@ public class ViewDrinkActivity extends Activity {
 		// Receiving intents from activity
 		Bundle bundle = getIntent().getExtras();
 		name = bundle.getString("drinkname");
-		rating = bundle.getString("rating");
+		rating = bundle.getInt("rating");
 		description = bundle.getString("descrip");
 		ingredients = bundle.getString("ingredients");
 		String url = bundle.getString("url");
@@ -114,7 +120,7 @@ public class ViewDrinkActivity extends Activity {
 	 * This method sets the rating of the drink
 	 */
 	public void setDrinkRating() {
-		dRating.setText(rating);
+		dRating.setRating(rating);
 	}
 
 	/**
@@ -155,12 +161,18 @@ public class ViewDrinkActivity extends Activity {
 				} else {
 					Data.setDrink(name, "favorite", 0);
 					Toast.makeText(ViewDrinkActivity.this,
-							"Removed from Favorites", Toast.LENGTH_SHORT).show();
+							"Removed from Favorites", Toast.LENGTH_SHORT)
+							.show();
 				}
-				//MyFavorites.updateList();
+				// MyFavorites.updateList();
 
 			}
 		});
 	}
 
+	public void onRatingChanged(RatingBar ratingBar, float rating,
+			boolean fromUser) {
+		dRating.setRating((int) rating);
+		Data.setDrink(name, "rating", (int) rating);
+	}
 }
