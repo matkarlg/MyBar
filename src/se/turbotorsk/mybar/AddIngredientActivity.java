@@ -11,9 +11,14 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 package se.turbotorsk.mybar;
 
+import se.turbotorsk.mybar.controller.MyBarApplication;
+import se.turbotorsk.mybar.model.Ingredient;
+import se.turbotorsk.mybar.model.database.MyBarContentProvider;
 import android.app.Activity;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.SearchView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 /**
@@ -22,26 +27,33 @@ import android.widget.Toast;
 public class AddIngredientActivity extends Activity {
 
 	SearchView search;
+//	Ingredient ingredient;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.search_layout);	
 		
+/*		Cursor cursor = MyBarApplication.ContentResolver().query(
+				MyBarContentProvider.CONTENTURI_INGREDIENT, null, null, null, null);
+		String[] columns = new String[] { ingredient.getName(), ingredient.getType(), 
+				ingredient.getAlcoholcontent() + ""};
+		int[] to = new int[] { R.id.drink, R.id.ingredients, R.id.rating };
+*/
+
 		search = (SearchView) findViewById(R.id.searchView1);
-	
+/*		@SuppressWarnings("deprecation")
+		SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
+				R.layout.rowlayout, cursor, columns, to);
+*/		
+		
 		search.setOnQueryTextListener(sListen);
+//		search.setSuggestionsAdapter(adapter);
 
 	/**
 	 * This method handles what happens when pressing a item in the list.
 	 */
-/*	@Override
-	protected void onListItemClick(ListView l, View v, int position, long id) {
-		String item = (String) getListAdapter().getItem(position);
-		Toast.makeText(this, "Added " + item, Toast.LENGTH_LONG).show();
-		finish();
-	}
-*/
+		//setOnSuggestionListener(sListen);
 	}
 	
 	
@@ -53,8 +65,11 @@ public class AddIngredientActivity extends Activity {
 		}
 
 	public boolean onQueryTextChange(String query) {
-		Toast.makeText(AddIngredientActivity.this,
-				"Wrote some stuff", Toast.LENGTH_SHORT).show();
+		if(query.length() >= 3)
+		{
+			Toast.makeText(AddIngredientActivity.this,
+					"Wrote some stuff", Toast.LENGTH_SHORT).show();
+		}
 		return false;
 		}
 	};

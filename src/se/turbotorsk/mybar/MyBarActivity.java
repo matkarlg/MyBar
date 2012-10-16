@@ -31,7 +31,7 @@ public class MyBarActivity extends ListActivity {
 		.permitAll().build();
 		StrictMode.setThreadPolicy(policy);
 
-		IngredientAdapter adapter = new IngredientAdapter(this,
+		adapter = new IngredientAdapter(this,
 				R.layout.rowlayout, Controller.getMyIngredients());
 
 		setListAdapter(adapter);
