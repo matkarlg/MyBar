@@ -87,18 +87,7 @@ public class IngredientAdapter extends ArrayAdapter<LinkedList> {
 				tt3.setText(p.getAlcoholcontent() + "%");
 			}
 			if (iv != null) {
-				URL url2;
-				try {
-					url2 = new URL(p.getUrl());
-					Bitmap bmp = BitmapFactory.decodeStream(url2
-							.openConnection().getInputStream());
-					iv.setImageBitmap(bmp);
-				} catch (MalformedURLException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-
+				iv.setImageResource(R.drawable.bottle);
 			}
 		}
 

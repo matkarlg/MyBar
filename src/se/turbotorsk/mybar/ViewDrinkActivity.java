@@ -91,18 +91,8 @@ public class ViewDrinkActivity extends Activity implements
 		setDrinkDescription();
 		setDrinkIngredients();
 		setDrinkImage();
+		dImage.setImageResource(R.drawable.no_img);
 
-		URL url2;
-		try {
-			url2 = new URL(url);
-			Bitmap bmp = BitmapFactory.decodeStream(url2.openConnection()
-					.getInputStream());
-			dImage.setImageBitmap(bmp);
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 
 	}
 

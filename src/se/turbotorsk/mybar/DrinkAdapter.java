@@ -22,7 +22,6 @@ import android.widget.TextView;
  */
 public class DrinkAdapter extends ArrayAdapter<LinkedList> {
 
-	// String url = "http://repro.mybar.turbotorsk.se/img/no_img.png";
 
 	public DrinkAdapter(Context context, int textViewResourceId) {
 		super(context, textViewResourceId);
@@ -85,18 +84,7 @@ public class DrinkAdapter extends ArrayAdapter<LinkedList> {
 				tt4.setText(p.getDescription());
 			}
 			if (iv != null) {
-				URL url2;
-				try {
-					url2 = new URL(p.getUrl());
-					Bitmap bmp = BitmapFactory.decodeStream(url2
-							.openConnection().getInputStream());
-					iv.setImageBitmap(bmp);
-				} catch (MalformedURLException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-
+				iv.setImageResource(R.drawable.no_img);
 			}
 		}
 
