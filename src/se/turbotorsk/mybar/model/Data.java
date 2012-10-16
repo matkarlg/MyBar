@@ -84,6 +84,12 @@ public class Data {
 					new Ingredient(1, "Koskenkorva Vodka", "http://repro.mybar.turbotorsk.se/img/no_img.png", "Vodka", 40,
 							"<insert description>"),
 					new Ingredient(2, "Baileys", "http://repro.mybar.turbotorsk.se/img/no_img.png", "Liqueur", 20,
+							"<insert description>"),
+					new Ingredient(3, "Dark Rum", "http://repro.mybar.turbotorsk.se/img/no_img.png", "Rum", 40,
+							"<insert description>"),
+					new Ingredient(4, "Light Rum", "http://repro.mybar.turbotorsk.se/img/no_img.png", "Rum", 40,
+							"<insert description>"),
+					new Ingredient(5, "Gordon's Gin", "http://repro.mybar.turbotorsk.se/img/no_img.png", "Gin", 40,
 							"<insert description>") };
 
 			// Insert testIngredients.
@@ -444,7 +450,7 @@ public class Data {
 
 			// Query database.
 			Cursor cursor = MyBarApplication.ContentResolver().query(
-					MyBarContentProvider.CONTENTURI_DRINK, null, null, null, null);
+					MyBarContentProvider.CONTENTURI_DRINK, null, null, null, DrinkTable.COLUMN_NAME+" COLLATE NOCASE ASC");
 
 			// Successful query?.
 			if (cursor != null) {
@@ -514,7 +520,7 @@ public class Data {
 
 			// Query database.
 			Cursor cursor = MyBarApplication.ContentResolver().query(
-					MyBarContentProvider.CONTENTURI_INGREDIENT, null, null, null, null);
+					MyBarContentProvider.CONTENTURI_INGREDIENT, null, null, null, IngredientTable.COLUMN_NAME+" COLLATE NOCASE ASC");
 
 			// Successful query?.
 			if (cursor != null) {
@@ -736,7 +742,7 @@ public class Data {
 
 			// Query database.
 			Cursor cursor = MyBarApplication.ContentResolver().query(
-					MyBarContentProvider.CONTENTURI_DRINK, null, "favorite=1", null, null);
+					MyBarContentProvider.CONTENTURI_DRINK, null, "favorite=1", null, DrinkTable.COLUMN_NAME+" COLLATE NOCASE ASC");
 
 			// Successful query?.
 			if (cursor != null) {
@@ -1119,7 +1125,7 @@ public class Data {
 			Cursor cursor = MyBarApplication.ContentResolver().query(
 					MyBarContentProvider.CONTENTURI_INGREDIENT, null, IngredientTable.COLUMN_NAME +
 					" LIKE ? ", new String[]{"%"+search+"%"}, 
-					IngredientTable.COLUMN_NAME+" LIMIT "+limit);
+					IngredientTable.COLUMN_NAME+" COLLATE NOCASE ASC LIMIT "+limit);
 
 			// Successful query?.
 			if (cursor != null) {
