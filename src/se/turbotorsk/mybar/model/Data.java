@@ -122,7 +122,7 @@ public class Data {
 	/**
 	 * Inserts a new Drink in the DrinkTable
 	 * @param name a Drink object that should be inserted into the database
-	 * @return 1 if successful, 0 if error. See LogCat
+	 * @return 0 if successful, 1 if error. See LogCat
 	 */
 	public static int addDrink(Drink name) {
 		if (SQLITE) {
@@ -376,6 +376,9 @@ public class Data {
 
 					return drink;
 				} else {
+					// Error message in LogCat
+					Log.e(Data.class.getClass().getName(), "ID doesn't exist");
+					
 					// ID doesn't exist. Return Drink with ID = 0
 					Drink drink = new Drink(0, "", "", "", "", "", 0, 0);
 
@@ -450,6 +453,9 @@ public class Data {
 
 					return ingredient;
 				} else {
+					// Error message in LogCat
+					Log.e(Data.class.getClass().getName(), "ID doesn't exist");
+					
 					// ID doesn't exist. Return Ingredient with ID = 0
 					Ingredient ingredient = new Ingredient(0, "", "", "", 0, "");
 
