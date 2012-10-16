@@ -32,7 +32,7 @@ public class MyBarActivity extends ListActivity {
 		super.onCreate(savedInstanceState);
 
 		IngredientAdapter adapter = new IngredientAdapter(this,
-				R.layout.rowlayout, Data.getAllIngredients());
+				R.layout.rowlayout, Controller.getMyIngredients());
 
 		setListAdapter(adapter);
 

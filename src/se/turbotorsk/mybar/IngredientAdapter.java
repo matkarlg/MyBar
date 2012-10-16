@@ -90,10 +90,10 @@ public class IngredientAdapter extends ArrayAdapter<LinkedList> {
 	}
 
 	/**
-	 * This method is fetching the description of a recipe.
+	 * This method is fetching the description of an ingredient.
 	 * 
 	 * @param position
-	 * @return recipe description
+	 * @return ingredient description
 	 */
 	public String getDescription(int position) {
 		Ingredient ingredient = items.get(position);

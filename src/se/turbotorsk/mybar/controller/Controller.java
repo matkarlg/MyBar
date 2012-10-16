@@ -15,7 +15,8 @@ import java.util.LinkedList;
 
 import se.turbotorsk.mybar.model.Data;
 import se.turbotorsk.mybar.model.Drink;
-import android.util.Log;
+import se.turbotorsk.mybar.model.Ingredient;
+import se.turbotorsk.mybar.model.MyBar;
 
 /**
  * This activity handles the Controller.
@@ -95,5 +96,13 @@ public class Controller {
 		// data.listMyBarIngredientCategories(this.myBarID); Add this method in
 		// data.
 		return null;
+	}
+	
+	public static LinkedList<Ingredient> getMyIngredients(){
+		LinkedList<Ingredient> list = new LinkedList<Ingredient>(); 
+		for(MyBar mybar: Data.getAllMyBar()){
+			list.add( Data.getIngredientByID(mybar.getIngredientID());	
+		}
+		return list;
 	}
 }
