@@ -25,6 +25,7 @@ import android.widget.TextView;
 
 /**
  * This activity handles the AboutBox that is a part of the Options-menu.
+ * It shows the current version number and also the name of the developing group who made the application.
  */
 public class AboutBox {
 	static String VersionName(Context context) {

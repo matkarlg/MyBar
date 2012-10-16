@@ -23,15 +23,25 @@ import android.widget.TabHost.TabSpec;
 
 /**
  * This activity handles the main-window in the application.
+ * 
+ * You could say that this activity is the only one that is never shown. This is the file that
+ * starts the application. The application is build on tabs, even though tabs are depreciated.
+ * 
+ * We have planned to refactor the application to use fragments instead and will do that if we
+ * have got time. As of now we are not missing any features due to this, the only other feature
+ * we would have used if the application were to be based on fragments is the ability to slide
+ * between tabs, or fragments.
  */
+
+//We supress warnings to remove the warnings that tells us to use fragments instead of tabs
 @SuppressWarnings("deprecation")
 public class MainActivity extends TabActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		// Log.d(this.getClass().getName(),data.getDrinkNameArray()[1]);
-		// Controller controller = Controller.controller;
+		// Log.d(this.getClass().getName(),data.getDrinkNameArray()[1]); REMOVE
+		// Controller controller = Controller.controller; REMOVE
 
 		this.deleteDatabase("turbotorsk_mybar.db");
 		Data.insertTestData();

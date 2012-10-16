@@ -28,11 +28,11 @@ public class AddIngredientActivity extends Activity {
 
 	SearchView search;
 //	Ingredient ingredient;
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.search_layout);	
+		setContentView(R.layout.search_layout);	//Use the xml layout search_layout
 		
 /*		Cursor cursor = MyBarApplication.ContentResolver().query(
 				MyBarContentProvider.CONTENTURI_INGREDIENT, null, null, null, null);

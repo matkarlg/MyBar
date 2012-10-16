@@ -21,7 +21,12 @@ import android.os.StrictMode;
 import android.widget.Toast;
 
 /**
- * This activity handles the Collection.
+ * This activity handles the Collection. The collection is the third tab in the application and
+ * should show all of the drinks from our database. If the user wants to see information about
+ * the drink they could press on the drink and get to another activity, the ViewDrinkActivity.
+ * 
+ * The activity is built on the custom listview xml file rowlayout.xml. This file can be found
+ * where all of the other layout files are.
  */
 public class CollectionActivity extends ListActivity {
 
