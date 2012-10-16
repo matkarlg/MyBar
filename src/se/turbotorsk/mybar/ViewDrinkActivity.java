@@ -151,11 +151,11 @@ public class ViewDrinkActivity extends Activity {
 				if (((CheckBox) v).isChecked()) {
 					Data.setDrink(name, "favorite", 1);
 					Toast.makeText(ViewDrinkActivity.this,
-							"Added to Favorites", Toast.LENGTH_LONG).show();
+							"Added to Favorites", Toast.LENGTH_SHORT).show();
 				} else {
 					Data.setDrink(name, "favorite", 0);
 					Toast.makeText(ViewDrinkActivity.this,
-							"Removed from Favorites", Toast.LENGTH_LONG).show();
+							"Removed from Favorites", Toast.LENGTH_SHORT).show();
 				}
 				//MyFavorites.updateList();
 
