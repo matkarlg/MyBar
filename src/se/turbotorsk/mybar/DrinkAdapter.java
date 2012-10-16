@@ -22,7 +22,7 @@ import android.widget.TextView;
  */
 public class DrinkAdapter extends ArrayAdapter<LinkedList> {
 
-	String url = "http://repro.mybar.turbotorsk.se/img/no_img.png";
+	//String url = "http://repro.mybar.turbotorsk.se/img/no_img.png";
 
 	public DrinkAdapter(Context context, int textViewResourceId) {
 		super(context, textViewResourceId);
@@ -88,7 +88,7 @@ public class DrinkAdapter extends ArrayAdapter<LinkedList> {
 			if (iv != null) {
 				URL url2;
 				try {
-					url2 = new URL(url);
+					url2 = new URL(p.getUrl());
 					Bitmap bmp = BitmapFactory.decodeStream(url2.openConnection()
 							.getInputStream());
 					iv.setImageBitmap(bmp);
@@ -158,7 +158,7 @@ public class DrinkAdapter extends ArrayAdapter<LinkedList> {
 	 */
 	public String getUrl(int position) {
 		Drink drink = items.get(position);
-		return url;
+		return drink.getUrl();
 	}
 	
 	public int getId(int position){
