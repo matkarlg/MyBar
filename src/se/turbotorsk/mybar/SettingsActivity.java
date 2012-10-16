@@ -32,6 +32,7 @@ public class SettingsActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.view_settings);
 		profile1 = (TextView) findViewById(R.id.textView1);
+		profile1.setText("home");
 		profileButton = (Button) findViewById(R.id.button1);
 		profileButton.setOnClickListener(new View.OnClickListener() {
 
@@ -42,7 +43,7 @@ public class SettingsActivity extends Activity {
 				Intent i = getIntent();
 				Bundle bundle = i.getExtras();
 				// String profile = bundle.getString("profile");
-				profile1.setText("Dag");
+				profile1.setText("home");
 			}
 		});
 	}

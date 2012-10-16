@@ -31,10 +31,6 @@ public class MyFavorites extends ListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-				.permitAll().build();
-		StrictMode.setThreadPolicy(policy);
-
 		adapter = new DrinkAdapter(this, R.layout.rowlayout,
 				Data.getAllFavorites());
 
@@ -66,7 +62,8 @@ public class MyFavorites extends ListActivity {
 	 * This method updates the list in MyFavorites.
 	 */
 	public void updateList(){
-		adapter = new DrinkAdapter(this, R.layout.rowlayout, Data.getAllFavorites());
-		//adapter.notifyDataSetChanged();	
+		//adapter = new DrinkAdapter(this, R.layout.rowlayout, Data.getAllFavorites());
+		//adapter.notifyDataSetChanged();
+		
 	}
 }

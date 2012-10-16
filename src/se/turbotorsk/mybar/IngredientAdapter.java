@@ -115,5 +115,15 @@ public class IngredientAdapter extends ArrayAdapter<LinkedList> {
 		Ingredient ingredient = items.get(position);
 		return ingredient.getDescription();
 	}
+	
+	public int getId(int position) {
+		Ingredient ingredient = items.get(position);
+		return ingredient.get_id();
+	}
+	
+	public String getPosition(int position) {
+		Ingredient ingredient = items.get(position);
+		return "home"; //change later!!!
+	}
 
 }
