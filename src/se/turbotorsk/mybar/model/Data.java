@@ -84,6 +84,12 @@ public class Data {
 					new Ingredient(1, "Koskenkorva Vodka", "http://repro.mybar.turbotorsk.se/img/no_img.png", "Vodka", 40,
 							"<insert description>"),
 					new Ingredient(2, "Baileys", "http://repro.mybar.turbotorsk.se/img/no_img.png", "Liqueur", 20,
+							"<insert description>"),
+					new Ingredient(3, "Dark Rum", "http://repro.mybar.turbotorsk.se/img/no_img.png", "Rum", 40,
+							"<insert description>"),
+					new Ingredient(4, "Light Rum", "http://repro.mybar.turbotorsk.se/img/no_img.png", "Rum", 40,
+							"<insert description>"),
+					new Ingredient(5, "Gordon's Gin", "http://repro.mybar.turbotorsk.se/img/no_img.png", "Gin", 40,
 							"<insert description>") };
 
 			// Insert testIngredients.
