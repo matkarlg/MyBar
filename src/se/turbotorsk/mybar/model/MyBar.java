@@ -32,7 +32,7 @@ import android.content.ContentValues;
 public class MyBar {
 
 	private int _id = 0;
-	private String ingredientID = "";
+	private int ingredientID = 0;
 	private String location = "";
 	private ContentValues values = null;
 
@@ -43,7 +43,7 @@ public class MyBar {
 	 * @param ingredientID
 	 * @param location
 	 */
-	public MyBar(int _id, String ingredientID, String location) {
+	public MyBar(int _id, int ingredientID, String location) {
 		this._id = _id;
 		this.ingredientID = ingredientID;
 		this.location = location;
@@ -85,7 +85,7 @@ public class MyBar {
 	 * 
 	 * @return ingredientID
 	 */
-	public String getIngredientID() {
+	public int getIngredientID() {
 		return ingredientID;
 	}
 
@@ -112,7 +112,7 @@ public class MyBar {
 	 * 
 	 * @param ingredientID
 	 */
-	public void setIngredientid(String ingredientID) {
+	public void setIngredientid(int ingredientID) {
 		this.ingredientID = ingredientID;
 	}
 }
