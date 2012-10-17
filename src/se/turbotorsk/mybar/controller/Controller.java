@@ -123,4 +123,10 @@ public class Controller {
 		}
 		return list;
 	}
+	
+	public static void dataSync()
+	{
+		data.syncDatabase();
+		//data.insertTestData();
+	}
 }

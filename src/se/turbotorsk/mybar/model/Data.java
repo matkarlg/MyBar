@@ -64,7 +64,7 @@ public class Data {
 	 * @return 0.
 	 */
 	
-	public static boolean syncDatabase()
+	public boolean syncDatabase()
 	{
 		jsonParse.getDb();
 		return false; 

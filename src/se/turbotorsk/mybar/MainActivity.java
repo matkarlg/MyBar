@@ -28,6 +28,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package se.turbotorsk.mybar;
 
+import se.turbotorsk.mybar.controller.Controller;
 import se.turbotorsk.mybar.model.Data;
 import android.app.Activity;
 import android.app.TabActivity;
@@ -67,10 +68,7 @@ public class MainActivity extends TabActivity {
 		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
 				.permitAll().build();
 		StrictMode.setThreadPolicy(policy);
-
-		this.deleteDatabase("turbotorsk_mybar.db");
-		Data.syncDatabase();
-		Data.insertTestData();
+		Controller.dataSync();
 
 		// String[] lista = data.getDrinkNameArray(); tabHost = getTabHost();
 		TabHost tabHost = getTabHost();
