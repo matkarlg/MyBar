@@ -49,16 +49,17 @@ public class MyBarRobotiumTest extends ActivityInstrumentationTestCase2<MainActi
 		solo = new Solo(getInstrumentation(), getActivity());
 	}
 	
-	public void tearDown() throws Exception {
-		try {
-			solo.finalize();
-		} catch (Throwable e) {
-			e.printStackTrace();
-		}
-		getActivity().finish();
-		super.tearDown();
-		System.exit(0);
-	}
+//In some way this method fu**s the tests up.
+//	public void tearDown() throws Exception {
+//		try {
+//			solo.finalize();
+//		} catch (Throwable e) {
+//			e.printStackTrace();
+//		}
+//		getActivity().finish();
+//		super.tearDown();
+//		System.exit(0);
+//	}
 	
 	
 	public void testStartApplication(){
@@ -73,17 +74,17 @@ public class MyBarRobotiumTest extends ActivityInstrumentationTestCase2<MainActi
 		solo.assertCurrentActivity("Ska ha bytt activity", CollectionActivity.class);
 	}*/
 	
-//	public void testOpenAddButton(){
-//		solo.clickOnMenuItem("Add");
-//		solo.assertCurrentActivity("Ska vara add aktiviteten", AddIngredientActivity.class);
-//		solo.goBack();
-//	}
-//	
-//	public void testOpenSettingsButton(){
-//		solo.clickOnMenuItem("Settings");
-//		solo.assertCurrentActivity("Ska vara settings aktiviteten", SettingsActivity.class);
-//		solo.goBack();
-//	}
+	public void testOpenAddButton(){
+		solo.clickOnMenuItem("Add");
+		solo.assertCurrentActivity("Ska vara add aktiviteten", AddIngredientActivity.class);
+		solo.goBack();
+	}
+	
+	public void testOpenSettingsButton(){
+		solo.clickOnMenuItem("Settings");
+		solo.assertCurrentActivity("Ska vara settings aktiviteten", SettingsActivity.class);
+		solo.goBack();
+	}
 
 	//Messes up the other tests at the moment
 	/*
@@ -94,15 +95,15 @@ public class MyBarRobotiumTest extends ActivityInstrumentationTestCase2<MainActi
 		solo.clickOnText("OK");
 	}*/
 	
-//	public void testOpenAboutBox(){
-//		solo.clickOnMenuItem("About");
-//		solo.assertCurrentActivity("Ska vara about aktiviteten", AboutBox.class);
-//		solo.goBack();
-//	}
+	public void testOpenAboutBox(){
+		solo.clickOnMenuItem("About");
+		solo.assertCurrentActivity("Ska vara about aktiviteten", AboutBox.class);
+		solo.goBack();
+	}
 	
-//	public void testCheckMemory(){
-//		solo.assertMemoryNotLow();
-//	}
+	public void testCheckMemory(){
+		solo.assertMemoryNotLow();
+	}
 	
 //	public void testChangeToCollection(){
 //		solo.clickOnButton("COLLECTION");
