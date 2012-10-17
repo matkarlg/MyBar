@@ -44,6 +44,8 @@ import com.jayway.android.robotium.solo.Solo;
 * still very difficult to understand and it is easier to have all tests at the same place
 * when there aren't that many tests.
 * 
+* MAKE SURE THAT THE EMULATOR IS STARTED AND THAT IT IS UNLOCKED BEFORE STARTING THE TESTS!
+* 
 * @author Adam Clark (<a
 *         href="mailto:adam.clark91@gmail.com">email</a>)
 */
