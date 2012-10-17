@@ -30,11 +30,17 @@ package se.turbotorsk.mybar.test;
 
 import se.turbotorsk.mybar.AboutBox;
 import se.turbotorsk.mybar.AddIngredientActivity;
+import se.turbotorsk.mybar.CollectionActivity;
 import se.turbotorsk.mybar.MainActivity;
 import se.turbotorsk.mybar.SettingsActivity;
 import android.test.ActivityInstrumentationTestCase2;
 
 import com.jayway.android.robotium.solo.Solo;
+
+
+//Written by Adam Clark
+//It seems like the tests are evaluated alphabetically, therefore im adding a number in each
+//test, to have a good overview and so that it is easier to manage the code. 
 
 public class MyBarRobotiumTest extends ActivityInstrumentationTestCase2<MainActivity> {
 	
@@ -61,30 +67,34 @@ public class MyBarRobotiumTest extends ActivityInstrumentationTestCase2<MainActi
 //		System.exit(0);
 //	}
 	
-	
-	public void testStartApplication(){
+
+//This basic test tries to start the application and checks weather it started
+//or not.
+	public void test1_StartApplication(){
 		solo.assertCurrentActivity("Nu blev det fel activity", MainActivity.class);
 	}
 	
-	
-	/*Doesnt work at the moment. Keeping this to remember what i have to do.
-	public void testChangeTabToCollection(){
+//This test will press an emulated right button, it is not a clean or good way to try this
+//but i haven't managed to get robotium to press the COLLECTION tab. This has to do for now.
+	public void test2_ChangeTabToCollection(){
 		solo.assertCurrentActivity("First activity", MainActivity.class);
-		solo.clickOnText("COLLECTION");
+		solo.sendKey(solo.RIGHT);
 		solo.assertCurrentActivity("Ska ha bytt activity", CollectionActivity.class);
-	}*/
-	
-	public void testOpenAddButton(){
-		solo.clickOnMenuItem("Add");
-		solo.assertCurrentActivity("Ska vara add aktiviteten", AddIngredientActivity.class);
-		solo.goBack();
 	}
 	
-	public void testOpenSettingsButton(){
-		solo.clickOnMenuItem("Settings");
-		solo.assertCurrentActivity("Ska vara settings aktiviteten", SettingsActivity.class);
-		solo.goBack();
-	}
+	//WORKS
+//	public void testOpenAddButton(){
+//		solo.clickOnMenuItem("Add");
+//		solo.assertCurrentActivity("Ska vara add aktiviteten", AddIngredientActivity.class);
+//		solo.goBack();
+//	}
+//	
+	//WORKS
+//	public void testOpenSettingsButton(){
+//		solo.clickOnMenuItem("Settings");
+//		solo.assertCurrentActivity("Ska vara settings aktiviteten", SettingsActivity.class);
+//		solo.goBack();
+//	}
 
 	//Messes up the other tests at the moment
 	/*
@@ -95,16 +105,18 @@ public class MyBarRobotiumTest extends ActivityInstrumentationTestCase2<MainActi
 		solo.clickOnText("OK");
 	}*/
 	
-	public void testOpenAboutBox(){
-		solo.clickOnMenuItem("About");
-		solo.assertCurrentActivity("Ska vara about aktiviteten", AboutBox.class);
-		solo.goBack();
-	}
-	
-	public void testCheckMemory(){
-		solo.assertMemoryNotLow();
-	}
-	
+	//"WORKS"
+//	public void testOpenAboutBox(){
+//		solo.clickOnMenuItem("About");
+//		solo.assertCurrentActivity("Ska vara about aktiviteten", AboutBox.class);
+//		solo.goBack();
+//	}
+//	
+	//WORKS
+//	public void testCheckMemory(){
+//		solo.assertMemoryNotLow();
+//	}
+//	
 //	public void testChangeToCollection(){
 //		solo.clickOnButton("COLLECTION");
 //	}
