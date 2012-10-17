@@ -64,7 +64,6 @@ public class MainActivity extends TabActivity {
 		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
 				.permitAll().build();
 		StrictMode.setThreadPolicy(policy);
-		Controller.dataSync();
 
 		// String[] lista = data.getDrinkNameArray(); tabHost = getTabHost();
 		TabHost tabHost = getTabHost();

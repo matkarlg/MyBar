@@ -1,5 +1,6 @@
 package se.turbotorsk.mybar;
 
+import se.turbotorsk.mybar.controller.Controller;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,7 +22,7 @@ public class Splash extends Activity {
           
         	public void run() {
         		Splash.this.deleteDatabase("turbotorsk_mybar.db");
-        		
+        		Controller.dataSync();
         		Intent intent = new Intent(Splash.this,MainActivity.class);
                 Splash.this.startActivity(intent);
         		Splash.this.finish();
