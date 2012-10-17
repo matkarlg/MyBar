@@ -41,6 +41,9 @@ import com.jayway.android.robotium.solo.Solo;
 //Written by Adam Clark
 //It seems like the tests are evaluated alphabetically, therefore im adding a number in each
 //test, to have a good overview and so that it is easier to manage the code. 
+//I have deceided to have all testcode in one java file for now. This is because robotium is 
+//still very difficult to understand and it is easier to have all tests at the same place
+//when there aren't that many tests.
 
 public class MyBarRobotiumTest extends ActivityInstrumentationTestCase2<MainActivity> {
 	
@@ -82,42 +85,43 @@ public class MyBarRobotiumTest extends ActivityInstrumentationTestCase2<MainActi
 		solo.assertCurrentActivity("Ska ha bytt activity", CollectionActivity.class);
 	}
 	
-	//WORKS
-//	public void testOpenAddButton(){
-//		solo.clickOnMenuItem("Add");
-//		solo.assertCurrentActivity("Ska vara add aktiviteten", AddIngredientActivity.class);
-//		solo.goBack();
-//	}
-//	
-	//WORKS
-//	public void testOpenSettingsButton(){
-//		solo.clickOnMenuItem("Settings");
-//		solo.assertCurrentActivity("Ska vara settings aktiviteten", SettingsActivity.class);
-//		solo.goBack();
-//	}
-
-	//Messes up the other tests at the moment
-	/*
-	public void testOpenShareButton(){
-		solo.clickOnMenuItem("Share");
+//This test opens the "Add" menu option and then makes sure that the correct activity was started.
+//After the verification solo makes sure that it returns to the main activity
+	public void test3_OpenAddButton(){
+		solo.clickOnMenuItem("Add");
+		solo.assertCurrentActivity("Ska vara add aktiviteten", AddIngredientActivity.class);
 		solo.goBack();
-		solo.goBack();
-		solo.clickOnText("OK");
-	}*/
+	}
 	
-	//"WORKS"
-//	public void testOpenAboutBox(){
-//		solo.clickOnMenuItem("About");
-//		solo.assertCurrentActivity("Ska vara about aktiviteten", AboutBox.class);
+
+	public void test4_OpenSettingsButton(){
+		solo.clickOnMenuItem("Settings");
+		solo.assertCurrentActivity("Ska vara settings aktiviteten", SettingsActivity.class);
+		solo.goBack();
+	}
+	
+//Almost working, in some way i have to assert that it is working. The about box is showing,
+//but it seems like i cant use assertCurrentActivity since the MainActivity is in the background..
+//Threrefore I am commenting the assertion line of code. This is something that has to be fixed.
+	public void test5_OpenAboutBox(){
+		solo.clickOnMenuItem("About");
+		//solo.assertCurrentActivity("Ska vara about aktiviteten", AboutBox.class);
+		solo.goBack();
+	}
+
+//Make sure that there is still memory left on the Android device after the database is loaded.
+	public void test6_CheckMemory(){
+		solo.assertMemoryNotLow();
+	}
+	
+//Doesn't work. This is because the share button starts the messaging application and exists
+//our MyBar application. The double goBack is my poor attempt to manually return to our application.
+//	public void test6_OpenShareButton(){
+//		solo.clickOnMenuItem("Share");
 //		solo.goBack();
+//		solo.goBack();
+//		solo.clickOnText("OK");
+//		solo.assertCurrentActivity("Ska vara messaging aktiviteten TROR JAG", android.app.);
 //	}
-//	
-	//WORKS
-//	public void testCheckMemory(){
-//		solo.assertMemoryNotLow();
-//	}
-//	
-//	public void testChangeToCollection(){
-//		solo.clickOnButton("COLLECTION");
-//	}
+	
 }
