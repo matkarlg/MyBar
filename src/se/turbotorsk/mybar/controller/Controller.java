@@ -140,7 +140,7 @@ public class Controller {
 		return data.getAllFavorites();
 	}
 	
-	public static int setFavoriteByName(String name, int rating)
+	public static int setRatingByName(String name, int rating)
 	{
 		return data.setDrink(name, "rating", (int) rating);
 	}

@@ -171,6 +171,6 @@ public class ViewDrinkActivity extends Activity implements
 	public void onRatingChanged(RatingBar ratingBar, float rating,
 			boolean fromUser) {
 		dRating.setRating((int) rating);
-		Controller.setFavoriteByName(name, (int) rating);
+		Controller.setRatingByName(name, (int) rating);
 	}
 }
