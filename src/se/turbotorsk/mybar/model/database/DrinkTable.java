@@ -5,12 +5,12 @@ mybar@turbotorsk.se
 
 Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
-�	Redistributions of source code must retain the above copyright notice,
+*	Redistributions of source code must retain the above copyright notice,
  	this list of conditions and the following disclaimer.
-�	Redistributions in binary form must reproduce the above copyright notice,
+*	Redistributions in binary form must reproduce the above copyright notice,
  	this list of conditions and the following disclaimer in the documentation
  	and/or other materials provided with the distribution.
-�	Neither the name of the MyBar nor the names of its contributors may be 
+*	Neither the name of the MyBar nor the names of its contributors may be 
 	used to endorse or promote products derived from this software without
 	specific prior written permission.
 	
@@ -32,11 +32,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 /**
- * A table template. Creates the database table structure for the drinks.
- * (mirrored in remote database).
+ * Database table structure for the Drinks table. Contains variables for all
+ * columns and the Create statement. (mirrored in remote JSON datastore).
  * 
- * @author Mathias Karlgren (matkarlg)
- * 
+ * @author Mathias Karlgren (<a
+ *         href="mailto:mathias.karlgren@gmail.com">email</a>)
  */
 public class DrinkTable {
 	// Database table template.
@@ -51,14 +51,16 @@ public class DrinkTable {
 	public static final String COLUMN_FAVORITE = "favorite";
 
 	// Database table creation SQL statement.
-	private static final String DATABASE_CREATE = "CREATE TABLE " + TABLE_DRINK + "(" + COLUMN_ID
-			+ " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NAME + " TEXT NOT NULL, "
-			+ COLUMN_URL + " TEXT NOT NULL, " + COLUMN_GLASS + " TEXT NOT NULL, "
-			+ COLUMN_INGREDIENT + " TEXT NOT NULL, " + COLUMN_DESCRIPTION + " TEXT NOT NULL, "
-			+ COLUMN_RATING + " INTEGER NOT NULL, " + COLUMN_FAVORITE + " INTEGER NOT NULL" + ");";
+	private static final String DATABASE_CREATE = "CREATE TABLE " + TABLE_DRINK
+			+ "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+			+ COLUMN_NAME + " TEXT NOT NULL, " + COLUMN_URL
+			+ " TEXT NOT NULL, " + COLUMN_GLASS + " TEXT NOT NULL, "
+			+ COLUMN_INGREDIENT + " TEXT NOT NULL, " + COLUMN_DESCRIPTION
+			+ " TEXT NOT NULL, " + COLUMN_RATING + " INTEGER NOT NULL, "
+			+ COLUMN_FAVORITE + " INTEGER NOT NULL" + ");";
 
 	/**
-	 * This method creates the database.
+	 * Executes the table creation SQL statement.
 	 * 
 	 * @param database
 	 */
@@ -67,18 +69,20 @@ public class DrinkTable {
 	}
 
 	/**
-	 * This method handles the upgrade of the database.
+	 * Upgrades the database and drops all existing data in the process.
 	 * 
 	 * @param database
 	 * @param oldVersion
 	 * @param newVersion
 	 */
-	public static void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
+	public static void onUpgrade(SQLiteDatabase database, int oldVersion,
+			int newVersion) {
 		// Print upgrade warning to LogCat.
-		Log.w(DrinkTable.class.getName(), "Upgrading " + TABLE_DRINK + " table from version "
-				+ oldVersion + " to " + newVersion + ", which will destroy all old data");
+		Log.w(DrinkTable.class.getName(), "Upgrading " + TABLE_DRINK
+				+ " table from version " + oldVersion + " to " + newVersion
+				+ ", which will destroy all old data");
 
-		// Kills the table and existing data.
+		// Drops the table and existing data.
 		database.execSQL("DROP TABLE IF EXISTS " + TABLE_DRINK);
 
 		// Recreates the database with a new version.

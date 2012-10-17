@@ -5,12 +5,12 @@ mybar@turbotorsk.se
 
 Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
-�	Redistributions of source code must retain the above copyright notice,
+*	Redistributions of source code must retain the above copyright notice,
  	this list of conditions and the following disclaimer.
-�	Redistributions in binary form must reproduce the above copyright notice,
+*	Redistributions in binary form must reproduce the above copyright notice,
  	this list of conditions and the following disclaimer in the documentation
  	and/or other materials provided with the distribution.
-�	Neither the name of the MyBar nor the names of its contributors may be 
+*	Neither the name of the MyBar nor the names of its contributors may be 
 	used to endorse or promote products derived from this software without
 	specific prior written permission.
 	
@@ -41,6 +41,7 @@ import se.turbotorsk.mybar.model.MyBar;
 public class Controller {
 	private static int myBarID = 1;
 	private final static DrinkManager dm = new DrinkManager();
+	private static Data data = new Data(); 
 
 	public static LinkedList<Drink> getMyBar() {
 		// dm.getMyBar(data.getMyIngredients(this.myBarID),
@@ -54,8 +55,8 @@ public class Controller {
 	 * @param id
 	 * @return
 	 */
-	public static Drink getIngredientById(int id) {
-		return null;
+	public static Ingredient getIngredientById(int id) {
+		return data.getIngredientByID(id); 
 	}
 
 	// ---------- Methods for get and set favorites ----------
@@ -80,12 +81,12 @@ public class Controller {
 	}
 
 	public static int isFavorite(int id) {
-		Drink drink = Data.getDrinkByID(id);
+		Drink drink = data.getDrinkByID(id);
 		return drink.getFavorite();
 	}
 
 	public static int rating(int id) {
-		Drink drink = Data.getDrinkByID(id);
+		Drink drink = data.getDrinkByID(id);
 		return drink.getRating();
 	}
 
@@ -118,8 +119,14 @@ public class Controller {
 	public static LinkedList<Ingredient> getMyIngredients(){
 		LinkedList<Ingredient> list = new LinkedList<Ingredient>(); 
 		for(MyBar mybar: Data.getAllMyBar()){
-			list.add( Data.getIngredientByID(mybar.getIngredientID()));	
+			list.add( data.getIngredientByID(mybar.getIngredientID()));	
 		}
 		return list;
+	}
+	
+	public static void dataSync()
+	{
+		data.syncDatabase();
+		//data.insertTestData();
 	}
 }

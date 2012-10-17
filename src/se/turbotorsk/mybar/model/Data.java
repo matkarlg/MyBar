@@ -29,6 +29,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 package se.turbotorsk.mybar.model;
 
 import java.util.LinkedList;
+import se.turbotorsk.mybar.model.externaldata.*;
 
 import se.turbotorsk.mybar.controller.Controller;
 import se.turbotorsk.mybar.controller.MyBarApplication;
@@ -49,6 +50,7 @@ public class Data {
 	private static Drink exampleDrink1 = null, exampleDrink2 = null;
 	private static LinkedList<Ingredient> fakeIngredientList = null;
 	private static LinkedList<Drink> fakeDrinkList = null;
+	private static JsonParse jsonParse = new JsonParse(); 
 
 	// private Ingredient fakeIngredient1 = null, fakeIngredient2 = null,
 	// fakeIngredient3 = null;
@@ -61,6 +63,13 @@ public class Data {
 	 * 
 	 * @return 0.
 	 */
+	
+	public boolean syncDatabase()
+	{
+		jsonParse.getDb();
+		return false; 
+	}
+	
 	public static int insertTestData() {
 		if (SQLITE) {
 			Uri myBarUri = null;
@@ -68,18 +77,19 @@ public class Data {
 			// Drinks uses autoincrement in the _id field.
 			Drink[] testDrinks = {
 					new Drink(0, "Margarita", "http://repro.mybar.turbotorsk.se/img/no_img.png",
-							"Martini Glass", "ingredients here", "Margarita instructions", 5, 0),
+							"Martini Glass", "1;1;2;2;3;3;4;4", "Margarita instructions", 5, 0),
 					new Drink(0, "Tequila", "http://repro.mybar.turbotorsk.se/img/no_img.png",
-							"Shot Glass", "ingredients here", "Pour Tequila in shot glass", 5, 0),
+							"Shot Glass", "1;2;2;1", "Pour Tequila in shot glass", 5, 0),
 					new Drink(0, "Cosmopolitan", "http://repro.mybar.turbotorsk.se/img/no_img.png",
-							"Martini Glass", "ingredients here", "Cosmopolitan instructions", 5, 0),
+							"Martini Glass", "1;1;2;2;3;3;4;4", "Cosmopolitan instructions", 5, 0),
 					new Drink(0, "Cuba Libre", "http://repro.mybar.turbotorsk.se/img/no_img.png",
-							"Highball Glass", "ingredients here", "Cuba Libre instructions", 5, 0),
+							"Highball Glass", "1;2;2;1", "Cuba Libre instructions", 5, 0),
 					new Drink(0, "Martini", "http://repro.mybar.turbotorsk.se/img/no_img.png",
-							"Martini Glass", "ingredients here", "Pour Martini in glass", 5, 0),
+							"Martini Glass", "2;2;2;3", "Pour Martini in glass", 5, 0),
 					new Drink(0, "Irish Coffee", "http://repro.mybar.turbotorsk.se/img/no_img.png",
-							"Coffee Glass", "ingredients here", "Irish Coffee instructions", 5, 0) };
-
+							"Coffee Glass", "1;1;2;2;3;3;4;4", "Irish Coffee instructions", 5, 0) };
+		// Drinks uses autoincrement in the _id field.
+		
 			// Insert testDrinks.
 			for (Drink testDrink : testDrinks) {
 				ContentValues values = testDrink.getContentValues();
@@ -583,7 +593,7 @@ public class Data {
 	 * @param ID
 	 * @return
 	 */
-	public static Drink getDrinkByID(int ID) {
+	public  Drink getDrinkByID(int ID) {
 		if (SQLITE) {
 
 			/**
@@ -665,7 +675,7 @@ public class Data {
 	 * @param ID
 	 * @return
 	 */
-	public static Ingredient getIngredientByID(int ID) {
+	public Ingredient getIngredientByID(int ID) {
 		if (SQLITE) {
 
 			/**

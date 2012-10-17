@@ -5,12 +5,12 @@ mybar@turbotorsk.se
 
 Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
-�	Redistributions of source code must retain the above copyright notice,
+*	Redistributions of source code must retain the above copyright notice,
  	this list of conditions and the following disclaimer.
-�	Redistributions in binary form must reproduce the above copyright notice,
+*	Redistributions in binary form must reproduce the above copyright notice,
  	this list of conditions and the following disclaimer in the documentation
  	and/or other materials provided with the distribution.
-�	Neither the name of the MyBar nor the names of its contributors may be 
+*	Neither the name of the MyBar nor the names of its contributors may be 
 	used to endorse or promote products derived from this software without
 	specific prior written permission.
 	
@@ -28,6 +28,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package se.turbotorsk.mybar;
 
+import se.turbotorsk.mybar.controller.Controller;
 import se.turbotorsk.mybar.model.Data;
 import android.app.TabActivity;
 import android.content.Intent;
@@ -63,11 +64,7 @@ public class MainActivity extends TabActivity {
 		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
 				.permitAll().build();
 		StrictMode.setThreadPolicy(policy);
-
-		this.deleteDatabase("turbotorsk_mybar.db");
-
-		Data.insertTestData();
-		Data.addMyBar(2, "home");
+		Controller.dataSync();
 
 		// String[] lista = data.getDrinkNameArray(); tabHost = getTabHost();
 		TabHost tabHost = getTabHost();
