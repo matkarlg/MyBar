@@ -49,8 +49,8 @@ public class Ingredient {
 	 * @param alcoholcontent
 	 * @param description
 	 */
-	public Ingredient(int _id, String name, String url, String type,
-			int alcoholcontent, String description) {
+	public Ingredient(int _id, String name, String url, String type, int alcoholcontent,
+			String description) {
 		this._id = _id;
 		this.name = name;
 		this.url = url;
