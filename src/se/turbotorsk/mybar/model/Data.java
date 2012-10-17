@@ -88,7 +88,8 @@ public class Data {
 							"Martini Glass", "2;2;2;3", "Pour Martini in glass", 5, 0),
 					new Drink(0, "Irish Coffee", "http://repro.mybar.turbotorsk.se/img/no_img.png",
 							"Coffee Glass", "1;1;2;2;3;3;4;4", "Irish Coffee instructions", 5, 0) };
-
+		// Drinks uses autoincrement in the _id field.
+		
 			// Insert testDrinks.
 			for (Drink testDrink : testDrinks) {
 				ContentValues values = testDrink.getContentValues();
