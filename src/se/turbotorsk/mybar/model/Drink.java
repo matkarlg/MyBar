@@ -30,6 +30,7 @@ package se.turbotorsk.mybar.model;
 
 import se.turbotorsk.mybar.controller.Controller;
 import android.content.ContentValues;
+import android.util.Log;
 
 /**
  * A drink object contains information about a drink.
@@ -94,20 +95,41 @@ public class Drink {
 	 * 
 	 * @return
 	 */
-	public String getIngredientString() {
-		// Controller controller = Controller.controller;
-		int arrayCount = 0, maxStringLength = (25 - 4);
+	public String getIngredientPreViewString() {
+		int arrayCount = 0, maxStringLength = (40 - 4);
 		StringBuffer nameBuff = new StringBuffer();
-		for (String sid : ingredient.split(";")) {
-			if ((arrayCount % 2) == 0) {
-				String name = Controller.getIngredientById(Integer.parseInt(sid)).getName();
-				if ((name.length() - maxStringLength) <= 0)
-					nameBuff.append(name);
-				nameBuff.append(",");
-			}
+		String name = "";
+		String[] array = ingredient.split(";"); 
+		nameBuff.append("| ");
+		int i = 0;
+		while( i < array.length -1){
+				
+				Log.d("Searcing for", array[i]);
+				name = Controller.getIngredientById(Integer.parseInt(array[i])).getName();
+				if ((maxStringLength - name.length()) > 0){
+					nameBuff.append(name + " | ");
+					maxStringLength = maxStringLength - name.length();
+				}
+				i = i + 2; 
 		}
+		return nameBuff.toString(); 
+	}
+	
+	public String getIngredientString() {
 
-		return null;
+		int arrayCount = 0, maxStringLength = (26 - 4);
+		StringBuffer nameBuff = new StringBuffer();
+		String name = "";
+		String[] array = ingredient.split(";"); 
+		int i = 0;
+		while( i < array.length -1){
+				
+				Log.d("Searcing for", array[i]);
+				name = Controller.getIngredientById(Integer.parseInt(array[i])).getName();
+				nameBuff.append(name + "\n");
+				i = i + 2; 
+		}
+		return nameBuff.toString(); 
 	}
 
 	/**

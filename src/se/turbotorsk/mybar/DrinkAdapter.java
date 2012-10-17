@@ -99,7 +99,7 @@ public class DrinkAdapter extends ArrayAdapter<LinkedList> {
 			}
 			if (tt1 != null) {
 
-				tt1.setText(p.getIngredient());
+				tt1.setText(p.getIngredientPreViewString());
 			}
 			if (tt3 != null) {
 
@@ -135,7 +135,7 @@ public class DrinkAdapter extends ArrayAdapter<LinkedList> {
 	 */
 	public String getIngredients(int position) {
 		Drink drink = items.get(position);
-		return drink.getIngredient();
+		return drink.getIngredientString();
 	}
 
 	/**

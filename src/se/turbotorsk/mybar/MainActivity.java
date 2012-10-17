@@ -69,9 +69,8 @@ public class MainActivity extends TabActivity {
 		StrictMode.setThreadPolicy(policy);
 
 		this.deleteDatabase("turbotorsk_mybar.db");
-
+		Data.syncDatabase();
 		Data.insertTestData();
-		Data.addMyBar(2, "home");
 
 		// String[] lista = data.getDrinkNameArray(); tabHost = getTabHost();
 		TabHost tabHost = getTabHost();

@@ -41,6 +41,7 @@ import se.turbotorsk.mybar.model.MyBar;
 public class Controller {
 	private static int myBarID = 1;
 	private final static DrinkManager dm = new DrinkManager();
+	private static Data data = new Data(); 
 
 	public static LinkedList<Drink> getMyBar() {
 		// dm.getMyBar(data.getMyIngredients(this.myBarID),
@@ -54,8 +55,8 @@ public class Controller {
 	 * @param id
 	 * @return
 	 */
-	public static Drink getIngredientById(int id) {
-		return null;
+	public static Ingredient getIngredientById(int id) {
+		return data.getIngredientByID(id); 
 	}
 
 	// ---------- Methods for get and set favorites ----------
@@ -80,12 +81,12 @@ public class Controller {
 	}
 
 	public static int isFavorite(int id) {
-		Drink drink = Data.getDrinkByID(id);
+		Drink drink = data.getDrinkByID(id);
 		return drink.getFavorite();
 	}
 
 	public static int rating(int id) {
-		Drink drink = Data.getDrinkByID(id);
+		Drink drink = data.getDrinkByID(id);
 		return drink.getRating();
 	}
 
@@ -118,7 +119,7 @@ public class Controller {
 	public static LinkedList<Ingredient> getMyIngredients(){
 		LinkedList<Ingredient> list = new LinkedList<Ingredient>(); 
 		for(MyBar mybar: Data.getAllMyBar()){
-			list.add( Data.getIngredientByID(mybar.getIngredientID()));	
+			list.add( data.getIngredientByID(mybar.getIngredientID()));	
 		}
 		return list;
 	}
