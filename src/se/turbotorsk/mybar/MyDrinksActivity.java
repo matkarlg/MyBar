@@ -29,58 +29,50 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 package se.turbotorsk.mybar;
 
 import se.turbotorsk.mybar.controller.Controller;
+import se.turbotorsk.mybar.model.Data;
 import android.app.ListActivity;
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.TextView;
 
 /**
- * This activity handles the functions that add ingredients.
+ * This activity handles the Collection. The collection is the third tab in the
+ * application and should show all of the drinks from our database. If the user
+ * wants to see information about the drink they could press on the drink and
+ * get to another activity, the ViewDrinkActivity.
+ * 
+ * The activity is built on the custom listview xml file rowlayout.xml. This
+ * file can be found where all of the other layout files are.
  */
-public class AddIngredientActivity extends ListActivity {
-	
-	TextView text;
-	IngredientAdapter adapter;
-	private static int save = -1;
-	
+public class MyDrinksActivity extends ListActivity {
+
+	DrinkAdapter adapter;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		text = (TextView) findViewById(R.id.drink);
-		adapter = new IngredientAdapter(this, R.layout.rowlayout,
-				Controller.getAllIngredients());
 
+		adapter = new DrinkAdapter(this, R.layout.rowlayout,
+				Controller.getAllDrinks());	//Should be DrinkManager.getPossibleDrinks();
+
+		// Sets the adapter that we just did.
 		setListAdapter(adapter);
-
 	}
+
+	/**
+	 * This method handles what happens when pressing a item in the list.
+	 */
 
 	@Override
-	public void onListItemClick(ListView parent, View v, int position, long id) { 
-
-		{
-			if(save != position)
-			{
-		    parent.getChildAt(position).setBackgroundColor(Color.parseColor("#0489B1"));
-//		    Controller.addMyBarIngredient();
-		    save = position;
-			}
-			
-			else
-			{
-			parent.getChildAt(position).setBackgroundColor(Color.WHITE);
-//		    Controller.removeMyBarIngredient();			
-			save = -1;
-			}
-			
-		}
-
-	   
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		Intent intent = new Intent(this, ViewDrinkActivity.class);
+		intent.putExtra("drinkname", adapter.getDrinkName(position));
+		intent.putExtra("rating", adapter.getRating(position));
+		intent.putExtra("ingredients", adapter.getIngredients(position));
+		intent.putExtra("descrip", adapter.getDescrip(position));
+		intent.putExtra("url", adapter.getUrl(position));
+		intent.putExtra("id", adapter.getId(position));
+		startActivity(intent);
 	}
-
-	
 }
-
-

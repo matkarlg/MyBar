@@ -45,6 +45,10 @@
         </activity>
         <activity android:name=".Profiles" >
         </activity>
+        <activity android:name=".MyBarTabHost" >
+        </activity>
+        <activity android:name=".MyDrinksActivity" >
+        </activity>
         <activity android:name=".Splash" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

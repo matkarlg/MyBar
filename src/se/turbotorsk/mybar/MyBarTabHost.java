@@ -28,59 +28,47 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package se.turbotorsk.mybar;
 
-import se.turbotorsk.mybar.controller.Controller;
-import android.app.ListActivity;
+import android.app.TabActivity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.ListView;
+import android.widget.TabHost;
+import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
 
-/**
- * This activity handles the functions that add ingredients.
- */
-public class AddIngredientActivity extends ListActivity {
-	
-	TextView text;
-	IngredientAdapter adapter;
-	private static int save = -1;
-	
+public class MyBarTabHost extends TabActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		text = (TextView) findViewById(R.id.drink);
-		adapter = new IngredientAdapter(this, R.layout.rowlayout,
-				Controller.getAllIngredients());
+		setContentView(R.layout.main);
 
-		setListAdapter(adapter);
+		
+		// String[] lista = data.getDrinkNameArray(); tabHost = getTabHost();
+				TabHost tabHost = getTabHost();
+				
+				// MyBar tab.
+				Intent intentMySpirits = new Intent().setClass(this, MyBarActivity.class);
+				TabSpec tabSpecMySpirits = tabHost.newTabSpec("MySpirits")
+						.setIndicator("My Spirits").setContent(intentMySpirits);
 
+				// Search tab.
+				Intent intentMyDrinks = new Intent().setClass(this,
+						MyDrinksActivity.class);
+				TabSpec tabSpecMyDrinks = tabHost.newTabSpec("MyDrinks")
+						.setIndicator("My Drinks").setContent(intentMyDrinks);
+
+				// Add all tabs.
+				tabHost.addTab(tabSpecMySpirits);
+				tabHost.addTab(tabSpecMyDrinks);
+				
+				for(int i=0;i<tabHost.getTabWidget().getChildCount();i++) 
+			    {
+			        TextView tv = (TextView) tabHost.getTabWidget().getChildAt(i).findViewById(android.R.id.title);
+			        tv.setTextColor(Color.parseColor("#10bcc9"));
+			    } 
+
+
+				// Set Mybar as default tab (the middle tab).
+				tabHost.setCurrentTab(0);
 	}
-
-	@Override
-	public void onListItemClick(ListView parent, View v, int position, long id) { 
-
-		{
-			if(save != position)
-			{
-		    parent.getChildAt(position).setBackgroundColor(Color.parseColor("#0489B1"));
-//		    Controller.addMyBarIngredient();
-		    save = position;
-			}
-			
-			else
-			{
-			parent.getChildAt(position).setBackgroundColor(Color.WHITE);
-//		    Controller.removeMyBarIngredient();			
-			save = -1;
-			}
-			
-		}
-
-	   
-	}
-
-	
 }
-
-

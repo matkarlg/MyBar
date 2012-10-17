@@ -74,9 +74,9 @@ public class MainActivity extends TabActivity {
 				.setIndicator("Favorites").setContent(intentFavorites);
 
 		// MyBar tab.
-		Intent intentMyBar = new Intent().setClass(this, MyBarActivity.class);
-		TabSpec tabSpecMyBar = tabHost.newTabSpec("MyBar")
-				.setIndicator("MyBar").setContent(intentMyBar);
+		Intent intentMyBar = new Intent().setClass(this, MyBarTabHost.class);
+		TabSpec tabSpecMyBarTabHost = tabHost.newTabSpec("MyBar")
+				.setIndicator("My Bar").setContent(intentMyBar);
 
 		// MyBar tab.
 		Intent intentCollection = new Intent().setClass(this,
@@ -86,7 +86,7 @@ public class MainActivity extends TabActivity {
 
 		// Add all tabs.
 		tabHost.addTab(tabSpecFavorites);
-		tabHost.addTab(tabSpecMyBar);
+		tabHost.addTab(tabSpecMyBarTabHost);
 		tabHost.addTab(tabSpecCollection);
 
 		// Set Mybar as default tab (the middle tab).
@@ -110,14 +110,14 @@ public class MainActivity extends TabActivity {
 		case R.id.menu_add_drink:
 			startActivity(new Intent(this, AddIngredientActivity.class));
 			return true;
-		case R.id.menu_settings:
-			startActivity(new Intent(this, SettingsActivity.class));
+		case R.id.menu_share:
+			startActivity(new Intent(this, Share.class));
 			return true;
 		case R.id.menu_about:
 			AboutBox.Show(MainActivity.this);
 			return true;
-		case R.id.menu_share:
-			startActivity(new Intent(this, Share.class));
+		case R.id.menu_settings:
+			startActivity(new Intent(this, SettingsActivity.class));
 			return true;
 		default:
 			return true;
