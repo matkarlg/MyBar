@@ -28,62 +28,59 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package se.turbotorsk.mybar;
 
-import android.app.Activity;
+import se.turbotorsk.mybar.controller.Controller;
+import android.app.ListActivity;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.widget.SearchView;
-import android.widget.Toast;
+import android.util.Log;
+import android.view.View;
+import android.widget.ListView;
+import android.widget.TextView;
 
 /**
  * This activity handles the functions that add ingredients.
  */
-public class AddIngredientActivity extends Activity {
-
-	SearchView search;
-
-	// Ingredient ingredient;
-
+public class AddIngredientActivity extends ListActivity {
+	
+	TextView text;
+	IngredientAdapter adapter;
+	private static int save = -1;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.search_layout); // Use the xml layout
-												// search_layout
+		text = (TextView) findViewById(R.id.drink);
+		adapter = new IngredientAdapter(this, R.layout.rowlayout,
+				Controller.getAllIngredients());
 
-		/*
-		 * Cursor cursor = MyBarApplication.ContentResolver().query(
-		 * MyBarContentProvider.CONTENTURI_INGREDIENT, null, null, null, null);
-		 * String[] columns = new String[] { ingredient.getName(),
-		 * ingredient.getType(), ingredient.getAlcoholcontent() + ""}; int[] to
-		 * = new int[] { R.id.drink, R.id.ingredients, R.id.rating };
-		 */
+		setListAdapter(adapter);
 
-		search = (SearchView) findViewById(R.id.searchView1);
-		/*
-		 * @SuppressWarnings("deprecation") SimpleCursorAdapter adapter = new
-		 * SimpleCursorAdapter(this, R.layout.rowlayout, cursor, columns, to);
-		 */
-
-		search.setOnQueryTextListener(sListen);
-		// search.setSuggestionsAdapter(adapter);
-
-		/**
-		 * This method handles what happens when pressing a item in the list.
-		 */
-		// setOnSuggestionListener(sListen);
 	}
 
-	final SearchView.OnQueryTextListener sListen = new SearchView.OnQueryTextListener() {
-		public boolean onQueryTextSubmit(String query) {
-			Toast.makeText(AddIngredientActivity.this, "Submitted search",
-					Toast.LENGTH_SHORT).show();
-			return false;
+	@Override
+	public void onListItemClick(ListView parent, View v, int position, long id) { 
+
+		{
+			if(save != position)
+			{
+		    parent.getChildAt(position).setBackgroundColor(Color.GRAY);
+//		    Controller.addMyBarIngredient();
+		    save = position;
+			}
+			
+			else
+			{
+			parent.getChildAt(position).setBackgroundColor(Color.WHITE);
+//		    Controller.removeMyBarIngredient();			
+			save = -1;
+			}
+			
 		}
 
-		public boolean onQueryTextChange(String query) {
-			if (query.length() >= 3) {
-				Toast.makeText(AddIngredientActivity.this, "Wrote some stuff",
-						Toast.LENGTH_SHORT).show();
-			}
-			return false;
-		}
-	};
+	   
+	}
+
+	
 }
+
+

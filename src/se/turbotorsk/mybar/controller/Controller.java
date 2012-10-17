@@ -155,4 +155,10 @@ public class Controller {
 		data.setDrink(name, "favorite", 0);
 	}
 	
+	public static LinkedList<Ingredient> getAllIngredients()
+	{
+		return data.getAllIngredients();
+		
+	}
+	
 }

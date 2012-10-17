@@ -95,7 +95,7 @@ public class IngredientAdapter extends ArrayAdapter<LinkedList> {
 				tt2.setText(p.getType());
 			}
 			if (tt != null) {
-				tt3.setText(p.getAlcoholcontent() + "%");
+				tt3.setText("ABV: " + p.getAlcoholcontent() + "%");
 			}
 			if (iv != null) {
 				iv.setImageResource(R.drawable.bottle);

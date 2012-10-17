@@ -28,7 +28,7 @@
         android:typeface="sans"
         android:textColor="#040404"
         android:textSize="15dip"
-        android:textStyle="bold" >
+        android:textStyle="bold">
         
     </TextView>
     
@@ -39,7 +39,7 @@
         android:layout_below="@id/drink"
         android:layout_marginTop="1dip"
         android:text="ing1, ing2, ing3, ing4, ing5"
-        android:textColor="#343434"
+        android:textColor="#10bcc9"
         android:textSize="10dip" />
     
      <TextView
@@ -50,7 +50,7 @@
          android:layout_marginRight="5dip"
          android:gravity="left"
          android:text="4/5"
-         android:textColor="#10bcc9"
+         android:textColor="#343434"
          android:textSize="10dip"
          android:textStyle="bold" />
     
