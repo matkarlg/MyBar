@@ -12,14 +12,18 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 package se.turbotorsk.mybar;
 
 import se.turbotorsk.mybar.model.Data;
+import android.app.Activity;
 import android.app.TabActivity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TabHost;
+import android.widget.Toast;
 import android.widget.TabHost.TabSpec;
+import android.widget.TextView;
 
 /**
  * This activity handles the main-window in the application.
