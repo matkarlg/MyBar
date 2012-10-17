@@ -36,6 +36,7 @@ import se.turbotorsk.mybar.model.database.DrinkTable;
 import se.turbotorsk.mybar.model.database.IngredientTable;
 import se.turbotorsk.mybar.model.database.MyBarContentProvider;
 import se.turbotorsk.mybar.model.database.MyBarTable;
+import se.turbotorsk.mybar.model.externaldata.JsonParse;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
@@ -50,6 +51,7 @@ import android.util.Log;
  *         href="mailto:mathias.karlgren@gmail.com">email</a>)
  */
 public class Data {
+	private static JsonParse jsonParse = new JsonParse();
 	/**
 	 * Inserts TestData in the database.
 	 * 
@@ -139,6 +141,17 @@ public class Data {
 				MyBarContentProvider.CONTENTURI_MYBAR, null, null);
 		return rowsDeleted;
 	}
+	
+	/**
+	 * Syncs remote datastore (JSON) with local SQLite database
+	 * 
+	 * @return false
+	 */
+	public boolean syncDatabase()
+	{
+		jsonParse.getDb();
+		return false; 
+	}
 
 	/**
 	 * Adds a new ingredient to MyBarTable
@@ -168,7 +181,7 @@ public class Data {
 	 * @param location "Home", "Work".
 	 * @return 0 if successful. 1 if error. See LogCat.
 	 */
-	public int dropMyBar(int ingredientID, String location) {
+	public static int dropMyBar(int ingredientID, String location) {
 		// Choose which columns you want to query. null queries all columns.
 		// String[] projection = { MyBarTable.COLUMN_ID,
 		// MyBarTable.COLUMN_INGREDIENTID };
@@ -339,7 +352,7 @@ public class Data {
 	 * 
 	 * @return LinkedList<MyBar>.
 	 */
-	public LinkedList<MyBar> getAllMyBar() {
+	public static LinkedList<MyBar> getAllMyBar() {
 		LinkedList<MyBar> mybarList = new LinkedList<MyBar>();
 
 		// Choose which columns you want to query. null queries all columns.
