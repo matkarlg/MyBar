@@ -97,11 +97,11 @@ public class Controller {
 		// data.
 		return null;
 	}
-	
-	public static LinkedList<Ingredient> getMyIngredients(){
-		LinkedList<Ingredient> list = new LinkedList<Ingredient>(); 
-		for(MyBar mybar: Data.getAllMyBar()){
-			list.add( Data.getIngredientByID(mybar.getIngredientID()));	
+
+	public static LinkedList<Ingredient> getMyIngredients() {
+		LinkedList<Ingredient> list = new LinkedList<Ingredient>();
+		for (MyBar mybar : Data.getAllMyBar()) {
+			list.add(Data.getIngredientByID(mybar.getIngredientID()));
 		}
 		return list;
 	}

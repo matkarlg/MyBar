@@ -42,8 +42,8 @@ public class Drink {
 	private int favorite = 0;
 	private ContentValues values = null;
 
-	public Drink(int _id, String name, String url, String glass, String ingredient,
-			String description, int rating, int favorite) {
+	public Drink(int _id, String name, String url, String glass,
+			String ingredient, String description, int rating, int favorite) {
 		this._id = _id;
 		this.name = name;
 		this.url = url;
@@ -93,7 +93,8 @@ public class Drink {
 		StringBuffer nameBuff = new StringBuffer();
 		for (String sid : ingredient.split(";")) {
 			if ((arrayCount % 2) == 0) {
-				String name = Controller.getIngredientById(Integer.parseInt(sid)).getName();
+				String name = Controller.getIngredientById(
+						Integer.parseInt(sid)).getName();
 				if ((name.length() - maxStringLength) <= 0)
 					nameBuff.append(name);
 				nameBuff.append(",");

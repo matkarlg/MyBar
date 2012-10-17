@@ -34,11 +34,13 @@ public class DrinkTable {
 	public static final String COLUMN_FAVORITE = "favorite";
 
 	// Database table creation SQL statement.
-	private static final String DATABASE_CREATE = "CREATE TABLE " + TABLE_DRINK + "(" + COLUMN_ID
-			+ " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NAME + " TEXT NOT NULL, "
-			+ COLUMN_URL + " TEXT NOT NULL, " + COLUMN_GLASS + " TEXT NOT NULL, "
-			+ COLUMN_INGREDIENT + " TEXT NOT NULL, " + COLUMN_DESCRIPTION + " TEXT NOT NULL, "
-			+ COLUMN_RATING + " INTEGER NOT NULL, " + COLUMN_FAVORITE + " INTEGER NOT NULL" + ");";
+	private static final String DATABASE_CREATE = "CREATE TABLE " + TABLE_DRINK
+			+ "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+			+ COLUMN_NAME + " TEXT NOT NULL, " + COLUMN_URL
+			+ " TEXT NOT NULL, " + COLUMN_GLASS + " TEXT NOT NULL, "
+			+ COLUMN_INGREDIENT + " TEXT NOT NULL, " + COLUMN_DESCRIPTION
+			+ " TEXT NOT NULL, " + COLUMN_RATING + " INTEGER NOT NULL, "
+			+ COLUMN_FAVORITE + " INTEGER NOT NULL" + ");";
 
 	/**
 	 * This method creates the database.
@@ -56,10 +58,12 @@ public class DrinkTable {
 	 * @param oldVersion
 	 * @param newVersion
 	 */
-	public static void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
+	public static void onUpgrade(SQLiteDatabase database, int oldVersion,
+			int newVersion) {
 		// Print upgrade warning to LogCat.
-		Log.w(DrinkTable.class.getName(), "Upgrading " + TABLE_DRINK + " table from version "
-				+ oldVersion + " to " + newVersion + ", which will destroy all old data");
+		Log.w(DrinkTable.class.getName(), "Upgrading " + TABLE_DRINK
+				+ " table from version " + oldVersion + " to " + newVersion
+				+ ", which will destroy all old data");
 
 		// Kills the table and existing data.
 		database.execSQL("DROP TABLE IF EXISTS " + TABLE_DRINK);
