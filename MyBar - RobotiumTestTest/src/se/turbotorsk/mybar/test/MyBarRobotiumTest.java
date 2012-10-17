@@ -28,11 +28,11 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package se.turbotorsk.mybar.test;
 
-import se.turbotorsk.mybar.AboutBox;
 import se.turbotorsk.mybar.AddIngredientActivity;
 import se.turbotorsk.mybar.CollectionActivity;
 import se.turbotorsk.mybar.MainActivity;
 import se.turbotorsk.mybar.SettingsActivity;
+
 import android.test.ActivityInstrumentationTestCase2;
 
 import com.jayway.android.robotium.solo.Solo;
@@ -81,7 +81,7 @@ public class MyBarRobotiumTest extends ActivityInstrumentationTestCase2<MainActi
 	}
 	
 //This test will press an emulated right button, it is not a clean or good way to try this
-//but i haven't managed to get robotium to press the COLLECTION tab. This has to do for now.
+//but i haven't managed to get Robotium to press the COLLECTION tab. This has to do for now.
 	public void test2_ChangeTabToCollection(){
 		solo.assertCurrentActivity("First activity", MainActivity.class);
 		solo.sendKey(Solo.RIGHT);
