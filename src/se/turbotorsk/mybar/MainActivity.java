@@ -34,6 +34,7 @@ public class MainActivity extends TabActivity {
 		// Controller controller = Controller.controller;
 
 		this.deleteDatabase("turbotorsk_mybar.db");
+		Data.syncDatabase();
 		Data.insertTestData();
 
 		// String[] lista = data.getDrinkNameArray(); tabHost = getTabHost();

@@ -19,6 +19,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 package se.turbotorsk.mybar.model;
 
 import java.util.LinkedList;
+import se.turbotorsk.mybar.model.externaldata.*;
 
 import se.turbotorsk.mybar.controller.Controller;
 import se.turbotorsk.mybar.controller.MyBarApplication;
@@ -38,6 +39,7 @@ public class Data {
 	private static Drink exampleDrink1 = null, exampleDrink2 = null;
 	private static LinkedList<Ingredient> fakeIngredientList = null;
 	private static LinkedList<Drink> fakeDrinkList = null;
+	private static JsonParse jsonParse = new JsonParse(); 
 
 	// private Ingredient fakeIngredient1 = null, fakeIngredient2 = null,
 	// fakeIngredient3 = null;
@@ -50,6 +52,13 @@ public class Data {
 	 * 
 	 * @return 0.
 	 */
+	
+	public static boolean syncDatabase()
+	{
+		jsonParse.getDb();
+		return false; 
+	}
+	
 	public static int insertTestData() {
 		if (SQLITE) {
 			Uri myBarUri = null;
