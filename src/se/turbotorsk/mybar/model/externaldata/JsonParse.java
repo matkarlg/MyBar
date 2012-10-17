@@ -48,6 +48,8 @@ import android.widget.Toast;
 
 public class JsonParse {
 
+	private static final int TIMEOUT_MILLISEC = 9999;
+
 	public JsonParse() {
 		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
 				.permitAll().build();
@@ -58,43 +60,107 @@ public class JsonParse {
 		//JSONArray jArray = getWebResponsJSON("preinitdb.php");
 		return true;
 	}
+	
+	
+	public String getWebData(String wepDocumet)
+	{
+		
+	    try {
+	        // http://androidarabia.net/quran4android/phpserver/connecttoserver.php
+
+	        // Log.i(getClass().getSimpleName(), "send  task - start");
+	        HttpParams httpParams = new BasicHttpParams();
+	        HttpConnectionParams.setConnectionTimeout(httpParams,TIMEOUT_MILLISEC);
+	        HttpConnectionParams.setSoTimeout(httpParams, TIMEOUT_MILLISEC);
+	        //
+	        HttpParams p = new BasicHttpParams();
+	        // p.setParameter("name", pvo.getName());
+	        p.setParameter("user", "1");
+
+	        // Instantiate an HttpClient
+	        HttpClient httpclient = new DefaultHttpClient(p);
+	        String url = "http://dbaccess.mybar.turbotorsk.se/" + wepDocumet;
+	        HttpPost httppost = new HttpPost(url);
+	        // Instantiate a GET HTTP method
+    		try{
+    			ResponseHandler<String> responseHandler = new BasicResponseHandler();
+    			String responseBody = httpclient.execute(httppost,responseHandler);
+    			//Log.d("getWebData", "Request good: " + responseBody);
+    			return responseBody;
+    		
+    		} catch (ClientProtocolException e) {    			
+    			Log.d("Error", e.toString());
+    			return "error";
+    		}
+	    } catch (Throwable t) {
+			Log.d("Error", t.toString());
+			return "error";
+    	}	
+	}
+	    
 
 	public boolean getDb() {
-
-		boolean drinkOK = false, ingredientOK = false; 
-		//String responseBody = getWebResponsJSON("getDrinks.php"); //Get JSON.
+		boolean drinkOK = false, ingredientOK = false;
+		String responseBody = getWebData("getIngredients.php");
+		Log.d("getDB",responseBody);
+		try{
+			JSONObject json = new JSONObject(responseBody); // Prepare the JSON to be parsed 
+			JSONArray jArray = json.getJSONArray("ingredients"); 
+			Log.d("getDrinks.php",jArray.toString());
+			for (int i = 0; i < jArray.length(); ++i) {
+				JSONObject jObject;
+				jObject = jArray.getJSONObject(i);
+				ContentValues values = new Ingredient(jObject.getInt("_id"), jObject.getString("name"), jObject.getString("url"), jObject.getString("ingredienttype"), jObject.getInt("alcohollevel"),jObject.getString("description")).getContentValues();		//Gets the rating from JSON;
+				//Insets the data into the SQLite
+				Uri myBarUriIngredient = MyBarApplication.ContentResolver().insert(MyBarContentProvider.CONTENTURI_INGREDIENT, values);
+				Log.d(Data.class.getClass().getName(), "Inserted Ingredient. Created row: " + myBarUriIngredient.toString());
+			}
+			ingredientOK = true; 
+			
+        } catch (JSONException e) {
+        	Log.d("JSONError ingredients", e.toString());
+        	ingredientOK = false; 
+        }
 		
-		//Get the drinks
+		
+		responseBody = getWebData("getDrinks.php");
+		Log.d("getDB",responseBody);
 		try {
-			String responseBody = getWebResponsJSON("getDrinks.php"); //Get JSON.
-			Log.d("respone", "responseBody");
-			Log.d("respone", responseBody);
 			JSONObject json = new JSONObject(responseBody); // Prepare the JSON to be parsed 
 			JSONArray jArray = json.getJSONArray("drinks"); 
 			Log.d("getDrinks.php",jArray.toString());
-			int jArrSize = jArray.length();
-			for (int i = 0; i < jArrSize; ++i) {
+			for (int i = 0; i < jArray.length(); ++i) {
 				JSONObject jObject;
 				jObject = jArray.getJSONObject(i);
 				ContentValues values = new Drink(jObject.getInt("_id"),
-						jObject.getString("name"), 								//Gets the name from JSON
-						jObject.getString("url"),								//Gets the name pic url JSON
-						jObject.getString("glass"),								//Gets the glass type from JSON
-						jObject.getString("ingredient"),						//Gets the list of ingredients from JSON
-						jObject.getString("description"),						//Gets the description from JSON
-						jObject.getInt("rating"), 								//Gets the rating from JSON
-						0).getContentValues();									//Sets favorite to 0 and gets the content values. 
-				//Insets the data into the SQLite
-				Uri myBarUriDrink = MyBarApplication.ContentResolver().insert(
-						MyBarContentProvider.CONTENTURI_DRINK, values);	
-				Log.d(Data.class.getClass().getName(),
-						"Inserted Drink. Created row: " + myBarUriDrink.toString());
-			}
-			drinkOK = true; 
-		} catch (Exception e) {
-			Log.d(Data.class.getClass().getName(), e.toString());	
-			e.printStackTrace();
+					jObject.getString("name"), 								//Gets the name from JSON
+					jObject.getString("url"),								//Gets the name pic url JSON
+					jObject.getString("glass"),								//Gets the glass type from JSON
+					jObject.getString("ingredient"),						//Gets the list of ingredients from JSON
+					jObject.getString("description"),						//Gets the description from JSON
+					jObject.getInt("rating"), 								//Gets the rating from JSON
+					0).getContentValues();									//Sets favorite to 0 and gets the content values. 
+			//Insets the data into the SQLite
+			Uri myBarUriDrink = MyBarApplication.ContentResolver().insert(
+					MyBarContentProvider.CONTENTURI_DRINK, values);	
+			Log.d(Data.class.getClass().getName(),
+					"Inserted Drink. Created row: " + myBarUriDrink.toString());
 		}
+			drinkOK = true; 
+        } catch (JSONException e) {
+        	Log.d("JSONError drinks", e.toString());
+        	drinkOK = false; 
+        }
+
+		
+		return ingredientOK & drinkOK;
+	}
+	//	boolean drinkOK = false, ingredientOK = false; 
+		//String tets = getWebResponsJSON("getDrinks.php"); //Get JSON.
+		//String responseBody = getWebResponsJSON("getDrinks.php"); //Get JSON.
+		
+		//Get the drinks
+		
 	
 		//Get the Ingretients
 		/*
@@ -118,15 +184,15 @@ public class JsonParse {
 		}
 		*/
 		
-		if(drinkOK & ingredientOK) return true;
-		else return false; 
-	}
+		//if(drinkOK & ingredientOK) return true;
+		//else return false; 
+
 	
-	/**
-	 * This method gets the JSON-formated datastructure form the web server
-	 * @param wepDocumet The name of the file to be recived
-	 * @return a JSONObject
-	 */
+	///**
+	// * This method gets the JSON-formated datastructure form the web server
+	// * @param wepDocumet The name of the file to be recived
+	// * @return a JSONObject
+	// */
 
 	private String getWebResponsJSON(String wepDocumet) {
 		wepDocumet = "test3.php";
@@ -160,24 +226,61 @@ public class JsonParse {
 				ResponseHandler<String> responseHandler = new BasicResponseHandler();
 				String responseBody = httpclient.execute(httppost, responseHandler);
 				Log.d("Response body:", responseBody);
-				return responseBody; 
-			} catch (ClientProtocolException e) {
+				
+
+					Log.d("respone", "responseBody");
+					Log.d("respone", responseBody);
+					JSONObject json = new JSONObject(responseBody); // Prepare the JSON to be parsed 
+					JSONArray jArray = json.getJSONArray("drinks"); 
+					Log.d("getDrinks.php",jArray.toString());
+					int jArrSize = jArray.length();
+					for (int i = 0; i < jArrSize; ++i) {
+						JSONObject jObject;
+						jObject = jArray.getJSONObject(i);
+						ContentValues values = new Drink(jObject.getInt("_id"),
+								jObject.getString("name"), 								//Gets the name from JSON
+								jObject.getString("url"),								//Gets the name pic url JSON
+								jObject.getString("glass"),								//Gets the glass type from JSON
+								jObject.getString("ingredient"),						//Gets the list of ingredients from JSON
+								jObject.getString("description"),						//Gets the description from JSON
+								jObject.getInt("rating"), 								//Gets the rating from JSON
+								0).getContentValues();									//Sets favorite to 0 and gets the content values. 
+						//Insets the data into the SQLite
+						Uri myBarUriDrink = MyBarApplication.ContentResolver().insert(
+								MyBarContentProvider.CONTENTURI_DRINK, values);	
+						Log.d(Data.class.getClass().getName(),
+								"Inserted Drink. Created row: " + myBarUriDrink.toString());
+					}
+				} catch (Exception e) {
+					Log.d(Data.class.getClass().getName(), e.toString());	
+					e.printStackTrace();
+				
+					return "hello1";	
+				}
+			//} catch (ClientProtocolException e) {
 				// TODO Auto-generated catch block
-				Log.d("Test10!", e.toString());
-				e.printStackTrace();
-			} catch (IOException e) {
+			//	Log.d("Test10!", e.toString());
+			//	e.printStackTrace();
+		//	} catch (IOException e) {
 				// TODO Auto-generated catch block
-				Log.d("Test11!", "error");
-				e.printStackTrace();
-			}
+		//		Log.d("Test11!", "error");
+		//		e.printStackTrace();
+		//	}
 			// Log.i(getClass().getSimpleName(), "send  task - end");
 
-		} catch (Throwable t) {
-			Log.d("Test20!", "error! " + t.toString());
+		//} catch (Throwable t) {
+		//	Log.d("Test20!", "error! " + t.toString());
 			// Toast.makeText(this, "Request failed: " + t.toString(),
 			// Toast.LENGTH_LONG).show();
-		}
+		//}
+		}catch (Exception e) {
+					Log.d(Data.class.getClass().getName(), e.toString());	
+					e.printStackTrace();
+				
+					return "hello2";	
 
-		return null;
-	}
+				}
+		return "hello3";	
+		
+	}	
 }
