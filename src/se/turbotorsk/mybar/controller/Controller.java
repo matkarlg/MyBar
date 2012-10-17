@@ -129,4 +129,30 @@ public class Controller {
 		data.syncDatabase();
 		//data.insertTestData();
 	}
+	
+	public static LinkedList<Drink> getAllDrinks()
+	{
+		return data.getAllDrinks();
+	}
+	
+	public static LinkedList<Drink> getAllFavorites()
+	{
+		return data.getAllFavorites();
+	}
+	
+	public static int setFavoriteByName(String name, int rating)
+	{
+		return data.setDrink(name, "rating", (int) rating);
+	}
+
+	public static void setFavorite(String name)
+	{
+		data.setDrink(name, "favorite", 1);
+	}
+	
+	public static void setNotFavorite(String name)
+	{
+		data.setDrink(name, "favorite", 0);
+	}
+	
 }

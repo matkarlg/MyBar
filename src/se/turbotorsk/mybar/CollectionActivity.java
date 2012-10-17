@@ -28,6 +28,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package se.turbotorsk.mybar;
 
+import se.turbotorsk.mybar.controller.Controller;
 import se.turbotorsk.mybar.model.Data;
 import android.app.ListActivity;
 import android.content.Intent;
@@ -53,7 +54,7 @@ public class CollectionActivity extends ListActivity {
 		super.onCreate(savedInstanceState);
 
 		adapter = new DrinkAdapter(this, R.layout.rowlayout,
-				Data.getAllDrinks());
+				Controller.getAllDrinks());
 
 		// Sets the adapter that we just did.
 		setListAdapter(adapter);

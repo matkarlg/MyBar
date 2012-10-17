@@ -456,7 +456,7 @@ public class Data {
 	 * 
 	 * @return Drink object.
 	 */
-	public static LinkedList<Drink> getAllDrinks() {
+	public LinkedList<Drink> getAllDrinks() {
 		if (SQLITE) {
 
 			/**
@@ -748,9 +748,7 @@ public class Data {
 	 * 
 	 * @return Drink object.
 	 */
-	public static LinkedList<Drink> getAllFavorites() {
-		if (SQLITE) {
-
+	public LinkedList<Drink> getAllFavorites() {
 			/**
 			 * SQLITE getAllFavorites().
 			 */
@@ -805,9 +803,6 @@ public class Data {
 			/**
 			 * End of SQLite getAllFavorites().
 			 */
-		}
-		if (EDATA) {}
-		if (FAKE) {}
 		return null;
 	}
 
@@ -817,8 +812,8 @@ public class Data {
 	 * @param ID
 	 * @return 0 if OK. 1 if ID doesn't exist.
 	 */
-	public static int setFavoriteByID(int ID) {
-		if (SQLITE) {
+	public int setFavoriteByID(int ID) {
+
 
 			/**
 			 * SQLITE setFavoriteByID().
@@ -866,10 +861,7 @@ public class Data {
 			/**
 			 * End of SQLite setFavoriteByID().
 			 */
-		}
-		if (EDATA) {}
-		if (FAKE) {}
-
+		
 		return 1;
 	}
 
@@ -880,7 +872,6 @@ public class Data {
 	 * @return 0 if OK. 1 if name doesn't exist.
 	 */
 	public static int setFavoriteByName(String name) {
-		if (SQLITE) {
 
 			/**
 			 * SQLITE setFavoriteByName().
@@ -928,10 +919,7 @@ public class Data {
 			/**
 			 * End of SQLite setFavoriteByName().
 			 */
-		}
-		if (EDATA) {}
-		if (FAKE) {}
-
+	
 		return 1;
 	}
 
@@ -943,8 +931,7 @@ public class Data {
 	 * @param set The value to update the column with.
 	 * @return 0 if successful.
 	 */
-	public static int setDrink(String name, String column, int set) {
-		if (SQLITE) {
+	public int setDrink(String name, String column, int set) {
 
 			/**
 			 * SQLITE setDrink(String name, String column, int set).
@@ -996,9 +983,6 @@ public class Data {
 			/**
 			 * End of SQLite setDrink(String name, String column, int set).
 			 */
-		}
-		if (EDATA) {}
-		if (FAKE) {}
 
 		return 1;
 	}
@@ -1012,7 +996,7 @@ public class Data {
 	 * @return 0 if successful.
 	 */
 	public static int setDrink(int ID, String column, int set) {
-		if (SQLITE) {
+
 
 			/**
 			 * SQLITE setDrink(int ID, String column, int set).
@@ -1064,24 +1048,22 @@ public class Data {
 			/**
 			 * End of SQLite setDrink(int ID, String column, int set).
 			 */
-		}
-		if (EDATA) {}
-		if (FAKE) {}
+
 
 		return 1;
 	}
 
-	public static String[] getDrinkNameAsArray() {
+	public String[] getDrinkNameAsArray() {
 		String[] drinks;
 		if (SQLITE) {
 			LinkedList<String> nameList = new LinkedList<String>();
 
-			for (int i = 0; i < Data.getAllDrinks().size(); i++) {
-				nameList.add(Data.getAllDrinks().get(i).getName());
+			for (int i = 0; i < getAllDrinks().size(); i++) {
+				nameList.add(getAllDrinks().get(i).getName());
 
 				Log.d(Controller.class.getClass().getName(), ""
-						+ Data.getAllDrinks().get(i).get_id() + " "
-						+ Data.getAllDrinks().get(i).getName());
+						+ getAllDrinks().get(i).get_id() + " "
+						+ getAllDrinks().get(i).getName());
 			}
 
 			String[] array = new String[nameList.size()];
@@ -1130,7 +1112,7 @@ public class Data {
 	 *         string.
 	 */
 	public static LinkedList<Ingredient> searchIngredients(String search, int limit) {
-		if (SQLITE) {
+
 
 			/**
 			 * SQLITE searchIngredients().
@@ -1186,9 +1168,6 @@ public class Data {
 			/**
 			 * End of SQLite searchIngredients().
 			 */
-		}
-		if (EDATA) {}
-		if (FAKE) {}
 		return null;
 	}
 }
