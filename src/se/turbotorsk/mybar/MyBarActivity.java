@@ -16,7 +16,6 @@ import se.turbotorsk.mybar.model.Data;
 import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 /**
@@ -25,24 +24,24 @@ import android.widget.ListView;
 public class MyBarActivity extends ListActivity {
 
 	IngredientAdapter adapter;
+	// Variable is not used for now.
 	private static final byte UPDATE_LIST = 100;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		adapter = new IngredientAdapter(this,
-				R.layout.rowlayout, Controller.getMyIngredients());
+		adapter = new IngredientAdapter(this, R.layout.rowlayout,
+				Controller.getMyIngredients());
 
 		setListAdapter(adapter);
-		
+
 	}
-		
+
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
-			Data.dropMyBar(adapter.getId(position), adapter.getPosition(position));
-			adapter.notifyDataSetChanged();
-		}
-	      
+		Data.dropMyBar(adapter.getId(position), adapter.getPosition(position));
+		adapter.notifyDataSetChanged();
+	}
 
 }

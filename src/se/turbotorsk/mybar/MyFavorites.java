@@ -15,8 +15,6 @@ import se.turbotorsk.mybar.model.Data;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.StrictMode;
-import android.view.Menu;
 import android.view.View;
 import android.widget.ListView;
 
@@ -61,9 +59,10 @@ public class MyFavorites extends ListActivity {
 	/**
 	 * This method updates the list in MyFavorites.
 	 */
-	public void updateList(){
-		//adapter = new DrinkAdapter(this, R.layout.rowlayout, Data.getAllFavorites());
-		//adapter.notifyDataSetChanged();
-		
+	public void updateList() {
+		// adapter = new DrinkAdapter(this, R.layout.rowlayout,
+		// Data.getAllFavorites());
+		// adapter.notifyDataSetChanged();
+
 	}
 }

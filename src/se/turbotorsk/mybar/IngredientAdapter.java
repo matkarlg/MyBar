@@ -11,16 +11,10 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 package se.turbotorsk.mybar;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.LinkedList;
 
-import se.turbotorsk.mybar.model.Drink;
 import se.turbotorsk.mybar.model.Ingredient;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -115,15 +109,15 @@ public class IngredientAdapter extends ArrayAdapter<LinkedList> {
 		Ingredient ingredient = items.get(position);
 		return ingredient.getDescription();
 	}
-	
+
 	public int getId(int position) {
 		Ingredient ingredient = items.get(position);
 		return ingredient.get_id();
 	}
-	
+
 	public String getPosition(int position) {
 		Ingredient ingredient = items.get(position);
-		return "home"; //change later!!!
+		return "home"; // change later!!!
 	}
 
 }

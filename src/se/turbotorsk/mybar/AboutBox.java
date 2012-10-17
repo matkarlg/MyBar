@@ -14,7 +14,6 @@ package se.turbotorsk.mybar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.text.SpannableString;
 import android.text.util.Linkify;
 import android.view.InflateException;
@@ -24,8 +23,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 /**
- * This activity handles the AboutBox that is a part of the Options-menu.
- * It shows the current version number and also the name of the developing group who made the application.
+ * This activity handles the AboutBox that is a part of the Options-menu. It
+ * shows the current version number and also the name of the developing group
+ * who made the application.
  */
 public class AboutBox {
 	static String VersionName(Context context) {

@@ -11,15 +11,9 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 package se.turbotorsk.mybar;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import se.turbotorsk.mybar.controller.Controller;
 import se.turbotorsk.mybar.model.Data;
 import android.app.Activity;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -72,7 +66,8 @@ public class ViewDrinkActivity extends Activity implements
 	}
 
 	/**
-	 * This method collects all the set-methods for the information of the drink.
+	 * This method collects all the set-methods for the information of the
+	 * drink.
 	 */
 	public void setDrinkInfo() {
 
@@ -92,7 +87,6 @@ public class ViewDrinkActivity extends Activity implements
 		setDrinkIngredients();
 		setDrinkImage();
 		dImage.setImageResource(R.drawable.no_img);
-
 
 	}
 

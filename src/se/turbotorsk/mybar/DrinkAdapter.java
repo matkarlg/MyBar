@@ -11,16 +11,10 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 package se.turbotorsk.mybar;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.LinkedList;
 
 import se.turbotorsk.mybar.model.Drink;
-import se.turbotorsk.mybar.model.Ingredient;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,12 +25,11 @@ import android.widget.TextView;
 /**
  * This activity handles the drinks.
  * 
- * This is the first version of our DrinkAdapter that is used so that it is easier to manage
- * drinks within the application.
- *
+ * This is the first version of our DrinkAdapter that is used so that it is
+ * easier to manage drinks within the application.
+ * 
  */
 public class DrinkAdapter extends ArrayAdapter<LinkedList> {
-
 
 	public DrinkAdapter(Context context, int textViewResourceId) {
 		super(context, textViewResourceId);
