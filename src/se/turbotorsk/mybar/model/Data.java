@@ -5,12 +5,12 @@ mybar@turbotorsk.se
 
 Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
-�	Redistributions of source code must retain the above copyright notice,
+*	Redistributions of source code must retain the above copyright notice,
  	this list of conditions and the following disclaimer.
-�	Redistributions in binary form must reproduce the above copyright notice,
+*	Redistributions in binary form must reproduce the above copyright notice,
  	this list of conditions and the following disclaimer in the documentation
  	and/or other materials provided with the distribution.
-�	Neither the name of the MyBar nor the names of its contributors may be 
+*	Neither the name of the MyBar nor the names of its contributors may be 
 	used to endorse or promote products derived from this software without
 	specific prior written permission.
 	
@@ -29,7 +29,6 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 package se.turbotorsk.mybar.model;
 
 import java.util.LinkedList;
-import se.turbotorsk.mybar.model.externaldata.*;
 
 import se.turbotorsk.mybar.controller.Controller;
 import se.turbotorsk.mybar.controller.MyBarApplication;
@@ -42,226 +41,190 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.util.Log;
 
+/**
+ * Contains all high level methods that communicates directly with
+ * MyBarContentProvider. Exposes the ContentProvider table functions to other
+ * parts of the application with useful methods.
+ * 
+ * @author Mathias Karlgren (<a
+ *         href="mailto:mathias.karlgren@gmail.com">email</a>)
+ */
 public class Data {
-
-	private static final boolean SQLITE = true;
-	private static final boolean EDATA = false;
-	private static final boolean FAKE = false;
-	private static Drink exampleDrink1 = null, exampleDrink2 = null;
-	private static LinkedList<Ingredient> fakeIngredientList = null;
-	private static LinkedList<Drink> fakeDrinkList = null;
-	private static JsonParse jsonParse = new JsonParse(); 
-
-	// private Ingredient fakeIngredient1 = null, fakeIngredient2 = null,
-	// fakeIngredient3 = null;
-	// private XXXXXXXX sqlite;
-	// private XXXXXXXX jsonParser;
-	// private XXXXXXXX httpGet;
-
 	/**
-	 * Inserts TestData.
+	 * Inserts TestData in the database.
 	 * 
-	 * @return 0.
+	 * @return 0
 	 */
-	
-	public boolean syncDatabase()
-	{
-		jsonParse.getDb();
-		return false; 
-	}
-	
-	public static int insertTestData() {
-		if (SQLITE) {
-			Uri myBarUri = null;
+	public int insertTestData() {
+		Uri myBarUri = null;
 
-			// Drinks uses autoincrement in the _id field.
-			Drink[] testDrinks = {
-					new Drink(0, "Margarita", "http://repro.mybar.turbotorsk.se/img/no_img.png",
-							"Martini Glass", "1;1;2;2;3;3;4;4", "Margarita instructions", 5, 0),
-					new Drink(0, "Tequila", "http://repro.mybar.turbotorsk.se/img/no_img.png",
-							"Shot Glass", "1;2;2;1", "Pour Tequila in shot glass", 5, 0),
-					new Drink(0, "Cosmopolitan", "http://repro.mybar.turbotorsk.se/img/no_img.png",
-							"Martini Glass", "1;1;2;2;3;3;4;4", "Cosmopolitan instructions", 5, 0),
-					new Drink(0, "Cuba Libre", "http://repro.mybar.turbotorsk.se/img/no_img.png",
-							"Highball Glass", "1;2;2;1", "Cuba Libre instructions", 5, 0),
-					new Drink(0, "Martini", "http://repro.mybar.turbotorsk.se/img/no_img.png",
-							"Martini Glass", "2;2;2;3", "Pour Martini in glass", 5, 0),
-					new Drink(0, "Irish Coffee", "http://repro.mybar.turbotorsk.se/img/no_img.png",
-							"Coffee Glass", "1;1;2;2;3;3;4;4", "Irish Coffee instructions", 5, 0) };
 		// Drinks uses autoincrement in the _id field.
-		
-			// Insert testDrinks.
-			for (Drink testDrink : testDrinks) {
-				ContentValues values = testDrink.getContentValues();
-				myBarUri = MyBarApplication.ContentResolver().insert(
-						MyBarContentProvider.CONTENTURI_DRINK, values);
-				Log.d(Data.class.getClass().getName(),
-						"Inserted Drink. Created row: " + myBarUri.toString());
-			}
+		Drink[] testDrinks = {
+				new Drink(0, "Margarita",
+						"http://repro.mybar.turbotorsk.se/img/no_img.png",
+						"Martini Glass", "ingredients here",
+						"Margarita instructions", 5, 0),
+				new Drink(0, "Tequila",
+						"http://repro.mybar.turbotorsk.se/img/no_img.png",
+						"Shot Glass", "ingredients here",
+						"Pour Tequila in shot glass", 5, 0),
+				new Drink(0, "Cosmopolitan",
+						"http://repro.mybar.turbotorsk.se/img/no_img.png",
+						"Martini Glass", "ingredients here",
+						"Cosmopolitan instructions", 5, 0),
+				new Drink(0, "Cuba Libre",
+						"http://repro.mybar.turbotorsk.se/img/no_img.png",
+						"Highball Glass", "ingredients here",
+						"Cuba Libre instructions", 5, 0),
+				new Drink(0, "Martini",
+						"http://repro.mybar.turbotorsk.se/img/no_img.png",
+						"Martini Glass", "ingredients here",
+						"Pour Martini in glass", 5, 0),
+				new Drink(0, "Irish Coffee",
+						"http://repro.mybar.turbotorsk.se/img/no_img.png",
+						"Coffee Glass", "ingredients here",
+						"Irish Coffee instructions", 5, 0) };
 
-			// No autoincrement in Ingredients. Set the _id field manually.
-			Ingredient[] testIngredients = {
-					new Ingredient(1, "Koskenkorva Vodka", "http://repro.mybar.turbotorsk.se/img/no_img.png", "Vodka", 40,
-							"<insert description>"),
-					new Ingredient(2, "Baileys", "http://repro.mybar.turbotorsk.se/img/no_img.png", "Liqueur", 20,
-							"<insert description>"),
-					new Ingredient(3, "Dark Rum", "http://repro.mybar.turbotorsk.se/img/no_img.png", "Rum", 40,
-							"<insert description>"),
-					new Ingredient(4, "Light Rum", "http://repro.mybar.turbotorsk.se/img/no_img.png", "Rum", 40,
-							"<insert description>"),
-					new Ingredient(5, "Gordon's Gin", "http://repro.mybar.turbotorsk.se/img/no_img.png", "Gin", 40,
-							"<insert description>") };
-
-			// Insert testIngredients.
-			for (Ingredient testIngredient : testIngredients) {
-				ContentValues values = testIngredient.getContentValues();
-				myBarUri = MyBarApplication.ContentResolver().insert(
-						MyBarContentProvider.CONTENTURI_INGREDIENT, values);
-				Log.d(Data.class.getClass().getName(), "Inserted Ingredient. Created row: "
-						+ myBarUri.toString());
-			}
+		// Insert testDrinks.
+		for (Drink testDrink : testDrinks) {
+			ContentValues values = testDrink.getContentValues();
+			myBarUri = MyBarApplication.ContentResolver().insert(
+					MyBarContentProvider.CONTENTURI_DRINK, values);
+			Log.d(Data.class.getClass().getName(),
+					"Inserted Drink. Created row: " + myBarUri.toString());
 		}
-		if (EDATA) {}
-		if (FAKE) { // Creates "fake" data to be used when FAKE is true (for
-					// testing purpose).
-			fakeDrinkList = new LinkedList<Drink>();
-			fakeDrinkList.add(exampleDrink1 = new Drink(1, "1;2;2;1", "http://www.google.se",
-					"test1", "ingredient1", "description1", 3, 0));
-			fakeDrinkList.add(exampleDrink2 = new Drink(2, "1;3;3;1", "http://www.google.se",
-					"test2", "ingredient2", "description2", 2, 0));
-			// fakeIngredientList= new LinkedList<Ingredient>();
-			// fakeIngredientList.add(fakeIngredient1 = new Ingredient(1,
-			// "Vodka", "http://www.google.se", 2, "Nice Vodka!"));
-			// fakeIngredientList.add(fakeIngredient2 = new Ingredient(2,
-			// "Dark Rom", "http://www.google.se", 2, "Nice Rom!"));
-			// fakeIngredientList.add(fakeIngredient3 = new Ingredient(3,
-			// "Lime", "http://www.google.se", 2, "Nice Lime!"));
+
+		// No autoincrement in Ingredients. Set the _id field manually.
+		Ingredient[] testIngredients = {
+				new Ingredient(1, "Koskenkorva Vodka",
+						"http://repro.mybar.turbotorsk.se/img/no_img.png",
+						"Vodka", 40, "<insert description>"),
+				new Ingredient(2, "Baileys",
+						"http://repro.mybar.turbotorsk.se/img/no_img.png",
+						"Liqueur", 20, "<insert description>"),
+				new Ingredient(3, "Dark Rum",
+						"http://repro.mybar.turbotorsk.se/img/no_img.png",
+						"Rum", 40, "<insert description>"),
+				new Ingredient(4, "Light Rum",
+						"http://repro.mybar.turbotorsk.se/img/no_img.png",
+						"Rum", 40, "<insert description>"),
+				new Ingredient(5, "Gordon's Gin",
+						"http://repro.mybar.turbotorsk.se/img/no_img.png",
+						"Gin", 40, "<insert description>") };
+
+		// Insert testIngredients.
+		for (Ingredient testIngredient : testIngredients) {
+			ContentValues values = testIngredient.getContentValues();
+			myBarUri = MyBarApplication.ContentResolver().insert(
+					MyBarContentProvider.CONTENTURI_INGREDIENT, values);
+			Log.d(Data.class.getClass().getName(),
+					"Inserted Ingredient. Created row: " + myBarUri.toString());
 		}
 		return 0;
 	}
 
 	/**
-	 * Deleted testData.
+	 * Deletes the testData without removing the database. Does not reset _id
+	 * counters.
 	 * 
 	 * @return rowsDeleted.
 	 */
-	public static int deleteTestData() {
+	public int deleteTestData() {
 		int rowsDeleted = 0;
-		if (SQLITE) {
-			rowsDeleted += MyBarApplication.ContentResolver().delete(
-					MyBarContentProvider.CONTENTURI_DRINK, null, null);
-			rowsDeleted += MyBarApplication.ContentResolver().delete(
-					MyBarContentProvider.CONTENTURI_INGREDIENT, null, null);
-			rowsDeleted += MyBarApplication.ContentResolver().delete(
-					MyBarContentProvider.CONTENTURI_MYBAR, null, null);
-		}
+		rowsDeleted += MyBarApplication.ContentResolver().delete(
+				MyBarContentProvider.CONTENTURI_DRINK, null, null);
+		rowsDeleted += MyBarApplication.ContentResolver().delete(
+				MyBarContentProvider.CONTENTURI_INGREDIENT, null, null);
+		rowsDeleted += MyBarApplication.ContentResolver().delete(
+				MyBarContentProvider.CONTENTURI_MYBAR, null, null);
 		return rowsDeleted;
 	}
-	
+
 	/**
 	 * Adds a new ingredient to MyBarTable
 	 * 
-	 * @param ingredientID ID of the ingredient.
+	 * @param ingredientID _id column of the ingredient.
 	 * @param location "Home", "Work".
 	 * @return 0 if successful.
 	 */
-	public static int addMyBar(int ingredientID, String location) {
-		if (SQLITE) {
+	public int addMyBar(int ingredientID, String location) {
+		ContentValues values = new ContentValues();
+		values.put("ingredientid", ingredientID);
+		values.put("location", location);
+		MyBarApplication.ContentResolver().insert(
+				MyBarContentProvider.CONTENTURI_MYBAR, values);
 
-			/**
-			 * SQLITE addMyBar(int ID, String location).
-			 */
-			ContentValues values = new ContentValues();
-			values.put("ingredientid", ingredientID);
-			values.put("location", location);
-			MyBarApplication.ContentResolver().insert(
-					MyBarContentProvider.CONTENTURI_MYBAR, values);
+		// Print the added drink.
+		Log.d(Data.class.getClass().getName(), "Added ID to " + "MyBarTable: "
+				+ values.get("ingredientid"));
 
-			// Print the added drink.
-			Log.d(Data.class.getClass().getName(), "Added ID to " +
-					"MyBarTable: " + values.get("ingredientid"));
-
-			return 0;
-			/**
-			 * End of SQLite addMyBar(int ID, String location).
-			 */
-		}
-		if (EDATA) {}
-		if (FAKE) {}
-
-		return 1;
+		return 0;
 	}
 
 	/**
 	 * Removes a row in MyBarTable
 	 * 
-	 * @param ingredientID the ingredients ID field
-	 * @param location Example: "Home", "Work".
-	 * @return 0 if successful. 0 if error. See LogCat.
+	 * @param ingredientID _id column of the ingredient.
+	 * @param location "Home", "Work".
+	 * @return 0 if successful. 1 if error. See LogCat.
 	 */
-	public static int dropMyBar(int ingredientID, String location) {
-		if (SQLITE) {
+	public int dropMyBar(int ingredientID, String location) {
+		// Choose which columns you want to query. null queries all columns.
+		// String[] projection = { MyBarTable.COLUMN_ID,
+		// MyBarTable.COLUMN_INGREDIENTID };
 
-			/**
-			 * SQLITE dropMyBar(int ingredientID, String location).
-			 */
-			// Choose which columns you want to query. null queries all columns.
-//			String[] projection = { MyBarTable.COLUMN_ID, MyBarTable.COLUMN_INGREDIENTID };
+		// Query database.
+		Cursor cursor = MyBarApplication
+				.ContentResolver()
+				.query(MyBarContentProvider.CONTENTURI_MYBAR,
+						null,
+						MyBarTable.COLUMN_INGREDIENTID + " = ? AND "
+								+ MyBarTable.COLUMN_LOCATION + " = ? ",
+						new String[] { Integer.toString(ingredientID), location },
+						null);
 
-			// Query database.
-			Cursor cursor = MyBarApplication.ContentResolver().query(
-					MyBarContentProvider.CONTENTURI_MYBAR, null,
-					MyBarTable.COLUMN_INGREDIENTID
-					+ " = ? AND " + MyBarTable.COLUMN_LOCATION + " = ? ", 
-					new String[]{Integer.toString(ingredientID), location}, null);
+		// Successful query?.
+		if (cursor != null) {
 
-			// Successful query?.
-			if (cursor != null) {
+			// Is there any data from the requested Query.
+			if (cursor.moveToFirst()) {
 
-				// Is there any data from the requested Query.
-				if (cursor.moveToFirst()) {
+				MyBarApplication.ContentResolver()
+						.delete(MyBarContentProvider.CONTENTURI_MYBAR,
+								MyBarTable.COLUMN_INGREDIENTID + " = ? AND "
+										+ MyBarTable.COLUMN_LOCATION + " = ? ",
+								new String[] { Integer.toString(ingredientID),
+										location });
 
-					MyBarApplication.ContentResolver().delete(
-							MyBarContentProvider.CONTENTURI_MYBAR, MyBarTable.COLUMN_INGREDIENTID
-							+ " = ? AND " + MyBarTable.COLUMN_LOCATION + " = ? ", 
-							new String[]{Integer.toString(ingredientID), location});
+				// Print the removed ingredient.
+				Log.d(Data.class.getClass().getName(),
+						"Removed ID from MyBarTable: "
+								+ cursor.getInt(cursor
+										.getColumnIndexOrThrow(MyBarTable.COLUMN_ID))
+								+ " "
+								+ cursor.getString(cursor
+										.getColumnIndexOrThrow(MyBarTable.COLUMN_INGREDIENTID))
+								+ " "
+								+ cursor.getString(cursor
+										.getColumnIndexOrThrow(MyBarTable.COLUMN_LOCATION)));
 
-					// Print the removed ingredient.
-					Log.d(Data.class.getClass().getName(),
-							"Removed ID from MyBarTable: "
-									+ cursor.getInt(cursor
-											.getColumnIndexOrThrow(MyBarTable.COLUMN_ID))
-									+ " "
-									+ cursor.getString(cursor
-											.getColumnIndexOrThrow(MyBarTable.COLUMN_INGREDIENTID))
-									+ " "
-									+ cursor.getString(cursor
-											.getColumnIndexOrThrow(MyBarTable.COLUMN_LOCATION)));
+				// Close the cursor.
+				cursor.close();
 
-					// Close the cursor.
-					cursor.close();
+				return 0;
 
-					return 0;
+			} else {
+				// Error message in LogCat.
+				Log.e(Data.class.getClass().getName(), "dropMyBar(): "
+						+ ingredientID + " " + location + " doesn't exist");
 
-				} else {
-					// Error message in LogCat.
-					Log.e(Data.class.getClass().getName(), "dropMyBar(): " 
-					+ ingredientID + " " + location + " doesn't exist");
+				// Close the cursor.
+				cursor.close();
 
-					// Close the cursor.
-					cursor.close();
-
-					// ingredient doesn't exist. Return 1.
-					return 1;
-				}
+				// ingredient doesn't exist. Return 1.
+				return 1;
 			}
-			/**
-			 * End of SQLite dropMyBar(int ingredientID, String location).
-			 */
 		}
-		if (EDATA) {}
-		if (FAKE) {}
-
 		return 1;
 	}
 
@@ -269,721 +232,629 @@ public class Data {
 	 * Inserts a new Drink in the DrinkTable. Trying to insert another Drink
 	 * with the same name yields an error message.
 	 * 
-	 * @param name a Drink object that should be inserted into the database.
+	 * @param name Drink object that should be inserted into the database.
 	 * @return 0 if successful, 1 if error. See LogCat.
 	 */
-	public static int addDrink(Drink name) {
-		if (SQLITE) {
+	public int addDrink(Drink name) {
+		ContentValues values = name.getContentValues();
 
-			/**
-			 * SQLITE addDrink(Drink name).
-			 */
-			ContentValues values = name.getContentValues();
+		// Choose which columns you want to query. null queries all columns.
+		String[] projection = { DrinkTable.COLUMN_ID, DrinkTable.COLUMN_NAME };
 
-			// Choose which columns you want to query. null queries all columns.
-			String[] projection = { DrinkTable.COLUMN_ID, DrinkTable.COLUMN_NAME };
+		// Query database.
+		Cursor cursor = MyBarApplication.ContentResolver().query(
+				MyBarContentProvider.CONTENTURI_DRINK, projection,
+				DrinkTable.COLUMN_NAME + " = ? ",
+				new String[] { name.getName() }, null);
 
-			// Query database.
-			Cursor cursor = MyBarApplication.ContentResolver().query(
-					MyBarContentProvider.CONTENTURI_DRINK, projection,
-					DrinkTable.COLUMN_NAME + " = ? ", new String[] { name.getName() }, null);
+		// Successful query?.
+		if (cursor != null) {
 
-			// Successful query?.
-			if (cursor != null) {
+			// Is there any data from the requested Query.
+			if (cursor.moveToFirst()) {
 
-				// Is there any data from the requested Query.
-				if (cursor.moveToFirst()) {
+				// Error message in LogCat.
+				Log.e(Data.class.getClass().getName(),
+						"addDrink(): " + name.getName() + " already exists");
 
-					// Error message in LogCat.
-					Log.e(Data.class.getClass().getName(), "addDrink(): " + name.getName()
-							+ " already exists");
+				// Close the cursor.
+				cursor.close();
 
-					// Close the cursor.
-					cursor.close();
+				// name already exists. Return 1.
+				return 1;
 
-					// name already exists. Return 1.
-					return 1;
+			} else {
+				MyBarApplication.ContentResolver().insert(
+						MyBarContentProvider.CONTENTURI_DRINK, values);
 
-				} else {
-					MyBarApplication.ContentResolver().insert(
-							MyBarContentProvider.CONTENTURI_DRINK, values);
+				// Print the added drink.
+				Log.d(Data.class.getClass().getName(),
+						"Added Drink: " + name.getName());
 
-					// Print the added drink.
-					Log.d(Data.class.getClass().getName(), "Added Drink: " + name.getName());
+				// Close the cursor.
+				cursor.close();
 
-					// Close the cursor.
-					cursor.close();
-
-					return 0;
-				}
+				return 0;
 			}
-			/**
-			 * End of SQLite addDrink(Drink name).
-			 */
 		}
-		if (EDATA) {}
-		if (FAKE) {}
-
 		return 1;
 	}
 
 	/**
 	 * Removes a Drink in the DrinkTable.
 	 * 
-	 * @param ID an int _id that should be removed from the database.
+	 * @param ID an Integer _id that should be removed from the database.
 	 * @return 0 if successful, 1 if error. See LogCat.
 	 */
-	public static int dropDrink(int ID) {
-		if (SQLITE) {
+	public int dropDrink(int ID) {
+		// Choose which columns you want to query. null queries all columns.
+		String[] projection = { DrinkTable.COLUMN_ID, DrinkTable.COLUMN_NAME };
 
-			/**
-			 * SQLITE dropDrink(Drink name).
-			 */
-			ContentValues values = new ContentValues();
+		// Query database.
+		Cursor cursor = MyBarApplication.ContentResolver().query(
+				MyBarContentProvider.CONTENTURI_DRINK, projection,
+				DrinkTable.COLUMN_ID + "=" + ID, null, null);
 
-			// Choose which columns you want to query. null queries all columns.
-			String[] projection = { DrinkTable.COLUMN_ID, DrinkTable.COLUMN_NAME };
+		// Successful query?.
+		if (cursor != null) {
 
-			// Query database.
-			Cursor cursor = MyBarApplication.ContentResolver().query(
-					MyBarContentProvider.CONTENTURI_DRINK, projection,
-					DrinkTable.COLUMN_ID + "=" + ID, null, null);
+			// Is there any data from the requested Query.
+			if (cursor.moveToFirst()) {
 
-			// Successful query?.
-			if (cursor != null) {
+				MyBarApplication.ContentResolver().delete(
+						MyBarContentProvider.CONTENTURI_DRINK,
+						DrinkTable.COLUMN_ID + "=" + ID, null);
 
-				// Is there any data from the requested Query.
-				if (cursor.moveToFirst()) {
+				// Print the removed drink.
+				Log.d(Data.class.getClass().getName(),
+						"Removed Drink: "
+								+ cursor.getInt(cursor
+										.getColumnIndexOrThrow(DrinkTable.COLUMN_ID))
+								+ " "
+								+ cursor.getString(cursor
+										.getColumnIndexOrThrow(DrinkTable.COLUMN_NAME)));
 
-					MyBarApplication.ContentResolver().delete(
-							MyBarContentProvider.CONTENTURI_DRINK, DrinkTable.COLUMN_ID + "=" + ID,
-							null);
+				// Close the cursor.
+				cursor.close();
 
-					// Print the removed drink.
-					Log.d(Data.class.getClass().getName(),
-							"Removed Drink: "
-									+ cursor.getInt(cursor
-											.getColumnIndexOrThrow(DrinkTable.COLUMN_ID))
-									+ " "
-									+ cursor.getString(cursor
-											.getColumnIndexOrThrow(DrinkTable.COLUMN_NAME)));
+				return 0;
 
-					// Close the cursor.
-					cursor.close();
+			} else {
+				// Error message in LogCat.
+				Log.e(Data.class.getClass().getName(), "dropDrink(): " + ID
+						+ " doesn't exist");
 
-					return 0;
+				// Close the cursor.
+				cursor.close();
 
-				} else {
-					// Error message in LogCat.
-					Log.e(Data.class.getClass().getName(), "dropDrink(): " + ID + " doesn't exist");
-
-					// Close the cursor.
-					cursor.close();
-
-					// name doesn't exist. Return 1.
-					return 1;
-				}
+				// name doesn't exist. Return 1.
+				return 1;
 			}
-			/**
-			 * End of SQLite dropDrink(Drink name).
-			 */
 		}
-		if (EDATA) {}
-		if (FAKE) {}
-
 		return 1;
 	}
-	
+
 	/**
-	 * This method returns everything in the MyBarTable.
+	 * Returns all rows in MyBarTable.
 	 * 
-	 * @return MyBar object.
+	 * @return LinkedList<MyBar>.
 	 */
-	public static LinkedList<MyBar> getAllMyBar() {
-		if (SQLITE) {
+	public LinkedList<MyBar> getAllMyBar() {
+		LinkedList<MyBar> mybarList = new LinkedList<MyBar>();
 
-			/**
-			 * SQLITE getAllMyBar().
-			 */
-			LinkedList<MyBar> mybarList = new LinkedList<MyBar>();
+		// Choose which columns you want to query. null queries all columns.
+		// String[] projection = { DrinkTable.COLUMN_NAME,
+		// DrinkTable.COLUMN_DESCRIPTION, DrinkTable.COLUMN_RATING };
 
-			// Choose which columns you want to query. null queries all columns.
-			// String[] projection = { DrinkTable.COLUMN_NAME,
-			// DrinkTable.COLUMN_DESCRIPTION, DrinkTable.COLUMN_RATING };
+		// Query database.
+		Cursor cursor = MyBarApplication.ContentResolver().query(
+				MyBarContentProvider.CONTENTURI_MYBAR, null, null, null, null);
 
-			// Query database.
-			Cursor cursor = MyBarApplication.ContentResolver().query(
-					MyBarContentProvider.CONTENTURI_MYBAR, null, null, null, null);
+		// Successful query?.
+		if (cursor != null) {
 
-			// Successful query?.
-			if (cursor != null) {
+			// Is there any data from the requested Query.
+			if (cursor.moveToFirst()) {
 
-				// Is there any data from the requested Query.
-				if (cursor.moveToFirst()) {
+				do {
+					int _id = cursor.getInt(cursor
+							.getColumnIndexOrThrow(MyBarTable.COLUMN_ID));
+					int ingredientid = cursor
+							.getInt(cursor
+									.getColumnIndexOrThrow(MyBarTable.COLUMN_INGREDIENTID));
+					String location = cursor.getString(cursor
+							.getColumnIndexOrThrow(MyBarTable.COLUMN_LOCATION));
+					mybarList.add(new MyBar(_id, ingredientid, location));
+				} while (cursor.moveToNext());
 
-					do {
-						int _id = cursor.getInt(cursor.getColumnIndexOrThrow(MyBarTable.COLUMN_ID));
-						int ingredientid = cursor.getInt(cursor
-								.getColumnIndexOrThrow(MyBarTable.COLUMN_INGREDIENTID));
-						String location = cursor.getString(cursor
-								.getColumnIndexOrThrow(MyBarTable.COLUMN_LOCATION));
-						mybarList.add(new MyBar(_id, ingredientid, location));
-					} while (cursor.moveToNext());
+				// Close the cursor.
+				cursor.close();
 
-					// Close the cursor.
-					cursor.close();
+				return mybarList;
+			} else {
+				// Close the cursor.
+				cursor.close();
 
-					return mybarList;
-				} else {
-					// Close the cursor.
-					cursor.close();
-
-					// No mybar in Query. Return Empty LinkedList<MyBar>.
-					return new LinkedList<MyBar>();
-				}
+				// No mybar in Query. Return Empty LinkedList<MyBar>.
+				return new LinkedList<MyBar>();
 			}
-			/**
-			 * End of SQLite getAllMyBar().
-			 */
 		}
-		if (EDATA) {}
-		if (FAKE) {}
 		return null;
 	}
 
 	/**
-	 * This method return all Drinks from the local SQLite database.
+	 * Return all Drinks from the Drinks table.
 	 * 
-	 * @return Drink object.
+	 * @return LinkedList<Drink>.
 	 */
 	public LinkedList<Drink> getAllDrinks() {
-		if (SQLITE) {
+		LinkedList<Drink> drinkList = new LinkedList<Drink>();
 
-			/**
-			 * SQLITE getAllDrinks().
-			 */
-			LinkedList<Drink> drinkList = new LinkedList<Drink>();
+		// Choose which columns you want to query. null queries all columns.
+		// String[] projection = { DrinkTable.COLUMN_NAME,
+		// DrinkTable.COLUMN_DESCRIPTION, DrinkTable.COLUMN_RATING };
 
-			// Choose which columns you want to query. null queries all columns.
-			// String[] projection = { DrinkTable.COLUMN_NAME,
-			// DrinkTable.COLUMN_DESCRIPTION, DrinkTable.COLUMN_RATING };
+		// Query database.
+		Cursor cursor = MyBarApplication.ContentResolver().query(
+				MyBarContentProvider.CONTENTURI_DRINK, null, null, null,
+				DrinkTable.COLUMN_NAME + " COLLATE NOCASE ASC");
 
-			// Query database.
-			Cursor cursor = MyBarApplication.ContentResolver().query(
-					MyBarContentProvider.CONTENTURI_DRINK, null, null, null, DrinkTable.COLUMN_NAME+" COLLATE NOCASE ASC");
+		// Successful query?.
+		if (cursor != null) {
 
-			// Successful query?.
-			if (cursor != null) {
+			// Is there any data from the requested Query.
+			if (cursor.moveToFirst()) {
 
-				// Is there any data from the requested Query.
-				if (cursor.moveToFirst()) {
-
-					do {
-						int _id = cursor.getInt(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_ID));
-						String name = cursor.getString(cursor
-								.getColumnIndexOrThrow(DrinkTable.COLUMN_NAME));
-						String url = cursor.getString(cursor
-								.getColumnIndexOrThrow(DrinkTable.COLUMN_URL));
-						String glass = cursor.getString(cursor
-								.getColumnIndexOrThrow(DrinkTable.COLUMN_GLASS));
-						String ingredient = cursor.getString(cursor
-								.getColumnIndexOrThrow(DrinkTable.COLUMN_INGREDIENT));
-						String description = cursor.getString(cursor
-								.getColumnIndexOrThrow(DrinkTable.COLUMN_DESCRIPTION));
-						int rating = cursor.getInt(cursor
-								.getColumnIndexOrThrow(DrinkTable.COLUMN_RATING));
-						int favorite = cursor.getInt(cursor
-								.getColumnIndexOrThrow(DrinkTable.COLUMN_FAVORITE));
-						drinkList.add(new Drink(_id, name, url, glass, ingredient, description,
-								rating, favorite));
-					} while (cursor.moveToNext());
-
-					// Close the cursor.
-					cursor.close();
-
-					return drinkList;
-				} else {
-					// Close the cursor.
-					cursor.close();
-
-					// No drinks in Query. Return Empty LinkedList<Drink>.
-					return new LinkedList<Drink>();
-				}
-			}
-			/**
-			 * End of SQLite getAllDrinks().
-			 */
-		}
-		if (EDATA) {}
-		if (FAKE) {
-			return fakeDrinkList;
-		}
-		return null;
-	}
-
-	/**
-	 * This method return all Ingredients from the local SQLite database.
-	 * 
-	 * @return Ingredient object.
-	 */
-	public static LinkedList<Ingredient> getAllIngredients() {
-		if (SQLITE) {
-
-			/**
-			 * SQLITE getAllIngredients().
-			 */
-			LinkedList<Ingredient> ingredientList = new LinkedList<Ingredient>();
-
-			// Choose which columns you want to query. null queries all columns.
-			// String[] projection = { IngredientTable.COLUMN_NAME,
-			// IngredientTable.COLUMN_DESCRIPTION };
-
-			// Query database.
-			Cursor cursor = MyBarApplication.ContentResolver().query(
-					MyBarContentProvider.CONTENTURI_INGREDIENT, null, null, null, IngredientTable.COLUMN_NAME+" COLLATE NOCASE ASC");
-
-			// Successful query?.
-			if (cursor != null) {
-
-				// Is there any data from the requested Query.
-				if (cursor.moveToFirst()) {
-
-					do {
-						int _id = cursor.getInt(cursor
-								.getColumnIndexOrThrow(IngredientTable.COLUMN_ID));
-						String name = cursor.getString(cursor
-								.getColumnIndexOrThrow(IngredientTable.COLUMN_NAME));
-						String url = cursor.getString(cursor
-								.getColumnIndexOrThrow(IngredientTable.COLUMN_URL));
-						String type = cursor.getString(cursor
-								.getColumnIndexOrThrow(IngredientTable.COLUMN_TYPE));
-						int alcoholcontent = cursor.getInt(cursor
-								.getColumnIndexOrThrow(IngredientTable.COLUMN_ALCOHOLCONTENT));
-						String description = cursor.getString(cursor
-								.getColumnIndexOrThrow(IngredientTable.COLUMN_DESCRIPTION));
-						ingredientList.add(new Ingredient(_id, name, url, type, alcoholcontent,
-								description));
-					} while (cursor.moveToNext());
-
-					// Close the cursor.
-					cursor.close();
-
-					return ingredientList;
-				} else {
-					// Close the cursor.
-					cursor.close();
-
-					// No ingredients in Query. Return Empty LinkedList<Ingredient>.
-					return new LinkedList<Ingredient>();
-				}
-			}
-			/**
-			 * End of SQLite getAllIngredients().
-			 */
-		}
-		if (EDATA) {}
-		if (FAKE) {}
-		return null;
-	}
-
-	/**
-	 * This method return a Drink (thumbnail, name, rating, description) SQL.
-	 * Query: SELECT * WHERE _id = id.
-	 * 
-	 * @param ID
-	 * @return
-	 */
-	public  Drink getDrinkByID(int ID) {
-		if (SQLITE) {
-
-			/**
-			 * SQLITE getDrinkByID().
-			 */
-			// Choose which columns you want to query. null queries all columns.
-			// String[] projection = { DrinkTable.COLUMN_NAME,
-			// DrinkTable.COLUMN_DESCRIPTION, DrinkTable.COLUMN_RATING };
-
-			// Query database.
-			Cursor cursor = MyBarApplication.ContentResolver().query(
-					MyBarContentProvider.CONTENTURI_DRINK, null, DrinkTable.COLUMN_ID + "=" + ID,
-					null, null);
-
-			// Successful query?.
-			if (cursor != null) {
-
-				// Is there any data from the requested Query.
-				if (cursor.moveToFirst()) {
-
-					// Test Print
-					// Log.d(this.getClass().getName(),
-					// cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_NAME)));
-					// Log.d(this.getClass().getName(),
-					// cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_DESCRIPTION)));
-					// Log.d(this.getClass().getName(),
-					// cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_RATING)));
-
-					int _id = cursor.getInt(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_ID));
+				do {
+					int _id = cursor.getInt(cursor
+							.getColumnIndexOrThrow(DrinkTable.COLUMN_ID));
 					String name = cursor.getString(cursor
 							.getColumnIndexOrThrow(DrinkTable.COLUMN_NAME));
 					String url = cursor.getString(cursor
 							.getColumnIndexOrThrow(DrinkTable.COLUMN_URL));
 					String glass = cursor.getString(cursor
 							.getColumnIndexOrThrow(DrinkTable.COLUMN_GLASS));
-					String ingredient = cursor.getString(cursor
-							.getColumnIndexOrThrow(DrinkTable.COLUMN_INGREDIENT));
-					String description = cursor.getString(cursor
-							.getColumnIndexOrThrow(DrinkTable.COLUMN_DESCRIPTION));
+					String ingredient = cursor
+							.getString(cursor
+									.getColumnIndexOrThrow(DrinkTable.COLUMN_INGREDIENT));
+					String description = cursor
+							.getString(cursor
+									.getColumnIndexOrThrow(DrinkTable.COLUMN_DESCRIPTION));
 					int rating = cursor.getInt(cursor
 							.getColumnIndexOrThrow(DrinkTable.COLUMN_RATING));
 					int favorite = cursor.getInt(cursor
 							.getColumnIndexOrThrow(DrinkTable.COLUMN_FAVORITE));
-					Drink drink = new Drink(_id, name, url, glass, ingredient, description, rating,
-							favorite);
+					drinkList.add(new Drink(_id, name, url, glass, ingredient,
+							description, rating, favorite));
+				} while (cursor.moveToNext());
 
-					// Close the cursor.
-					cursor.close();
+				// Close the cursor.
+				cursor.close();
 
-					return drink;
-				} else {
-					// Error message in LogCat.
-					Log.e(Data.class.getClass().getName(), "ID doesn't exist");
+				return drinkList;
+			} else {
+				// Close the cursor.
+				cursor.close();
 
-					// ID doesn't exist. Return Drink with ID = 0.
-					Drink drink = new Drink(0, "", "", "", "", "", 0, 0);
-
-					// Close the cursor.
-					cursor.close();
-
-					return drink;
-				}
+				// No drinks in Query. Return Empty LinkedList<Drink>.
+				return new LinkedList<Drink>();
 			}
-			/**
-			 * End of SQLite getDrinkByID().
-			 */
 		}
-		if (EDATA) {}
-		if (FAKE) {
-			return exampleDrink1;
-		}
-
 		return null;
 	}
 
 	/**
-	 * This method return a Ingredient SQL Query: SELECT * WHERE _id = id.
+	 * Returns all Ingredients from the ingredient table.
 	 * 
-	 * @param ID
-	 * @return
+	 * @return LinkedList<Ingredient>.
 	 */
-	public Ingredient getIngredientByID(int ID) {
-		if (SQLITE) {
+	public LinkedList<Ingredient> getAllIngredients() {
+		LinkedList<Ingredient> ingredientList = new LinkedList<Ingredient>();
 
-			/**
-			 * SQLITE getIngredientByID()
-			 */
-			// Choose which columns you want to query. null queries all columns.
-			// String[] projection = { IngredientTable.COLUMN_NAME,
-			// IngredientTable.COLUMN_DESCRIPTION };
+		// Choose which columns you want to query. null queries all columns.
+		// String[] projection = { IngredientTable.COLUMN_NAME,
+		// IngredientTable.COLUMN_DESCRIPTION };
 
-			// Query database.
-			Cursor cursor = MyBarApplication.ContentResolver().query(
-					MyBarContentProvider.CONTENTURI_INGREDIENT, null,
-					IngredientTable.COLUMN_ID + "=" + ID, null, null);
+		// Query database.
+		Cursor cursor = MyBarApplication.ContentResolver().query(
+				MyBarContentProvider.CONTENTURI_INGREDIENT, null, null, null,
+				IngredientTable.COLUMN_NAME + " COLLATE NOCASE ASC");
 
-			// Successful query?.
-			if (cursor != null) {
+		// Successful query?.
+		if (cursor != null) {
 
-				// Is there any data from the requested Query.
-				if (cursor.moveToFirst()) {
+			// Is there any data from the requested Query.
+			if (cursor.moveToFirst()) {
 
-					// Test Print.
-					// Log.d(this.getClass().getName(),
-					// cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_NAME)));
-
-					int _id = cursor
-							.getInt(cursor.getColumnIndexOrThrow(IngredientTable.COLUMN_ID));
-					String name = cursor.getString(cursor
-							.getColumnIndexOrThrow(IngredientTable.COLUMN_NAME));
+				do {
+					int _id = cursor.getInt(cursor
+							.getColumnIndexOrThrow(IngredientTable.COLUMN_ID));
+					String name = cursor
+							.getString(cursor
+									.getColumnIndexOrThrow(IngredientTable.COLUMN_NAME));
 					String url = cursor.getString(cursor
 							.getColumnIndexOrThrow(IngredientTable.COLUMN_URL));
-					String type = cursor.getString(cursor
-							.getColumnIndexOrThrow(IngredientTable.COLUMN_TYPE));
-					int alcoholcontent = cursor.getInt(cursor
-							.getColumnIndexOrThrow(IngredientTable.COLUMN_ALCOHOLCONTENT));
-					String description = cursor.getString(cursor
-							.getColumnIndexOrThrow(IngredientTable.COLUMN_DESCRIPTION));
-					Ingredient ingredient = new Ingredient(_id, name, url, type, alcoholcontent,
-							description);
+					String type = cursor
+							.getString(cursor
+									.getColumnIndexOrThrow(IngredientTable.COLUMN_TYPE));
+					int alcoholcontent = cursor
+							.getInt(cursor
+									.getColumnIndexOrThrow(IngredientTable.COLUMN_ALCOHOLCONTENT));
+					String description = cursor
+							.getString(cursor
+									.getColumnIndexOrThrow(IngredientTable.COLUMN_DESCRIPTION));
+					ingredientList.add(new Ingredient(_id, name, url, type,
+							alcoholcontent, description));
+				} while (cursor.moveToNext());
 
-					// Close the cursor.
-					cursor.close();
+				// Close the cursor.
+				cursor.close();
 
-					return ingredient;
-				} else {
-					// Error message in LogCat.
-					Log.e(Data.class.getClass().getName(), "ID doesn't exist");
+				return ingredientList;
+			} else {
+				// Close the cursor.
+				cursor.close();
 
-					// ID doesn't exist. Return Ingredient with ID = 0.
-					Ingredient ingredient = new Ingredient(0, "", "", "", 0, "");
-
-					// Close the cursor.
-					cursor.close();
-
-					return ingredient;
-				}
+				// No ingredients in Query. Return Empty
+				// LinkedList<Ingredient>.
+				return new LinkedList<Ingredient>();
 			}
-			/**
-			 * End of SQLite getIngredientByID().
-			 */
 		}
-		if (EDATA) {}
-		if (FAKE) {}
-
 		return null;
 	}
 
 	/**
-	 * This method return all Drinks with Favorite column set, from the local
-	 * SQLite database.
+	 * Returns a Drink object by ID.
+	 * Query: SELECT * WHERE _id = id.
 	 * 
-	 * @return Drink object.
+	 * @param ID the _id of the Drink to return
+	 * @return aDrink
+	 */
+	public Drink getDrinkByID(int ID) {
+		// Choose which columns you want to query. null queries all columns.
+		// String[] projection = { DrinkTable.COLUMN_NAME,
+		// DrinkTable.COLUMN_DESCRIPTION, DrinkTable.COLUMN_RATING };
+
+		// Query database.
+		Cursor cursor = MyBarApplication.ContentResolver().query(
+				MyBarContentProvider.CONTENTURI_DRINK, null,
+				DrinkTable.COLUMN_ID + "=" + ID, null, null);
+
+		// Successful query?.
+		if (cursor != null) {
+
+			// Is there any data from the requested Query.
+			if (cursor.moveToFirst()) {
+
+				// Test Print
+				// Log.d(this.getClass().getName(),
+				// cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_NAME)));
+				// Log.d(this.getClass().getName(),
+				// cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_DESCRIPTION)));
+				// Log.d(this.getClass().getName(),
+				// cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_RATING)));
+
+				int _id = cursor.getInt(cursor
+						.getColumnIndexOrThrow(DrinkTable.COLUMN_ID));
+				String name = cursor.getString(cursor
+						.getColumnIndexOrThrow(DrinkTable.COLUMN_NAME));
+				String url = cursor.getString(cursor
+						.getColumnIndexOrThrow(DrinkTable.COLUMN_URL));
+				String glass = cursor.getString(cursor
+						.getColumnIndexOrThrow(DrinkTable.COLUMN_GLASS));
+				String ingredient = cursor.getString(cursor
+						.getColumnIndexOrThrow(DrinkTable.COLUMN_INGREDIENT));
+				String description = cursor.getString(cursor
+						.getColumnIndexOrThrow(DrinkTable.COLUMN_DESCRIPTION));
+				int rating = cursor.getInt(cursor
+						.getColumnIndexOrThrow(DrinkTable.COLUMN_RATING));
+				int favorite = cursor.getInt(cursor
+						.getColumnIndexOrThrow(DrinkTable.COLUMN_FAVORITE));
+				Drink drink = new Drink(_id, name, url, glass, ingredient,
+						description, rating, favorite);
+
+				// Close the cursor.
+				cursor.close();
+
+				return drink;
+			} else {
+				// Error message in LogCat.
+				Log.e(Data.class.getClass().getName(), "ID doesn't exist");
+
+				// ID doesn't exist. Return Drink with ID = 0.
+				Drink drink = new Drink(0, "", "", "", "", "", 0, 0);
+
+				// Close the cursor.
+				cursor.close();
+
+				return drink;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns an Ingredient object by ID.
+	 * Query: SELECT * WHERE _id = id.
+	 * 
+	 * @param ID the _id of the Ingredient to return
+	 * @return anIngredient
+	 */
+	public Ingredient getIngredientByID(int ID) {
+		// Choose which columns you want to query. null queries all columns.
+		// String[] projection = { IngredientTable.COLUMN_NAME,
+		// IngredientTable.COLUMN_DESCRIPTION };
+
+		// Query database.
+		Cursor cursor = MyBarApplication.ContentResolver().query(
+				MyBarContentProvider.CONTENTURI_INGREDIENT, null,
+				IngredientTable.COLUMN_ID + "=" + ID, null, null);
+
+		// Successful query?.
+		if (cursor != null) {
+
+			// Is there any data from the requested Query.
+			if (cursor.moveToFirst()) {
+
+				// Test Print.
+				// Log.d(this.getClass().getName(),
+				// cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_NAME)));
+
+				int _id = cursor.getInt(cursor
+						.getColumnIndexOrThrow(IngredientTable.COLUMN_ID));
+				String name = cursor.getString(cursor
+						.getColumnIndexOrThrow(IngredientTable.COLUMN_NAME));
+				String url = cursor.getString(cursor
+						.getColumnIndexOrThrow(IngredientTable.COLUMN_URL));
+				String type = cursor.getString(cursor
+						.getColumnIndexOrThrow(IngredientTable.COLUMN_TYPE));
+				int alcoholcontent = cursor
+						.getInt(cursor
+								.getColumnIndexOrThrow(IngredientTable.COLUMN_ALCOHOLCONTENT));
+				String description = cursor
+						.getString(cursor
+								.getColumnIndexOrThrow(IngredientTable.COLUMN_DESCRIPTION));
+				Ingredient ingredient = new Ingredient(_id, name, url, type,
+						alcoholcontent, description);
+
+				// Close the cursor.
+				cursor.close();
+
+				return ingredient;
+			} else {
+				// Error message in LogCat.
+				Log.e(Data.class.getClass().getName(), "ID doesn't exist");
+
+				// ID doesn't exist. Return Ingredient with ID = 0.
+				Ingredient ingredient = new Ingredient(0, "", "", "", 0, "");
+
+				// Close the cursor.
+				cursor.close();
+
+				return ingredient;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns all Drinks with the Favorite column set to 1.
+	 * 
+	 * @return LinkedList<Drink>.
 	 */
 	public LinkedList<Drink> getAllFavorites() {
-			/**
-			 * SQLITE getAllFavorites().
-			 */
-			LinkedList<Drink> drinkList = new LinkedList<Drink>();
+		LinkedList<Drink> drinkList = new LinkedList<Drink>();
 
-			// Choose which columns you want to query. null queries all columns.
-			// String[] projection = { DrinkTable.COLUMN_NAME,
-			// DrinkTable.COLUMN_DESCRIPTION, DrinkTable.COLUMN_RATING };
+		// Choose which columns you want to query. null queries all columns.
+		// String[] projection = { DrinkTable.COLUMN_NAME,
+		// DrinkTable.COLUMN_DESCRIPTION, DrinkTable.COLUMN_RATING };
 
-			// Query database.
-			Cursor cursor = MyBarApplication.ContentResolver().query(
-					MyBarContentProvider.CONTENTURI_DRINK, null, "favorite=1", null, DrinkTable.COLUMN_NAME+" COLLATE NOCASE ASC");
+		// Query database.
+		Cursor cursor = MyBarApplication.ContentResolver().query(
+				MyBarContentProvider.CONTENTURI_DRINK, null, "favorite=1",
+				null, DrinkTable.COLUMN_NAME + " COLLATE NOCASE ASC");
 
-			// Successful query?.
-			if (cursor != null) {
+		// Successful query?.
+		if (cursor != null) {
 
-				// Is there any data from the requested Query.
-				if (cursor.moveToFirst()) {
+			// Is there any data from the requested Query.
+			if (cursor.moveToFirst()) {
 
-					do {
-						int _id = cursor.getInt(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_ID));
-						String name = cursor.getString(cursor
-								.getColumnIndexOrThrow(DrinkTable.COLUMN_NAME));
-						String url = cursor.getString(cursor
-								.getColumnIndexOrThrow(DrinkTable.COLUMN_URL));
-						String glass = cursor.getString(cursor
-								.getColumnIndexOrThrow(DrinkTable.COLUMN_GLASS));
-						String ingredient = cursor.getString(cursor
-								.getColumnIndexOrThrow(DrinkTable.COLUMN_INGREDIENT));
-						String description = cursor.getString(cursor
-								.getColumnIndexOrThrow(DrinkTable.COLUMN_DESCRIPTION));
-						int rating = cursor.getInt(cursor
-								.getColumnIndexOrThrow(DrinkTable.COLUMN_RATING));
-						int favorite = cursor.getInt(cursor
-								.getColumnIndexOrThrow(DrinkTable.COLUMN_FAVORITE));
-						drinkList.add(new Drink(_id, name, url, glass, ingredient, description,
-								rating, favorite));
-					} while (cursor.moveToNext());
+				do {
+					int _id = cursor.getInt(cursor
+							.getColumnIndexOrThrow(DrinkTable.COLUMN_ID));
+					String name = cursor.getString(cursor
+							.getColumnIndexOrThrow(DrinkTable.COLUMN_NAME));
+					String url = cursor.getString(cursor
+							.getColumnIndexOrThrow(DrinkTable.COLUMN_URL));
+					String glass = cursor.getString(cursor
+							.getColumnIndexOrThrow(DrinkTable.COLUMN_GLASS));
+					String ingredient = cursor
+							.getString(cursor
+									.getColumnIndexOrThrow(DrinkTable.COLUMN_INGREDIENT));
+					String description = cursor
+							.getString(cursor
+									.getColumnIndexOrThrow(DrinkTable.COLUMN_DESCRIPTION));
+					int rating = cursor.getInt(cursor
+							.getColumnIndexOrThrow(DrinkTable.COLUMN_RATING));
+					int favorite = cursor.getInt(cursor
+							.getColumnIndexOrThrow(DrinkTable.COLUMN_FAVORITE));
+					drinkList.add(new Drink(_id, name, url, glass, ingredient,
+							description, rating, favorite));
+				} while (cursor.moveToNext());
 
-					// Close the cursor.
-					cursor.close();
+				// Close the cursor.
+				cursor.close();
 
-					return drinkList;
-				} else {
-					// Close the cursor.
-					cursor.close();
+				return drinkList;
+			} else {
+				// Close the cursor.
+				cursor.close();
 
-					// No Favorites. Return Empty LinkedList<Drink>.
-					return new LinkedList<Drink>();
-				}
+				// No Favorites. Return Empty LinkedList<Drink>.
+				return new LinkedList<Drink>();
 			}
-			/**
-			 * End of SQLite getAllFavorites().
-			 */
+		}
 		return null;
 	}
 
 	/**
-	 * This method sets a Drink to a favorite.
+	 * Sets the favorite row in a Drink to 1.
 	 * 
-	 * @param ID
+	 * @param ID _id of the Drink.
 	 * @return 0 if OK. 1 if ID doesn't exist.
 	 */
 	public int setFavoriteByID(int ID) {
+		ContentValues values = new ContentValues();
 
+		// Choose which columns you want to query. null queries all columns.
+		String[] projection = { DrinkTable.COLUMN_ID, DrinkTable.COLUMN_NAME };
 
-			/**
-			 * SQLITE setFavoriteByID().
-			 */
-			ContentValues values = new ContentValues();
+		// Query database.
+		Cursor cursor = MyBarApplication.ContentResolver().query(
+				MyBarContentProvider.CONTENTURI_DRINK, projection,
+				DrinkTable.COLUMN_ID + "=" + ID, null, null);
 
-			// Choose which columns you want to query. null queries all columns.
-			String[] projection = { DrinkTable.COLUMN_ID, DrinkTable.COLUMN_NAME };
+		// Successful query?.
+		if (cursor != null) {
 
-			// Query database.
-			Cursor cursor = MyBarApplication.ContentResolver().query(
-					MyBarContentProvider.CONTENTURI_DRINK, projection,
-					DrinkTable.COLUMN_ID + "=" + ID, null, null);
+			// Is there any data from the requested Query.
+			if (cursor.moveToFirst()) {
 
-			// Successful query?.
-			if (cursor != null) {
+				values.put("favorite", 1);
+				int rowUpdated = MyBarApplication.ContentResolver().update(
+						MyBarContentProvider.CONTENTURI_DRINK, values,
+						DrinkTable.COLUMN_ID + "=" + ID, null);
 
-				// Is there any data from the requested Query.
-				if (cursor.moveToFirst()) {
+				// Print the favorited drink.
+				Log.d(Data.class.getClass().getName(),
+						"Favorited Drink: "
+								+ cursor.getString(cursor
+										.getColumnIndexOrThrow(DrinkTable.COLUMN_NAME))
+								+ " How many rows favorited: "
+								+ Integer.toString(rowUpdated));
 
-					values.put("favorite", 1);
-					int rowUpdated = MyBarApplication.ContentResolver().update(
-							MyBarContentProvider.CONTENTURI_DRINK, values,
-							DrinkTable.COLUMN_ID + "=" + ID, null);
+				// Close the cursor.
+				cursor.close();
 
-					// Print the favorited drink.
-					Log.d(Data.class.getClass().getName(),
-							"Favorited Drink: "
-									+ cursor.getString(cursor
-											.getColumnIndexOrThrow(DrinkTable.COLUMN_NAME))
-									+ " How many rows favorited: " + Integer.toString(rowUpdated));
+				return 0;
+			} else {
+				// Close the cursor.
+				cursor.close();
 
-					// Close the cursor.
-					cursor.close();
-
-					return 0;
-				} else {
-					// Close the cursor.
-					cursor.close();
-
-					// ID doesn't exist. Return 1.
-					return 1;
-				}
+				// ID doesn't exist. Return 1.
+				return 1;
 			}
-			/**
-			 * End of SQLite setFavoriteByID().
-			 */
-		
+		}
 		return 1;
 	}
 
 	/**
-	 * This method sets a Drink to a favorite.
+	 * Sets the favorite row in a Drink to 1.
 	 * 
-	 * @param name
+	 * @param name the name of the Drink.
 	 * @return 0 if OK. 1 if name doesn't exist.
 	 */
-	public static int setFavoriteByName(String name) {
+	public int setFavoriteByName(String name) {
+		ContentValues values = new ContentValues();
 
-			/**
-			 * SQLITE setFavoriteByName().
-			 */
-			ContentValues values = new ContentValues();
+		// Choose which columns you want to query. null queries all columns.
+		String[] projection = { DrinkTable.COLUMN_ID, DrinkTable.COLUMN_NAME };
 
-			// Choose which columns you want to query. null queries all columns.
-			String[] projection = { DrinkTable.COLUMN_ID, DrinkTable.COLUMN_NAME };
+		// Query database.
+		Cursor cursor = MyBarApplication.ContentResolver().query(
+				MyBarContentProvider.CONTENTURI_DRINK, projection,
+				DrinkTable.COLUMN_NAME + " = ? ", new String[] { name }, null);
 
-			// Query database.
-			Cursor cursor = MyBarApplication.ContentResolver().query(
-					MyBarContentProvider.CONTENTURI_DRINK, projection,
-					DrinkTable.COLUMN_NAME + " = ? ", new String[] { name }, null);
+		// Successful query?.
+		if (cursor != null) {
 
-			// Successful query?.
-			if (cursor != null) {
+			// Is there any data from the requested Query.
+			if (cursor.moveToFirst()) {
 
-				// Is there any data from the requested Query.
-				if (cursor.moveToFirst()) {
+				values.put("favorite", 1);
+				int rowUpdated = MyBarApplication.ContentResolver()
+						.update(MyBarContentProvider.CONTENTURI_DRINK, values,
+								DrinkTable.COLUMN_NAME + " = ? ",
+								new String[] { name });
 
-					values.put("favorite", 1);
-					int rowUpdated = MyBarApplication.ContentResolver().update(
-							MyBarContentProvider.CONTENTURI_DRINK, values,
-							DrinkTable.COLUMN_NAME + " = ? ", new String[] { name });
+				// Print the favorited drink.
+				Log.d(Data.class.getClass().getName(),
+						"Favorited Drink: "
+								+ cursor.getString(cursor
+										.getColumnIndexOrThrow(DrinkTable.COLUMN_NAME))
+								+ " How many rows favorited: "
+								+ Integer.toString(rowUpdated));
 
-					// Print the favorited drink.
-					Log.d(Data.class.getClass().getName(),
-							"Favorited Drink: "
-									+ cursor.getString(cursor
-											.getColumnIndexOrThrow(DrinkTable.COLUMN_NAME))
-									+ " How many rows favorited: " + Integer.toString(rowUpdated));
+				// Close the cursor.
+				cursor.close();
 
-					// Close the cursor.
-					cursor.close();
+				return 0;
+			} else {
+				// Close the cursor.
+				cursor.close();
 
-					return 0;
-				} else {
-					// Close the cursor.
-					cursor.close();
-
-					// name doesn't exist. Return 1.
-					return 1;
-				}
+				// name doesn't exist. Return 1.
+				return 1;
 			}
-			/**
-			 * End of SQLite setFavoriteByName().
-			 */
-	
+		}
 		return 1;
 	}
 
 	/**
 	 * Sets the columns in the Drink table to different values.
 	 * 
-	 * @param name Name of the Drink to update.
-	 * @param column The column to update.
-	 * @param set The value to update the column with.
-	 * @return 0 if successful.
+	 * @param name name of the Drink to update.
+	 * @param column the column to update.
+	 * @param set the value to update the column with.
+	 * @return 0 if successful. 1 if error. See LogCat
 	 */
 	public int setDrink(String name, String column, int set) {
+		ContentValues values = new ContentValues();
 
-			/**
-			 * SQLITE setDrink(String name, String column, int set).
-			 */
-			ContentValues values = new ContentValues();
+		// Choose which columns you want to query. null queries all columns.
+		String[] projection = { DrinkTable.COLUMN_ID, DrinkTable.COLUMN_NAME };
 
-			// Choose which columns you want to query. null queries all columns.
-			String[] projection = { DrinkTable.COLUMN_ID, DrinkTable.COLUMN_NAME };
+		// Query database.
+		Cursor cursor = MyBarApplication.ContentResolver().query(
+				MyBarContentProvider.CONTENTURI_DRINK, projection,
+				DrinkTable.COLUMN_NAME + " = ? ", new String[] { name }, null);
 
-			// Query database.
-			Cursor cursor = MyBarApplication.ContentResolver().query(
-					MyBarContentProvider.CONTENTURI_DRINK, projection,
-					DrinkTable.COLUMN_NAME + " = ? ", new String[] { name }, null);
+		// Successful query?.
+		if (cursor != null) {
 
-			// Successful query?.
-			if (cursor != null) {
+			// Is there any data from the requested Query.
+			if (cursor.moveToFirst()) {
 
-				// Is there any data from the requested Query.
-				if (cursor.moveToFirst()) {
+				values.put(column, set);
+				int rowUpdated = MyBarApplication.ContentResolver()
+						.update(MyBarContentProvider.CONTENTURI_DRINK, values,
+								DrinkTable.COLUMN_NAME + " = ? ",
+								new String[] { name });
 
-					values.put(column, set);
-					int rowUpdated = MyBarApplication.ContentResolver().update(
-							MyBarContentProvider.CONTENTURI_DRINK, values,
-							DrinkTable.COLUMN_NAME + " = ? ", new String[] { name });
+				// Print the updated drink.
+				Log.d(Data.class.getClass().getName(),
+						"Drink: "
+								+ cursor.getString(cursor
+										.getColumnIndexOrThrow(DrinkTable.COLUMN_NAME))
+								+ ". Rows updated in this query: "
+								+ Integer.toString(rowUpdated));
 
-					// Print the updated drink.
-					Log.d(Data.class.getClass().getName(),
-							"Drink: "
-									+ cursor.getString(cursor
-											.getColumnIndexOrThrow(DrinkTable.COLUMN_NAME))
-									+ ". Rows updated in this query: "
-									+ Integer.toString(rowUpdated));
+				// Close the cursor.
+				cursor.close();
 
-					// Close the cursor.
-					cursor.close();
+				return 0;
+			} else {
+				// Error message in LogCat.
+				Log.e(Data.class.getClass().getName(), "name doesn't exist");
 
-					return 0;
-				} else {
-					// Error message in LogCat.
-					Log.e(Data.class.getClass().getName(), "name doesn't exist");
+				// Close the cursor.
+				cursor.close();
 
-					// Close the cursor.
-					cursor.close();
-
-					// name doesn't exist. Return 1.
-					return 1;
-				}
+				// name doesn't exist. Return 1.
+				return 1;
 			}
-			/**
-			 * End of SQLite setDrink(String name, String column, int set).
-			 */
-
+		}
 		return 1;
 	}
 
@@ -993,114 +864,71 @@ public class Data {
 	 * @param ID _id of the Drink to update.
 	 * @param column The column to update.
 	 * @param set The value to update the column with.
-	 * @return 0 if successful.
+	 * @return 0 if successful. 1 if error. See LogCat
 	 */
-	public static int setDrink(int ID, String column, int set) {
+	public int setDrink(int ID, String column, int set) {
+		ContentValues values = new ContentValues();
 
+		// Choose which columns you want to query. null queries all columns.
+		String[] projection = { DrinkTable.COLUMN_ID, DrinkTable.COLUMN_NAME };
 
-			/**
-			 * SQLITE setDrink(int ID, String column, int set).
-			 */
-			ContentValues values = new ContentValues();
+		// Query database.
+		Cursor cursor = MyBarApplication.ContentResolver().query(
+				MyBarContentProvider.CONTENTURI_DRINK, projection,
+				DrinkTable.COLUMN_ID + "=" + ID, null, null);
 
-			// Choose which columns you want to query. null queries all columns.
-			String[] projection = { DrinkTable.COLUMN_ID, DrinkTable.COLUMN_NAME };
+		// Successful query?.
+		if (cursor != null) {
 
-			// Query database.
-			Cursor cursor = MyBarApplication.ContentResolver().query(
-					MyBarContentProvider.CONTENTURI_DRINK, projection,
-					DrinkTable.COLUMN_ID + "=" + ID, null, null);
+			// Is there any data from the requested Query.
+			if (cursor.moveToFirst()) {
 
-			// Successful query?.
-			if (cursor != null) {
+				values.put(column, set);
+				int rowUpdated = MyBarApplication.ContentResolver().update(
+						MyBarContentProvider.CONTENTURI_DRINK, values,
+						DrinkTable.COLUMN_ID + "=" + ID, null);
 
-				// Is there any data from the requested Query.
-				if (cursor.moveToFirst()) {
+				// Print the updated drink.
+				Log.d(Data.class.getClass().getName(),
+						"Drink: "
+								+ cursor.getString(cursor
+										.getColumnIndexOrThrow(DrinkTable.COLUMN_NAME))
+								+ ". Rows updated in this query: "
+								+ Integer.toString(rowUpdated));
 
-					values.put(column, set);
-					int rowUpdated = MyBarApplication.ContentResolver().update(
-							MyBarContentProvider.CONTENTURI_DRINK, values,
-							DrinkTable.COLUMN_ID + "=" + ID, null);
+				// Close the cursor.
+				cursor.close();
 
-					// Print the updated drink.
-					Log.d(Data.class.getClass().getName(),
-							"Drink: "
-									+ cursor.getString(cursor
-											.getColumnIndexOrThrow(DrinkTable.COLUMN_NAME))
-									+ ". Rows updated in this query: "
-									+ Integer.toString(rowUpdated));
+				return 0;
+			} else {
+				// Error message in LogCat.
+				Log.e(Data.class.getClass().getName(), "ID doesn't exist");
 
-					// Close the cursor.
-					cursor.close();
+				// Close the cursor.
+				cursor.close();
 
-					return 0;
-				} else {
-					// Error message in LogCat.
-					Log.e(Data.class.getClass().getName(), "ID doesn't exist");
-
-					// Close the cursor.
-					cursor.close();
-
-					// ID doesn't exist. Return 1.
-					return 1;
-				}
+				// ID doesn't exist. Return 1.
+				return 1;
 			}
-			/**
-			 * End of SQLite setDrink(int ID, String column, int set).
-			 */
-
-
+		}
 		return 1;
 	}
 
 	public String[] getDrinkNameAsArray() {
-		String[] drinks;
-		if (SQLITE) {
-			LinkedList<String> nameList = new LinkedList<String>();
+		LinkedList<String> nameList = new LinkedList<String>();
 
-			for (int i = 0; i < getAllDrinks().size(); i++) {
-				nameList.add(getAllDrinks().get(i).getName());
+		for (int i = 0; i < getAllDrinks().size(); i++) {
+			nameList.add(getAllDrinks().get(i).getName());
 
-				Log.d(Controller.class.getClass().getName(), ""
-						+ getAllDrinks().get(i).get_id() + " "
-						+ getAllDrinks().get(i).getName());
-			}
-
-			String[] array = new String[nameList.size()];
-			nameList.toArray(array);
-
-			return array;
+			Log.d(Controller.class.getClass().getName(), ""
+					+ getAllDrinks().get(i).get_id() + " "
+					+ getAllDrinks().get(i).getName());
 		}
-		if (EDATA) {}
-		if (FAKE) {
-			drinks = new String[20];
-			drinks[0] = "Cola och tonic";
-			drinks[1] = "Cola lime";
-			drinks[2] = "Cola gin";
-			drinks[3] = "Cola citrus";
-			drinks[4] = "Cola hallon";
-			drinks[5] = "Cola light";
-			drinks[6] = "Cola sun";
-			drinks[7] = "Cola looka";
-			drinks[8] = "Cola with ice";
-			drinks[9] = "Rom and cocke";
 
-			return drinks;
-		}
-		return null;
-	}
+		String[] array = new String[nameList.size()];
+		nameList.toArray(array);
 
-	/**
-	 * Search for Drinks in the database.
-	 * 
-	 * @param searchName
-	 * @return A LinkedList with the Drink containing the searchName string.
-	 */
-	public static LinkedList<Drink> searchDrinkName(String searchName) {
-		if (FAKE) {
-			return fakeDrinkList;
-		}
-		return null;
+		return array;
 	}
 
 	/**
@@ -1111,63 +939,64 @@ public class Data {
 	 * @return A LinkedList with the ingredients containing the searchName
 	 *         string.
 	 */
-	public static LinkedList<Ingredient> searchIngredients(String search, int limit) {
+	public LinkedList<Ingredient> searchIngredients(String search,
+			int limit) {
+		LinkedList<Ingredient> ingredientList = new LinkedList<Ingredient>();
 
+		// Choose which columns you want to query. null queries all columns.
+		// String[] projection = { IngredientTable.COLUMN_NAME,
+		// IngredientTable.COLUMN_DESCRIPTION };
 
-			/**
-			 * SQLITE searchIngredients().
-			 */
-			LinkedList<Ingredient> ingredientList = new LinkedList<Ingredient>();
+		// Query database.
+		Cursor cursor = MyBarApplication.ContentResolver().query(
+				MyBarContentProvider.CONTENTURI_INGREDIENT,
+				null,
+				IngredientTable.COLUMN_NAME + " LIKE ? ",
+				new String[] { "%" + search + "%" },
+				IngredientTable.COLUMN_NAME + " COLLATE NOCASE ASC LIMIT "
+						+ limit);
 
-			// Choose which columns you want to query. null queries all columns.
-			// String[] projection = { IngredientTable.COLUMN_NAME,
-			// IngredientTable.COLUMN_DESCRIPTION };
+		// Successful query?.
+		if (cursor != null) {
 
-			// Query database.
-			Cursor cursor = MyBarApplication.ContentResolver().query(
-					MyBarContentProvider.CONTENTURI_INGREDIENT, null, IngredientTable.COLUMN_NAME +
-					" LIKE ? ", new String[]{"%"+search+"%"}, 
-					IngredientTable.COLUMN_NAME+" COLLATE NOCASE ASC LIMIT "+limit);
+			// Is there any data from the requested Query.
+			if (cursor.moveToFirst()) {
 
-			// Successful query?.
-			if (cursor != null) {
+				do {
+					int _id = cursor.getInt(cursor
+							.getColumnIndexOrThrow(IngredientTable.COLUMN_ID));
+					String name = cursor
+							.getString(cursor
+									.getColumnIndexOrThrow(IngredientTable.COLUMN_NAME));
+					String url = cursor.getString(cursor
+							.getColumnIndexOrThrow(IngredientTable.COLUMN_URL));
+					String type = cursor
+							.getString(cursor
+									.getColumnIndexOrThrow(IngredientTable.COLUMN_TYPE));
+					int alcoholcontent = cursor
+							.getInt(cursor
+									.getColumnIndexOrThrow(IngredientTable.COLUMN_ALCOHOLCONTENT));
+					String description = cursor
+							.getString(cursor
+									.getColumnIndexOrThrow(IngredientTable.COLUMN_DESCRIPTION));
+					ingredientList.add(new Ingredient(_id, name, url, type,
+							alcoholcontent, description));
+					Log.d(Data.class.getName(), "Search returned: " + name);
+				} while (cursor.moveToNext());
 
-				// Is there any data from the requested Query.
-				if (cursor.moveToFirst()) {
+				// Close the cursor.
+				cursor.close();
 
-					do {
-						int _id = cursor.getInt(cursor
-								.getColumnIndexOrThrow(IngredientTable.COLUMN_ID));
-						String name = cursor.getString(cursor
-								.getColumnIndexOrThrow(IngredientTable.COLUMN_NAME));
-						String url = cursor.getString(cursor
-								.getColumnIndexOrThrow(IngredientTable.COLUMN_URL));
-						String type = cursor.getString(cursor
-								.getColumnIndexOrThrow(IngredientTable.COLUMN_TYPE));
-						int alcoholcontent = cursor.getInt(cursor
-								.getColumnIndexOrThrow(IngredientTable.COLUMN_ALCOHOLCONTENT));
-						String description = cursor.getString(cursor
-								.getColumnIndexOrThrow(IngredientTable.COLUMN_DESCRIPTION));
-						ingredientList.add(new Ingredient(_id, name, url, type, alcoholcontent,
-								description));
-						Log.d(Data.class.getName(), "Search returned: " + name);
-					} while (cursor.moveToNext());
+				return ingredientList;
+			} else {
+				// Close the cursor.
+				cursor.close();
 
-					// Close the cursor.
-					cursor.close();
-
-					return ingredientList;
-				} else {
-					// Close the cursor.
-					cursor.close();
-
-					// No ingredients in Query. Return Empty LinkedList<Ingredient>.
-					return new LinkedList<Ingredient>();
-				}
+				// No ingredients in Query. Return Empty
+				// LinkedList<Ingredient>.
+				return new LinkedList<Ingredient>();
 			}
-			/**
-			 * End of SQLite searchIngredients().
-			 */
+		}
 		return null;
 	}
 }

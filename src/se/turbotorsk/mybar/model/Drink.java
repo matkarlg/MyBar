@@ -5,12 +5,12 @@ mybar@turbotorsk.se
 
 Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
-�	Redistributions of source code must retain the above copyright notice,
+*	Redistributions of source code must retain the above copyright notice,
  	this list of conditions and the following disclaimer.
-�	Redistributions in binary form must reproduce the above copyright notice,
+*	Redistributions in binary form must reproduce the above copyright notice,
  	this list of conditions and the following disclaimer in the documentation
  	and/or other materials provided with the distribution.
-�	Neither the name of the MyBar nor the names of its contributors may be 
+*	Neither the name of the MyBar nor the names of its contributors may be 
 	used to endorse or promote products derived from this software without
 	specific prior written permission.
 	
@@ -33,14 +33,14 @@ import android.content.ContentValues;
 import android.util.Log;
 
 /**
- * A drink object contains information about a drink.
+ * Drink is a simple class that contains variables describing, among other
+ * attributes the name and the type of glass used when making a drink.
  * 
- * @author Mathias Karlgren (matkarlg)
- * 
+ * @author Mathias Karlgren (<a
+ *         href="mailto:mathias.karlgren@gmail.com">email</a>)
  */
 public class Drink {
-
-	private int _id = 0;
+	private int id = 0;
 	private String name = "";
 	private String url = "";
 	private String glass = "";
@@ -50,9 +50,9 @@ public class Drink {
 	private int favorite = 0;
 	private ContentValues values = null;
 
-	public Drink(int _id, String name, String url, String glass, String ingredient,
-			String description, int rating, int favorite) {
-		this._id = _id;
+	public Drink(int id, String name, String url, String glass,
+			String ingredient, String description, int rating, int favorite) {
+		this.id = id;
 		this.name = name;
 		this.url = url;
 		this.glass = glass;
@@ -96,7 +96,8 @@ public class Drink {
 	 * @return
 	 */
 	public String getIngredientPreViewString() {
-		int arrayCount = 0, maxStringLength = (40 - 4);
+//		int arrayCount = 0;
+		int maxStringLength = (40 - 4);
 		StringBuffer nameBuff = new StringBuffer();
 		String name = "";
 		String[] array = ingredient.split(";"); 
@@ -116,8 +117,7 @@ public class Drink {
 	}
 	
 	public String getIngredientString() {
-
-		int arrayCount = 0, maxStringLength = (26 - 4);
+//		int arrayCount = 0, maxStringLength = (26 - 4);
 		StringBuffer nameBuff = new StringBuffer();
 		String name = "";
 		String[] array = ingredient.split(";"); 
@@ -133,7 +133,7 @@ public class Drink {
 	}
 
 	/**
-	 * This method gets the values for the content.
+	 * Gets the ContentValues.
 	 * 
 	 * @return values
 	 */
@@ -142,25 +142,25 @@ public class Drink {
 	}
 
 	/**
-	 * This method gets the id.
+	 * Gets the id.
 	 * 
-	 * @return _id
+	 * @return id
 	 */
 	public int get_id() {
-		return _id;
+		return id;
 	}
 
 	/**
-	 * This method sets the id.
+	 * Sets the id.
 	 * 
-	 * @param _id
+	 * @param id
 	 */
-	public void set_id(int _id) {
-		this._id = _id;
+	public void set_id(int id) {
+		this.id = id;
 	}
 
 	/**
-	 * This method gets the name.
+	 * Gets the name.
 	 * 
 	 * @return name
 	 */
@@ -169,7 +169,7 @@ public class Drink {
 	}
 
 	/**
-	 * This method sets the name.
+	 * Sets the name.
 	 * 
 	 * @param name
 	 */
@@ -178,7 +178,7 @@ public class Drink {
 	}
 
 	/**
-	 * This method gets the ingredient.
+	 * Gets the ingredient.
 	 * 
 	 * @return ingredient
 	 */
@@ -187,7 +187,7 @@ public class Drink {
 	}
 
 	/**
-	 * This method sets the ingredient.
+	 * Sets the ingredient.
 	 * 
 	 * @param ingredient
 	 */
@@ -196,7 +196,7 @@ public class Drink {
 	}
 
 	/**
-	 * This method gets the rating.
+	 * Gets the rating.
 	 * 
 	 * @return rating
 	 */
@@ -205,7 +205,7 @@ public class Drink {
 	}
 
 	/**
-	 * This method sets the rating.
+	 * Sets the rating.
 	 * 
 	 * @param rating
 	 */
@@ -214,7 +214,7 @@ public class Drink {
 	}
 
 	/**
-	 * This method gets the glass.
+	 * Gets the glass.
 	 * 
 	 * @return glass
 	 */
@@ -223,7 +223,7 @@ public class Drink {
 	}
 
 	/**
-	 * This method sets the glass.
+	 * Sets the glass.
 	 * 
 	 * @param glass
 	 */
@@ -232,7 +232,7 @@ public class Drink {
 	}
 
 	/**
-	 * This method gets the description.
+	 * Gets the description.
 	 * 
 	 * @return description
 	 */
@@ -241,7 +241,7 @@ public class Drink {
 	}
 
 	/**
-	 * This method sets the description.
+	 * Sets the description.
 	 * 
 	 * @param description
 	 */
@@ -250,34 +250,34 @@ public class Drink {
 	}
 
 	/**
-	 * This method gets the url.
+	 * Gets the URL.
 	 * 
-	 * @return url
+	 * @return URL
 	 */
 	public String getUrl() {
 		return url;
 	}
 
 	/**
-	 * This method sets the url.
+	 * Sets the URL.
 	 * 
-	 * @param url
+	 * @param URL
 	 */
 	public void setUrl(String url) {
 		this.url = url;
 	}
 
 	/**
-	 * This method gets the favorite.
+	 * Gets the favorite.
 	 * 
-	 * @return
+	 * @return favorite
 	 */
 	public int getFavorite() {
 		return favorite;
 	}
 
 	/**
-	 * This method sets the favorite.
+	 * Sets the favorite.
 	 * 
 	 * @param favorite
 	 */
