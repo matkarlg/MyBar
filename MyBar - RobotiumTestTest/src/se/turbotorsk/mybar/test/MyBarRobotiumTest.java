@@ -37,14 +37,16 @@ import android.test.ActivityInstrumentationTestCase2;
 
 import com.jayway.android.robotium.solo.Solo;
 
-
-//Written by Adam Clark
-//It seems like the tests are evaluated alphabetically, therefore im adding a number in each
-//test, to have a good overview and so that it is easier to manage the code. 
-//I have deceided to have all testcode in one java file for now. This is because robotium is 
-//still very difficult to understand and it is easier to have all tests at the same place
-//when there aren't that many tests.
-
+/**
+* It seems like the tests are evaluated alphabetically, therefore im adding a number in each
+* test, to have a good overview and so that it is easier to manage the code. 
+* I have deceided to have all testcode in one java file for now. This is because robotium is 
+* still very difficult to understand and it is easier to have all tests at the same place
+* when there aren't that many tests.
+* 
+* @author Adam Clark (<a
+*         href="mailto:adam.clark91@gmail.com">email</a>)
+*/
 public class MyBarRobotiumTest extends ActivityInstrumentationTestCase2<MainActivity> {
 	
 	private Solo solo;
@@ -58,7 +60,8 @@ public class MyBarRobotiumTest extends ActivityInstrumentationTestCase2<MainActi
 		solo = new Solo(getInstrumentation(), getActivity());
 	}
 	
-//In some way this method fu**s the tests up.
+//In some way this method breaks everything, im keeping it so I wont forget to do a good one.
+//This method is nothing we should prioritize. 
 //	public void tearDown() throws Exception {
 //		try {
 //			solo.finalize();
@@ -81,7 +84,7 @@ public class MyBarRobotiumTest extends ActivityInstrumentationTestCase2<MainActi
 //but i haven't managed to get robotium to press the COLLECTION tab. This has to do for now.
 	public void test2_ChangeTabToCollection(){
 		solo.assertCurrentActivity("First activity", MainActivity.class);
-		solo.sendKey(solo.RIGHT);
+		solo.sendKey(Solo.RIGHT);
 		solo.assertCurrentActivity("Ska ha bytt activity", CollectionActivity.class);
 	}
 	
@@ -93,7 +96,9 @@ public class MyBarRobotiumTest extends ActivityInstrumentationTestCase2<MainActi
 		solo.goBack();
 	}
 	
-
+//This test opens the Settings menu and makes sure that the right activity starts.
+//My goal is to expand this and do more tests, or maybe do another test that is build on
+//this one.
 	public void test4_OpenSettingsButton(){
 		solo.clickOnMenuItem("Settings");
 		solo.assertCurrentActivity("Ska vara settings aktiviteten", SettingsActivity.class);
@@ -101,8 +106,8 @@ public class MyBarRobotiumTest extends ActivityInstrumentationTestCase2<MainActi
 	}
 	
 //Almost working, in some way i have to assert that it is working. The about box is showing,
-//but it seems like i cant use assertCurrentActivity since the MainActivity is in the background..
-//Threrefore I am commenting the assertion line of code. This is something that has to be fixed.
+//but it seems like i can't use assertCurrentActivity since the MainActivity is in the background..
+//Therefore I am commenting the assertion line of code. This is something that has to be fixed.
 	public void test5_OpenAboutBox(){
 		solo.clickOnMenuItem("About");
 		//solo.assertCurrentActivity("Ska vara about aktiviteten", AboutBox.class);
