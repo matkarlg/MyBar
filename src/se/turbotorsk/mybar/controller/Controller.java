@@ -126,4 +126,8 @@ public class Controller {
 		else return false;
 	}
 	
+	public static void deleteTables(){
+		Data.deleteData();
+	}
+	
 }
