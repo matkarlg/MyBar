@@ -39,11 +39,11 @@ public class DrinkManager {
 	private LinkedList<Drink> myBar = null;
 
 	public DrinkManager() {
-		;
 	}
 
-	public LinkedList<Drink> getMyBar(LinkedList<Ingredient> ingredientList,
-			LinkedList<Drink> drinkList) {
+	public LinkedList<Drink> getMyBar() {
+		LinkedList<Ingredient> myIngredientList = Controller.getMyIngredients();
+		LinkedList<Drink> drinkList = Controller.getAllDrinks();
 		String[] drinks;
 		int ingredientID = 0, count = 0;
 		boolean found = false;
@@ -52,7 +52,7 @@ public class DrinkManager {
 			for (int countID = 0; countID <= drinks.length; countID += 2) {
 				ingredientID = Integer.parseInt(drinks[count]);
 				found = false;
-				for (Ingredient ingredient : ingredientList) {
+				for (Ingredient ingredient : myIngredientList) {
 					if (ingredient.get_id() == ingredientID) {
 						found = true;
 						break;
