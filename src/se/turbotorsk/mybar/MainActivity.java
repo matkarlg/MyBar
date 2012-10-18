@@ -114,7 +114,7 @@ public class MainActivity extends TabActivity {
 			startActivity(new Intent(this, Share.class));
 			return true;
 		case R.id.menu_about:
-			AboutBox.Show(MainActivity.this);
+			AboutBox.show(MainActivity.this);
 			return true;
 		case R.id.menu_settings:
 			startActivity(new Intent(this, SettingsActivity.class));

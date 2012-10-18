@@ -45,14 +45,14 @@ import android.widget.TextView;
  * who made the application.
  */
 public class AboutBox {
-	static String VersionName(Context context) {
-		return "0.5"; // context.getPackageManager().getPackageInfo(context.getPackageName(),0).versionName;
+	static String versionName(Context context) {
+		return "0.5";
 	}
 
-	public static void Show(Activity callingActivity) {
+	public static void show(Activity callingActivity) {
 		// Use a Spannable to allow for links highlighting.
 		SpannableString aboutText = new SpannableString("Version "
-				+ VersionName(callingActivity) + "\n\n"
+				+ versionName(callingActivity) + "\n\n"
 				+ callingActivity.getString(R.string.about));
 		// Generate views to pass to AlertDialog.Builder and to set the text.
 		View about;
@@ -68,6 +68,7 @@ public class AboutBox {
 			// it occurs.
 			about = tvAbout = new TextView(callingActivity);
 		}
+		
 		// Set the about text.
 		tvAbout.setText(aboutText);
 		// Now Linkify the text.

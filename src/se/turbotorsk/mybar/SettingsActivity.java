@@ -84,7 +84,7 @@ public class SettingsActivity extends Activity {
 			startActivity(new Intent(this, SettingsActivity.class));
 			return true;
 		case R.id.menu_about:
-			AboutBox.Show(SettingsActivity.this);
+			AboutBox.show(SettingsActivity.this);
 			return true;
 		default:
 			return true;
