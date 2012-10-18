@@ -28,24 +28,12 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package se.turbotorsk.mybar.model.externaldata;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import android.content.ContentValues;
-import android.net.Uri;
-import android.os.StrictMode;
-import android.util.Log;
-
-import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
@@ -58,16 +46,17 @@ import se.turbotorsk.mybar.model.Data;
 import se.turbotorsk.mybar.model.Drink;
 import se.turbotorsk.mybar.model.Ingredient;
 import se.turbotorsk.mybar.model.database.MyBarContentProvider;
-
-import android.view.View;
-import android.widget.Toast;
+import android.content.ContentValues;
+import android.net.Uri;
+import android.os.StrictMode;
+import android.util.Log;
 
 public class JsonParse {
 	//Sets the timeout for the web server. 	
 	private static final int TIMEOUT_MILLISEC = 9999; 
 	
 	//Gives the Class access to the network. 
-	public JsonParse() {
+	static {
 		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
 				.permitAll().build();
 		StrictMode.setThreadPolicy(policy);
@@ -80,7 +69,7 @@ public class JsonParse {
 	 * This method populates the drink and ingredient database. 
 	 * @return
 	 */
-	public boolean getDb() {
+	public static boolean getDb() {
 		boolean drinkOK = false, ingredientOK = false;
 		String responseBody = getWebData("getIngredients.php");
 		Log.d("getDB",responseBody);
@@ -166,11 +155,11 @@ public class JsonParse {
 	 * @param wepDocumet the file to be fetched.
 	 * @return A string representation of the responseBody.
 	 */
-	public String getWebData(String wepDocumet)
+	public static String getWebData(String wepDocumet)
 	{
 		
 	    try {
-	        Log.d(getClass().getSimpleName(), "send  task - start");
+	        Log.d(JsonParse.class.getSimpleName(), "send  task - start");
 	        HttpParams httpParams = new BasicHttpParams();
 	        HttpConnectionParams.setConnectionTimeout(httpParams,TIMEOUT_MILLISEC);
 	        HttpConnectionParams.setSoTimeout(httpParams, TIMEOUT_MILLISEC);
@@ -185,7 +174,6 @@ public class JsonParse {
     		try{
     			ResponseHandler<String> responseHandler = new BasicResponseHandler();
     			String responseBody = httpclient.execute(httppost,responseHandler);
-    			//Log.d("getWebData", "Request good: " + responseBody);
     			return responseBody;
     		
     		} catch (ClientProtocolException e) {    			
