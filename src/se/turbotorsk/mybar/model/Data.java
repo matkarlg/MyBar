@@ -51,13 +51,12 @@ import android.util.Log;
  *         href="mailto:mathias.karlgren@gmail.com">email</a>)
  */
 public class Data {
-	private static JsonParse jsonParse = new JsonParse();
 	/**
 	 * Inserts TestData in the database.
 	 * 
 	 * @return 0
 	 */
-	public int insertTestData() {
+	public static int insertTestData() {
 		Uri myBarUri = null;
 
 		// Drinks uses autoincrement in the _id field.
@@ -131,7 +130,7 @@ public class Data {
 	 * 
 	 * @return rowsDeleted.
 	 */
-	public int deleteTestData() {
+	public static int deleteTestData() {
 		int rowsDeleted = 0;
 		rowsDeleted += MyBarApplication.ContentResolver().delete(
 				MyBarContentProvider.CONTENTURI_DRINK, null, null);
@@ -147,9 +146,9 @@ public class Data {
 	 * 
 	 * @return false
 	 */
-	public boolean syncDatabase()
+	public static boolean syncDatabase()
 	{
-		jsonParse.getDb();
+		JsonParse.getDb();
 		return false; 
 	}
 
@@ -160,7 +159,7 @@ public class Data {
 	 * @param location "Home", "Work".
 	 * @return 0 if successful.
 	 */
-	public int addMyBar(int ingredientID, String location) {
+	public static int addMyBar(int ingredientID, String location) {
 		ContentValues values = new ContentValues();
 		values.put("ingredientid", ingredientID);
 		values.put("location", location);
@@ -182,10 +181,6 @@ public class Data {
 	 * @return 0 if successful. 1 if error. See LogCat.
 	 */
 	public static int dropMyBar(int ingredientID, String location) {
-		// Choose which columns you want to query. null queries all columns.
-		// String[] projection = { MyBarTable.COLUMN_ID,
-		// MyBarTable.COLUMN_INGREDIENTID };
-
 		// Query database.
 		Cursor cursor = MyBarApplication
 				.ContentResolver()
@@ -248,7 +243,7 @@ public class Data {
 	 * @param name Drink object that should be inserted into the database.
 	 * @return 0 if successful, 1 if error. See LogCat.
 	 */
-	public int addDrink(Drink name) {
+	public static int addDrink(Drink name) {
 		ContentValues values = name.getContentValues();
 
 		// Choose which columns you want to query. null queries all columns.
@@ -299,7 +294,7 @@ public class Data {
 	 * @param ID an Integer _id that should be removed from the database.
 	 * @return 0 if successful, 1 if error. See LogCat.
 	 */
-	public int dropDrink(int ID) {
+	public static int dropDrink(int ID) {
 		// Choose which columns you want to query. null queries all columns.
 		String[] projection = { DrinkTable.COLUMN_ID, DrinkTable.COLUMN_NAME };
 
@@ -355,10 +350,6 @@ public class Data {
 	public static LinkedList<MyBar> getAllMyBar() {
 		LinkedList<MyBar> mybarList = new LinkedList<MyBar>();
 
-		// Choose which columns you want to query. null queries all columns.
-		// String[] projection = { DrinkTable.COLUMN_NAME,
-		// DrinkTable.COLUMN_DESCRIPTION, DrinkTable.COLUMN_RATING };
-
 		// Query database.
 		Cursor cursor = MyBarApplication.ContentResolver().query(
 				MyBarContentProvider.CONTENTURI_MYBAR, null, null, null, null);
@@ -400,12 +391,8 @@ public class Data {
 	 * 
 	 * @return LinkedList<Drink>.
 	 */
-	public LinkedList<Drink> getAllDrinks() {
+	public static LinkedList<Drink> getAllDrinks() {
 		LinkedList<Drink> drinkList = new LinkedList<Drink>();
-
-		// Choose which columns you want to query. null queries all columns.
-		// String[] projection = { DrinkTable.COLUMN_NAME,
-		// DrinkTable.COLUMN_DESCRIPTION, DrinkTable.COLUMN_RATING };
 
 		// Query database.
 		Cursor cursor = MyBarApplication.ContentResolver().query(
@@ -461,14 +448,10 @@ public class Data {
 	 * 
 	 * @return LinkedList<Ingredient>.
 	 */
-	public LinkedList<Ingredient> getAllIngredients() {
+	public static LinkedList<Ingredient> getAllIngredients() {
 		LinkedList<Ingredient> ingredientList = new LinkedList<Ingredient>();
 
-		// Choose which columns you want to query. null queries all columns.
-		// String[] projection = { IngredientTable.COLUMN_NAME,
-		// IngredientTable.COLUMN_DESCRIPTION };
-
-		// Query database.
+		// Query database. No projection.
 		Cursor cursor = MyBarApplication.ContentResolver().query(
 				MyBarContentProvider.CONTENTURI_INGREDIENT, null, null, null,
 				IngredientTable.COLUMN_NAME + " COLLATE NOCASE ASC");
@@ -523,11 +506,7 @@ public class Data {
 	 * @param ID the _id of the Drink to return
 	 * @return aDrink
 	 */
-	public Drink getDrinkByID(int ID) {
-		// Choose which columns you want to query. null queries all columns.
-		// String[] projection = { DrinkTable.COLUMN_NAME,
-		// DrinkTable.COLUMN_DESCRIPTION, DrinkTable.COLUMN_RATING };
-
+	public static Drink getDrinkByID(int ID) {
 		// Query database.
 		Cursor cursor = MyBarApplication.ContentResolver().query(
 				MyBarContentProvider.CONTENTURI_DRINK, null,
@@ -538,14 +517,6 @@ public class Data {
 
 			// Is there any data from the requested Query.
 			if (cursor.moveToFirst()) {
-
-				// Test Print
-				// Log.d(this.getClass().getName(),
-				// cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_NAME)));
-				// Log.d(this.getClass().getName(),
-				// cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_DESCRIPTION)));
-				// Log.d(this.getClass().getName(),
-				// cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_RATING)));
 
 				int _id = cursor.getInt(cursor
 						.getColumnIndexOrThrow(DrinkTable.COLUMN_ID));
@@ -593,12 +564,8 @@ public class Data {
 	 * @param ID the _id of the Ingredient to return
 	 * @return anIngredient
 	 */
-	public Ingredient getIngredientByID(int ID) {
-		// Choose which columns you want to query. null queries all columns.
-		// String[] projection = { IngredientTable.COLUMN_NAME,
-		// IngredientTable.COLUMN_DESCRIPTION };
-
-		// Query database.
+	public static Ingredient getIngredientByID(int ID) {
+		// Query database. No projection.
 		Cursor cursor = MyBarApplication.ContentResolver().query(
 				MyBarContentProvider.CONTENTURI_INGREDIENT, null,
 				IngredientTable.COLUMN_ID + "=" + ID, null, null);
@@ -608,10 +575,6 @@ public class Data {
 
 			// Is there any data from the requested Query.
 			if (cursor.moveToFirst()) {
-
-				// Test Print.
-				// Log.d(this.getClass().getName(),
-				// cursor.getString(cursor.getColumnIndexOrThrow(DrinkTable.COLUMN_NAME)));
 
 				int _id = cursor.getInt(cursor
 						.getColumnIndexOrThrow(IngredientTable.COLUMN_ID));
@@ -655,14 +618,10 @@ public class Data {
 	 * 
 	 * @return LinkedList<Drink>.
 	 */
-	public LinkedList<Drink> getAllFavorites() {
+	public static LinkedList<Drink> getAllFavorites() {
 		LinkedList<Drink> drinkList = new LinkedList<Drink>();
 
-		// Choose which columns you want to query. null queries all columns.
-		// String[] projection = { DrinkTable.COLUMN_NAME,
-		// DrinkTable.COLUMN_DESCRIPTION, DrinkTable.COLUMN_RATING };
-
-		// Query database.
+		// Query database. No Projection
 		Cursor cursor = MyBarApplication.ContentResolver().query(
 				MyBarContentProvider.CONTENTURI_DRINK, null, "favorite=1",
 				null, DrinkTable.COLUMN_NAME + " COLLATE NOCASE ASC");
@@ -717,7 +676,7 @@ public class Data {
 	 * @param ID _id of the Drink.
 	 * @return 0 if OK. 1 if ID doesn't exist.
 	 */
-	public int setFavoriteByID(int ID) {
+	public static int setFavoriteByID(int ID) {
 		ContentValues values = new ContentValues();
 
 		// Choose which columns you want to query. null queries all columns.
@@ -768,7 +727,7 @@ public class Data {
 	 * @param name the name of the Drink.
 	 * @return 0 if OK. 1 if name doesn't exist.
 	 */
-	public int setFavoriteByName(String name) {
+	public static int setFavoriteByName(String name) {
 		ContentValues values = new ContentValues();
 
 		// Choose which columns you want to query. null queries all columns.
@@ -822,7 +781,7 @@ public class Data {
 	 * @param set the value to update the column with.
 	 * @return 0 if successful. 1 if error. See LogCat
 	 */
-	public int setDrink(String name, String column, int set) {
+	public static int setDrink(String name, String column, int set) {
 		ContentValues values = new ContentValues();
 
 		// Choose which columns you want to query. null queries all columns.
@@ -879,7 +838,7 @@ public class Data {
 	 * @param set The value to update the column with.
 	 * @return 0 if successful. 1 if error. See LogCat
 	 */
-	public int setDrink(int ID, String column, int set) {
+	public static int setDrink(int ID, String column, int set) {
 		ContentValues values = new ContentValues();
 
 		// Choose which columns you want to query. null queries all columns.
@@ -927,7 +886,7 @@ public class Data {
 		return 1;
 	}
 
-	public String[] getDrinkNameAsArray() {
+	public static String[] getDrinkNameAsArray() {
 		LinkedList<String> nameList = new LinkedList<String>();
 
 		for (int i = 0; i < getAllDrinks().size(); i++) {
@@ -952,7 +911,7 @@ public class Data {
 	 * @return A LinkedList with the ingredients containing the searchName
 	 *         string.
 	 */
-	public LinkedList<Ingredient> searchIngredients(String search,
+	public static LinkedList<Ingredient> searchIngredients(String search,
 			int limit) {
 		LinkedList<Ingredient> ingredientList = new LinkedList<Ingredient>();
 
