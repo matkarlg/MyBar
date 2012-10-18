@@ -66,10 +66,6 @@ public class CollectionActivity extends ListActivity {
 
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
-		// String item = (String) getListAdapter().getItem(position);
-		// We will replace this to start another activity instead. Dont know how
-		// to do that yet.
-		// Toast.makeText(this, item + " selected", Toast.LENGTH_LONG).show();
 		Intent intent = new Intent(this, ViewDrinkActivity.class);
 		intent.putExtra("drinkname", adapter.getDrinkName(position));
 		intent.putExtra("rating", adapter.getRating(position));
