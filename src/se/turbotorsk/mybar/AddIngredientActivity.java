@@ -61,7 +61,7 @@ public class AddIngredientActivity extends ListActivity {
 	public void onListItemClick(ListView parent, View v, int position, long id) { 
 
 		{
-			if(save != position && parent.getChildAt(position) != null)
+			if(save != position && parent.getChildAt(position) != null && !(Controller.isInMyBar(adapter.getId(position))))
 			{
 		    parent.getAdapter().getView(position, v, null).setBackgroundColor(Color.parseColor("#0489B1"));
  		    Controller.addMyBarIngredient(adapter.getId(position));
@@ -71,13 +71,13 @@ public class AddIngredientActivity extends ListActivity {
 			else if(parent.getChildAt(position) != null)
 			{
 			parent.getAdapter().getView(position, v, null).setBackgroundColor(Color.WHITE);
-//		    Controller.removeMyBarIngredient();			
+			Controller.removeMyBarIngredient(adapter.getId(position), adapter.getPosition(position));		
 			save = -1;
 			}	
 		}
 	}
 
-	//Needed according to sonar, feels a bit wierd. Might remove?
+	//Needed according to sonar, feels a bit weird. Might remove?
 	public TextView getText() {
 		return text;
 	}

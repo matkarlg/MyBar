@@ -39,14 +39,10 @@ import se.turbotorsk.mybar.model.MyBar;
  * This activity handles the Controller.
  */
 public class Controller {
-	private static int myBarID = 1;
-	private final static DrinkManager dm = new DrinkManager();
-	private static Data data = new Data(); 
 
 	public static LinkedList<Drink> getMyBarDrinks() {
-		// dm.getMyBar(data.getMyIngredients(this.myBarID),
-	
-		return null;
+		DrinkManager dm = new DrinkManager();
+		return dm.getMyBar();
 	}
 
 	/**
@@ -56,118 +52,78 @@ public class Controller {
 	 * @return
 	 */
 	public static Ingredient getIngredientById(int id) {
-		return data.getIngredientByID(id); 
+		return Data.getIngredientByID(id); 
 	}
 
 	// ---------- Methods for get and set favorites ----------
 
-	/**
-	 * This method is used for adding a drink to favorite.
-	 * 
-	 * @param id
-	 * @return
-	 */
-	public static boolean addFavoriteDrink(int id) {
-		return false;
-	}
-
-	/**
-	 * This method is used for fetching all favorite-drinks.
-	 * 
-	 * @return
-	 */
-	public static LinkedList<Drink> getFavoritDrinks() {
-		return null;
-	}
-
 	public static int isFavorite(int id) {
-		Drink drink = data.getDrinkByID(id);
+		Drink drink = Data.getDrinkByID(id);
 		return drink.getFavorite();
 	}
 
 	public static int rating(int id) {
-		Drink drink = data.getDrinkByID(id);
+		Drink drink = Data.getDrinkByID(id);
 		return drink.getRating();
-	}
-
-	// Methods for Ingredient categories.
-
-	public static boolean addMyBarCat(String Name) {
-		return false; // data.AddMyBarCat(String name); Add this method in data.
-	}
-
-	public static boolean addIngredientToList(int ingredientID) {
-		// data.AddIngredientToList(ingredientID, this.myBarID); Add this method
-		// in data.
-		return false;
-	}
-
-	public static boolean changeMyBarID(int myBarID) {
-		if (true) { // Kolla om ID finns
-			Controller.myBarID = myBarID;
-			return true;
-		} else
-			return false;
-	}
-
-	public static String[][] listMyBarIngredientCategories() {
-		// data.listMyBarIngredientCategories(this.myBarID); Add this method in
-		// data.
-		return null;
 	}
 	
 	public static LinkedList<Ingredient> getMyIngredients(){
 		LinkedList<Ingredient> list = new LinkedList<Ingredient>(); 
 		for(MyBar mybar: Data.getAllMyBar()){
-			list.add( data.getIngredientByID(mybar.getIngredientID()));	
+			list.add( Data.getIngredientByID(mybar.getIngredientID()));	
 		}
 		return list;
 	}
 	
 	public static void dataSync()
 	{
-		data.syncDatabase();
-		//data.insertTestData();
+		Data.syncDatabase();
 	}
 	
 	public static LinkedList<Drink> getAllDrinks()
 	{
-		return data.getAllDrinks();
+		return Data.getAllDrinks();
 	}
 	
 	public static LinkedList<Drink> getAllFavorites()
 	{
-		return data.getAllFavorites();
+		return Data.getAllFavorites();
 	}
 	
 	public static int setRatingByName(String name, int rating)
 	{
-		return data.setDrink(name, "rating", (int) rating);
+		return Data.setDrink(name, "rating", (int) rating);
 	}
 
 	public static void setFavorite(String name)
 	{
-		data.setDrink(name, "favorite", 1);
+		Data.setDrink(name, "favorite", 1);
 	}
 	
 	public static void setNotFavorite(String name)
 	{
-		data.setDrink(name, "favorite", 0);
+		Data.setDrink(name, "favorite", 0);
 	}
 	
 	public static LinkedList<Ingredient> getAllIngredients()
 	{
-		return data.getAllIngredients();
+		return Data.getAllIngredients();
 		
 	}
 	
 	public static void addMyBarIngredient(int id){
-		data.addMyBar(id, "home");
+		Data.addMyBar(id, "home");
 	}
 	
+	public static void removeMyBarIngredient(int id, String location){
+		Data.dropMyBar(id, location);
+	}
 
 	public static boolean isInMyBar(int id){
-		return false;
+		if(Data.searchMyBar(id).size() != 0){
+			return true;
+		}
+		else return false;
 	}
 	
 }

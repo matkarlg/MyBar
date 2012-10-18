@@ -57,7 +57,7 @@ public class MyBarActivity extends ListActivity {
 
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
-		Data.dropMyBar(adapter.getId(position), adapter.getPosition(position));
+		Controller.removeMyBarIngredient(adapter.getId(position), adapter.getPosition(position));
 	}
 	
 	@Override
