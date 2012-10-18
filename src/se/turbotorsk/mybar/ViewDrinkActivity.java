@@ -48,15 +48,15 @@ import android.widget.Toast;
 public class ViewDrinkActivity extends Activity implements
 		OnRatingBarChangeListener {
 
-	TextView dName;
-	TextView dDescription;
-	TextView dIngredients;
-	RatingBar dRating;
-	ImageView dImage;
-	CheckBox checkBox;
-	int id;
-	String name, description, ingredients;
-	int rating;
+	private TextView dName;
+	private TextView dDescription;
+	private TextView dIngredients;
+	private RatingBar dRating;
+	private ImageView dImage;
+	private CheckBox checkBox;
+	private int id;
+	private String name, description, ingredients;
+	private int rating;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -64,21 +64,21 @@ public class ViewDrinkActivity extends Activity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.view_drink);
 
-		dName = (TextView) findViewById(R.id.drinkName);
-		dDescription = (TextView) findViewById(R.id.drinkDescription);
-		dIngredients = (TextView) findViewById(R.id.drinkIngredients);
-		dRating = (RatingBar) findViewById(R.id.ratingBar1);
-		dImage = (ImageView) findViewById(R.id.drinkImage);
-		checkBox = (CheckBox) findViewById(R.id.drinkFav);
+		setdName((TextView) findViewById(R.id.drinkName));
+		setdDescription((TextView) findViewById(R.id.drinkDescription));
+		setdIngredients((TextView) findViewById(R.id.drinkIngredients));
+		setdRating((RatingBar) findViewById(R.id.ratingBar1));
+		setdImage((ImageView) findViewById(R.id.drinkImage));
+		setCheckBox((CheckBox) findViewById(R.id.drinkFav));
 		setDrinkInfo();
-		dRating.setEnabled(true);
-		dRating.setOnRatingBarChangeListener(this);
+		getdRating().setEnabled(true);
+		getdRating().setOnRatingBarChangeListener(this);
 		checkBoxListener();
 
-		if (Controller.isFavorite(id) == 1) {
-			checkBox.setChecked(true);
+		if (Controller.isFavorite(getId()) == 1) {
+			getCheckBox().setChecked(true);
 		}
-		dRating.setRating(Controller.rating(id));
+		getdRating().setRating(Controller.rating(getId()));
 
 	}
 
@@ -90,12 +90,12 @@ public class ViewDrinkActivity extends Activity implements
 
 		// Receiving intents from activity.
 		Bundle bundle = getIntent().getExtras();
-		name = bundle.getString("drinkname");
-		rating = bundle.getInt("rating");
-		description = bundle.getString("descrip");
-		ingredients = bundle.getString("ingredients");
+		setName(bundle.getString("drinkname"));
+		setRating(bundle.getInt("rating"));
+		setDescription(bundle.getString("descrip"));
+		setIngredients(bundle.getString("ingredients"));
 		String url = bundle.getString("url");
-		id = bundle.getInt("id");
+		setId(bundle.getInt("id"));
 
 		// Set all the information about the drink.
 		setDrinkName();
@@ -103,7 +103,7 @@ public class ViewDrinkActivity extends Activity implements
 		setDrinkDescription();
 		setDrinkIngredients();
 		setDrinkImage();
-		dImage.setImageResource(R.drawable.no_img);
+		getdImage().setImageResource(R.drawable.no_img);
 
 	}
 
@@ -111,35 +111,35 @@ public class ViewDrinkActivity extends Activity implements
 	 * This method sets the name of the drink.
 	 */
 	public void setDrinkName() {
-		dName.setText(name);
+		getdName().setText(getName());
 	}
 
 	/**
 	 * This method sets the rating of the drink.
 	 */
 	public void setDrinkRating() {
-		dRating.setRating(rating);
+		getdRating().setRating(getRating());
 	}
 
 	/**
 	 * This method sets the description of the drink.
 	 */
 	public void setDrinkDescription() {
-		dDescription.setText(description);
+		getdDescription().setText(getDescription());
 	}
 
 	/**
 	 * This method sets the ingredients of the drink.
 	 */
 	public void setDrinkIngredients() {
-		dIngredients.setText(ingredients);
+		getdIngredients().setText(getIngredients());
 	}
 
 	/**
 	 * This method sets the image of the drink.
 	 */
 	public void setDrinkImage() {
-		dImage.setImageResource(R.drawable.ic_drinkicon);
+		getdImage().setImageResource(R.drawable.ic_drinkicon);
 	}
 
 	/**
@@ -148,16 +148,16 @@ public class ViewDrinkActivity extends Activity implements
 	 */
 	public void checkBoxListener() {
 
-		checkBox.setOnClickListener(new OnClickListener() {
+		getCheckBox().setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
 				// is the checkbox checked?
 				if (((CheckBox) v).isChecked()) {
-					Controller.setFavorite(name);
+					Controller.setFavorite(getName());
 					Toast.makeText(ViewDrinkActivity.this,
 							"Added to Favorites", Toast.LENGTH_SHORT).show();
 				} else {
-					Controller.setNotFavorite(name);
+					Controller.setNotFavorite(getName());
 					Toast.makeText(ViewDrinkActivity.this,
 							"Removed from Favorites", Toast.LENGTH_SHORT)
 							.show();
@@ -170,7 +170,96 @@ public class ViewDrinkActivity extends Activity implements
 
 	public void onRatingChanged(RatingBar ratingBar, float rating,
 			boolean fromUser) {
-		dRating.setRating((int) rating);
-		Controller.setRatingByName(name, (int) rating);
+		getdRating().setRating((int) rating);
+		Controller.setRatingByName(getName(), (int) rating);
+	}
+	
+	//Getters and setters. We need these to follow java standard. Even though they aren't used.
+	public TextView getdName() {
+		return dName;
+	}
+
+	public void setdName(TextView dName) {
+		this.dName = dName;
+	}
+
+	public TextView getdDescription() {
+		return dDescription;
+	}
+
+	public void setdDescription(TextView dDescription) {
+		this.dDescription = dDescription;
+	}
+
+	public TextView getdIngredients() {
+		return dIngredients;
+	}
+
+	public void setdIngredients(TextView dIngredients) {
+		this.dIngredients = dIngredients;
+	}
+
+	public RatingBar getdRating() {
+		return dRating;
+	}
+
+	public void setdRating(RatingBar dRating) {
+		this.dRating = dRating;
+	}
+
+	public ImageView getdImage() {
+		return dImage;
+	}
+
+	public void setdImage(ImageView dImage) {
+		this.dImage = dImage;
+	}
+
+	public CheckBox getCheckBox() {
+		return checkBox;
+	}
+
+	public void setCheckBox(CheckBox checkBox) {
+		this.checkBox = checkBox;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getIngredients() {
+		return ingredients;
+	}
+
+	public void setIngredients(String ingredients) {
+		this.ingredients = ingredients;
+	}
+
+	public int getRating() {
+		return rating;
+	}
+
+	public void setRating(int rating) {
+		this.rating = rating;
 	}
 }

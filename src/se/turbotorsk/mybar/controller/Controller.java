@@ -165,4 +165,9 @@ public class Controller {
 		data.addMyBar(id, "home");
 	}
 	
+
+	public static boolean isInMyBar(int id){
+		return false;
+	}
+	
 }

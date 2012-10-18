@@ -28,24 +28,12 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package se.turbotorsk.mybar.model.externaldata;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import android.content.ContentValues;
-import android.net.Uri;
-import android.os.StrictMode;
-import android.util.Log;
-
-import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
@@ -58,16 +46,17 @@ import se.turbotorsk.mybar.model.Data;
 import se.turbotorsk.mybar.model.Drink;
 import se.turbotorsk.mybar.model.Ingredient;
 import se.turbotorsk.mybar.model.database.MyBarContentProvider;
-
-import android.view.View;
-import android.widget.Toast;
+import android.content.ContentValues;
+import android.net.Uri;
+import android.os.StrictMode;
+import android.util.Log;
 
 public class JsonParse {
 	//Sets the timeout for the web server. 	
-	private static final int TIMEOUT_MILLISEC = 9999; 
+	private static final int TIMEOUT_MILLISEC = 999; 
 	
 	//Gives the Class access to the network. 
-	public JsonParse() {
+	static {
 		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
 				.permitAll().build();
 		StrictMode.setThreadPolicy(policy);
@@ -80,7 +69,7 @@ public class JsonParse {
 	 * This method populates the drink and ingredient database. 
 	 * @return
 	 */
-	public boolean getDb() {
+	public static boolean getDb() {
 		boolean drinkOK = false, ingredientOK = false;
 		String responseBody = getWebData("getIngredients.php");
 		Log.d("getDB",responseBody);
@@ -92,27 +81,22 @@ public class JsonParse {
 			for (int i = 0; i < jArray.length(); ++i) {
 				JSONObject jObject;
 				jObject = jArray.getJSONObject(i);
+				//Parses the JSON and creates the ContentValues object.
 				ContentValues values = new Ingredient(jObject.getInt("_id"), 
-						//Gets the name from JSON.
 						jObject.getString("name"), 					
-						//Gets the picture URL form JSON.
 						jObject.getString("url"), 			
-						//Gets the ingredient type from JSON.
-						jObject.getString("ingredienttype"), 
-						//Gets the alcohol level from JSON.
+						jObject.getString("ingredienttype"),
 						jObject.getInt("alcohollevel"),		
-						//Gets the description from JSON.
 						jObject.getString("description")		
-						//creates the Content Values to be sent to the local DB.
 						).getContentValues();						
-				//Insets the data into the SQLite
+				//Insets the data into the SQLite.
 				Uri myBarUriIngredient = MyBarApplication.ContentResolver().insert(MyBarContentProvider.CONTENTURI_INGREDIENT, values);
 				Log.d(Data.class.getClass().getName(), "Inserted Ingredient. Created row: " + myBarUriIngredient.toString());
 			}
 			ingredientOK = true; 
 			
         } catch (JSONException e) {
-        	Log.d("JSONError ingredients", e.toString());
+        	Log.e("JSONError ingredients", e.toString());
         	ingredientOK = false; 
         }
 		
@@ -129,18 +113,13 @@ public class JsonParse {
 			for (int i = 0; i < jArray.length(); ++i) {
 				JSONObject jObject;								
 				jObject = jArray.getJSONObject(i);
+				//
 				ContentValues values = new Drink(jObject.getInt("_id"),
-					//Gets the name from JSON.
 					jObject.getString("name"), 	
-					//Gets the name pic url JSON.
 					jObject.getString("url"),		
-					//Gets the glass type from JSON.
 					jObject.getString("glass"),				
-					//Gets the list of ingredients from JSON.
 					jObject.getString("ingredient"),	
-					//Gets the description from JSON.
 					jObject.getString("description"),	
-					//Gets the rating from JSON.
 					jObject.getInt("rating"), 	
 					//Sets favorite to 0 and gets the content values. 
 					0).getContentValues();									
@@ -154,7 +133,7 @@ public class JsonParse {
 			drinkOK = true; 	
         } catch (JSONException e) {
         	//Prints to Log.d. 
-        	Log.d("JSONError drinks", e.toString());	
+        	Log.e("JSONError drinks", e.toString());	
         	drinkOK = false; 
         }
 		
@@ -166,11 +145,11 @@ public class JsonParse {
 	 * @param wepDocumet the file to be fetched.
 	 * @return A string representation of the responseBody.
 	 */
-	public String getWebData(String wepDocumet)
+	public static String getWebData(String wepDocumet)
 	{
 		
 	    try {
-	        Log.d(getClass().getSimpleName(), "send  task - start");
+	        Log.d(JsonParse.class.getSimpleName(), "Start the web-get documnet");
 	        HttpParams httpParams = new BasicHttpParams();
 	        HttpConnectionParams.setConnectionTimeout(httpParams,TIMEOUT_MILLISEC);
 	        HttpConnectionParams.setSoTimeout(httpParams, TIMEOUT_MILLISEC);
@@ -185,15 +164,14 @@ public class JsonParse {
     		try{
     			ResponseHandler<String> responseHandler = new BasicResponseHandler();
     			String responseBody = httpclient.execute(httppost,responseHandler);
-    			//Log.d("getWebData", "Request good: " + responseBody);
     			return responseBody;
     		
     		} catch (ClientProtocolException e) {    			
-    			Log.d("Error", e.toString());
+    			Log.e("Error", e.toString());
     			return "error";
     		}
-	    } catch (Throwable t) {
-			Log.d("Error", t.toString());
+	    } catch (Exception e) {
+			Log.e("Error", e.toString());
 			return "error";
     	}	
 	}
