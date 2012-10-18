@@ -138,5 +138,13 @@ public class IngredientAdapter extends ArrayAdapter<LinkedList> {
 		Ingredient ingredient = items.get(position);
 		return "home"; // change later!!!
 	}
+	
+	public void setBackgroundBlue(int position, View v) {
+		getView(position, v, null).setBackgroundColor(Color.parseColor("#0489B1"));
+	}
+	
+	public void setBackgroundWhite(int position, View v) {
+		getView(position, v, null).setBackgroundColor(Color.WHITE);
+	}
 
 }

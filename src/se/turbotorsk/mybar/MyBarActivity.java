@@ -58,6 +58,8 @@ public class MyBarActivity extends ListActivity {
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		Controller.removeMyBarIngredient(adapter.getId(position), adapter.getPosition(position));
+		adapter = new IngredientAdapter(this, R.layout.rowlayout, Controller.getMyIngredients());
+        setListAdapter(adapter);
 	}
 	
 	@Override

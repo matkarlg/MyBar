@@ -5,15 +5,14 @@ mybar@turbotorsk.se
 
 Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
-*	Redistributions of source code must retain the above copyright notice,
- 	this list of conditions and the following disclaimer.
-*	Redistributions in binary form must reproduce the above copyright notice,
- 	this list of conditions and the following disclaimer in the documentation
- 	and/or other materials provided with the distribution.
-*	Neither the name of the MyBar nor the names of its contributors may be 
-	used to endorse or promote products derived from this software without
-	specific prior written permission.
-	
+ * Redistributions of source code must retain the above copyright notice,
+  this list of conditions and the following disclaimer.
+ * Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.
+ * Neither the name of the MyBar nor the names of its contributors may be 
+used to endorse or promote products derived from this software without
+specific prior written permission.
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
 WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
@@ -29,6 +28,8 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 package se.turbotorsk.mybar.controller;
 
 import java.util.LinkedList;
+
+import android.util.Log;
 import se.turbotorsk.mybar.model.Drink;
 import se.turbotorsk.mybar.model.Ingredient;
 
@@ -36,33 +37,77 @@ import se.turbotorsk.mybar.model.Ingredient;
  * This activity handles the Drinks.
  */
 public class DrinkManager {
-	private LinkedList<Drink> myBar = null;
+	private LinkedList<Drink> myBar;
 
 	public DrinkManager() {
 	}
 
+	/**
+	 * Get the drinks in the bar. Get all drinks Check if the is a drink that
+	 * can me done with the ingredeines in the bar.
+	 * 
+	 * @return
+	 */
+
 	public LinkedList<Drink> getMyBar() {
+
 		LinkedList<Ingredient> myIngredientList = Controller.getMyIngredients();
+		Log.d("myIngredientList", myIngredientList.toString());
+		myBar = new LinkedList<Drink>();
 		LinkedList<Drink> drinkList = Controller.getAllDrinks();
-		String[] drinks;
-		int ingredientID = 0, count = 0;
+		Log.d("drinkList", drinkList.toString());
+		Log.d("getFrist", drinkList.getFirst().getName());
+		String[] ingredients;
+		int ingredientID = 0;
 		boolean found = false;
-		for (Drink drink : drinkList) {
-			drinks = drink.getIngredient().split(";");
-			for (int countID = 0; countID <= drinks.length; countID += 2) {
-				ingredientID = Integer.parseInt(drinks[count]);
-				found = false;
-				for (Ingredient ingredient : myIngredientList) {
-					if (ingredient.get_id() == ingredientID) {
-						found = true;
+		try {
+			for (Drink drink : drinkList) {
+				// Iteration drink list.
+				Log.d("drink", drink.getName());
+				ingredients = drink.getIngredient().split(";");
+				// Gets the ingredientes in the drink (in a array)
+				Log.d("ingredients", ingredients.toString());
+				for (int countID = 0; countID <= ingredients.length - 1; countID += 2) { // iterate
+																							// the
+																							// array
+																							// with
+																							// the
+																							// ingrediences.
+					ingredientID = Integer.parseInt(ingredients[countID]); // Gets
+																			// the
+																			// current
+																			// ID.
+					found = false; // Sets the found variable to false.
+					for (Ingredient ingredient : myIngredientList) { // Iterate
+																		// the
+																		// MyIngredient
+																		// list.
+																		// If id
+																		// found,
+																		// stop
+																		// the
+																		// serch.
+						Log.d("ID:ID", ingredient.get_id() + ":" + ingredientID);
+						if (ingredient.get_id() == ingredientID) {
+							Log.d("Found", ingredientID + "");
+							found = true;
+							break;
+						}
+					}
+					if (found == false) {
+						// If the item can not be found the drink can not be
+						// done. So lets stop
+						// checking the current drink and move on to the next
+						// one in the list.
 						break;
 					}
 				}
-				if (found == false) {
-					break;
-				}
-				myBar.add(drink);
+				if (found)
+					myBar.add(drink);
 			}
+		} catch (Exception e) {
+			Log.d("Error:", e.toString());
+			return myBar;
 		}
 		return myBar;
 	}

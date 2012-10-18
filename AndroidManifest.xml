@@ -72,6 +72,9 @@
             android:name=".MyBarActivity"
             android:label="@string/title_activity_my_bar" >
         </activity>
+        <uses-library android:name="android.test.runner" />
     </application>
+    
+    
 
 </manifest>

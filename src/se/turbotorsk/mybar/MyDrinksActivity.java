@@ -54,7 +54,7 @@ public class MyDrinksActivity extends ListActivity {
 		super.onCreate(savedInstanceState);
 
 		adapter = new DrinkAdapter(this, R.layout.rowlayout,
-				Controller.getAllDrinks());	//Should be Controller.getMyBarDrinks();
+				Controller.getMyBarDrinks());
 
 		// Sets the adapter that we just did.
 		setListAdapter(adapter);
@@ -80,7 +80,7 @@ public class MyDrinksActivity extends ListActivity {
 	public void onResume()
 	{
 	         super.onResume();
-	         adapter = new DrinkAdapter(this, R.layout.rowlayout, Controller.getAllDrinks()); //Should be Controller.getMyBarDrinks();
+	         adapter = new DrinkAdapter(this, R.layout.rowlayout, Controller.getMyBarDrinks());
 	         setListAdapter(adapter);
 	 }
 }

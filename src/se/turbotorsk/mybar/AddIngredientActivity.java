@@ -63,14 +63,14 @@ public class AddIngredientActivity extends ListActivity {
 		{
 			if(save != position && parent.getChildAt(position) != null && !(Controller.isInMyBar(adapter.getId(position))))
 			{
-		    parent.getAdapter().getView(position, v, null).setBackgroundColor(Color.parseColor("#0489B1"));
+		    adapter.setBackgroundBlue(position, v);
  		    Controller.addMyBarIngredient(adapter.getId(position));
 		    save = position;
 			}
 			
 			else if(parent.getChildAt(position) != null)
 			{
-			parent.getAdapter().getView(position, v, null).setBackgroundColor(Color.WHITE);
+			adapter.setBackgroundWhite(position, v);
 			Controller.removeMyBarIngredient(adapter.getId(position), adapter.getPosition(position));		
 			save = -1;
 			}	
