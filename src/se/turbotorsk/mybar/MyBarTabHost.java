@@ -28,61 +28,47 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package se.turbotorsk.mybar;
 
-import se.turbotorsk.mybar.controller.Controller;
-import se.turbotorsk.mybar.model.Data;
-import android.app.ListActivity;
+import android.app.TabActivity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ListView;
+import android.widget.TabHost;
+import android.widget.TabHost.TabSpec;
+import android.widget.TextView;
 
-/**
- * This activity handles the MyFavorites-section.
- */
-public class MyFavorites extends ListActivity {
-
-	public DrinkAdapter adapter;
-
+public class MyBarTabHost extends TabActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
 
-		adapter = new DrinkAdapter(this, R.layout.rowlayout,
-				Controller.getAllFavorites());
+		
+		// String[] lista = data.getDrinkNameArray(); tabHost = getTabHost();
+				TabHost tabHost = getTabHost();
+				
+				// MyBar tab.
+				Intent intentMySpirits = new Intent().setClass(this, MyBarActivity.class);
+				TabSpec tabSpecMySpirits = tabHost.newTabSpec("MySpirits")
+						.setIndicator("My Spirits").setContent(intentMySpirits);
 
-		// Sets the adapter that we just did.
-		setListAdapter(adapter);
+				// Search tab.
+				Intent intentMyDrinks = new Intent().setClass(this,
+						MyDrinksActivity.class);
+				TabSpec tabSpecMyDrinks = tabHost.newTabSpec("MyDrinks")
+						.setIndicator("My Drinks").setContent(intentMyDrinks);
+
+				// Add all tabs.
+				tabHost.addTab(tabSpecMySpirits);
+				tabHost.addTab(tabSpecMyDrinks);
+				
+				for(int i=0;i<tabHost.getTabWidget().getChildCount();i++) 
+			    {
+			        TextView tv = (TextView) tabHost.getTabWidget().getChildAt(i).findViewById(android.R.id.title);
+			        tv.setTextColor(Color.parseColor("#10bcc9"));
+			    } 
+
+
+				// Set Mybar as default tab (the middle tab).
+				tabHost.setCurrentTab(0);
 	}
-
-	/**
-	 * This method handles what happens when pressing a item in the list.
-	 */
-	@Override
-	protected void onListItemClick(ListView l, View v, int position, long id) {
-		// String item = (String) getListAdapter().getItem(position);
-		// We will replace this to start another activity instead. Dont know how
-		// to do that yet.
-		// Toast.makeText(this, item + " selected", Toast.LENGTH_LONG).show();
-
-		Intent intent = new Intent(this, ViewDrinkActivity.class);
-		intent.putExtra("drinkname", adapter.getDrinkName(position));
-		intent.putExtra("rating", adapter.getRating(position));
-		intent.putExtra("ingredients", adapter.getIngredients(position));
-		intent.putExtra("descrip", adapter.getDescrip(position));
-		intent.putExtra("url", adapter.getUrl(position));
-		intent.putExtra("id", adapter.getId(position));
-		startActivity(intent);
-	}
-
-	/**
-	 * This method updates the list in MyFavorites.
-	 */
-
-	@Override
-	public void onResume()
-	{
-	         super.onResume();
-	         adapter = new DrinkAdapter(this, R.layout.rowlayout, Controller.getAllFavorites());
-	         setListAdapter(adapter);
-	 }
 }

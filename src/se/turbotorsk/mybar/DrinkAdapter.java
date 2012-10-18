@@ -103,7 +103,7 @@ public class DrinkAdapter extends ArrayAdapter<LinkedList> {
 			}
 			if (tt3 != null) {
 
-				tt3.setText(Integer.toString(p.getRating()));
+				tt3.setText("Rating: " + Integer.toString(p.getRating()));
 			}
 			if (tt4 != null) {
 				tt4.setText(p.getDescription());
