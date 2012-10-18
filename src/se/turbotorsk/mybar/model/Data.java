@@ -142,6 +142,21 @@ public class Data {
 	}
 
 	/**
+	 * Deletes Drink and Ingredients Tables without removing the database. Does
+	 * not reset _id counters.
+	 * 
+	 * @return rowsDeleted.
+	 */
+	public static int deleteData() {
+		int rowsDeleted = 0;
+		rowsDeleted += MyBarApplication.ContentResolver().delete(
+				MyBarContentProvider.CONTENTURI_DRINK, null, null);
+		rowsDeleted += MyBarApplication.ContentResolver().delete(
+				MyBarContentProvider.CONTENTURI_INGREDIENT, null, null);
+		return rowsDeleted;
+	}
+
+	/**
 	 * Syncs remote datastore (JSON) with local SQLite database
 	 * 
 	 * @return false
@@ -154,10 +169,8 @@ public class Data {
 	/**
 	 * Adds a new ingredient to MyBarTable
 	 * 
-	 * @param ingredientID
-	 *            _id column of the ingredient.
-	 * @param location
-	 *            "Home", "Work".
+	 * @param ingredientID _id column of the ingredient.
+	 * @param location "Home", "Work".
 	 * @return 0 if successful.
 	 */
 	public static int addMyBar(int ingredientID, String location) {
@@ -177,10 +190,8 @@ public class Data {
 	/**
 	 * Removes a row in MyBarTable
 	 * 
-	 * @param ingredientID
-	 *            _id column of the ingredient.
-	 * @param location
-	 *            "Home", "Work".
+	 * @param ingredientID _id column of the ingredient.
+	 * @param location "Home", "Work".
 	 * @return 0 if successful. 1 if error. See LogCat.
 	 */
 	public static int dropMyBar(int ingredientID, String location) {
@@ -243,8 +254,7 @@ public class Data {
 	 * Inserts a new Drink in the DrinkTable. Trying to insert another Drink
 	 * with the same name yields an error message.
 	 * 
-	 * @param name
-	 *            Drink object that should be inserted into the database.
+	 * @param name Drink object that should be inserted into the database.
 	 * @return 0 if successful, 1 if error. See LogCat.
 	 */
 	public static int addDrink(Drink name) {
@@ -295,18 +305,17 @@ public class Data {
 	/**
 	 * Removes a Drink in the DrinkTable.
 	 * 
-	 * @param ID
-	 *            an Integer _id that should be removed from the database.
+	 * @param iD an Integer _id that should be removed from the database.
 	 * @return 0 if successful, 1 if error. See LogCat.
 	 */
-	public static int dropDrink(int ID) {
+	public static int dropDrink(int iD) {
 		// Choose which columns you want to query. null queries all columns.
 		String[] projection = { DrinkTable.COLUMN_ID, DrinkTable.COLUMN_NAME };
 
 		// Query database.
 		Cursor cursor = MyBarApplication.ContentResolver().query(
 				MyBarContentProvider.CONTENTURI_DRINK, projection,
-				DrinkTable.COLUMN_ID + "=" + ID, null, null);
+				DrinkTable.COLUMN_ID + "=" + iD, null, null);
 
 		// Successful query?.
 		if (cursor != null) {
@@ -316,7 +325,7 @@ public class Data {
 
 				MyBarApplication.ContentResolver().delete(
 						MyBarContentProvider.CONTENTURI_DRINK,
-						DrinkTable.COLUMN_ID + "=" + ID, null);
+						DrinkTable.COLUMN_ID + "=" + iD, null);
 
 				// Print the removed drink.
 				Log.d(Data.class.getClass().getName(),
@@ -334,7 +343,7 @@ public class Data {
 
 			} else {
 				// Error message in LogCat.
-				Log.e(Data.class.getClass().getName(), "dropDrink(): " + ID
+				Log.e(Data.class.getClass().getName(), "dropDrink(): " + iD
 						+ " doesn't exist");
 
 				// Close the cursor.
@@ -366,14 +375,14 @@ public class Data {
 			if (cursor.moveToFirst()) {
 
 				do {
-					int _id = cursor.getInt(cursor
+					int id = cursor.getInt(cursor
 							.getColumnIndexOrThrow(MyBarTable.COLUMN_ID));
 					int ingredientid = cursor
 							.getInt(cursor
 									.getColumnIndexOrThrow(MyBarTable.COLUMN_INGREDIENTID));
 					String location = cursor.getString(cursor
 							.getColumnIndexOrThrow(MyBarTable.COLUMN_LOCATION));
-					mybarList.add(new MyBar(_id, ingredientid, location));
+					mybarList.add(new MyBar(id, ingredientid, location));
 				} while (cursor.moveToNext());
 
 				// Close the cursor.
@@ -411,7 +420,7 @@ public class Data {
 			if (cursor.moveToFirst()) {
 
 				do {
-					int _id = cursor.getInt(cursor
+					int id = cursor.getInt(cursor
 							.getColumnIndexOrThrow(DrinkTable.COLUMN_ID));
 					String name = cursor.getString(cursor
 							.getColumnIndexOrThrow(DrinkTable.COLUMN_NAME));
@@ -429,7 +438,7 @@ public class Data {
 							.getColumnIndexOrThrow(DrinkTable.COLUMN_RATING));
 					int favorite = cursor.getInt(cursor
 							.getColumnIndexOrThrow(DrinkTable.COLUMN_FAVORITE));
-					drinkList.add(new Drink(_id, name, url, glass, ingredient,
+					drinkList.add(new Drink(id, name, url, glass, ingredient,
 							description, rating, favorite));
 				} while (cursor.moveToNext());
 
@@ -468,7 +477,7 @@ public class Data {
 			if (cursor.moveToFirst()) {
 
 				do {
-					int _id = cursor.getInt(cursor
+					int id = cursor.getInt(cursor
 							.getColumnIndexOrThrow(IngredientTable.COLUMN_ID));
 					String name = cursor
 							.getString(cursor
@@ -484,7 +493,7 @@ public class Data {
 					String description = cursor
 							.getString(cursor
 									.getColumnIndexOrThrow(IngredientTable.COLUMN_DESCRIPTION));
-					ingredientList.add(new Ingredient(_id, name, url, type,
+					ingredientList.add(new Ingredient(id, name, url, type,
 							alcoholcontent, description));
 				} while (cursor.moveToNext());
 
@@ -507,15 +516,14 @@ public class Data {
 	/**
 	 * Returns a Drink object by ID. Query: SELECT * WHERE _id = id.
 	 * 
-	 * @param ID
-	 *            the _id of the Drink to return
+	 * @param iD the _id of the Drink to return
 	 * @return aDrink
 	 */
-	public static Drink getDrinkByID(int ID) {
+	public static Drink getDrinkByID(int iD) {
 		// Query database.
 		Cursor cursor = MyBarApplication.ContentResolver().query(
 				MyBarContentProvider.CONTENTURI_DRINK, null,
-				DrinkTable.COLUMN_ID + "=" + ID, null, null);
+				DrinkTable.COLUMN_ID + "=" + iD, null, null);
 
 		// Successful query?.
 		if (cursor != null) {
@@ -523,7 +531,7 @@ public class Data {
 			// Is there any data from the requested Query.
 			if (cursor.moveToFirst()) {
 
-				int _id = cursor.getInt(cursor
+				int id = cursor.getInt(cursor
 						.getColumnIndexOrThrow(DrinkTable.COLUMN_ID));
 				String name = cursor.getString(cursor
 						.getColumnIndexOrThrow(DrinkTable.COLUMN_NAME));
@@ -539,7 +547,7 @@ public class Data {
 						.getColumnIndexOrThrow(DrinkTable.COLUMN_RATING));
 				int favorite = cursor.getInt(cursor
 						.getColumnIndexOrThrow(DrinkTable.COLUMN_FAVORITE));
-				Drink drink = new Drink(_id, name, url, glass, ingredient,
+				Drink drink = new Drink(id, name, url, glass, ingredient,
 						description, rating, favorite);
 
 				// Close the cursor.
@@ -565,15 +573,14 @@ public class Data {
 	/**
 	 * Returns an Ingredient object by ID. Query: SELECT * WHERE _id = id.
 	 * 
-	 * @param ID
-	 *            the _id of the Ingredient to return
+	 * @param iD the _id of the Ingredient to return
 	 * @return anIngredient
 	 */
-	public static Ingredient getIngredientByID(int ID) {
+	public static Ingredient getIngredientByID(int iD) {
 		// Query database. No projection.
 		Cursor cursor = MyBarApplication.ContentResolver().query(
 				MyBarContentProvider.CONTENTURI_INGREDIENT, null,
-				IngredientTable.COLUMN_ID + "=" + ID, null, null);
+				IngredientTable.COLUMN_ID + "=" + iD, null, null);
 
 		// Successful query?.
 		if (cursor != null) {
@@ -581,7 +588,7 @@ public class Data {
 			// Is there any data from the requested Query.
 			if (cursor.moveToFirst()) {
 
-				int _id = cursor.getInt(cursor
+				int id = cursor.getInt(cursor
 						.getColumnIndexOrThrow(IngredientTable.COLUMN_ID));
 				String name = cursor.getString(cursor
 						.getColumnIndexOrThrow(IngredientTable.COLUMN_NAME));
@@ -595,7 +602,7 @@ public class Data {
 				String description = cursor
 						.getString(cursor
 								.getColumnIndexOrThrow(IngredientTable.COLUMN_DESCRIPTION));
-				Ingredient ingredient = new Ingredient(_id, name, url, type,
+				Ingredient ingredient = new Ingredient(id, name, url, type,
 						alcoholcontent, description);
 
 				// Close the cursor.
@@ -638,7 +645,7 @@ public class Data {
 			if (cursor.moveToFirst()) {
 
 				do {
-					int _id = cursor.getInt(cursor
+					int id = cursor.getInt(cursor
 							.getColumnIndexOrThrow(DrinkTable.COLUMN_ID));
 					String name = cursor.getString(cursor
 							.getColumnIndexOrThrow(DrinkTable.COLUMN_NAME));
@@ -656,7 +663,7 @@ public class Data {
 							.getColumnIndexOrThrow(DrinkTable.COLUMN_RATING));
 					int favorite = cursor.getInt(cursor
 							.getColumnIndexOrThrow(DrinkTable.COLUMN_FAVORITE));
-					drinkList.add(new Drink(_id, name, url, glass, ingredient,
+					drinkList.add(new Drink(id, name, url, glass, ingredient,
 							description, rating, favorite));
 				} while (cursor.moveToNext());
 
@@ -678,11 +685,10 @@ public class Data {
 	/**
 	 * Sets the favorite row in a Drink to 1.
 	 * 
-	 * @param ID
-	 *            _id of the Drink.
+	 * @param iD _id of the Drink.
 	 * @return 0 if OK. 1 if ID doesn't exist.
 	 */
-	public static int setFavoriteByID(int ID) {
+	public static int setFavoriteByID(int iD) {
 		ContentValues values = new ContentValues();
 
 		// Choose which columns you want to query. null queries all columns.
@@ -691,7 +697,7 @@ public class Data {
 		// Query database.
 		Cursor cursor = MyBarApplication.ContentResolver().query(
 				MyBarContentProvider.CONTENTURI_DRINK, projection,
-				DrinkTable.COLUMN_ID + "=" + ID, null, null);
+				DrinkTable.COLUMN_ID + "=" + iD, null, null);
 
 		// Successful query?.
 		if (cursor != null) {
@@ -702,7 +708,7 @@ public class Data {
 				values.put("favorite", 1);
 				int rowUpdated = MyBarApplication.ContentResolver().update(
 						MyBarContentProvider.CONTENTURI_DRINK, values,
-						DrinkTable.COLUMN_ID + "=" + ID, null);
+						DrinkTable.COLUMN_ID + "=" + iD, null);
 
 				// Print the favorited drink.
 				Log.d(Data.class.getClass().getName(),
@@ -730,8 +736,7 @@ public class Data {
 	/**
 	 * Sets the favorite row in a Drink to 1.
 	 * 
-	 * @param name
-	 *            the name of the Drink.
+	 * @param name the name of the Drink.
 	 * @return 0 if OK. 1 if name doesn't exist.
 	 */
 	public static int setFavoriteByName(String name) {
@@ -783,12 +788,9 @@ public class Data {
 	/**
 	 * Sets the columns in the Drink table to different values.
 	 * 
-	 * @param name
-	 *            name of the Drink to update.
-	 * @param column
-	 *            the column to update.
-	 * @param set
-	 *            the value to update the column with.
+	 * @param name name of the Drink to update.
+	 * @param column the column to update.
+	 * @param set the value to update the column with.
 	 * @return 0 if successful. 1 if error. See LogCat
 	 */
 	public static int setDrink(String name, String column, int set) {
@@ -843,15 +845,12 @@ public class Data {
 	/**
 	 * Sets the columns in the Drink table to different values.
 	 * 
-	 * @param ID
-	 *            _id of the Drink to update.
-	 * @param column
-	 *            The column to update.
-	 * @param set
-	 *            The value to update the column with.
+	 * @param iD _id of the Drink to update.
+	 * @param column The column to update.
+	 * @param set The value to update the column with.
 	 * @return 0 if successful. 1 if error. See LogCat
 	 */
-	public static int setDrink(int ID, String column, int set) {
+	public static int setDrink(int iD, String column, int set) {
 		ContentValues values = new ContentValues();
 
 		// Choose which columns you want to query. null queries all columns.
@@ -860,7 +859,7 @@ public class Data {
 		// Query database.
 		Cursor cursor = MyBarApplication.ContentResolver().query(
 				MyBarContentProvider.CONTENTURI_DRINK, projection,
-				DrinkTable.COLUMN_ID + "=" + ID, null, null);
+				DrinkTable.COLUMN_ID + "=" + iD, null, null);
 
 		// Successful query?.
 		if (cursor != null) {
@@ -871,7 +870,7 @@ public class Data {
 				values.put(column, set);
 				int rowUpdated = MyBarApplication.ContentResolver().update(
 						MyBarContentProvider.CONTENTURI_DRINK, values,
-						DrinkTable.COLUMN_ID + "=" + ID, null);
+						DrinkTable.COLUMN_ID + "=" + iD, null);
 
 				// Print the updated drink.
 				Log.d(Data.class.getClass().getName(),
@@ -919,10 +918,8 @@ public class Data {
 	/**
 	 * Search for ingredients in the database.
 	 * 
-	 * @param search
-	 *            Search for ingredient.
-	 * @param limit
-	 *            Limit returned ingredients.
+	 * @param search Search for ingredient.
+	 * @param limit Limit returned ingredients.
 	 * @return A LinkedList with the ingredients containing the searchName
 	 *         string.
 	 */
@@ -946,7 +943,7 @@ public class Data {
 			if (cursor.moveToFirst()) {
 
 				do {
-					int _id = cursor.getInt(cursor
+					int id = cursor.getInt(cursor
 							.getColumnIndexOrThrow(IngredientTable.COLUMN_ID));
 					String name = cursor
 							.getString(cursor
@@ -962,7 +959,7 @@ public class Data {
 					String description = cursor
 							.getString(cursor
 									.getColumnIndexOrThrow(IngredientTable.COLUMN_DESCRIPTION));
-					ingredientList.add(new Ingredient(_id, name, url, type,
+					ingredientList.add(new Ingredient(id, name, url, type,
 							alcoholcontent, description));
 					Log.d(Data.class.getName(), "Search returned: " + name);
 				} while (cursor.moveToNext());
@@ -985,17 +982,16 @@ public class Data {
 	/**
 	 * Search for ingredientID's in MyBarTable.
 	 * 
-	 * @param search
-	 *            Search for ingredientID's.
+	 * @param search Search for ingredientID's.
 	 * @return A LinkedList with MyBar objects.
 	 */
-	public static LinkedList<MyBar> searchMyBar(int id) {
+	public static LinkedList<MyBar> searchMyBar(int iD) {
 		LinkedList<MyBar> myBarList = new LinkedList<MyBar>();
 
 		// Query database.
 		Cursor cursor = MyBarApplication.ContentResolver().query(
 				MyBarContentProvider.CONTENTURI_MYBAR, null,
-				MyBarTable.COLUMN_INGREDIENTID + "=" + id, null, null);
+				MyBarTable.COLUMN_INGREDIENTID + "=" + iD, null, null);
 
 		// Successful query?.
 		if (cursor != null) {
@@ -1004,14 +1000,14 @@ public class Data {
 			if (cursor.moveToFirst()) {
 
 				do {
-					int _id = cursor.getInt(cursor
+					int id = cursor.getInt(cursor
 							.getColumnIndexOrThrow(MyBarTable.COLUMN_ID));
 					int ingredientID = cursor
 							.getInt(cursor
 									.getColumnIndexOrThrow(MyBarTable.COLUMN_INGREDIENTID));
 					String location = cursor.getString(cursor
 							.getColumnIndexOrThrow(MyBarTable.COLUMN_LOCATION));
-					myBarList.add(new MyBar(_id, ingredientID, location));
+					myBarList.add(new MyBar(id, ingredientID, location));
 					Log.d(Data.class.getName(), "ingredientID returned: "
 							+ ingredientID);
 				} while (cursor.moveToNext());

@@ -21,7 +21,7 @@ public class Splash extends Activity {
         new Handler().postDelayed(new Runnable(){
           
         	public void run() {
-        		Splash.this.deleteDatabase("turbotorsk_mybar.db");
+        		Controller.deleteTables();
         		Controller.dataSync();
         		Intent intent = new Intent(Splash.this,MainActivity.class);
                 Splash.this.startActivity(intent);
