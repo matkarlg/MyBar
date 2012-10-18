@@ -5,12 +5,12 @@ mybar@turbotorsk.se
 
 Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
-*	Redistributions of source code must retain the above copyright notice,
+ *	Redistributions of source code must retain the above copyright notice,
  	this list of conditions and the following disclaimer.
-*	Redistributions in binary form must reproduce the above copyright notice,
+ *	Redistributions in binary form must reproduce the above copyright notice,
  	this list of conditions and the following disclaimer in the documentation
  	and/or other materials provided with the distribution.
-*	Neither the name of the MyBar nor the names of its contributors may be 
+ *	Neither the name of the MyBar nor the names of its contributors may be 
 	used to endorse or promote products derived from this software without
 	specific prior written permission.
 	
@@ -140,23 +140,24 @@ public class Data {
 				MyBarContentProvider.CONTENTURI_MYBAR, null, null);
 		return rowsDeleted;
 	}
-	
+
 	/**
 	 * Syncs remote datastore (JSON) with local SQLite database
 	 * 
 	 * @return false
 	 */
-	public static boolean syncDatabase()
-	{
+	public static boolean syncDatabase() {
 		JsonParse.getDb();
-		return false; 
+		return false;
 	}
 
 	/**
 	 * Adds a new ingredient to MyBarTable
 	 * 
-	 * @param ingredientID _id column of the ingredient.
-	 * @param location "Home", "Work".
+	 * @param ingredientID
+	 *            _id column of the ingredient.
+	 * @param location
+	 *            "Home", "Work".
 	 * @return 0 if successful.
 	 */
 	public static int addMyBar(int ingredientID, String location) {
@@ -176,8 +177,10 @@ public class Data {
 	/**
 	 * Removes a row in MyBarTable
 	 * 
-	 * @param ingredientID _id column of the ingredient.
-	 * @param location "Home", "Work".
+	 * @param ingredientID
+	 *            _id column of the ingredient.
+	 * @param location
+	 *            "Home", "Work".
 	 * @return 0 if successful. 1 if error. See LogCat.
 	 */
 	public static int dropMyBar(int ingredientID, String location) {
@@ -240,7 +243,8 @@ public class Data {
 	 * Inserts a new Drink in the DrinkTable. Trying to insert another Drink
 	 * with the same name yields an error message.
 	 * 
-	 * @param name Drink object that should be inserted into the database.
+	 * @param name
+	 *            Drink object that should be inserted into the database.
 	 * @return 0 if successful, 1 if error. See LogCat.
 	 */
 	public static int addDrink(Drink name) {
@@ -291,7 +295,8 @@ public class Data {
 	/**
 	 * Removes a Drink in the DrinkTable.
 	 * 
-	 * @param ID an Integer _id that should be removed from the database.
+	 * @param ID
+	 *            an Integer _id that should be removed from the database.
 	 * @return 0 if successful, 1 if error. See LogCat.
 	 */
 	public static int dropDrink(int ID) {
@@ -500,10 +505,10 @@ public class Data {
 	}
 
 	/**
-	 * Returns a Drink object by ID.
-	 * Query: SELECT * WHERE _id = id.
+	 * Returns a Drink object by ID. Query: SELECT * WHERE _id = id.
 	 * 
-	 * @param ID the _id of the Drink to return
+	 * @param ID
+	 *            the _id of the Drink to return
 	 * @return aDrink
 	 */
 	public static Drink getDrinkByID(int ID) {
@@ -558,10 +563,10 @@ public class Data {
 	}
 
 	/**
-	 * Returns an Ingredient object by ID.
-	 * Query: SELECT * WHERE _id = id.
+	 * Returns an Ingredient object by ID. Query: SELECT * WHERE _id = id.
 	 * 
-	 * @param ID the _id of the Ingredient to return
+	 * @param ID
+	 *            the _id of the Ingredient to return
 	 * @return anIngredient
 	 */
 	public static Ingredient getIngredientByID(int ID) {
@@ -673,7 +678,8 @@ public class Data {
 	/**
 	 * Sets the favorite row in a Drink to 1.
 	 * 
-	 * @param ID _id of the Drink.
+	 * @param ID
+	 *            _id of the Drink.
 	 * @return 0 if OK. 1 if ID doesn't exist.
 	 */
 	public static int setFavoriteByID(int ID) {
@@ -724,7 +730,8 @@ public class Data {
 	/**
 	 * Sets the favorite row in a Drink to 1.
 	 * 
-	 * @param name the name of the Drink.
+	 * @param name
+	 *            the name of the Drink.
 	 * @return 0 if OK. 1 if name doesn't exist.
 	 */
 	public static int setFavoriteByName(String name) {
@@ -776,9 +783,12 @@ public class Data {
 	/**
 	 * Sets the columns in the Drink table to different values.
 	 * 
-	 * @param name name of the Drink to update.
-	 * @param column the column to update.
-	 * @param set the value to update the column with.
+	 * @param name
+	 *            name of the Drink to update.
+	 * @param column
+	 *            the column to update.
+	 * @param set
+	 *            the value to update the column with.
 	 * @return 0 if successful. 1 if error. See LogCat
 	 */
 	public static int setDrink(String name, String column, int set) {
@@ -833,9 +843,12 @@ public class Data {
 	/**
 	 * Sets the columns in the Drink table to different values.
 	 * 
-	 * @param ID _id of the Drink to update.
-	 * @param column The column to update.
-	 * @param set The value to update the column with.
+	 * @param ID
+	 *            _id of the Drink to update.
+	 * @param column
+	 *            The column to update.
+	 * @param set
+	 *            The value to update the column with.
 	 * @return 0 if successful. 1 if error. See LogCat
 	 */
 	public static int setDrink(int ID, String column, int set) {
@@ -906,18 +919,16 @@ public class Data {
 	/**
 	 * Search for ingredients in the database.
 	 * 
-	 * @param search Search for ingredient.
-	 * @param limit Limit returned ingredients.
+	 * @param search
+	 *            Search for ingredient.
+	 * @param limit
+	 *            Limit returned ingredients.
 	 * @return A LinkedList with the ingredients containing the searchName
 	 *         string.
 	 */
 	public static LinkedList<Ingredient> searchIngredients(String search,
 			int limit) {
 		LinkedList<Ingredient> ingredientList = new LinkedList<Ingredient>();
-
-		// Choose which columns you want to query. null queries all columns.
-		// String[] projection = { IngredientTable.COLUMN_NAME,
-		// IngredientTable.COLUMN_DESCRIPTION };
 
 		// Query database.
 		Cursor cursor = MyBarApplication.ContentResolver().query(
@@ -964,9 +975,57 @@ public class Data {
 				// Close the cursor.
 				cursor.close();
 
-				// No ingredients in Query. Return Empty
-				// LinkedList<Ingredient>.
+				// No ingredients in Query. Return Empty LinkedList<Ingredient>.
 				return new LinkedList<Ingredient>();
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Search for ingredientID's in MyBarTable.
+	 * 
+	 * @param search
+	 *            Search for ingredientID's.
+	 * @return A LinkedList with MyBar objects.
+	 */
+	public static LinkedList<MyBar> searchMyBar(int id) {
+		LinkedList<MyBar> myBarList = new LinkedList<MyBar>();
+
+		// Query database.
+		Cursor cursor = MyBarApplication.ContentResolver().query(
+				MyBarContentProvider.CONTENTURI_MYBAR, null,
+				MyBarTable.COLUMN_INGREDIENTID + "=" + id, null, null);
+
+		// Successful query?.
+		if (cursor != null) {
+
+			// Is there any data from the requested Query.
+			if (cursor.moveToFirst()) {
+
+				do {
+					int _id = cursor.getInt(cursor
+							.getColumnIndexOrThrow(MyBarTable.COLUMN_ID));
+					int ingredientID = cursor
+							.getInt(cursor
+									.getColumnIndexOrThrow(MyBarTable.COLUMN_INGREDIENTID));
+					String location = cursor.getString(cursor
+							.getColumnIndexOrThrow(MyBarTable.COLUMN_LOCATION));
+					myBarList.add(new MyBar(_id, ingredientID, location));
+					Log.d(Data.class.getName(), "ingredientID returned: "
+							+ ingredientID);
+				} while (cursor.moveToNext());
+
+				// Close the cursor.
+				cursor.close();
+
+				return myBarList;
+			} else {
+				// Close the cursor.
+				cursor.close();
+
+				// No MyBar's in Query. Return Empty LinkedList<MyBar>.
+				return new LinkedList<MyBar>();
 			}
 		}
 		return null;
