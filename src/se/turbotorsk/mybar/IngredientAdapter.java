@@ -85,12 +85,11 @@ public class IngredientAdapter extends ArrayAdapter<LinkedList> {
 		Ingredient p = items.get(position);
 
 		if (p != null) {
-			if(Controller.isInMyBar(p.get_id())) v.setBackgroundColor(Color.parseColor("#0489B1"));
-			AddIngredientActivity.save = -2;
 			TextView tt = (TextView) v.findViewById(R.id.drink);
 			TextView tt2 = (TextView) v.findViewById(R.id.ingredients);
 			TextView tt3 = (TextView) v.findViewById(R.id.rating);
 			ImageView iv = (ImageView) v.findViewById(R.id.list_image);
+
 			if (tt != null) {
 				tt.setText(p.getName());
 			}

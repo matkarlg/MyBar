@@ -39,6 +39,7 @@ import se.turbotorsk.mybar.model.MyBar;
  * This activity handles the Controller.
  */
 public class Controller {
+	private static int myBarID = 1;
 	private final static DrinkManager dm = new DrinkManager();
 	private static Data data = new Data(); 
 
@@ -101,6 +102,14 @@ public class Controller {
 		return false;
 	}
 
+	public static boolean changeMyBarID(int myBarID) {
+		if (true) { // Kolla om ID finns
+			Controller.myBarID = myBarID;
+			return true;
+		} else
+			return false;
+	}
+
 	public static String[][] listMyBarIngredientCategories() {
 		// data.listMyBarIngredientCategories(this.myBarID); Add this method in
 		// data.
@@ -118,6 +127,7 @@ public class Controller {
 	public static void dataSync()
 	{
 		data.syncDatabase();
+		//data.insertTestData();
 	}
 	
 	public static LinkedList<Drink> getAllDrinks()
@@ -155,8 +165,8 @@ public class Controller {
 		data.addMyBar(id, "home");
 	}
 	
+
 	public static boolean isInMyBar(int id){
-		
 		return false;
 	}
 	
