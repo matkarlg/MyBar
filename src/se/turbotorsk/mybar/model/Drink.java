@@ -28,7 +28,6 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package se.turbotorsk.mybar.model;
 
-import se.turbotorsk.mybar.controller.Controller;
 import android.content.ContentValues;
 import android.util.Log;
 
@@ -71,24 +70,6 @@ public class Drink {
 		values.put("favorite", favorite);
 	}
 
-	/*
-	 * private Calendar calendar = Calendar.getInstance(); private Date date =
-	 * new Date(calendar.getTime().getTime()); private SimpleDateFormat
-	 * dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-	 * 
-	 * public String getDate() { return dateFormat.format(date); }
-	 * 
-	 * public void setDate(int year, int month, int day) { try { this.date =
-	 * dateFormat.parse("" + year + "-" + month + "-" + day); } catch
-	 * (ParseException e) { Log.e(e.getClass().getName(), "ParseException: " +
-	 * e.getMessage(), e); } }
-	 * 
-	 * public void setDate(Date date) { try { this.date =
-	 * dateFormat.parse(date.toString()); } catch (ParseException e) {
-	 * Log.e(e.getClass().getName(), "ParseException: " + e.getMessage(), e); }
-	 * }
-	 */
-
 	/**
 	 * Return a representation of the ingredients in the drink for the the drink
 	 * view activity.
@@ -96,7 +77,6 @@ public class Drink {
 	 * @return
 	 */
 	public String getIngredientPreViewString() {
-//		int arrayCount = 0;
 		int maxStringLength = (40 - 4);
 		StringBuffer nameBuff = new StringBuffer();
 		String name = "";
@@ -106,7 +86,7 @@ public class Drink {
 		while( i < array.length -1){
 				
 				Log.d("Searcing for", array[i]);
-				name = Controller.getIngredientById(Integer.parseInt(array[i])).getName();
+				name = Data.getIngredientByID(Integer.parseInt(array[i])).getName();
 				if ((maxStringLength - name.length()) > 0){
 					nameBuff.append(name + " | ");
 					maxStringLength = maxStringLength - name.length();
@@ -117,7 +97,6 @@ public class Drink {
 	}
 	
 	public String getIngredientString() {
-//		int arrayCount = 0, maxStringLength = (26 - 4);
 		StringBuffer nameBuff = new StringBuffer();
 		String name = "";
 		String[] array = ingredient.split(";"); 
@@ -125,7 +104,7 @@ public class Drink {
 		while( i < array.length -1){
 				
 				Log.d("Searcing for", array[i]);
-				name = Controller.getIngredientById(Integer.parseInt(array[i])).getName();
+				name = Data.getIngredientByID(Integer.parseInt(array[i])).getName();
 				nameBuff.append(name + "\n");
 				i = i + 2; 
 		}

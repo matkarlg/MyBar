@@ -5,12 +5,12 @@ mybar@turbotorsk.se
 
 Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
-*	Redistributions of source code must retain the above copyright notice,
+ *	Redistributions of source code must retain the above copyright notice,
  	this list of conditions and the following disclaimer.
-*	Redistributions in binary form must reproduce the above copyright notice,
+ *	Redistributions in binary form must reproduce the above copyright notice,
  	this list of conditions and the following disclaimer in the documentation
  	and/or other materials provided with the distribution.
-*	Neither the name of the MyBar nor the names of its contributors may be 
+ *	Neither the name of the MyBar nor the names of its contributors may be 
 	used to endorse or promote products derived from this software without
 	specific prior written permission.
 	
@@ -52,12 +52,12 @@ public class DrinkTable {
 
 	// Database table creation SQL statement.
 	private static final String DATABASE_CREATE = "CREATE TABLE " + TABLE_DRINK
-			+ "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-			+ COLUMN_NAME + " TEXT NOT NULL, " + COLUMN_URL
-			+ " TEXT NOT NULL, " + COLUMN_GLASS + " TEXT NOT NULL, "
-			+ COLUMN_INGREDIENT + " TEXT NOT NULL, " + COLUMN_DESCRIPTION
-			+ " TEXT NOT NULL, " + COLUMN_RATING + " INTEGER NOT NULL, "
-			+ COLUMN_FAVORITE + " INTEGER NOT NULL" + ");";
+			+ "(" + COLUMN_ID + " INTEGER PRIMARY KEY, " + COLUMN_NAME
+			+ " TEXT NOT NULL, " + COLUMN_URL + " TEXT NOT NULL, "
+			+ COLUMN_GLASS + " TEXT NOT NULL, " + COLUMN_INGREDIENT
+			+ " TEXT NOT NULL, " + COLUMN_DESCRIPTION + " TEXT NOT NULL, "
+			+ COLUMN_RATING + " INTEGER NOT NULL, " + COLUMN_FAVORITE
+			+ " INTEGER NOT NULL" + ");";
 
 	/**
 	 * Executes the table creation SQL statement.

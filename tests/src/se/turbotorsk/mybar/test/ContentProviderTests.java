@@ -5,12 +5,12 @@ mybar@turbotorsk.se
 
 Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
-*	Redistributions of source code must retain the above copyright notice,
+ *	Redistributions of source code must retain the above copyright notice,
  	this list of conditions and the following disclaimer.
-*	Redistributions in binary form must reproduce the above copyright notice,
+ *	Redistributions in binary form must reproduce the above copyright notice,
  	this list of conditions and the following disclaimer in the documentation
  	and/or other materials provided with the distribution.
-*	Neither the name of the MyBar nor the names of its contributors may be 
+ *	Neither the name of the MyBar nor the names of its contributors may be 
 	used to endorse or promote products derived from this software without
 	specific prior written permission.
 	
@@ -46,156 +46,180 @@ import android.net.Uri;
 import android.test.ProviderTestCase2;
 import android.test.mock.MockContentResolver;
 
-public class ContentProviderTests extends ProviderTestCase2<MyBarContentProvider> {
+public class ContentProviderTests extends
+		ProviderTestCase2<MyBarContentProvider> {
 
-    public ContentProviderTests() {
+	public ContentProviderTests() {
 		super(MyBarContentProvider.class, "se.turbotorsk.mybar.model.database");
 	}
 
-    // Reference to the mocked ContentResolver for MyBarContentProvider.
-    private MockContentResolver mMockResolver;
+	// Reference to the mocked ContentResolver for MyBarContentProvider.
+	private MockContentResolver mMockResolver;
 
-    // Database used for testing
-    private SQLiteDatabase testDB;
+	// Database used for testing
+	private SQLiteDatabase testDB;
 
-    // Contains the test data, as an array of Drinks.
+	// Contains the test data, as an array of Drinks.
 	final Drink[] testDrinks = {
-			new Drink(0, "Margarita",
+			new Drink(1, "Margarita",
 					"http://repro.mybar.turbotorsk.se/img/no_img.png",
 					"Martini Glass", "ingredients here",
 					"Margarita instructions", 5, 0),
-			new Drink(0, "Tequila",
+			new Drink(2, "Tequila",
 					"http://repro.mybar.turbotorsk.se/img/no_img.png",
 					"Shot Glass", "ingredients here",
 					"Pour Tequila in shot glass", 5, 0),
-			new Drink(0, "Cosmopolitan",
+			new Drink(3, "Cosmopolitan",
 					"http://repro.mybar.turbotorsk.se/img/no_img.png",
 					"Martini Glass", "ingredients here",
 					"Cosmopolitan instructions", 5, 0),
-			new Drink(0, "Cuba Libre",
+			new Drink(4, "Cuba Libre",
 					"http://repro.mybar.turbotorsk.se/img/no_img.png",
 					"Highball Glass", "ingredients here",
 					"Cuba Libre instructions", 5, 0),
-			new Drink(0, "Martini",
+			new Drink(5, "Martini",
 					"http://repro.mybar.turbotorsk.se/img/no_img.png",
 					"Martini Glass", "ingredients here",
 					"Pour Martini in glass", 5, 0),
-			new Drink(0, "Irish Coffee",
+			new Drink(6, "Irish Coffee",
 					"http://repro.mybar.turbotorsk.se/img/no_img.png",
 					"Coffee Glass", "ingredients here",
 					"Irish Coffee instructions", 5, 0) };
 
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
-        // Gets the resolver.
-        mMockResolver = getMockContentResolver();
-        // Gets the database.
-        testDB = getProvider().getDatabaseHandle().getWritableDatabase();
-    }
+	@Override
+	protected void setUp() throws Exception {
+		super.setUp();
+		// Gets the resolver.
+		mMockResolver = getMockContentResolver();
+		// Gets the database.
+		testDB = getProvider().getDatabaseHandle().getWritableDatabase();
+	}
 
-    @Override
-    protected void tearDown() throws Exception {
-        super.tearDown();
-    }
-    
+	@Override
+	protected void tearDown() throws Exception {
+		super.tearDown();
+	}
 
-    private void insertTestData() {
-        // Sets up test data
-        for (int index = 0; index < testDrinks.length; index++) {
-            testDB.insertOrThrow(
-                DrinkTable.TABLE_DRINK, null,
-                testDrinks[index].getContentValues()
-            );
-        }
-    }
-    
-    public void testDeletes() {
-        final String selection = DrinkTable.COLUMN_NAME + " = ? ";
-        final String[] selectionArgs = { "Tequila" };
+	private void insertTestData() {
+		// Sets up test data
+		for (int index = 0; index < testDrinks.length; index++) {
+			testDB.insertOrThrow(DrinkTable.TABLE_DRINK, null,
+					testDrinks[index].getContentValues());
+		}
+	}
 
-        // Delete Test 1. Delete an empty record.
-        int rowsDeleted = mMockResolver.delete(MyBarContentProvider.CONTENTURI_DRINK, selection, selectionArgs);
-        assertEquals(0, rowsDeleted);
+	public void testDeletes() {
+		final String selection = DrinkTable.COLUMN_NAME + " = ? ";
+		final String[] selectionArgs = { "Tequila" };
 
-        // Delete Test 2. Delete an existing record.
-        insertTestData();
-        rowsDeleted = mMockResolver.delete(MyBarContentProvider.CONTENTURI_DRINK, selection, selectionArgs);
+		// Delete Test 1. Delete an empty record.
+		int rowsDeleted = mMockResolver
+				.delete(MyBarContentProvider.CONTENTURI_DRINK, selection,
+						selectionArgs);
+		assertEquals(0, rowsDeleted);
 
-        // The number of deleted rows should be 1.
-        assertEquals(1, rowsDeleted);
+		// Delete Test 2. Delete an existing record.
+		insertTestData();
+		rowsDeleted = mMockResolver
+				.delete(MyBarContentProvider.CONTENTURI_DRINK, selection,
+						selectionArgs);
 
-        // Delete Test 3. Check if row was actually deleted.
-        assertEquals(0, mMockResolver.query(MyBarContentProvider.CONTENTURI_DRINK, null, selection, selectionArgs, null).getCount());
-    }
-    
-    public void testInserts() {
-        // Create a new Drink.
-        final Drink testOneDrink = new Drink(0, "Tequila",
+		// The number of deleted rows should be 1.
+		assertEquals(1, rowsDeleted);
+
+		// Delete Test 3. Check if row was actually deleted.
+		assertEquals(
+				0,
+				mMockResolver.query(MyBarContentProvider.CONTENTURI_DRINK,
+						null, selection, selectionArgs, null).getCount());
+	}
+
+	public void testInserts() {
+		// Create a new Drink.
+		final Drink testOneDrink = new Drink(1, "Tequila",
 				"http://repro.mybar.turbotorsk.se/img/no_img.png",
-				"Shot Glass", "ingredients here",
-				"Pour Tequila in shot glass", 5, 0);
+				"Shot Glass", "ingredients here", "Pour Tequila in shot glass",
+				5, 0);
 
-        // Insert Test 1. Inserts one Drink into DrinkTable.
-        Uri rowUri = null;
-        try {
-	        rowUri = mMockResolver.insert(MyBarContentProvider.CONTENTURI_DRINK, testOneDrink.getContentValues());
-        } catch (Exception e) {
-        	fail("Inserting one row failed.");
-        }
+		// Insert Test 1. Inserts one Drink into DrinkTable.
+		Uri rowUri = null;
+		try {
+			rowUri = mMockResolver.insert(
+					MyBarContentProvider.CONTENTURI_DRINK,
+					testOneDrink.getContentValues());
+		} catch (Exception e) {
+			fail("Inserting one row failed.");
+		}
 
-        // Gets the URI _id of the single Drink.
-        long drinkID = ContentUris.parseId(rowUri);
+		// Gets the URI _id of the single Drink.
+		long drinkID = ContentUris.parseId(rowUri);
 
-        // Insert Test 2. Should contain only one Drink.
-        Cursor cursor = mMockResolver.query(MyBarContentProvider.CONTENTURI_DRINK, null, null, null, null);
-        assertEquals(1, cursor.getCount());
+		// Insert Test 2. Should contain only one Drink.
+		Cursor cursor = mMockResolver.query(
+				MyBarContentProvider.CONTENTURI_DRINK, null, null, null, null);
+		assertEquals(1, cursor.getCount());
 
-        // Insert Test 3. Moves to the first (and only) record.
-        assertTrue(cursor.moveToFirst());
+		// Insert Test 3. Moves to the first (and only) record.
+		assertTrue(cursor.moveToFirst());
 
-        // Insert Test 4. Compare data returned with data inserted and check if it's correct.
-        // Get the _id value from test 1 URI to get the correct _id even if autoincrement is on.
-        assertEquals((int)drinkID, cursor.getInt(cursor.getColumnIndex(DrinkTable.COLUMN_ID)));
-        assertEquals(testOneDrink.getName(), cursor.getString(cursor.getColumnIndex(DrinkTable.COLUMN_NAME)));
-        assertEquals(testOneDrink.getUrl(), cursor.getString(cursor.getColumnIndex(DrinkTable.COLUMN_URL)));
-        assertEquals(testOneDrink.getGlass(), cursor.getString(cursor.getColumnIndex(DrinkTable.COLUMN_GLASS)));
-        assertEquals(testOneDrink.getIngredient(), cursor.getString(cursor.getColumnIndex(DrinkTable.COLUMN_INGREDIENT)));
-        assertEquals(testOneDrink.getDescription(), cursor.getString(cursor.getColumnIndex(DrinkTable.COLUMN_DESCRIPTION)));
-        assertEquals(testOneDrink.getRating(), cursor.getInt(cursor.getColumnIndex(DrinkTable.COLUMN_RATING)));
-        assertEquals(testOneDrink.getFavorite(), cursor.getInt(cursor.getColumnIndex(DrinkTable.COLUMN_FAVORITE)));
+		// Insert Test 4. Compare data returned with data inserted and check if
+		// it's correct.
+		// Get the _id value from test 1 URI to get the correct _id even if
+		// autoincrement is on.
+		assertEquals((int) drinkID,
+				cursor.getInt(cursor.getColumnIndex(DrinkTable.COLUMN_ID)));
+		assertEquals(testOneDrink.getName(),
+				cursor.getString(cursor.getColumnIndex(DrinkTable.COLUMN_NAME)));
+		assertEquals(testOneDrink.getUrl(),
+				cursor.getString(cursor.getColumnIndex(DrinkTable.COLUMN_URL)));
+		assertEquals(testOneDrink.getGlass(), cursor.getString(cursor
+				.getColumnIndex(DrinkTable.COLUMN_GLASS)));
+		assertEquals(testOneDrink.getIngredient(), cursor.getString(cursor
+				.getColumnIndex(DrinkTable.COLUMN_INGREDIENT)));
+		assertEquals(testOneDrink.getDescription(), cursor.getString(cursor
+				.getColumnIndex(DrinkTable.COLUMN_DESCRIPTION)));
+		assertEquals(testOneDrink.getRating(),
+				cursor.getInt(cursor.getColumnIndex(DrinkTable.COLUMN_RATING)));
+		assertEquals(testOneDrink.getFavorite(), cursor.getInt(cursor
+				.getColumnIndex(DrinkTable.COLUMN_FAVORITE)));
 
-        // Insert Test 5. Insert a record whose _id value already exists.
-        // Get the _id value from test 1 URI to get the correct _id even if autoincrement is on.
-        ContentValues values = testOneDrink.getContentValues();
-        values.put(DrinkTable.COLUMN_ID, (int)drinkID);
+		// Insert Test 5. Insert a record whose _id value already exists.
+		// Get the _id value from test 1 URI to get the correct _id even if
+		// autoincrement is on.
+		ContentValues values = testOneDrink.getContentValues();
+		values.put(DrinkTable.COLUMN_ID, (int) drinkID);
 
-        // Test if you can overwrite existing row.
-        try {
-            rowUri = mMockResolver.insert(MyBarContentProvider.CONTENTURI_DRINK, values);
-            fail("Insert Test 5 Failed. Able to overwrite existing record.");
-        } catch (Exception e) {
-          // Insert couldn't overwrite existing record.
-        }
-    }
+		// Test if you can overwrite existing row.
+		try {
+			rowUri = mMockResolver.insert(
+					MyBarContentProvider.CONTENTURI_DRINK, values);
+			fail("Insert Test 5 Failed. Able to overwrite existing record.");
+		} catch (Exception e) {
+			// Insert couldn't overwrite existing record.
+		}
+	}
 
-    public void testUpdates() {
-        final String selection = DrinkTable.COLUMN_NAME + " = ? ";
-        final String[] selectionArgs = { "Tequila" };
-        ContentValues values = new ContentValues();
+	public void testUpdates() {
+		final String selection = DrinkTable.COLUMN_NAME + " = ? ";
+		final String[] selectionArgs = { "Tequila" };
+		ContentValues values = new ContentValues();
 
-        // Update Test 1. Update empty table.
-        values.put(DrinkTable.COLUMN_NAME, "Test new name");
-        int rowsUpdated = mMockResolver.update(MyBarContentProvider.CONTENTURI_DRINK, values, selection, selectionArgs);
+		// Update Test 1. Update empty table.
+		values.put(DrinkTable.COLUMN_NAME, "Test new name");
+		int rowsUpdated = mMockResolver.update(
+				MyBarContentProvider.CONTENTURI_DRINK, values, selection,
+				selectionArgs);
 
-        // The number of updated rows should be 0.
-        assertEquals(0, rowsUpdated);
+		// The number of updated rows should be 0.
+		assertEquals(0, rowsUpdated);
 
-        // Update Test 2. Same test as Test 1 with testData in the table.
-        insertTestData();
-        rowsUpdated = mMockResolver.update(MyBarContentProvider.CONTENTURI_DRINK, values, selection, selectionArgs);
+		// Update Test 2. Same test as Test 1 with testData in the table.
+		insertTestData();
+		rowsUpdated = mMockResolver.update(
+				MyBarContentProvider.CONTENTURI_DRINK, values, selection,
+				selectionArgs);
 
-        // The number of updated rows should be 1.
-        assertEquals(1, rowsUpdated);
-    }
+		// The number of updated rows should be 1.
+		assertEquals(1, rowsUpdated);
+	}
 }
