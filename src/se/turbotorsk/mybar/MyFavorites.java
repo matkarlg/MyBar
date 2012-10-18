@@ -41,17 +41,17 @@ import android.widget.ListView;
  */
 public class MyFavorites extends ListActivity {
 
-	public DrinkAdapter adapter;
+	private DrinkAdapter adapter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		adapter = new DrinkAdapter(this, R.layout.rowlayout,
-				Controller.getAllFavorites());
+		setAdapter(new DrinkAdapter(this, R.layout.rowlayout,
+				Controller.getAllFavorites()));
 
 		// Sets the adapter that we just did.
-		setListAdapter(adapter);
+		setListAdapter(getAdapter());
 	}
 
 	/**
@@ -65,12 +65,12 @@ public class MyFavorites extends ListActivity {
 		// Toast.makeText(this, item + " selected", Toast.LENGTH_LONG).show();
 
 		Intent intent = new Intent(this, ViewDrinkActivity.class);
-		intent.putExtra("drinkname", adapter.getDrinkName(position));
-		intent.putExtra("rating", adapter.getRating(position));
-		intent.putExtra("ingredients", adapter.getIngredients(position));
-		intent.putExtra("descrip", adapter.getDescrip(position));
-		intent.putExtra("url", adapter.getUrl(position));
-		intent.putExtra("id", adapter.getId(position));
+		intent.putExtra("drinkname", getAdapter().getDrinkName(position));
+		intent.putExtra("rating", getAdapter().getRating(position));
+		intent.putExtra("ingredients", getAdapter().getIngredients(position));
+		intent.putExtra("descrip", getAdapter().getDescrip(position));
+		intent.putExtra("url", getAdapter().getUrl(position));
+		intent.putExtra("id", getAdapter().getId(position));
 		startActivity(intent);
 	}
 
@@ -82,7 +82,15 @@ public class MyFavorites extends ListActivity {
 	public void onResume()
 	{
 	         super.onResume();
-	         adapter = new DrinkAdapter(this, R.layout.rowlayout, Controller.getAllFavorites());
-	         setListAdapter(adapter);
+	         setAdapter(new DrinkAdapter(this, R.layout.rowlayout, Controller.getAllFavorites()));
+	         setListAdapter(getAdapter());
 	 }
+
+	public DrinkAdapter getAdapter() {
+		return adapter;
+	}
+
+	public void setAdapter(DrinkAdapter adapter) {
+		this.adapter = adapter;
+	}
 }

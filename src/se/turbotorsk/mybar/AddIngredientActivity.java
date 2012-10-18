@@ -42,14 +42,14 @@ import android.widget.TextView;
  */
 public class AddIngredientActivity extends ListActivity {
 	
-	TextView text;
-	IngredientAdapter adapter;
+	private TextView text;
+	private IngredientAdapter adapter;
 	public static int save = -1;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		text = (TextView) findViewById(R.id.drink);
+		setText((TextView) findViewById(R.id.drink));
 		adapter = new IngredientAdapter(this, R.layout.rowlayout,
 				Controller.getAllIngredients());
 
@@ -75,14 +75,18 @@ public class AddIngredientActivity extends ListActivity {
 			parent.getAdapter().getView(position, v, null).setBackgroundColor(Color.WHITE);
 //		    Controller.removeMyBarIngredient();			
 			save = -1;
-			}
-			
+			}	
 		}
-
-	   
 	}
 
-	
+	//Needed according to sonar, feels a bit wierd. Might remove?
+	public TextView getText() {
+		return text;
+	}
+
+	public void setText(TextView text) {
+		this.text = text;
+	}
 }
 
 

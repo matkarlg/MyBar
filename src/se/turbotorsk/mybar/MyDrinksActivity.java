@@ -47,7 +47,7 @@ import android.widget.ListView;
  */
 public class MyDrinksActivity extends ListActivity {
 
-	DrinkAdapter adapter;
+	private DrinkAdapter adapter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
