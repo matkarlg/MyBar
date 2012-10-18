@@ -162,8 +162,6 @@ public class ViewDrinkActivity extends Activity implements
 							"Removed from Favorites", Toast.LENGTH_SHORT)
 							.show();
 				}
-				// MyFavorites.updateList();
-
 			}
 		});
 	}

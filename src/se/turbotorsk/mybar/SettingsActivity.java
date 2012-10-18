@@ -59,7 +59,6 @@ public class SettingsActivity extends Activity {
 				startActivity(intent1);
 				Intent i = getIntent();
 				Bundle bundle = i.getExtras();
-				// String profile = bundle.getString("profile");
 				profile1.setText("home");
 			}
 		});

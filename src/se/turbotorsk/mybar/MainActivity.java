@@ -64,8 +64,6 @@ public class MainActivity extends TabActivity {
 		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
 				.permitAll().build();
 		StrictMode.setThreadPolicy(policy);
-
-		// String[] lista = data.getDrinkNameArray(); tabHost = getTabHost();
 		TabHost tabHost = getTabHost();
 		// Favorites tab
 		// We should rename MyFavorites to Favorites, but thats not a big issue.
