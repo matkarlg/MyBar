@@ -32,6 +32,7 @@ import se.turbotorsk.mybar.AddIngredientActivity;
 import se.turbotorsk.mybar.CollectionActivity;
 import se.turbotorsk.mybar.MainActivity;
 import se.turbotorsk.mybar.SettingsActivity;
+import se.turbotorsk.mybar.ViewDrinkActivity;
 
 import android.test.ActivityInstrumentationTestCase2;
 
@@ -40,8 +41,8 @@ import com.jayway.android.robotium.solo.Solo;
 /**
  * It seems like the tests are evaluated alphabetically, therefore im adding a
  * number in each test, to have a good overview and so that it is easier to
- * manage the code. I have deceided to have all testcode in one java file for
- * now. This is because robotium is still very difficult to understand and it is
+ * manage the code. I have decided to have all test code in one java file for
+ * now. This is because Robotium is still very difficult to understand and it is
  * easier to have all tests at the same place when there aren't that many tests.
  * 
  * MAKE SURE THAT THE EMULATOR IS STARTED AND THAT IT IS UNLOCKED BEFORE
@@ -63,7 +64,7 @@ public class MyBarRobotiumTest extends
 		solo = new Solo(getInstrumentation(), getActivity());
 	}
 
-	// In some way this method breaks everything, im keeping it so I won't forget
+	// In some way this method breaks everything, I'm keeping it so I won't forget
 	// to do a good one.
 	// This method is nothing we should prioritize.
 	// public void tearDown() throws Exception {
@@ -91,6 +92,7 @@ public class MyBarRobotiumTest extends
 	// has to do for now.
 	public void test2_ChangeTabToCollection() {
 		solo.assertCurrentActivity("First activity", MainActivity.class);
+		solo.sendKey(Solo.UP);
 		solo.sendKey(Solo.RIGHT);
 		solo.assertCurrentActivity("Ska ha bytt activity",
 				CollectionActivity.class);
@@ -100,9 +102,9 @@ public class MyBarRobotiumTest extends
 	// correct activity was started.
 	// After the verification solo makes sure that it returns to the main
 	// activity
-	public void test3_OpenAddButton() {
-		solo.clickOnMenuItem("Add");
-		solo.assertCurrentActivity("Ska vara add aktiviteten",
+	public void test3_OpenAddSpiritsButton() {
+		solo.clickOnMenuItem("Add Spirits");
+		solo.assertCurrentActivity("Ska vara add ingredient aktiviteten",
 				AddIngredientActivity.class);
 		solo.goBack();
 	}
@@ -137,6 +139,36 @@ public class MyBarRobotiumTest extends
 	public void test6_CheckMemory() {
 		solo.assertMemoryNotLow();
 	}
+	
+	public void test7_OpenDrink(){
+		solo.assertCurrentActivity("First activity", MainActivity.class);
+		solo.sendKey(Solo.UP);
+		solo.sendKey(Solo.RIGHT);
+		solo.assertCurrentActivity("Ska ha bytt activity",
+				CollectionActivity.class);
+		solo.clickLongOnText("Angel Face");
+		solo.assertCurrentActivity("Nu ska vi se drinken", ViewDrinkActivity.class);
+		solo.goBack();	
+	}
+	
+	//Not done yet. Needs to go to FAVORITES tab and verify that the drink is there
+	public void test8_AddFavoriteAndVerify(){
+		solo.assertCurrentActivity("First activity", MainActivity.class);
+		solo.sendKey(Solo.UP);
+		solo.sendKey(Solo.RIGHT);
+		solo.assertCurrentActivity("Ska ha bytt activity",
+				CollectionActivity.class);
+		solo.clickLongOnText("Angel Face");
+		solo.assertCurrentActivity("Nu ska vi se drinken", ViewDrinkActivity.class);
+		solo.clickOnCheckBox(0); //This is the fav checkbox
+		solo.goBack();
+		//solo.clickOnText("FAVORITES");
+	}
+	
+//	public void test7_OpenAddSpirits(){
+//		solo.clickOnMenuItem("Add Spirits");
+//		solo.assertCurrentActivity("Detta ska vara", AddIngredientActivity.class);
+//	}
 
 	// Doesn't work. This is because the share button starts the messaging
 	// application and exists

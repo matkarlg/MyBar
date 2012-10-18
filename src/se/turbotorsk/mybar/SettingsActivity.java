@@ -41,8 +41,8 @@ import android.widget.TextView;
  * This activity handles the Settings-view from Options-menu.
  */
 public class SettingsActivity extends Activity {
-	Button profileButton;
-	TextView profile1;
+	private Button profileButton;
+	private TextView profile1;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
