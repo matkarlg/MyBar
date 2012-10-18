@@ -77,10 +77,12 @@ public class MyFavorites extends ListActivity {
 	/**
 	 * This method updates the list in MyFavorites.
 	 */
-	public void updateList() {
-		// adapter = new DrinkAdapter(this, R.layout.rowlayout,
-		// Data.getAllFavorites());
-		// adapter.notifyDataSetChanged();
 
-	}
+	@Override
+	public void onResume()
+	{
+	         super.onResume();
+	         adapter = new DrinkAdapter(this, R.layout.rowlayout, Controller.getAllFavorites());
+	         setListAdapter(adapter);
+	 }
 }

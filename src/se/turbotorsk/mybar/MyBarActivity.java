@@ -58,7 +58,14 @@ public class MyBarActivity extends ListActivity {
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		Data.dropMyBar(adapter.getId(position), adapter.getPosition(position));
-		adapter.notifyDataSetChanged();
 	}
+	
+	@Override
+	public void onResume()
+	{
+	         super.onResume();
+	         adapter = new IngredientAdapter(this, R.layout.rowlayout, Controller.getMyIngredients());
+	         setListAdapter(adapter);
+	 }
 
 }

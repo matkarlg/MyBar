@@ -79,4 +79,12 @@ public class CollectionActivity extends ListActivity {
 		intent.putExtra("id", adapter.getId(position));
 		startActivity(intent);
 	}
+	
+	@Override
+	public void onResume()
+	{
+	         super.onResume();
+	         adapter = new DrinkAdapter(this, R.layout.rowlayout, Controller.getAllDrinks());
+	         setListAdapter(adapter);
+	 }
 }
