@@ -28,35 +28,47 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package se.turbotorsk.mybar;
 
-import android.app.Activity;
+import android.app.TabActivity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.TabHost;
+import android.widget.TabHost.TabSpec;
+import android.widget.TextView;
 
-/**
- * This activity handles the share-function in the application.
- */
-public class Share extends Activity {
-
+public class MyBarTabHost extends TabActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
-		share();
-	}
+		
+		// String[] lista = data.getDrinkNameArray(); tabHost = getTabHost();
+				TabHost tabHost = getTabHost();
+				
+				// MyBar tab.
+				Intent intentMySpirits = new Intent().setClass(this, MyBarActivity.class);
+				TabSpec tabSpecMySpirits = tabHost.newTabSpec("MySpirits")
+						.setIndicator("My Spirits").setContent(intentMySpirits);
 
-	/**
-	 * This method is used to send the information that will be sent.
-	 */
-	private void share() {
-		Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
-		shareIntent.setType("text/plain");
-		String shareMessage = "Get the awesome app 'MyBar' from mybar.turbotorsk.se!";
-		shareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,
-				"Subject Here");
-		shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareMessage);
-		startActivity(Intent.createChooser(shareIntent, "Share via"));
-		finish();
-	}
+				// Search tab.
+				Intent intentMyDrinks = new Intent().setClass(this,
+						MyDrinksActivity.class);
+				TabSpec tabSpecMyDrinks = tabHost.newTabSpec("MyDrinks")
+						.setIndicator("My Drinks").setContent(intentMyDrinks);
 
+				// Add all tabs.
+				tabHost.addTab(tabSpecMySpirits);
+				tabHost.addTab(tabSpecMyDrinks);
+				
+				for(int i=0;i<tabHost.getTabWidget().getChildCount();i++) 
+			    {
+			        TextView tv = (TextView) tabHost.getTabWidget().getChildAt(i).findViewById(android.R.id.title);
+			        tv.setTextColor(Color.parseColor("#10bcc9"));
+			    } 
+
+
+				// Set Mybar as default tab (the middle tab).
+				tabHost.setCurrentTab(0);
+	}
 }

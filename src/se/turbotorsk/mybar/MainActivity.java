@@ -5,12 +5,12 @@ mybar@turbotorsk.se
 
 Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
-�	Redistributions of source code must retain the above copyright notice,
+*	Redistributions of source code must retain the above copyright notice,
  	this list of conditions and the following disclaimer.
-�	Redistributions in binary form must reproduce the above copyright notice,
+*	Redistributions in binary form must reproduce the above copyright notice,
  	this list of conditions and the following disclaimer in the documentation
  	and/or other materials provided with the distribution.
-�	Neither the name of the MyBar nor the names of its contributors may be 
+*	Neither the name of the MyBar nor the names of its contributors may be 
 	used to endorse or promote products derived from this software without
 	specific prior written permission.
 	
@@ -28,19 +28,16 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package se.turbotorsk.mybar;
 
+import se.turbotorsk.mybar.controller.Controller;
 import se.turbotorsk.mybar.model.Data;
-import android.app.Activity;
 import android.app.TabActivity;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TabHost;
-import android.widget.Toast;
 import android.widget.TabHost.TabSpec;
-import android.widget.TextView;
 
 /**
  * This activity handles the main-window in the application.
@@ -68,11 +65,6 @@ public class MainActivity extends TabActivity {
 				.permitAll().build();
 		StrictMode.setThreadPolicy(policy);
 
-		this.deleteDatabase("turbotorsk_mybar.db");
-
-		Data.insertTestData();
-		Data.addMyBar(2, "home");
-
 		// String[] lista = data.getDrinkNameArray(); tabHost = getTabHost();
 		TabHost tabHost = getTabHost();
 		// Favorites tab
@@ -82,9 +74,9 @@ public class MainActivity extends TabActivity {
 				.setIndicator("Favorites").setContent(intentFavorites);
 
 		// MyBar tab.
-		Intent intentMyBar = new Intent().setClass(this, MyBarActivity.class);
-		TabSpec tabSpecMyBar = tabHost.newTabSpec("MyBar")
-				.setIndicator("MyBar").setContent(intentMyBar);
+		Intent intentMyBar = new Intent().setClass(this, MyBarTabHost.class);
+		TabSpec tabSpecMyBarTabHost = tabHost.newTabSpec("MyBar")
+				.setIndicator("My Bar").setContent(intentMyBar);
 
 		// MyBar tab.
 		Intent intentCollection = new Intent().setClass(this,
@@ -94,7 +86,7 @@ public class MainActivity extends TabActivity {
 
 		// Add all tabs.
 		tabHost.addTab(tabSpecFavorites);
-		tabHost.addTab(tabSpecMyBar);
+		tabHost.addTab(tabSpecMyBarTabHost);
 		tabHost.addTab(tabSpecCollection);
 
 		// Set Mybar as default tab (the middle tab).
@@ -118,14 +110,14 @@ public class MainActivity extends TabActivity {
 		case R.id.menu_add_drink:
 			startActivity(new Intent(this, AddIngredientActivity.class));
 			return true;
-		case R.id.menu_settings:
-			startActivity(new Intent(this, SettingsActivity.class));
+		case R.id.menu_share:
+			startActivity(new Intent(this, Share.class));
 			return true;
 		case R.id.menu_about:
 			AboutBox.Show(MainActivity.this);
 			return true;
-		case R.id.menu_share:
-			startActivity(new Intent(this, Share.class));
+		case R.id.menu_settings:
+			startActivity(new Intent(this, SettingsActivity.class));
 			return true;
 		default:
 			return true;

@@ -36,6 +36,7 @@ import se.turbotorsk.mybar.model.database.DrinkTable;
 import se.turbotorsk.mybar.model.database.IngredientTable;
 import se.turbotorsk.mybar.model.database.MyBarContentProvider;
 import se.turbotorsk.mybar.model.database.MyBarTable;
+import se.turbotorsk.mybar.model.externaldata.JsonParse;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
@@ -50,12 +51,13 @@ import android.util.Log;
  *         href="mailto:mathias.karlgren@gmail.com">email</a>)
  */
 public class Data {
+	private static JsonParse jsonParse = new JsonParse();
 	/**
 	 * Inserts TestData in the database.
 	 * 
 	 * @return 0
 	 */
-	public static int insertTestData() {
+	public int insertTestData() {
 		Uri myBarUri = null;
 
 		// Drinks uses autoincrement in the _id field.
@@ -129,7 +131,7 @@ public class Data {
 	 * 
 	 * @return rowsDeleted.
 	 */
-	public static int deleteTestData() {
+	public int deleteTestData() {
 		int rowsDeleted = 0;
 		rowsDeleted += MyBarApplication.ContentResolver().delete(
 				MyBarContentProvider.CONTENTURI_DRINK, null, null);
@@ -139,6 +141,17 @@ public class Data {
 				MyBarContentProvider.CONTENTURI_MYBAR, null, null);
 		return rowsDeleted;
 	}
+	
+	/**
+	 * Syncs remote datastore (JSON) with local SQLite database
+	 * 
+	 * @return false
+	 */
+	public boolean syncDatabase()
+	{
+		jsonParse.getDb();
+		return false; 
+	}
 
 	/**
 	 * Adds a new ingredient to MyBarTable
@@ -147,7 +160,7 @@ public class Data {
 	 * @param location "Home", "Work".
 	 * @return 0 if successful.
 	 */
-	public static int addMyBar(int ingredientID, String location) {
+	public int addMyBar(int ingredientID, String location) {
 		ContentValues values = new ContentValues();
 		values.put("ingredientid", ingredientID);
 		values.put("location", location);
@@ -235,7 +248,7 @@ public class Data {
 	 * @param name Drink object that should be inserted into the database.
 	 * @return 0 if successful, 1 if error. See LogCat.
 	 */
-	public static int addDrink(Drink name) {
+	public int addDrink(Drink name) {
 		ContentValues values = name.getContentValues();
 
 		// Choose which columns you want to query. null queries all columns.
@@ -286,7 +299,7 @@ public class Data {
 	 * @param ID an Integer _id that should be removed from the database.
 	 * @return 0 if successful, 1 if error. See LogCat.
 	 */
-	public static int dropDrink(int ID) {
+	public int dropDrink(int ID) {
 		// Choose which columns you want to query. null queries all columns.
 		String[] projection = { DrinkTable.COLUMN_ID, DrinkTable.COLUMN_NAME };
 
@@ -387,7 +400,7 @@ public class Data {
 	 * 
 	 * @return LinkedList<Drink>.
 	 */
-	public static LinkedList<Drink> getAllDrinks() {
+	public LinkedList<Drink> getAllDrinks() {
 		LinkedList<Drink> drinkList = new LinkedList<Drink>();
 
 		// Choose which columns you want to query. null queries all columns.
@@ -448,7 +461,7 @@ public class Data {
 	 * 
 	 * @return LinkedList<Ingredient>.
 	 */
-	public static LinkedList<Ingredient> getAllIngredients() {
+	public LinkedList<Ingredient> getAllIngredients() {
 		LinkedList<Ingredient> ingredientList = new LinkedList<Ingredient>();
 
 		// Choose which columns you want to query. null queries all columns.
@@ -510,7 +523,7 @@ public class Data {
 	 * @param ID the _id of the Drink to return
 	 * @return aDrink
 	 */
-	public static Drink getDrinkByID(int ID) {
+	public Drink getDrinkByID(int ID) {
 		// Choose which columns you want to query. null queries all columns.
 		// String[] projection = { DrinkTable.COLUMN_NAME,
 		// DrinkTable.COLUMN_DESCRIPTION, DrinkTable.COLUMN_RATING };
@@ -580,7 +593,7 @@ public class Data {
 	 * @param ID the _id of the Ingredient to return
 	 * @return anIngredient
 	 */
-	public static Ingredient getIngredientByID(int ID) {
+	public Ingredient getIngredientByID(int ID) {
 		// Choose which columns you want to query. null queries all columns.
 		// String[] projection = { IngredientTable.COLUMN_NAME,
 		// IngredientTable.COLUMN_DESCRIPTION };
@@ -642,7 +655,7 @@ public class Data {
 	 * 
 	 * @return LinkedList<Drink>.
 	 */
-	public static LinkedList<Drink> getAllFavorites() {
+	public LinkedList<Drink> getAllFavorites() {
 		LinkedList<Drink> drinkList = new LinkedList<Drink>();
 
 		// Choose which columns you want to query. null queries all columns.
@@ -704,7 +717,7 @@ public class Data {
 	 * @param ID _id of the Drink.
 	 * @return 0 if OK. 1 if ID doesn't exist.
 	 */
-	public static int setFavoriteByID(int ID) {
+	public int setFavoriteByID(int ID) {
 		ContentValues values = new ContentValues();
 
 		// Choose which columns you want to query. null queries all columns.
@@ -755,7 +768,7 @@ public class Data {
 	 * @param name the name of the Drink.
 	 * @return 0 if OK. 1 if name doesn't exist.
 	 */
-	public static int setFavoriteByName(String name) {
+	public int setFavoriteByName(String name) {
 		ContentValues values = new ContentValues();
 
 		// Choose which columns you want to query. null queries all columns.
@@ -809,7 +822,7 @@ public class Data {
 	 * @param set the value to update the column with.
 	 * @return 0 if successful. 1 if error. See LogCat
 	 */
-	public static int setDrink(String name, String column, int set) {
+	public int setDrink(String name, String column, int set) {
 		ContentValues values = new ContentValues();
 
 		// Choose which columns you want to query. null queries all columns.
@@ -866,7 +879,7 @@ public class Data {
 	 * @param set The value to update the column with.
 	 * @return 0 if successful. 1 if error. See LogCat
 	 */
-	public static int setDrink(int ID, String column, int set) {
+	public int setDrink(int ID, String column, int set) {
 		ContentValues values = new ContentValues();
 
 		// Choose which columns you want to query. null queries all columns.
@@ -914,15 +927,15 @@ public class Data {
 		return 1;
 	}
 
-	public static String[] getDrinkNameAsArray() {
+	public String[] getDrinkNameAsArray() {
 		LinkedList<String> nameList = new LinkedList<String>();
 
-		for (int i = 0; i < Data.getAllDrinks().size(); i++) {
-			nameList.add(Data.getAllDrinks().get(i).getName());
+		for (int i = 0; i < getAllDrinks().size(); i++) {
+			nameList.add(getAllDrinks().get(i).getName());
 
 			Log.d(Controller.class.getClass().getName(), ""
-					+ Data.getAllDrinks().get(i).get_id() + " "
-					+ Data.getAllDrinks().get(i).getName());
+					+ getAllDrinks().get(i).get_id() + " "
+					+ getAllDrinks().get(i).getName());
 		}
 
 		String[] array = new String[nameList.size()];
@@ -939,7 +952,7 @@ public class Data {
 	 * @return A LinkedList with the ingredients containing the searchName
 	 *         string.
 	 */
-	public static LinkedList<Ingredient> searchIngredients(String search,
+	public LinkedList<Ingredient> searchIngredients(String search,
 			int limit) {
 		LinkedList<Ingredient> ingredientList = new LinkedList<Ingredient>();
 

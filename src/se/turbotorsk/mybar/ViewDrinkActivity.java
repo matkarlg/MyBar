@@ -5,12 +5,12 @@ mybar@turbotorsk.se
 
 Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
-�	Redistributions of source code must retain the above copyright notice,
+*	Redistributions of source code must retain the above copyright notice,
  	this list of conditions and the following disclaimer.
-�	Redistributions in binary form must reproduce the above copyright notice,
+*	Redistributions in binary form must reproduce the above copyright notice,
  	this list of conditions and the following disclaimer in the documentation
  	and/or other materials provided with the distribution.
-�	Neither the name of the MyBar nor the names of its contributors may be 
+*	Neither the name of the MyBar nor the names of its contributors may be 
 	used to endorse or promote products derived from this software without
 	specific prior written permission.
 	
@@ -153,11 +153,11 @@ public class ViewDrinkActivity extends Activity implements
 			public void onClick(View v) {
 				// is the checkbox checked?
 				if (((CheckBox) v).isChecked()) {
-					Data.setDrink(name, "favorite", 1);
+					Controller.setFavorite(name);
 					Toast.makeText(ViewDrinkActivity.this,
 							"Added to Favorites", Toast.LENGTH_SHORT).show();
 				} else {
-					Data.setDrink(name, "favorite", 0);
+					Controller.setNotFavorite(name);
 					Toast.makeText(ViewDrinkActivity.this,
 							"Removed from Favorites", Toast.LENGTH_SHORT)
 							.show();
@@ -171,6 +171,6 @@ public class ViewDrinkActivity extends Activity implements
 	public void onRatingChanged(RatingBar ratingBar, float rating,
 			boolean fromUser) {
 		dRating.setRating((int) rating);
-		Data.setDrink(name, "rating", (int) rating);
+		Controller.setRatingByName(name, (int) rating);
 	}
 }

@@ -5,12 +5,12 @@ mybar@turbotorsk.se
 
 Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
-�	Redistributions of source code must retain the above copyright notice,
+*	Redistributions of source code must retain the above copyright notice,
  	this list of conditions and the following disclaimer.
-�	Redistributions in binary form must reproduce the above copyright notice,
+*	Redistributions in binary form must reproduce the above copyright notice,
  	this list of conditions and the following disclaimer in the documentation
  	and/or other materials provided with the distribution.
-�	Neither the name of the MyBar nor the names of its contributors may be 
+*	Neither the name of the MyBar nor the names of its contributors may be 
 	used to endorse or promote products derived from this software without
 	specific prior written permission.
 	
@@ -30,8 +30,10 @@ package se.turbotorsk.mybar;
 
 import java.util.LinkedList;
 
+import se.turbotorsk.mybar.controller.Controller;
 import se.turbotorsk.mybar.model.Ingredient;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -83,7 +85,8 @@ public class IngredientAdapter extends ArrayAdapter<LinkedList> {
 		Ingredient p = items.get(position);
 
 		if (p != null) {
-
+			if(Controller.isInMyBar(p.get_id())) v.setBackgroundColor(Color.parseColor("#0489B1"));
+			AddIngredientActivity.save = -2;
 			TextView tt = (TextView) v.findViewById(R.id.drink);
 			TextView tt2 = (TextView) v.findViewById(R.id.ingredients);
 			TextView tt3 = (TextView) v.findViewById(R.id.rating);
@@ -95,7 +98,7 @@ public class IngredientAdapter extends ArrayAdapter<LinkedList> {
 				tt2.setText(p.getType());
 			}
 			if (tt != null) {
-				tt3.setText(p.getAlcoholcontent() + "%");
+				tt3.setText("ABV: " + p.getAlcoholcontent() + "%");
 			}
 			if (iv != null) {
 				iv.setImageResource(R.drawable.bottle);
