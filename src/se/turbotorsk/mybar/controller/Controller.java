@@ -43,9 +43,9 @@ public class Controller {
 	private final static DrinkManager dm = new DrinkManager();
 	private static Data data = new Data(); 
 
-	public static LinkedList<Drink> getMyBar() {
+	public static LinkedList<Drink> getMyBarDrinks() {
 		// dm.getMyBar(data.getMyIngredients(this.myBarID),
-		// data.getAllDrinks(this.contentResolver)); Implement this in data....
+	
 		return null;
 	}
 
@@ -159,6 +159,15 @@ public class Controller {
 	{
 		return data.getAllIngredients();
 		
+	}
+	
+	public static void addMyBarIngredient(int id){
+		data.addMyBar(id, "home");
+	}
+	
+	public static boolean isInMyBar(int id){
+		
+		return false;
 	}
 	
 }

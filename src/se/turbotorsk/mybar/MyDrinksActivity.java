@@ -54,7 +54,7 @@ public class MyDrinksActivity extends ListActivity {
 		super.onCreate(savedInstanceState);
 
 		adapter = new DrinkAdapter(this, R.layout.rowlayout,
-				Controller.getAllDrinks());	//Should be DrinkManager.getPossibleDrinks();
+				Controller.getAllDrinks());	//Should be Controller.getMyBarDrinks();
 
 		// Sets the adapter that we just did.
 		setListAdapter(adapter);

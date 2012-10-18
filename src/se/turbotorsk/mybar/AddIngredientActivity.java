@@ -44,7 +44,7 @@ public class AddIngredientActivity extends ListActivity {
 	
 	TextView text;
 	IngredientAdapter adapter;
-	private static int save = -1;
+	public static int save = -1;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -61,16 +61,18 @@ public class AddIngredientActivity extends ListActivity {
 	public void onListItemClick(ListView parent, View v, int position, long id) { 
 
 		{
-			if(save != position)
+			if(save != position && save != -2 && parent.getChildAt(position) != null)
 			{
-		    parent.getChildAt(position).setBackgroundColor(Color.parseColor("#0489B1"));
-//		    Controller.addMyBarIngredient();
+//		    parent.getChildAt(position).setBackgroundColor(Color.parseColor("#0489B1"));
+		    parent.getAdapter().getView(position, v, null).setBackgroundColor(Color.parseColor("#0489B1"));
+ 		    Controller.addMyBarIngredient(adapter.getId(position));
 		    save = position;
 			}
 			
-			else
+			else if(parent.getChildAt(position) != null)
 			{
-			parent.getChildAt(position).setBackgroundColor(Color.WHITE);
+//			parent.getChildAt(position).setBackgroundColor(Color.WHITE);
+			parent.getAdapter().getView(position, v, null).setBackgroundColor(Color.WHITE);
 //		    Controller.removeMyBarIngredient();			
 			save = -1;
 			}
