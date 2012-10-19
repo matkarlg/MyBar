@@ -48,11 +48,11 @@ public class MyBarApplication extends Application {
 		mApplication = this;
 	}
 
-	public static Context Context() {
+	public static Context context() {
 		return mApplication;
 	}
 
-	public static ContentResolver ContentResolver() {
+	public static ContentResolver contentResolver() {
 		return mApplication.getContentResolver();
 	}
 }

@@ -123,7 +123,9 @@ public class Controller {
 		if(Data.searchMyBar(id).size() != 0){
 			return true;
 		}
-		else return false;
+		else{
+			return false;
+		}
 	}
 	
 	public static void deleteTables(){
