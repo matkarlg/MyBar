@@ -5,12 +5,12 @@ mybar@turbotorsk.se
 
 Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
-* Redistributions of source code must retain the above copyright notice,
+ * Redistributions of source code must retain the above copyright notice,
   this list of conditions and the following disclaimer.
-* Redistributions in binary form must reproduce the above copyright notice,
+ * Redistributions in binary form must reproduce the above copyright notice,
   this list of conditions and the following disclaimer in the documentation
   and/or other materials provided with the distribution.
-* Neither the name of the MyBar nor the names of its contributors may be 
+ * Neither the name of the MyBar nor the names of its contributors may be 
   used to endorse or promote products derived from this software without
   specific prior written permission.
 
@@ -43,7 +43,6 @@ import android.widget.Toast;
 /**
  * This activity push the information about a drink to the GUI.
  */
-
 public class ViewDrinkActivity extends Activity implements
 		OnRatingBarChangeListener {
 
@@ -93,6 +92,8 @@ public class ViewDrinkActivity extends Activity implements
 		setRating(bundle.getInt("rating"));
 		setDescription(bundle.getString("descrip"));
 		setIngredients(bundle.getString("ingredients"));
+		// url will be used later on, not deleted because its a part of a
+		// drink-object
 		String url = bundle.getString("url");
 		setId(bundle.getInt("id"));
 
@@ -170,8 +171,9 @@ public class ViewDrinkActivity extends Activity implements
 		getdRating().setRating((int) rating);
 		Controller.setRatingByName(getName(), (int) rating);
 	}
-	
-	//Getters and setters. We need these to follow java standard. Even though they aren't used.
+
+	// Getters and setters. We need these to follow java standard. Even though
+	// they aren't used.
 	public TextView getdName() {
 		return dName;
 	}
