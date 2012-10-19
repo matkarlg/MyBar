@@ -31,7 +31,6 @@ package se.turbotorsk.mybar;
 import java.util.LinkedList;
 import se.turbotorsk.mybar.model.Ingredient;
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

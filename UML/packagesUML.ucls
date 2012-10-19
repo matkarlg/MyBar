@@ -2,84 +2,84 @@
   generalizations="false" realizations="false" associations="false" dependencies="false" nesting-relationships="false">  
   <package id="1" corner="BOTTOM_RIGHT" language="java" name="se.turbotorsk.mybar.model.database" project="MyBar" 
     file="/MyBar/src/se/turbotorsk/mybar/model/database" binary="false">    
-    <position height="-1" width="-1" x="711" y="310"/>    
+    <position height="-1" width="-1" x="204" y="397"/>    
     <display autosize="true" stereotype="false"/>  
   </package>  
   <package id="2" corner="BOTTOM_RIGHT" language="java" name="se.turbotorsk.mybar.model.externaldata" project="MyBar" 
     file="/MyBar/src/se/turbotorsk/mybar/model/externaldata" binary="false">    
-    <position height="-1" width="-1" x="668" y="126"/>    
+    <position height="-1" width="-1" x="227" y="102"/>    
     <display autosize="true" stereotype="false"/>  
   </package>  
   <package id="3" corner="BOTTOM_RIGHT" language="java" name="se.turbotorsk.mybar" project="MyBar" 
     file="/MyBar/src/se/turbotorsk/mybar" binary="false">    
-    <position height="-1" width="-1" x="128" y="267"/>    
+    <position height="-1" width="-1" x="698" y="427"/>    
     <display autosize="true" stereotype="false"/>  
   </package>  
   <package id="4" corner="BOTTOM_RIGHT" language="java" name="se.turbotorsk.mybar.model" project="MyBar" 
     file="/MyBar/src/se/turbotorsk/mybar/model" binary="false">    
-    <position height="-1" width="-1" x="371" y="348"/>    
+    <position height="-1" width="-1" x="454" y="253"/>    
     <display autosize="true" stereotype="false"/>  
   </package>  
   <package id="5" corner="BOTTOM_RIGHT" language="java" name="se.turbotorsk.mybar.controller" project="MyBar" 
     file="/MyBar/src/se/turbotorsk/mybar/controller" binary="false">    
-    <position height="-1" width="-1" x="215" y="78"/>    
+    <position height="-1" width="-1" x="652" y="101"/>    
     <display autosize="true" stereotype="false"/>  
   </package>  
   <dependency id="6">    
     <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="2"/>  
+    <end type="TARGET" refId="5"/>  
   </dependency>  
   <dependency id="7">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="5"/>  
   </dependency>  
   <dependency id="8">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="4"/>  
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
   </dependency>  
   <dependency id="9">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="4"/>  
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="2"/>  
   </dependency>  
   <dependency id="10">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="5"/>  
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="4"/>  
   </dependency>  
   <dependency id="11">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="5"/>  
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
   </dependency>  
   <dependency id="12">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="1"/>  
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="5"/>  
   </dependency>  
   <dependency id="13">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="1"/>  
   </dependency>  
   <dependency id="14">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <dependency id="15">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="1"/>  
-  </dependency>  
-  <dependency id="16">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <dependency id="17">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <dependency id="18">    
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="1"/>  
   </dependency>  
-  <dependency id="19">    
+  <dependency id="15">    
     <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <dependency id="16">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <dependency id="17">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <dependency id="18">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="19">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="4"/>  
   </dependency>  
   <classifier-display autosize="true" stereotype="false" package="true" initial-value="false" signature="false" 
     visibility="false">    

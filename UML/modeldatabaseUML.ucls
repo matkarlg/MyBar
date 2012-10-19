@@ -2,7 +2,7 @@
   generalizations="false" realizations="false" associations="false" dependencies="false" nesting-relationships="false">  
   <class id="1" corner="BOTTOM_RIGHT" language="java" name="se.turbotorsk.mybar.model.database.MyBarDatabaseHelper" 
     project="MyBar" file="/MyBar/src/se/turbotorsk/mybar/model/database/MyBarDatabaseHelper.java" binary="false">    
-    <position height="-1" width="-1" x="265" y="95"/>    
+    <position height="-1" width="-1" x="349" y="62"/>    
     <display autosize="false" stereotype="false" package="false" initial-value="false" signature="false" 
       visibility="false">      
       <attributes public="false" package="false" protected="false" private="false"/>      
@@ -11,7 +11,7 @@
   </class>  
   <class id="2" corner="BOTTOM_RIGHT" language="java" name="se.turbotorsk.mybar.model.database.MyBarContentProvider" 
     project="MyBar" file="/MyBar/src/se/turbotorsk/mybar/model/database/MyBarContentProvider.java" binary="false">    
-    <position height="-1" width="-1" x="630" y="231"/>    
+    <position height="-1" width="-1" x="638" y="368"/>    
     <display autosize="false" stereotype="false" package="false" initial-value="false" signature="false" 
       visibility="false">      
       <attributes public="false" package="false" protected="false" private="false"/>      
@@ -20,7 +20,7 @@
   </class>  
   <class id="3" corner="BOTTOM_RIGHT" language="java" name="se.turbotorsk.mybar.model.database.MyBarTable" 
     project="MyBar" file="/MyBar/src/se/turbotorsk/mybar/model/database/MyBarTable.java" binary="false">    
-    <position height="-1" width="-1" x="495" y="351"/>    
+    <position height="-1" width="-1" x="321" y="231"/>    
     <display autosize="false" stereotype="false" package="false" initial-value="false" signature="false" 
       visibility="false">      
       <attributes public="false" package="false" protected="false" private="false"/>      
@@ -29,7 +29,7 @@
   </class>  
   <class id="4" corner="BOTTOM_RIGHT" language="java" name="se.turbotorsk.mybar.model.database.IngredientTable" 
     project="MyBar" file="/MyBar/src/se/turbotorsk/mybar/model/database/IngredientTable.java" binary="false">    
-    <position height="-1" width="-1" x="172" y="304"/>    
+    <position height="-1" width="-1" x="100" y="261"/>    
     <display autosize="false" stereotype="false" package="false" initial-value="false" signature="false" 
       visibility="false">      
       <attributes public="false" package="false" protected="false" private="false"/>      
@@ -38,7 +38,7 @@
   </class>  
   <class id="5" corner="BOTTOM_RIGHT" language="java" name="se.turbotorsk.mybar.model.database.DrinkTable" 
     project="MyBar" file="/MyBar/src/se/turbotorsk/mybar/model/database/DrinkTable.java" binary="false">    
-    <position height="-1" width="-1" x="614" y="58"/>    
+    <position height="-1" width="-1" x="588" y="119"/>    
     <display autosize="false" stereotype="false" package="false" initial-value="false" signature="false" 
       visibility="false">      
       <attributes public="false" package="false" protected="false" private="false"/>      
@@ -47,63 +47,63 @@
   </class>  
   <dependency id="6">    
     <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="4"/>  
+    <end type="TARGET" refId="5"/>  
   </dependency>  
   <dependency id="7">    
     <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="3"/>  
+    <end type="TARGET" refId="4"/>  
   </dependency>  
   <dependency id="8">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <dependency id="9">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <dependency id="10">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <dependency id="11">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="3"/>  
   </dependency>  
-  <dependency id="9">    
+  <dependency id="12">    
     <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="4"/>  
+    <end type="TARGET" refId="3"/>  
   </dependency>  
-  <association id="10">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="11" name="database"/>      
-      <multiplicity id="12" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="false" multiplicity="false"/>  
-  </association>  
   <dependency id="13">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="4"/>  
   </dependency>  
-  <dependency id="14">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <dependency id="15">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <dependency id="16">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <dependency id="17">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <association id="18">    
+  <association id="14">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="19" name="database"/>      
-      <multiplicity id="20" minimum="0" maximum="1"/>    
+      <attribute id="15" name="database"/>      
+      <multiplicity id="16" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="false" multiplicity="false"/>  
   </association>  
+  <association id="17">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="18" name="database"/>      
+      <multiplicity id="19" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <dependency id="20">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
   <dependency id="21">    
     <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="5"/>  
+    <end type="TARGET" refId="3"/>  
   </dependency>  
   <dependency id="22">    
     <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="3"/>  
+    <end type="TARGET" refId="4"/>  
   </dependency>  
   <dependency id="23">    
     <end type="SOURCE" refId="2"/>    
