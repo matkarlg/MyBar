@@ -50,12 +50,12 @@ import com.jayway.android.robotium.solo.Solo;
  * 
  * @author Adam Clark (<a href="mailto:adam.clark91@gmail.com">email</a>)
  */
-public class MyBarRobotiumTest extends
+public class MyBarRobotiumBasicTests extends
 		ActivityInstrumentationTestCase2<MainActivity> {
 
 	private Solo solo;
 
-	public MyBarRobotiumTest() {
+	public MyBarRobotiumBasicTests() {
 		super(MainActivity.class);
 	}
 
