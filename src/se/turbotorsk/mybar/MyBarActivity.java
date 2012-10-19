@@ -5,12 +5,12 @@ mybar@turbotorsk.se
 
 Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
-* Redistributions of source code must retain the above copyright notice,
+ * Redistributions of source code must retain the above copyright notice,
   this list of conditions and the following disclaimer.
-* Redistributions in binary form must reproduce the above copyright notice,
+ * Redistributions in binary form must reproduce the above copyright notice,
   this list of conditions and the following disclaimer in the documentation
   and/or other materials provided with the distribution.
-* Neither the name of the MyBar nor the names of its contributors may be 
+ * Neither the name of the MyBar nor the names of its contributors may be 
   used to endorse or promote products derived from this software without
   specific prior written permission.
 
@@ -55,20 +55,31 @@ public class MyBarActivity extends ListActivity {
 
 	}
 
+	/**
+	 * When pressing an item in the list (ingredient) this method is deleting
+	 * the current ingredient from the MyBar-view (refreshes the list).
+	 */
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
-		Controller.removeMyBarIngredient(adapter.getId(position), adapter.getPosition(position));
-		Toast.makeText(MyBarActivity.this, adapter.getName(position) + " removed", Toast.LENGTH_SHORT).show();
-		adapter = new IngredientAdapter(this, R.layout.rowlayout, Controller.getMyIngredients());
-        setListAdapter(adapter);
+		Controller.removeMyBarIngredient(adapter.getId(position),
+				adapter.getPosition(position));
+		Toast.makeText(MyBarActivity.this,
+				adapter.getName(position) + " removed", Toast.LENGTH_SHORT)
+				.show();
+		adapter = new IngredientAdapter(this, R.layout.rowlayout,
+				Controller.getMyIngredients());
+		setListAdapter(adapter);
 	}
-	
+
+	/**
+	 * This method refreshes the list.
+	 */
 	@Override
-	public void onResume()
-	{
-	         super.onResume();
-	         adapter = new IngredientAdapter(this, R.layout.rowlayout, Controller.getMyIngredients());
-	         setListAdapter(adapter);
-	 }
+	public void onResume() {
+		super.onResume();
+		adapter = new IngredientAdapter(this, R.layout.rowlayout,
+				Controller.getMyIngredients());
+		setListAdapter(adapter);
+	}
 
 }

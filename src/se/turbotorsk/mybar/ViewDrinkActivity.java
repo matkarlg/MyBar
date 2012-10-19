@@ -166,6 +166,9 @@ public class ViewDrinkActivity extends Activity implements
 		});
 	}
 
+	/**
+	 * This method sets the new rating when changed by the user.
+	 */
 	public void onRatingChanged(RatingBar ratingBar, float rating,
 			boolean fromUser) {
 		getdRating().setRating((int) rating);
@@ -174,90 +177,179 @@ public class ViewDrinkActivity extends Activity implements
 
 	// Getters and setters. We need these to follow java standard. Even though
 	// they aren't used.
+
+	/**
+	 * This method gets dname.
+	 */
 	public TextView getdName() {
 		return dName;
 	}
 
+	/**
+	 * This method sets dname.
+	 * 
+	 * @param dName
+	 */
 	public void setdName(TextView dName) {
 		this.dName = dName;
 	}
 
+	/**
+	 * This method gets dDescription.
+	 */
 	public TextView getdDescription() {
 		return dDescription;
 	}
 
+	/**
+	 * This method sets dDescription.
+	 * 
+	 * @param dDescription
+	 */
 	public void setdDescription(TextView dDescription) {
 		this.dDescription = dDescription;
 	}
 
+	/**
+	 * This method gets dIngredients.
+	 */
 	public TextView getdIngredients() {
 		return dIngredients;
 	}
 
+	/**
+	 * This method sets dIngredients.
+	 * 
+	 * @param dIngredients
+	 */
 	public void setdIngredients(TextView dIngredients) {
 		this.dIngredients = dIngredients;
 	}
 
+	/**
+	 * This method gets dRating.
+	 */
 	public RatingBar getdRating() {
 		return dRating;
 	}
 
+	/**
+	 * This method sets dRating.
+	 * 
+	 * @param dRating
+	 */
 	public void setdRating(RatingBar dRating) {
 		this.dRating = dRating;
 	}
 
+	/**
+	 * This method gets dImage.
+	 */
 	public ImageView getdImage() {
 		return dImage;
 	}
 
+	/**
+	 * This method sets dImage.
+	 * 
+	 * @param dImage
+	 */
 	public void setdImage(ImageView dImage) {
 		this.dImage = dImage;
 	}
 
+	/**
+	 * This method gets checkBox.
+	 */
 	public CheckBox getCheckBox() {
 		return checkBox;
 	}
 
+	/**
+	 * This method sets checkBox.
+	 * 
+	 * @param checkBox
+	 */
 	public void setCheckBox(CheckBox checkBox) {
 		this.checkBox = checkBox;
 	}
 
+	/**
+	 * This method gets id.
+	 */
 	public int getId() {
 		return id;
 	}
 
+	/**
+	 * This method sets id.
+	 * 
+	 * @param id
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
+	/**
+	 * This method gets name.
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * This method sets name.
+	 * 
+	 * @param name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * This method gets description.
+	 */
 	public String getDescription() {
 		return description;
 	}
 
+	/**
+	 * This method sets description.
+	 * 
+	 * @param description
+	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
+	/**
+	 * This method gets ingredients.
+	 */
 	public String getIngredients() {
 		return ingredients;
 	}
 
+	/**
+	 * This method sets ingredients.
+	 * 
+	 * @param ingredients
+	 */
 	public void setIngredients(String ingredients) {
 		this.ingredients = ingredients;
 	}
 
+	/**
+	 * This method gets rating.
+	 */
 	public int getRating() {
 		return rating;
 	}
 
+	/**
+	 * This method sets rating.
+	 * 
+	 * @param rating
+	 */
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
