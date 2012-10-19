@@ -32,6 +32,7 @@ import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
@@ -203,18 +204,22 @@ public class MyBarContentProvider extends ContentProvider {
 		// Notify registered observers
 		getContext().getContentResolver().notifyChange(uri, null);
 
-		// Insert method should return the new rows _id value
-		switch (SURIMATCHER.match(uri)) {
-		case DRINK:
-			return Uri.parse(DrinkTable.TABLE_DRINK + "/" + rowAffected);
-		case INGREDIENT:
-			return Uri.parse(IngredientTable.TABLE_INGREDIENT + "/"
-					+ rowAffected);
-		case MYBAR:
-			return Uri.parse(MyBarTable.TABLE_MYBAR + "/" + rowAffected);
-		default:
-			return Uri.parse("Unrecognized Table" + "/" + rowAffected);
+		// if rowAffected is > 0 the insert was successful
+		if (rowAffected > 0) {
+			// Insert method should return the new rows _id value
+			switch (SURIMATCHER.match(uri)) {
+			case DRINK:
+				return Uri.parse(DrinkTable.TABLE_DRINK + "/" + rowAffected);
+			case INGREDIENT:
+				return Uri.parse(IngredientTable.TABLE_INGREDIENT + "/"
+						+ rowAffected);
+			case MYBAR:
+				return Uri.parse(MyBarTable.TABLE_MYBAR + "/" + rowAffected);
+			default:
+				return Uri.parse("Unrecognized Table" + "/" + rowAffected);
+			}
 		}
+		throw new SQLException("Failed to insert row into " + uri);
 	}
 
 	@Override

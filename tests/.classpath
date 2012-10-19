@@ -5,10 +5,10 @@
 			<attribute name="javadoc_location" value="jar:platform:/resource/tests/RobotiumJarFiles/robotium-solo-3.5.1-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK/se.turbotorsk.mybar.SplashActivity"/>
+	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK/MyBar"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/se.turbotorsk.mybar.SplashActivity"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/MyBar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
