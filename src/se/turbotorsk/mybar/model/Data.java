@@ -59,6 +59,7 @@ public final class Data {
 	// Define duplicate literals.
 	private static final String DEFAULT_URL = "http://repro.mybar.turbotorsk.se/img/no_img.png";
 	private static final String DEFAULT_INGREDIENTS = "test ingredients";
+	private static final String DEFAULT_INGREDIENT_DESCRIPTION = "<insert description>";
 	private static final int DEFAULT_RATING = 5;
 	private static final int DEFAULT_FAVORITE = 0;
 
@@ -103,15 +104,15 @@ public final class Data {
 		// No autoincrement in Ingredients. Set the _id field manually.
 		Ingredient[] testIngredients = {
 				new Ingredient(1, "Koskenkorva Vodka", DEFAULT_URL, "Vodka",
-						40, "<insert description>"),
+						40, DEFAULT_INGREDIENT_DESCRIPTION),
 				new Ingredient(2, "Baileys", DEFAULT_URL, "Liqueur", 20,
-						"<insert description>"),
+						DEFAULT_INGREDIENT_DESCRIPTION),
 				new Ingredient(3, "Dark Rum", DEFAULT_URL, "Rum", 40,
-						"<insert description>"),
+						DEFAULT_INGREDIENT_DESCRIPTION),
 				new Ingredient(4, "Light Rum", DEFAULT_URL, "Rum", 40,
-						"<insert description>"),
+						DEFAULT_INGREDIENT_DESCRIPTION),
 				new Ingredient(5, "Gordon's Gin", DEFAULT_URL, "Gin", 40,
-						"<insert description>") };
+						DEFAULT_INGREDIENT_DESCRIPTION) };
 
 		// Insert testIngredients.
 		for (Ingredient testIngredient : testIngredients) {
