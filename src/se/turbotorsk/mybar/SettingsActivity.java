@@ -26,39 +26,59 @@ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISE
 OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+
+/**
+ * 
+ * This activity shows all the settings you can do. It is far from complete but
+ * its a start. The tasks doesnt do anything yet. But it is about to get fixed
+ * in the near future.
+ * 
+ * @author Adam Clark (<a
+ *         href="mailto:adam.clark91@gmail.com">email</a>)
+ */
 package se.turbotorsk.mybar;
 
+import se.turbotorsk.mybar.controller.Controller;
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * This activity handles the Settings-view from Options-menu.
  */
-public class SettingsActivity extends Activity {
-
-	private Button profileButton;
-	private TextView profile1;
+public class SettingsActivity extends Activity{
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.view_settings);
-		profile1 = (TextView) findViewById(R.id.textView1);
-		profile1.setText("home");
-		profileButton = (Button) findViewById(R.id.button1);
-		profileButton.setOnClickListener(new View.OnClickListener() {
-
-			public void onClick(View v) {
-				Intent intent1 = new Intent(SettingsActivity.this,
-						ProfilesActivity.class);
-				startActivity(intent1);
-				profile1.setText("home");
-			}
-		});
+		createLocationSpinner();
+		createThemeSpinner();
 	}
-
+	
+	private void createLocationSpinner(){
+		Spinner locationSpinner = (Spinner) findViewById(R.id.locationSpinner);
+		ArrayAdapter<CharSequence> locationAdapter = ArrayAdapter.createFromResource(this,
+		        R.array.locations, android.R.layout.simple_spinner_item);
+		locationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		locationSpinner.setAdapter(locationAdapter);
+	}
+	
+	private void createThemeSpinner(){
+		Spinner themeSpinner = (Spinner) findViewById(R.id.themeSpinner);
+		ArrayAdapter<CharSequence> themeAdapter = ArrayAdapter.createFromResource(this,
+		        R.array.themes, android.R.layout.simple_spinner_item);
+		themeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		themeSpinner.setAdapter(themeAdapter);
+	}
+	
+	public void clearDB(View view){
+		Controller.deleteTables(); //needs something else to clear mybar. fix this tomorrow
+		Toast.makeText(getApplicationContext(), "You have now flushed your database. Please restart your application.", Toast.LENGTH_LONG).show();
+	}	
 }
