@@ -150,23 +150,4 @@ public class MyBarRobotiumBasicTests extends
 		solo.assertCurrentActivity("Nu ska vi se drinken", ViewDrinkActivity.class);
 		solo.goBack();	
 	}
-	
-//	public void test7_OpenAddSpirits(){
-//		solo.clickOnMenuItem("Add Spirits");
-//		solo.assertCurrentActivity("Detta ska vara", AddIngredientActivity.class);
-//	}
-
-	// Doesn't work. This is because the share button starts the messaging
-	// application and exists
-	// our MyBar application. The double goBack is my poor attempt to manually
-	// return to our application.
-	// public void test6_OpenShareButton(){
-	// solo.clickOnMenuItem("Share");
-	// solo.goBack();
-	// solo.goBack();
-	// solo.clickOnText("OK");
-	// solo.assertCurrentActivity("Ska vara messaging aktiviteten TROR JAG",
-	// android.app.);
-	// }
-
 }
