@@ -70,7 +70,7 @@ public class AddIngredientActivity extends ListActivity {
 			
 			else {
 				Toast.makeText(AddIngredientActivity.this,
-						adapter.getName(position) + " is already added!!!",
+						adapter.getName(position) + " is already added!",
 						Toast.LENGTH_SHORT).show();
 			}
 		}
