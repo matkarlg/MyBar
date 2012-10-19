@@ -66,10 +66,13 @@ public class AddIngredientActivity extends ListActivity {
 				Toast.makeText(AddIngredientActivity.this,
 						adapter.getName(position) + " added",
 						Toast.LENGTH_SHORT).show();
-			} else
+			} 
+			
+			else {
 				Toast.makeText(AddIngredientActivity.this,
 						adapter.getName(position) + " is already added!!!",
 						Toast.LENGTH_SHORT).show();
+			}
 		}
 	}
 
