@@ -37,6 +37,8 @@ import se.turbotorsk.mybar.model.MyBar;
 
 /**
  * This activity handles the Controller.
+ * @author Dag Fridén (<a
+ *         href="mailto:dag@daysoft.se">email</a>)
  */
 public class Controller {
 

@@ -5,12 +5,12 @@ mybar@turbotorsk.se
 
 Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
- * Redistributions of source code must retain the above copyright notice,
+* Redistributions of source code must retain the above copyright notice,
   this list of conditions and the following disclaimer.
- * Redistributions in binary form must reproduce the above copyright notice,
+* Redistributions in binary form must reproduce the above copyright notice,
   this list of conditions and the following disclaimer in the documentation
   and/or other materials provided with the distribution.
- * Neither the name of the MyBar nor the names of its contributors may be 
+* Neither the name of the MyBar nor the names of its contributors may be 
   used to endorse or promote products derived from this software without
   specific prior written permission.
 
@@ -80,7 +80,7 @@ public class IngredientAdapter extends ArrayAdapter<LinkedList> {
 		}
 
 		Ingredient p = items.get(position);
-
+		
 		if (p != null) {
 			TextView tt = (TextView) v.findViewById(R.id.drink);
 			TextView tt2 = (TextView) v.findViewById(R.id.ingredients);
@@ -90,10 +90,10 @@ public class IngredientAdapter extends ArrayAdapter<LinkedList> {
 			if (tt != null) {
 				tt.setText(p.getName());
 			}
-			if (tt != null) {
+			if (tt2 != null) {
 				tt2.setText(p.getType());
 			}
-			if (tt != null) {
+			if (tt3 != null) {
 				tt3.setText("ABV: " + p.getAlcoholcontent() + "%");
 			}
 			if (iv != null) {
@@ -125,6 +125,11 @@ public class IngredientAdapter extends ArrayAdapter<LinkedList> {
 		Ingredient ingredient = items.get(position);
 		return ingredient.getDescription();
 	}
+	
+	public String getName(int position) {
+		Ingredient ingredient = items.get(position);
+		return ingredient.getName();
+	}
 
 	public int getId(int position) {
 		Ingredient ingredient = items.get(position);
@@ -132,17 +137,15 @@ public class IngredientAdapter extends ArrayAdapter<LinkedList> {
 	}
 
 	public String getPosition(int position) {
-		Ingredient ingredient = items.get(position);
-		return "home"; // change later!!!
+		return "home";
 	}
-
+	
 	public void setBackgroundBlue(int position, View v) {
-		getView(position, v, null).setBackgroundColor(
-				Color.parseColor("#0489B1"));
+		getView(position, v, null).setBackgroundColor(Color.parseColor("#0489B1"));
 	}
-
-	public void setBackgroundWhite(int position, View v) {
-		getView(position, v, null).setBackgroundColor(Color.WHITE);
+	
+	public void setBackgroundTrans(int position, View v) {
+		getView(position, v, null).setBackgroundColor(Color.TRANSPARENT);
 	}
 
 }

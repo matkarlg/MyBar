@@ -5,12 +5,12 @@ mybar@turbotorsk.se
 
 Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
-* Redistributions of source code must retain the above copyright notice,
+ * Redistributions of source code must retain the above copyright notice,
   this list of conditions and the following disclaimer.
-* Redistributions in binary form must reproduce the above copyright notice,
+ * Redistributions in binary form must reproduce the above copyright notice,
   this list of conditions and the following disclaimer in the documentation
   and/or other materials provided with the distribution.
-* Neither the name of the MyBar nor the names of its contributors may be 
+ * Neither the name of the MyBar nor the names of its contributors may be 
   used to endorse or promote products derived from this software without
   specific prior written permission.
 
@@ -28,39 +28,36 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package se.turbotorsk.mybar;
 
-import android.app.ListActivity;
+import se.turbotorsk.mybar.controller.Controller;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
+import android.os.Handler;
+import android.view.Window;
 
 /**
- * This activity handles the Profiles.
+ * This activity handles the splash-logo that starts with the application.
  */
-public class Profiles extends ListActivity {
+public class SplashActivity extends Activity {
+
+	private static final int SPLASH_LENGHT = 1200;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
-		String[] profiles = { "Home", "Dag's Place", "School" };
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, profiles);
-		setListAdapter(adapter);
-	}
+		setContentView(R.layout.splash);
 
-	/**
-	 * This method handles what happens when pressing a item in the list.
-	 */
-	@Override
-	protected void onListItemClick(ListView l, View v, int position, long id) {
-		String item = (String) getListAdapter().getItem(position);
-		Intent data = new Intent(Profiles.this, SettingsActivity.class);
-		data.putExtra("profile", item);
-		setResult(RESULT_OK, data);
-		Toast.makeText(this, "Changed to " + item, Toast.LENGTH_LONG).show();
-		finish();
+		new Handler().postDelayed(new Runnable() {
+
+			public void run() {
+				Controller.deleteTables();
+				Controller.dataSync();
+				Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+				SplashActivity.this.startActivity(intent);
+				SplashActivity.this.finish();
+			}
+		}, SPLASH_LENGHT);
 	}
 
 }

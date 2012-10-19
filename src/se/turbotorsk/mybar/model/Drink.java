@@ -100,8 +100,8 @@ public class Drink {
 		int i = 0;
 		while( i < array.length -1){
 				nameString = Data.getIngredientByID(Integer.parseInt(array[i])).getName();
-				nameBuff.append(nameString + "\n");
-				i = i + 2; 
+				i++;
+				nameBuff.append(nameString +" " + array[i++] + " cl\n");
 		}
 		return nameBuff.toString(); 
 	}

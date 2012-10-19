@@ -5,12 +5,12 @@ mybar@turbotorsk.se
 
 Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
-* Redistributions of source code must retain the above copyright notice,
+ * Redistributions of source code must retain the above copyright notice,
   this list of conditions and the following disclaimer.
-* Redistributions in binary form must reproduce the above copyright notice,
+ * Redistributions in binary form must reproduce the above copyright notice,
   this list of conditions and the following disclaimer in the documentation
   and/or other materials provided with the distribution.
-* Neither the name of the MyBar nor the names of its contributors may be 
+ * Neither the name of the MyBar nor the names of its contributors may be 
   used to endorse or promote products derived from this software without
   specific prior written permission.
 
@@ -36,6 +36,8 @@ import se.turbotorsk.mybar.model.Ingredient;
 
 /**
  * This activity handles the Drinks.
+ * 
+ * @author Dag Fridén (<a href="mailto:dag@daysoft.se">email</a>)
  */
 public class DrinkManager {
 	private LinkedList<Drink> myBar;
@@ -61,7 +63,6 @@ public class DrinkManager {
 		try {
 			for (Drink drink : drinkList) {
 				// Iteration drink list.
-				Log.d("drink", drink.getName());
 				ingredients = drink.getIngredient().split(";");
 				// Gets the ingredientes in the drink (in a array)
 				for (int countID = 0; countID <= ingredients.length - 1; countID += 2) { // iterate
@@ -83,8 +84,7 @@ public class DrinkManager {
 																		// found,
 																		// stop
 																		// the
-																		// serch.
-						Log.d("ID:ID", ingredient.get_id() + ":" + ingredientID);
+																		// search.
 						if (ingredient.get_id() == ingredientID) {
 							Log.d("Found", ingredientID + "");
 							found = true;
@@ -99,8 +99,9 @@ public class DrinkManager {
 						break;
 					}
 				}
-				if (found)
+				if (found) {
 					myBar.add(drink);
+				}
 			}
 		} catch (Exception e) {
 			Log.d("Error:", e.toString());

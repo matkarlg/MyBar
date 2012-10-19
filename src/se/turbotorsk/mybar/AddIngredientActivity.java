@@ -5,12 +5,12 @@ mybar@turbotorsk.se
 
 Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
- * Redistributions of source code must retain the above copyright notice,
+* Redistributions of source code must retain the above copyright notice,
   this list of conditions and the following disclaimer.
- * Redistributions in binary form must reproduce the above copyright notice,
+* Redistributions in binary form must reproduce the above copyright notice,
   this list of conditions and the following disclaimer in the documentation
   and/or other materials provided with the distribution.
- * Neither the name of the MyBar nor the names of its contributors may be 
+* Neither the name of the MyBar nor the names of its contributors may be 
   used to endorse or promote products derived from this software without
   specific prior written permission.
 
@@ -33,54 +33,40 @@ import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * This activity handles the functions that add ingredients.
  */
 public class AddIngredientActivity extends ListActivity {
-
-	private TextView text;
+	
 	private IngredientAdapter adapter;
-	private static int save = -1;
-
+	public static int save = -1;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setText((TextView) findViewById(R.id.drink));
 		adapter = new IngredientAdapter(this, R.layout.rowlayout,
 				Controller.getAllIngredients());
 
 		setListAdapter(adapter);
 
 	}
-
+	
 	@Override
-	public void onListItemClick(ListView parent, View v, int position, long id) {
+	public void onListItemClick(ListView parent, View v, int position, long id) { 
 
 		{
-			if (save != position && parent.getChildAt(position) != null
-					&& !(Controller.isInMyBar(adapter.getId(position)))) {
-				adapter.setBackgroundBlue(position, v);
-				Controller.addMyBarIngredient(adapter.getId(position));
-				save = position;
+			if(!(Controller.isInMyBar(adapter.getId(position))))
+			{
+ 		    Controller.addMyBarIngredient(adapter.getId(position));
+ 		    Toast.makeText(AddIngredientActivity.this, adapter.getName(position) + " added", Toast.LENGTH_SHORT).show();
 			}
-
-			else if (parent.getChildAt(position) != null) {
-				adapter.setBackgroundWhite(position, v);
-				Controller.removeMyBarIngredient(adapter.getId(position),
-						adapter.getPosition(position));
-				save = -1;
-			}
+			else Toast.makeText(AddIngredientActivity.this, adapter.getName(position) + " is already added!!!", Toast.LENGTH_SHORT).show();
 		}
 	}
 
-	// Needed according to sonar, feels a bit weird. Might remove?
-	public TextView getText() {
-		return text;
-	}
 
-	public void setText(TextView text) {
-		this.text = text;
-	}
 }
+
+
