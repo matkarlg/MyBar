@@ -71,7 +71,6 @@ public class MyFavoritesActivity extends ListActivity {
 	/**
 	 * This method updates the list in MyFavorites.
 	 */
-
 	@Override
 	public void onResume() {
 		super.onResume();
@@ -80,10 +79,20 @@ public class MyFavoritesActivity extends ListActivity {
 		setListAdapter(getAdapter());
 	}
 
+	/**
+	 * This method gets the DrinkAdapter.
+	 * 
+	 * @return adapter
+	 */
 	public DrinkAdapter getAdapter() {
 		return adapter;
 	}
 
+	/**
+	 * This method sets the DrinkAdapter.
+	 * 
+	 * @param adapter
+	 */
 	public void setAdapter(DrinkAdapter adapter) {
 		this.adapter = adapter;
 	}

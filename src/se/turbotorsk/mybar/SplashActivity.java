@@ -53,7 +53,8 @@ public class SplashActivity extends Activity {
 			public void run() {
 				Controller.deleteTables();
 				Controller.dataSync();
-				Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+				Intent intent = new Intent(SplashActivity.this,
+						MainActivity.class);
 				SplashActivity.this.startActivity(intent);
 				SplashActivity.this.finish();
 			}

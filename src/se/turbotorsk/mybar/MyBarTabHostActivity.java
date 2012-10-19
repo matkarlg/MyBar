@@ -5,12 +5,12 @@ mybar@turbotorsk.se
 
 Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
-* Redistributions of source code must retain the above copyright notice,
+ * Redistributions of source code must retain the above copyright notice,
   this list of conditions and the following disclaimer.
-* Redistributions in binary form must reproduce the above copyright notice,
+ * Redistributions in binary form must reproduce the above copyright notice,
   this list of conditions and the following disclaimer in the documentation
   and/or other materials provided with the distribution.
-* Neither the name of the MyBar nor the names of its contributors may be 
+ * Neither the name of the MyBar nor the names of its contributors may be 
   used to endorse or promote products derived from this software without
   specific prior written permission.
 
@@ -36,36 +36,39 @@ import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
 
+/**
+ * This activity creates tabs for the mybar view.
+ */
 public class MyBarTabHostActivity extends TabActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-				TabHost tabHost = getTabHost();
-				
-				// MyBar tab.
-				Intent intentMySpirits = new Intent().setClass(this, MyBarActivity.class);
-				TabSpec tabSpecMySpirits = tabHost.newTabSpec("MySpirits")
-						.setIndicator("My Spirits").setContent(intentMySpirits);
+		TabHost tabHost = getTabHost();
 
-				// Search tab.
-				Intent intentMyDrinks = new Intent().setClass(this,
-						MyDrinksActivity.class);
-				TabSpec tabSpecMyDrinks = tabHost.newTabSpec("MyDrinks")
-						.setIndicator("My Drinks").setContent(intentMyDrinks);
+		// MyBar tab.
+		Intent intentMySpirits = new Intent().setClass(this,
+				MyBarActivity.class);
+		TabSpec tabSpecMySpirits = tabHost.newTabSpec("MySpirits")
+				.setIndicator("My Spirits").setContent(intentMySpirits);
 
-				// Add all tabs.
-				tabHost.addTab(tabSpecMySpirits);
-				tabHost.addTab(tabSpecMyDrinks);
-				
-				for(int i=0;i<tabHost.getTabWidget().getChildCount();i++) 
-			    {
-			        TextView tv = (TextView) tabHost.getTabWidget().getChildAt(i).findViewById(android.R.id.title);
-			        tv.setTextColor(Color.parseColor("#10bcc9"));
-			    } 
+		// Search tab.
+		Intent intentMyDrinks = new Intent().setClass(this,
+				MyDrinksActivity.class);
+		TabSpec tabSpecMyDrinks = tabHost.newTabSpec("MyDrinks")
+				.setIndicator("My Drinks").setContent(intentMyDrinks);
 
+		// Add all tabs.
+		tabHost.addTab(tabSpecMySpirits);
+		tabHost.addTab(tabSpecMyDrinks);
 
-				// Set Mybar as default tab (the middle tab).
-				tabHost.setCurrentTab(0);
+		for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++) {
+			TextView tv = (TextView) tabHost.getTabWidget().getChildAt(i)
+					.findViewById(android.R.id.title);
+			tv.setTextColor(Color.parseColor("#10bcc9"));
+		}
+
+		// Set Mybar as default tab (the middle tab).
+		tabHost.setCurrentTab(0);
 	}
 }

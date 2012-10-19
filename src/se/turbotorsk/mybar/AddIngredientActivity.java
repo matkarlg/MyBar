@@ -5,12 +5,12 @@ mybar@turbotorsk.se
 
 Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
-* Redistributions of source code must retain the above copyright notice,
+ * Redistributions of source code must retain the above copyright notice,
   this list of conditions and the following disclaimer.
-* Redistributions in binary form must reproduce the above copyright notice,
+ * Redistributions in binary form must reproduce the above copyright notice,
   this list of conditions and the following disclaimer in the documentation
   and/or other materials provided with the distribution.
-* Neither the name of the MyBar nor the names of its contributors may be 
+ * Neither the name of the MyBar nor the names of its contributors may be 
   used to endorse or promote products derived from this software without
   specific prior written permission.
 
@@ -39,10 +39,10 @@ import android.widget.Toast;
  * This activity handles the functions that add ingredients.
  */
 public class AddIngredientActivity extends ListActivity {
-	
+
 	private IngredientAdapter adapter;
 	public static int save = -1;
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -52,21 +52,25 @@ public class AddIngredientActivity extends ListActivity {
 		setListAdapter(adapter);
 
 	}
-	
+
+	/**
+	 * When clicking on an list item (ingredient) this method will add the
+	 * ingredient to the MyBar-table in SQLite database.
+	 */
 	@Override
-	public void onListItemClick(ListView parent, View v, int position, long id) { 
+	public void onListItemClick(ListView parent, View v, int position, long id) {
 
 		{
-			if(!(Controller.isInMyBar(adapter.getId(position))))
-			{
- 		    Controller.addMyBarIngredient(adapter.getId(position));
- 		    Toast.makeText(AddIngredientActivity.this, adapter.getName(position) + " added", Toast.LENGTH_SHORT).show();
-			}
-			else Toast.makeText(AddIngredientActivity.this, adapter.getName(position) + " is already added!!!", Toast.LENGTH_SHORT).show();
+			if (!(Controller.isInMyBar(adapter.getId(position)))) {
+				Controller.addMyBarIngredient(adapter.getId(position));
+				Toast.makeText(AddIngredientActivity.this,
+						adapter.getName(position) + " added",
+						Toast.LENGTH_SHORT).show();
+			} else
+				Toast.makeText(AddIngredientActivity.this,
+						adapter.getName(position) + " is already added!!!",
+						Toast.LENGTH_SHORT).show();
 		}
 	}
 
-
 }
-
-

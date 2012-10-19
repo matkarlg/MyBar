@@ -39,7 +39,7 @@ import android.widget.TextView;
  * This activity handles the Settings-view from Options-menu.
  */
 public class SettingsActivity extends Activity {
-	
+
 	private Button profileButton;
 	private TextView profile1;
 
@@ -60,6 +60,5 @@ public class SettingsActivity extends Activity {
 			}
 		});
 	}
-
 
 }
