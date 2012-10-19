@@ -1,0 +1,26 @@
+
+Release Notes 
+
+------------------------------------------------------
+v0.5
+[Model] Custom List-Adapters
+[Database] New favorite-column
+[Database] New SQL-methods
+[Fixed] Improved design-pattern (Public controller)
+[Database] Added nameAsArray
+[Refactored] Changed class Data to static
+[Fixed] Options-menu now visible for all phones
+ 
+------------------------------------------------------
+v0.4
+[Feature] Added tabs and removed swipe betweens menus.
+[Fixed] About box is no longer a regular activity layout but a small box.
+[Removed] The search ability has been temporarily removed.
+[Refactored] Changed names of strings, activities, and xml objects.
+[Feature] Added ingredient list to My Bar.
+[Feature] Added Drink view and toast when objects in drink list are clicked on.
+[Fixed] Added license notes to all files.
+[Model] Better structure and support for local database added.
+[Controller] Added method for generating drink list.
+[Merged] Several branches have all been merged into master branch.
+
