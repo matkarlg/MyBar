@@ -177,8 +177,7 @@ public class JsonParse {
 	        // Instantiate a GET HTTP method.
     		try{
     			ResponseHandler<String> responseHandler = new BasicResponseHandler();
-    			String responseBody = httpclient.execute(httppost,responseHandler);
-    			return responseBody;
+    			return httpclient.execute(httppost,responseHandler);
     		
     		} catch (ClientProtocolException e) {    			
     			Log.e("Error", e.toString());

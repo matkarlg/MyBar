@@ -36,8 +36,8 @@ import se.turbotorsk.mybar.model.Ingredient;
 
 /**
  * This activity handles the Drinks.
- * @author Dag Fridén (<a
- *         href="mailto:dag@daysoft.se">email</a>)
+ * 
+ * @author Dag Fridén (<a href="mailto:dag@daysoft.se">email</a>)
  */
 public class DrinkManager {
 	private LinkedList<Drink> myBar;
