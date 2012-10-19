@@ -65,12 +65,12 @@ public class MainActivity extends TabActivity {
 		TabHost tabHost = getTabHost();
 		// Favorites tab
 		// We should rename MyFavorites to Favorites, but thats not a big issue.
-		Intent intentFavorites = new Intent().setClass(this, MyFavorites.class);
+		Intent intentFavorites = new Intent().setClass(this, MyFavoritesActivity.class);
 		TabSpec tabSpecFavorites = tabHost.newTabSpec("Favorites")
 				.setIndicator("Favorites").setContent(intentFavorites);
 
 		// MyBar tab.
-		Intent intentMyBar = new Intent().setClass(this, MyBarTabHost.class);
+		Intent intentMyBar = new Intent().setClass(this, MyBarTabHostActivity.class);
 		TabSpec tabSpecMyBarTabHost = tabHost.newTabSpec("MyBar")
 				.setIndicator("My Bar").setContent(intentMyBar);
 
