@@ -5,12 +5,12 @@ mybar@turbotorsk.se
 
 Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
-* Redistributions of source code must retain the above copyright notice,
+ * Redistributions of source code must retain the above copyright notice,
   this list of conditions and the following disclaimer.
-* Redistributions in binary form must reproduce the above copyright notice,
+ * Redistributions in binary form must reproduce the above copyright notice,
   this list of conditions and the following disclaimer in the documentation
   and/or other materials provided with the distribution.
-* Neither the name of the MyBar nor the names of its contributors may be 
+ * Neither the name of the MyBar nor the names of its contributors may be 
   used to endorse or promote products derived from this software without
   specific prior written permission.
 
@@ -169,8 +169,10 @@ public class Data {
 	/**
 	 * Adds a new ingredient to MyBarTable
 	 * 
-	 * @param ingredientID _id column of the ingredient.
-	 * @param location "Home", "Work".
+	 * @param ingredientID
+	 *            _id column of the ingredient.
+	 * @param location
+	 *            "Home", "Work".
 	 * @return 0 if successful.
 	 */
 	public static int addMyBar(int ingredientID, String location) {
@@ -190,8 +192,10 @@ public class Data {
 	/**
 	 * Removes a row in MyBarTable
 	 * 
-	 * @param ingredientID _id column of the ingredient.
-	 * @param location "Home", "Work".
+	 * @param ingredientID
+	 *            _id column of the ingredient.
+	 * @param location
+	 *            "Home", "Work".
 	 * @return 0 if successful. 1 if error. See LogCat.
 	 */
 	public static int dropMyBar(int ingredientID, String location) {
@@ -254,7 +258,8 @@ public class Data {
 	 * Inserts a new Drink in the DrinkTable. Trying to insert another Drink
 	 * with the same name yields an error message.
 	 * 
-	 * @param name Drink object that should be inserted into the database.
+	 * @param name
+	 *            Drink object that should be inserted into the database.
 	 * @return 0 if successful, 1 if error. See LogCat.
 	 */
 	public static int addDrink(Drink name) {
@@ -305,7 +310,8 @@ public class Data {
 	/**
 	 * Removes a Drink in the DrinkTable.
 	 * 
-	 * @param iD an Integer _id that should be removed from the database.
+	 * @param iD
+	 *            an Integer _id that should be removed from the database.
 	 * @return 0 if successful, 1 if error. See LogCat.
 	 */
 	public static int dropDrink(int iD) {
@@ -516,7 +522,8 @@ public class Data {
 	/**
 	 * Returns a Drink object by ID. Query: SELECT * WHERE _id = id.
 	 * 
-	 * @param iD the _id of the Drink to return
+	 * @param iD
+	 *            the _id of the Drink to return
 	 * @return aDrink
 	 */
 	public static Drink getDrinkByID(int iD) {
@@ -573,7 +580,8 @@ public class Data {
 	/**
 	 * Returns an Ingredient object by ID. Query: SELECT * WHERE _id = id.
 	 * 
-	 * @param iD the _id of the Ingredient to return
+	 * @param iD
+	 *            the _id of the Ingredient to return
 	 * @return anIngredient
 	 */
 	public static Ingredient getIngredientByID(int iD) {
@@ -685,7 +693,8 @@ public class Data {
 	/**
 	 * Sets the favorite row in a Drink to 1.
 	 * 
-	 * @param iD _id of the Drink.
+	 * @param iD
+	 *            _id of the Drink.
 	 * @return 0 if OK. 1 if ID doesn't exist.
 	 */
 	public static int setFavoriteByID(int iD) {
@@ -736,7 +745,8 @@ public class Data {
 	/**
 	 * Sets the favorite row in a Drink to 1.
 	 * 
-	 * @param name the name of the Drink.
+	 * @param name
+	 *            the name of the Drink.
 	 * @return 0 if OK. 1 if name doesn't exist.
 	 */
 	public static int setFavoriteByName(String name) {
@@ -788,9 +798,12 @@ public class Data {
 	/**
 	 * Sets the columns in the Drink table to different values.
 	 * 
-	 * @param name name of the Drink to update.
-	 * @param column the column to update.
-	 * @param set the value to update the column with.
+	 * @param name
+	 *            name of the Drink to update.
+	 * @param column
+	 *            the column to update.
+	 * @param set
+	 *            the value to update the column with.
 	 * @return 0 if successful. 1 if error. See LogCat
 	 */
 	public static int setDrink(String name, String column, int set) {
@@ -845,9 +858,12 @@ public class Data {
 	/**
 	 * Sets the columns in the Drink table to different values.
 	 * 
-	 * @param iD _id of the Drink to update.
-	 * @param column The column to update.
-	 * @param set The value to update the column with.
+	 * @param iD
+	 *            _id of the Drink to update.
+	 * @param column
+	 *            The column to update.
+	 * @param set
+	 *            The value to update the column with.
 	 * @return 0 if successful. 1 if error. See LogCat
 	 */
 	public static int setDrink(int iD, String column, int set) {
@@ -918,8 +934,10 @@ public class Data {
 	/**
 	 * Search for ingredients in the database.
 	 * 
-	 * @param search Search for ingredient.
-	 * @param limit Limit returned ingredients.
+	 * @param search
+	 *            Search for ingredient.
+	 * @param limit
+	 *            Limit returned ingredients.
 	 * @return A LinkedList with the ingredients containing the searchName
 	 *         string.
 	 */
@@ -982,7 +1000,8 @@ public class Data {
 	/**
 	 * Search for ingredientID's in MyBarTable.
 	 * 
-	 * @param search Search for ingredientID's.
+	 * @param search
+	 *            Search for ingredientID's.
 	 * @return A LinkedList with MyBar objects.
 	 */
 	public static LinkedList<MyBar> searchMyBar(int iD) {

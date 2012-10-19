@@ -76,8 +76,7 @@ public class CollectionActivity extends ListActivity {
 	}
 	
 	@Override
-	public void onResume()
-	{
+	public void onResume() {
 	         super.onResume();
 	         adapter = new DrinkAdapter(this, R.layout.rowlayout, Controller.getAllDrinks());
 	         setListAdapter(adapter);

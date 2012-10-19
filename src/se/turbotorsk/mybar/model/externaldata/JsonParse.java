@@ -51,6 +51,9 @@ import android.net.Uri;
 import android.os.StrictMode;
 import android.util.Log;
 
+/**
+ * This class is responsible for getting data from the external MySQL Database.
+ */
 public class JsonParse {
 	//Sets the timeout for the web server. 	
 	private static final int TIMEOUT_MILLISEC = 999; 

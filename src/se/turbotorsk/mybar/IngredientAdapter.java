@@ -5,12 +5,12 @@ mybar@turbotorsk.se
 
 Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
-* Redistributions of source code must retain the above copyright notice,
+ * Redistributions of source code must retain the above copyright notice,
   this list of conditions and the following disclaimer.
-* Redistributions in binary form must reproduce the above copyright notice,
+ * Redistributions in binary form must reproduce the above copyright notice,
   this list of conditions and the following disclaimer in the documentation
   and/or other materials provided with the distribution.
-* Neither the name of the MyBar nor the names of its contributors may be 
+ * Neither the name of the MyBar nor the names of its contributors may be 
   used to endorse or promote products derived from this software without
   specific prior written permission.
 
@@ -29,7 +29,6 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 package se.turbotorsk.mybar;
 
 import java.util.LinkedList;
-
 import se.turbotorsk.mybar.model.Ingredient;
 import android.content.Context;
 import android.graphics.Color;
@@ -47,7 +46,6 @@ public class IngredientAdapter extends ArrayAdapter<LinkedList> {
 
 	public IngredientAdapter(Context context, int textViewResourceId) {
 		super(context, textViewResourceId);
-		// TODO Auto-generated constructor stub
 	}
 
 	private LinkedList<Ingredient> items;
@@ -137,11 +135,12 @@ public class IngredientAdapter extends ArrayAdapter<LinkedList> {
 		Ingredient ingredient = items.get(position);
 		return "home"; // change later!!!
 	}
-	
+
 	public void setBackgroundBlue(int position, View v) {
-		getView(position, v, null).setBackgroundColor(Color.parseColor("#0489B1"));
+		getView(position, v, null).setBackgroundColor(
+				Color.parseColor("#0489B1"));
 	}
-	
+
 	public void setBackgroundWhite(int position, View v) {
 		getView(position, v, null).setBackgroundColor(Color.WHITE);
 	}
