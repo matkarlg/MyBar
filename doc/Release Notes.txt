@@ -1,5 +1,8 @@
 
 Release Notes 
+------------------------------------------------------
+FINAL
+[Database] JSON is now implemented and syncs with the local SQLite Database
 
 ------------------------------------------------------
 v0.5

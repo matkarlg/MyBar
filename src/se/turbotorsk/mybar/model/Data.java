@@ -51,9 +51,9 @@ import android.util.Log;
  * @author Mathias Karlgren (<a
  *         href="mailto:mathias.karlgren@gmail.com">email</a>)
  */
-public class Data {
+public final class Data {
 	// Hide Utility Class Constructor.
-	private Data() throws UnsupportedOperationException {
+	private Data() {
 	};
 
 	// Define duplicate literals.

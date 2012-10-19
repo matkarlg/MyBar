@@ -38,9 +38,9 @@ import android.util.Log;
  * @author Mathias Karlgren (<a
  *         href="mailto:mathias.karlgren@gmail.com">email</a>)
  */
-public class IngredientTable {
+public final class IngredientTable {
 	// Hide Utility Class Constructor.
-	private IngredientTable() throws UnsupportedOperationException {
+	private IngredientTable() {
 	};
 
 	// Database table template.

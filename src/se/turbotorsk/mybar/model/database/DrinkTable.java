@@ -38,9 +38,9 @@ import android.util.Log;
  * @author Mathias Karlgren (<a
  *         href="mailto:mathias.karlgren@gmail.com">email</a>)
  */
-public class DrinkTable {
+public final class DrinkTable {
 	// Hide Utility Class Constructor.
-	private DrinkTable() throws UnsupportedOperationException {
+	private DrinkTable() {
 	};
 
 	// Define duplicate literals.
