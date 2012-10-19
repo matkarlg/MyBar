@@ -45,8 +45,11 @@ import android.widget.TextView;
  * who made the application.
  */
 public class AboutBox {
+
+	private static final String VERSION_NAME = "0.5";
+
 	private static String versionName(Context context) {
-		return "0.5";
+		return VERSION_NAME;
 	}
 
 	public static void show(Activity callingActivity) {
