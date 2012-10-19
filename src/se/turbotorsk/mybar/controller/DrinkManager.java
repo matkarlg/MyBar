@@ -57,44 +57,27 @@ public class DrinkManager {
 		String[] ingredients;
 		int ingredientID = 0;
 		boolean found = false;
-		try {
+		try {// Iteration drink list.
 			for (Drink drink : drinkList) {
-				// Iteration drink list.
-				ingredients = drink.getIngredient().split(";");
 				// Gets the ingredientes in the drink (in a array)
-				for (int countID = 0; countID <= ingredients.length - 1; countID += 2) { // iterate
-																							// the
-																							// array
-																							// with
-																							// the
-																							// ingrediences.
-					ingredientID = Integer.parseInt(ingredients[countID]); // Gets
-																			// the
-																			// current
-																			// ID.
+				ingredients = drink.getIngredient().split(";");
+				// iterate the array with the ingrediences.
+				for (int countID = 0; countID <= ingredients.length - 1; countID += 2) { 
+					 // Gets the current ID.
+					ingredientID = Integer.parseInt(ingredients[countID]);
 					found = false; // Sets the found variable to false.
-					for (Ingredient ingredient : myIngredientList) { // Iterate
-																		// the
-																		// MyIngredient
-																		// list.
-																		// If id
-																		// found,
-																		// stop
-																		// the
-																		// search.
+					// Iterate the MyIngredient list. If id found, stop the search.
+					for (Ingredient ingredient : myIngredientList) { 
 						if (ingredient.get_id() == ingredientID) {
 							Log.d("Found", ingredientID + "");
 							found = true;
 							break;
 						}
 					}
-					if (!found) {
-						// If the item can not be found the drink can not be
-						// done. So lets stop
-						// checking the current drink and move on to the next
-						// one in the list.
-						break;
-					}
+					// If the item can not be found the drink can not be done. So lets stop
+					// checking the current drink and move on to the next
+					// one in the list.
+					if (!found)break;
 				}
 				if (found) {
 					myBar.add(drink);
