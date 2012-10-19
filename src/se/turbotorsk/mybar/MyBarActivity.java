@@ -33,6 +33,7 @@ import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 /**
  * This activity handles the MyBar-section.
@@ -57,6 +58,7 @@ public class MyBarActivity extends ListActivity {
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		Controller.removeMyBarIngredient(adapter.getId(position), adapter.getPosition(position));
+		Toast.makeText(MyBarActivity.this, adapter.getName(position) + " removed", Toast.LENGTH_SHORT).show();
 		adapter = new IngredientAdapter(this, R.layout.rowlayout, Controller.getMyIngredients());
         setListAdapter(adapter);
 	}

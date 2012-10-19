@@ -138,7 +138,7 @@ public class ViewDrinkActivity extends Activity implements
 	 * This method sets the image of the drink.
 	 */
 	public void setDrinkImage() {
-		getdImage().setImageResource(R.drawable.ic_drinkicon);
+		getdImage().setImageResource(R.drawable.no_img);
 	}
 
 	/**
