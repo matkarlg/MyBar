@@ -109,7 +109,7 @@ public class Controller {
 	 */
 	public static LinkedList<Drink> getAllDrinks()
 	{
-		return Data.getAllDrinks();
+		return (LinkedList<Drink>) Data.getAllDrinks();
 	}
 	
 	/**
@@ -118,7 +118,7 @@ public class Controller {
 	 */
 	public static LinkedList<Drink> getAllFavorites()
 	{
-		return Data.getAllFavorites();
+		return (LinkedList<Drink>) Data.getAllFavorites();
 	}
 	
 	/**
@@ -129,7 +129,7 @@ public class Controller {
 	 */
 	public static int setRatingByName(String name, int rating)
 	{
-		return Data.setDrink(name, "rating", (int) rating);
+		return Data.setDrink(name, "rating", rating);
 	}
 
 	/**
@@ -156,7 +156,7 @@ public class Controller {
 	 */
 	public static LinkedList<Ingredient> getAllIngredients()
 	{
-		return Data.getAllIngredients();
+		return (LinkedList<Ingredient>) Data.getAllIngredients();
 		
 	}
 	

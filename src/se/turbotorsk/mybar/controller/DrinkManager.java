@@ -62,22 +62,25 @@ public class DrinkManager {
 				// Gets the ingredientes in the drink (in a array)
 				ingredients = drink.getIngredient().split(";");
 				// iterate the array with the ingrediences.
-				for (int countID = 0; countID <= ingredients.length - 1; countID += 2) { 
-					 // Gets the current ID.
+				for (int countID = 0; countID <= ingredients.length - 1; countID += 2) {
+					// Gets the current ID.
 					ingredientID = Integer.parseInt(ingredients[countID]);
 					found = false; // Sets the found variable to false.
-					// Iterate the MyIngredient list. If id found, stop the search.
-					for (Ingredient ingredient : myIngredientList) { 
+					// Iterate the MyIngredient list. If id found, stop the
+					// search.
+					for (Ingredient ingredient : myIngredientList) {
 						if (ingredient.getId() == ingredientID) {
 							Log.d("Found", ingredientID + "");
 							found = true;
 							break;
 						}
 					}
-					// If the item can not be found the drink can not be done. So lets stop
+					// If the item can not be found the drink can not be done.
+					// So lets stop
 					// checking the current drink and move on to the next
 					// one in the list.
-					if (!found)break;
+					if (!found)
+						break;
 				}
 				if (found) {
 					myBar.add(drink);
