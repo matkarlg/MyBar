@@ -5,15 +5,15 @@ mybar@turbotorsk.se
 
 Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
- *	Redistributions of source code must retain the above copyright notice,
- 	this list of conditions and the following disclaimer.
- *	Redistributions in binary form must reproduce the above copyright notice,
- 	this list of conditions and the following disclaimer in the documentation
- 	and/or other materials provided with the distribution.
- *	Neither the name of the MyBar nor the names of its contributors may be 
-	used to endorse or promote products derived from this software without
-	specific prior written permission.
-	
+* Redistributions of source code must retain the above copyright notice,
+  this list of conditions and the following disclaimer.
+* Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.
+* Neither the name of the MyBar nor the names of its contributors may be 
+  used to endorse or promote products derived from this software without
+  specific prior written permission.
+
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
 WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
@@ -81,7 +81,7 @@ public class MyBarRobotiumTest extends
 	// This basic test tries to start the application and checks weather it
 	// started
 	// or not.
-	public void test1_StartApplication() {
+	public void test1StartApplication() {
 		solo.assertCurrentActivity("Nu blev det fel activity",
 				MainActivity.class);
 	}
@@ -90,7 +90,7 @@ public class MyBarRobotiumTest extends
 	// way to try this
 	// but i haven't managed to get Robotium to press the COLLECTION tab. This
 	// has to do for now.
-	public void test2_ChangeTabToCollection() {
+	public void test2ChangeTabToCollection() {
 		solo.assertCurrentActivity("First activity", MainActivity.class);
 		solo.sendKey(Solo.UP);
 		solo.sendKey(Solo.RIGHT);
@@ -102,7 +102,7 @@ public class MyBarRobotiumTest extends
 	// correct activity was started.
 	// After the verification solo makes sure that it returns to the main
 	// activity
-	public void test3_OpenAddSpiritsButton() {
+	public void test3OpenAddSpiritsButton() {
 		solo.clickOnMenuItem("Add Spirits");
 		solo.assertCurrentActivity("Ska vara add ingredient aktiviteten",
 				AddIngredientActivity.class);
@@ -114,7 +114,7 @@ public class MyBarRobotiumTest extends
 	// My goal is to expand this and do more tests, or maybe do another test
 	// that is build on
 	// this one.
-	public void test4_OpenSettingsButton() {
+	public void test4OpenSettingsButton() {
 		solo.clickOnMenuItem("Settings");
 		solo.assertCurrentActivity("Ska vara settings aktiviteten",
 				SettingsActivity.class);
@@ -127,7 +127,7 @@ public class MyBarRobotiumTest extends
 	// MainActivity is in the background..
 	// Therefore I am commenting the assertion line of code. This is something
 	// that has to be fixed.
-	public void test5_OpenAboutBox() {
+	public void test5OpenAboutBox() {
 		solo.clickOnMenuItem("About");
 		// solo.assertCurrentActivity("Ska vara about aktiviteten",
 		// AboutBox.class);
@@ -136,11 +136,11 @@ public class MyBarRobotiumTest extends
 
 	// Make sure that there is still memory left on the Android device after the
 	// database is loaded.
-	public void test6_CheckMemory() {
+	public void test6CheckMemory() {
 		solo.assertMemoryNotLow();
 	}
 	
-	public void test7_OpenDrink(){
+	public void test7OpenDrink(){
 		solo.assertCurrentActivity("First activity", MainActivity.class);
 		solo.sendKey(Solo.UP);
 		solo.sendKey(Solo.RIGHT);
@@ -152,7 +152,7 @@ public class MyBarRobotiumTest extends
 	}
 	
 	//Not done yet. Needs to go to FAVORITES tab and verify that the drink is there
-	public void test8_AddFavoriteAndVerify(){
+	public void test8AddFavoriteAndVerify(){
 		solo.assertCurrentActivity("First activity", MainActivity.class);
 		solo.sendKey(Solo.UP);
 		solo.sendKey(Solo.RIGHT);

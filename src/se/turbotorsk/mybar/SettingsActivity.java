@@ -63,30 +63,5 @@ public class SettingsActivity extends Activity {
 		});
 	}
 
-	/**
-	 * This method creates the menu for the Settings-view.
-	 */
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.activity_about_settings, menu);
-		return true;
-	}
-
-	/**
-	 * This method handles what to happens when pressing a item in the
-	 * options-menu.
-	 */
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case R.id.menu_settings:
-			startActivity(new Intent(this, SettingsActivity.class));
-			return true;
-		case R.id.menu_about:
-			AboutBox.show(SettingsActivity.this);
-			return true;
-		default:
-			return true;
-		}
-	}
 
 }
