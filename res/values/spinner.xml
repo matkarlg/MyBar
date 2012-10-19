@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="themes">
+        <item>Rainbow</item>
+        <item>Pink</item>
+        <item>Yellow</item>
+        <item>Blue</item>
+        <item>Green</item>
+    </string-array>
+    
+    <string-array name="locations">
+		<item>Adams Crib</item>
+        <item>Dags Crib</item>
+        <item>Mathias Crib</item>
+        <item>Karlgrens Crib</item>
+        <item>Viktors Crib</item>        
+    </string-array>
+    
+</resources>
+   
