@@ -46,7 +46,6 @@ public class IngredientAdapter extends ArrayAdapter<LinkedList> {
 
 	public IngredientAdapter(Context context, int textViewResourceId) {
 		super(context, textViewResourceId);
-		// TODO Auto-generated constructor stub
 	}
 
 	private LinkedList<Ingredient> items;
@@ -138,8 +137,7 @@ public class IngredientAdapter extends ArrayAdapter<LinkedList> {
 	}
 
 	public String getPosition(int position) {
-		Ingredient ingredient = items.get(position);
-		return "home"; // change later!!!
+		return "home";
 	}
 	
 	public void setBackgroundBlue(int position, View v) {
