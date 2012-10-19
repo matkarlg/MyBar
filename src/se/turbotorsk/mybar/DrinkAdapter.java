@@ -179,7 +179,7 @@ public class DrinkAdapter extends ArrayAdapter<LinkedList> {
 	 */
 	public int getId(int position) {
 		Drink drink = items.get(position);
-		return drink.get_id();
+		return drink.getId();
 	}
 
 }

@@ -920,7 +920,7 @@ public class Data {
 			nameList.add(getAllDrinks().get(i).getName());
 
 			Log.d(Controller.class.getClass().getName(), ""
-					+ getAllDrinks().get(i).get_id() + " "
+					+ getAllDrinks().get(i).getId() + " "
 					+ getAllDrinks().get(i).getName());
 		}
 

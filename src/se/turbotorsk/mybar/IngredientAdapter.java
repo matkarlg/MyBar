@@ -144,7 +144,7 @@ public class IngredientAdapter extends ArrayAdapter<LinkedList> {
 	 */
 	public int getId(int position) {
 		Ingredient ingredient = items.get(position);
-		return ingredient.get_id();
+		return ingredient.getId();
 	}
 
 	/**

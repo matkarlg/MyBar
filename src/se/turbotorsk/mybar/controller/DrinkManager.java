@@ -68,7 +68,7 @@ public class DrinkManager {
 					found = false; // Sets the found variable to false.
 					// Iterate the MyIngredient list. If id found, stop the search.
 					for (Ingredient ingredient : myIngredientList) { 
-						if (ingredient.get_id() == ingredientID) {
+						if (ingredient.getId() == ingredientID) {
 							Log.d("Found", ingredientID + "");
 							found = true;
 							break;

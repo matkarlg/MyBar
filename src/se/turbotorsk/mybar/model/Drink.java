@@ -120,7 +120,7 @@ public class Drink {
 	 * 
 	 * @return id
 	 */
-	public int get_id() {
+	public int getId() {
 		return id;
 	}
 
@@ -129,7 +129,7 @@ public class Drink {
 	 * 
 	 * @param id
 	 */
-	public void set_id(int id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
