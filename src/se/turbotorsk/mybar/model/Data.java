@@ -157,7 +157,7 @@ public class Data {
 	}
 
 	/**
-	 * Syncs remote datastore (JSON) with local SQLite database
+	 * Syncs remote datastore (JSON) with local SQLite database.
 	 * 
 	 * @return false
 	 */
@@ -166,7 +166,7 @@ public class Data {
 	}
 
 	/**
-	 * Adds a new ingredient to MyBarTable
+	 * Adds a new ingredient to MyBarTable.
 	 * 
 	 * @param ingredientID _id column of the ingredient.
 	 * @param location "Home", "Work".
@@ -187,7 +187,7 @@ public class Data {
 	}
 
 	/**
-	 * Removes a row in MyBarTable
+	 * Removes a row in MyBarTable.
 	 * 
 	 * @param ingredientID _id column of the ingredient.
 	 * @param location "Home", "Work".
@@ -980,7 +980,7 @@ public class Data {
 	/**
 	 * Search for ingredientID's in MyBarTable.
 	 * 
-	 * @param search Search for ingredientID's.
+	 * @param iD Search for ingredientID's.
 	 * @return A LinkedList with MyBar objects.
 	 */
 	public static List<MyBar> searchMyBar(int iD) {

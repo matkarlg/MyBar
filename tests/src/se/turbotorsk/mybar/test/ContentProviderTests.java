@@ -28,13 +28,6 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package se.turbotorsk.mybar.test;
 
-/**
- *  Tests MyBar's ContentProvider.
- * 
- * @author Mathias Karlgren (<a
- *         href="mailto:mathias.karlgren@gmail.com">email</a>)
- */
-
 import se.turbotorsk.mybar.model.Drink;
 import se.turbotorsk.mybar.model.database.DrinkTable;
 import se.turbotorsk.mybar.model.database.MyBarContentProvider;
@@ -46,13 +39,19 @@ import android.net.Uri;
 import android.test.ProviderTestCase2;
 import android.test.mock.MockContentResolver;
 
+/**
+ * Tests MyBar's ContentProvider.
+ * 
+ * @author Mathias Karlgren (<a
+ *         href="mailto:mathias.karlgren@gmail.com">email</a>)
+ */
 public class ContentProviderTests extends
 		ProviderTestCase2<MyBarContentProvider> {
 
 	public ContentProviderTests() {
 		super(MyBarContentProvider.class, "se.turbotorsk.mybar.model.database");
 	}
-	
+
 	// Define duplicate literals.
 	private static final String DEFAULT_URL = "http://repro.mybar.turbotorsk.se/img/no_img.png";
 	private static final String DEFAULT_INGREDIENTS = "ingredients here";
@@ -67,30 +66,24 @@ public class ContentProviderTests extends
 
 	// Contains the test data, as an array of Drinks.
 	private final Drink[] testDrinks = {
-			new Drink(1, "Margarita",
-					DEFAULT_URL,
-					"Martini Glass", DEFAULT_INGREDIENTS,
-					"Margarita instructions", DEFAULT_RATING, DEFAULT_FAVORITE),
-			new Drink(2, "Tequila",
-					DEFAULT_URL,
-					"Shot Glass", DEFAULT_INGREDIENTS,
-					"Pour Tequila in shot glass", DEFAULT_RATING, DEFAULT_FAVORITE),
-			new Drink(3, "Cosmopolitan",
-					DEFAULT_URL,
-					"Martini Glass", DEFAULT_INGREDIENTS,
-					"Cosmopolitan instructions", DEFAULT_RATING, DEFAULT_FAVORITE),
-			new Drink(4, "Cuba Libre",
-					DEFAULT_URL,
-					"Highball Glass", DEFAULT_INGREDIENTS,
-					"Cuba Libre instructions", DEFAULT_RATING, DEFAULT_FAVORITE),
-			new Drink(5, "Martini",
-					DEFAULT_URL,
-					"Martini Glass", DEFAULT_INGREDIENTS,
-					"Pour Martini in glass", DEFAULT_RATING, DEFAULT_FAVORITE),
-			new Drink(6, "Irish Coffee",
-					DEFAULT_URL,
-					"Coffee Glass", DEFAULT_INGREDIENTS,
-					"Irish Coffee instructions", DEFAULT_RATING, DEFAULT_FAVORITE) };
+			new Drink(1, "Margarita", DEFAULT_URL, "Martini Glass",
+					DEFAULT_INGREDIENTS, "Margarita instructions",
+					DEFAULT_RATING, DEFAULT_FAVORITE),
+			new Drink(2, "Tequila", DEFAULT_URL, "Shot Glass",
+					DEFAULT_INGREDIENTS, "Pour Tequila in shot glass",
+					DEFAULT_RATING, DEFAULT_FAVORITE),
+			new Drink(3, "Cosmopolitan", DEFAULT_URL, "Martini Glass",
+					DEFAULT_INGREDIENTS, "Cosmopolitan instructions",
+					DEFAULT_RATING, DEFAULT_FAVORITE),
+			new Drink(4, "Cuba Libre", DEFAULT_URL, "Highball Glass",
+					DEFAULT_INGREDIENTS, "Cuba Libre instructions",
+					DEFAULT_RATING, DEFAULT_FAVORITE),
+			new Drink(5, "Martini", DEFAULT_URL, "Martini Glass",
+					DEFAULT_INGREDIENTS, "Pour Martini in glass",
+					DEFAULT_RATING, DEFAULT_FAVORITE),
+			new Drink(6, "Irish Coffee", DEFAULT_URL, "Coffee Glass",
+					DEFAULT_INGREDIENTS, "Irish Coffee instructions",
+					DEFAULT_RATING, DEFAULT_FAVORITE) };
 
 	@Override
 	protected void setUp() throws Exception {
@@ -137,8 +130,7 @@ public class ContentProviderTests extends
 
 	public void testInserts() {
 		// Create a new Drink.
-		final Drink testOneDrink = new Drink(1, "Vodka",
-				DEFAULT_URL,
+		final Drink testOneDrink = new Drink(1, "Vodka", DEFAULT_URL,
 				"Shot Glass", DEFAULT_INGREDIENTS, "Pour Vodka in shot glass",
 				DEFAULT_RATING, DEFAULT_FAVORITE);
 
