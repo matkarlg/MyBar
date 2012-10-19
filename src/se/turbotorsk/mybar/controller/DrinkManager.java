@@ -45,11 +45,8 @@ public class DrinkManager {
 
 	/**
 	 * Get the drinks in the bar. Get all drinks Check if the is a drink that
-	 * can me done with the ingredeines in the bar.
-	 * 
-	 * @return
+	 * can me done with the ingredients in the bar.
 	 */
-
 	public LinkedList<Drink> getMyBar() {
 
 		LinkedList<Ingredient> myIngredientList = Controller.getMyIngredients();
@@ -67,7 +64,6 @@ public class DrinkManager {
 				Log.d("drink", drink.getName());
 				ingredients = drink.getIngredient().split(";");
 				// Gets the ingredientes in the drink (in a array)
-				Log.d("ingredients", ingredients.toString());
 				for (int countID = 0; countID <= ingredients.length - 1; countID += 2) { // iterate
 																							// the
 																							// array
@@ -95,7 +91,7 @@ public class DrinkManager {
 							break;
 						}
 					}
-					if (found == false) {
+					if (!found) {
 						// If the item can not be found the drink can not be
 						// done. So lets stop
 						// checking the current drink and move on to the next

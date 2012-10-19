@@ -29,7 +29,6 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 package se.turbotorsk.mybar;
 
 import se.turbotorsk.mybar.controller.Controller;
-import se.turbotorsk.mybar.model.Data;
 import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -40,9 +39,9 @@ import android.widget.ListView;
  */
 public class MyBarActivity extends ListActivity {
 
-	IngredientAdapter adapter;
+	private IngredientAdapter adapter;
 	// Variable is not used for now.
-	private static final byte UPDATE_LIST = 100;
+	static final byte UPDATE_LIST = 100;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

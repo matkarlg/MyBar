@@ -5,12 +5,12 @@ mybar@turbotorsk.se
 
 Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
-* Redistributions of source code must retain the above copyright notice,
+ * Redistributions of source code must retain the above copyright notice,
   this list of conditions and the following disclaimer.
-* Redistributions in binary form must reproduce the above copyright notice,
+ * Redistributions in binary form must reproduce the above copyright notice,
   this list of conditions and the following disclaimer in the documentation
   and/or other materials provided with the distribution.
-* Neither the name of the MyBar nor the names of its contributors may be 
+ * Neither the name of the MyBar nor the names of its contributors may be 
   used to endorse or promote products derived from this software without
   specific prior written permission.
 
@@ -41,6 +41,7 @@ import android.widget.TextView;
  * This activity handles the Settings-view from Options-menu.
  */
 public class SettingsActivity extends Activity {
+	
 	private Button profileButton;
 	private TextView profile1;
 
@@ -57,8 +58,6 @@ public class SettingsActivity extends Activity {
 				Intent intent1 = new Intent(SettingsActivity.this,
 						Profiles.class);
 				startActivity(intent1);
-				Intent i = getIntent();
-				Bundle bundle = i.getExtras();
 				profile1.setText("home");
 			}
 		});
@@ -74,7 +73,7 @@ public class SettingsActivity extends Activity {
 	}
 
 	/**
-	 * This method handles what to happend when pressing a item in the
+	 * This method handles what to happens when pressing a item in the
 	 * options-menu.
 	 */
 	public boolean onOptionsItemSelected(MenuItem item) {

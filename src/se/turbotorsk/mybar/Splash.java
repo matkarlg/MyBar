@@ -5,12 +5,12 @@ mybar@turbotorsk.se
 
 Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
-* Redistributions of source code must retain the above copyright notice,
+ * Redistributions of source code must retain the above copyright notice,
   this list of conditions and the following disclaimer.
-* Redistributions in binary form must reproduce the above copyright notice,
+ * Redistributions in binary form must reproduce the above copyright notice,
   this list of conditions and the following disclaimer in the documentation
   and/or other materials provided with the distribution.
-* Neither the name of the MyBar nor the names of its contributors may be 
+ * Neither the name of the MyBar nor the names of its contributors may be 
   used to endorse or promote products derived from this software without
   specific prior written permission.
 
@@ -35,27 +35,29 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
 
-
+/**
+ * This activity handles the splash-logo that starts with the application.
+ */
 public class Splash extends Activity {
 
-    private final int SPLASH_LENGHT = 1200;
+	private static final int SPLASH_LENGHT = 1200;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-    	this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.splash);
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.splash);
 
-        new Handler().postDelayed(new Runnable(){
-          
-        	public void run() {
-        		Controller.deleteTables();
-        		Controller.dataSync();
-        		Intent intent = new Intent(Splash.this,MainActivity.class);
-                Splash.this.startActivity(intent);
-        		Splash.this.finish();
-            }
-        }, SPLASH_LENGHT);
-    }
+		new Handler().postDelayed(new Runnable() {
+
+			public void run() {
+				Controller.deleteTables();
+				Controller.dataSync();
+				Intent intent = new Intent(Splash.this, MainActivity.class);
+				Splash.this.startActivity(intent);
+				Splash.this.finish();
+			}
+		}, SPLASH_LENGHT);
+	}
 
 }

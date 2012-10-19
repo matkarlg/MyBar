@@ -29,7 +29,6 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 package se.turbotorsk.mybar;
 
 import se.turbotorsk.mybar.controller.Controller;
-import se.turbotorsk.mybar.model.Data;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;

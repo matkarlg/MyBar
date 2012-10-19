@@ -5,12 +5,12 @@ mybar@turbotorsk.se
 
 Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
-* Redistributions of source code must retain the above copyright notice,
+ * Redistributions of source code must retain the above copyright notice,
   this list of conditions and the following disclaimer.
-* Redistributions in binary form must reproduce the above copyright notice,
+ * Redistributions in binary form must reproduce the above copyright notice,
   this list of conditions and the following disclaimer in the documentation
   and/or other materials provided with the distribution.
-* Neither the name of the MyBar nor the names of its contributors may be 
+ * Neither the name of the MyBar nor the names of its contributors may be 
   used to endorse or promote products derived from this software without
   specific prior written permission.
 
@@ -89,7 +89,7 @@ public class Data {
 		// Insert testDrinks.
 		for (Drink testDrink : testDrinks) {
 			ContentValues values = testDrink.getContentValues();
-			myBarUri = MyBarApplication.ContentResolver().insert(
+			myBarUri = MyBarApplication.contentResolver().insert(
 					MyBarContentProvider.CONTENTURI_DRINK, values);
 			Log.d(Data.class.getClass().getName(),
 					"Inserted Drink. Created row: " + myBarUri.toString());
@@ -116,7 +116,7 @@ public class Data {
 		// Insert testIngredients.
 		for (Ingredient testIngredient : testIngredients) {
 			ContentValues values = testIngredient.getContentValues();
-			myBarUri = MyBarApplication.ContentResolver().insert(
+			myBarUri = MyBarApplication.contentResolver().insert(
 					MyBarContentProvider.CONTENTURI_INGREDIENT, values);
 			Log.d(Data.class.getClass().getName(),
 					"Inserted Ingredient. Created row: " + myBarUri.toString());
@@ -132,11 +132,11 @@ public class Data {
 	 */
 	public static int deleteTestData() {
 		int rowsDeleted = 0;
-		rowsDeleted += MyBarApplication.ContentResolver().delete(
+		rowsDeleted += MyBarApplication.contentResolver().delete(
 				MyBarContentProvider.CONTENTURI_DRINK, null, null);
-		rowsDeleted += MyBarApplication.ContentResolver().delete(
+		rowsDeleted += MyBarApplication.contentResolver().delete(
 				MyBarContentProvider.CONTENTURI_INGREDIENT, null, null);
-		rowsDeleted += MyBarApplication.ContentResolver().delete(
+		rowsDeleted += MyBarApplication.contentResolver().delete(
 				MyBarContentProvider.CONTENTURI_MYBAR, null, null);
 		return rowsDeleted;
 	}
@@ -149,9 +149,9 @@ public class Data {
 	 */
 	public static int deleteData() {
 		int rowsDeleted = 0;
-		rowsDeleted += MyBarApplication.ContentResolver().delete(
+		rowsDeleted += MyBarApplication.contentResolver().delete(
 				MyBarContentProvider.CONTENTURI_DRINK, null, null);
-		rowsDeleted += MyBarApplication.ContentResolver().delete(
+		rowsDeleted += MyBarApplication.contentResolver().delete(
 				MyBarContentProvider.CONTENTURI_INGREDIENT, null, null);
 		return rowsDeleted;
 	}
@@ -169,15 +169,17 @@ public class Data {
 	/**
 	 * Adds a new ingredient to MyBarTable
 	 * 
-	 * @param ingredientID _id column of the ingredient.
-	 * @param location "Home", "Work".
+	 * @param ingredientID
+	 *            _id column of the ingredient.
+	 * @param location
+	 *            "Home", "Work".
 	 * @return 0 if successful.
 	 */
 	public static int addMyBar(int ingredientID, String location) {
 		ContentValues values = new ContentValues();
 		values.put("ingredientid", ingredientID);
 		values.put("location", location);
-		MyBarApplication.ContentResolver().insert(
+		MyBarApplication.contentResolver().insert(
 				MyBarContentProvider.CONTENTURI_MYBAR, values);
 
 		// Print the added drink.
@@ -190,14 +192,16 @@ public class Data {
 	/**
 	 * Removes a row in MyBarTable
 	 * 
-	 * @param ingredientID _id column of the ingredient.
-	 * @param location "Home", "Work".
+	 * @param ingredientID
+	 *            _id column of the ingredient.
+	 * @param location
+	 *            "Home", "Work".
 	 * @return 0 if successful. 1 if error. See LogCat.
 	 */
 	public static int dropMyBar(int ingredientID, String location) {
 		// Query database.
 		Cursor cursor = MyBarApplication
-				.ContentResolver()
+				.contentResolver()
 				.query(MyBarContentProvider.CONTENTURI_MYBAR,
 						null,
 						MyBarTable.COLUMN_INGREDIENTID + " = ? AND "
@@ -211,7 +215,7 @@ public class Data {
 			// Is there any data from the requested Query.
 			if (cursor.moveToFirst()) {
 
-				MyBarApplication.ContentResolver()
+				MyBarApplication.contentResolver()
 						.delete(MyBarContentProvider.CONTENTURI_MYBAR,
 								MyBarTable.COLUMN_INGREDIENTID + " = ? AND "
 										+ MyBarTable.COLUMN_LOCATION + " = ? ",
@@ -254,7 +258,8 @@ public class Data {
 	 * Inserts a new Drink in the DrinkTable. Trying to insert another Drink
 	 * with the same name yields an error message.
 	 * 
-	 * @param name Drink object that should be inserted into the database.
+	 * @param name
+	 *            Drink object that should be inserted into the database.
 	 * @return 0 if successful, 1 if error. See LogCat.
 	 */
 	public static int addDrink(Drink name) {
@@ -264,7 +269,7 @@ public class Data {
 		String[] projection = { DrinkTable.COLUMN_ID, DrinkTable.COLUMN_NAME };
 
 		// Query database.
-		Cursor cursor = MyBarApplication.ContentResolver().query(
+		Cursor cursor = MyBarApplication.contentResolver().query(
 				MyBarContentProvider.CONTENTURI_DRINK, projection,
 				DrinkTable.COLUMN_NAME + " = ? ",
 				new String[] { name.getName() }, null);
@@ -286,7 +291,7 @@ public class Data {
 				return 1;
 
 			} else {
-				MyBarApplication.ContentResolver().insert(
+				MyBarApplication.contentResolver().insert(
 						MyBarContentProvider.CONTENTURI_DRINK, values);
 
 				// Print the added drink.
@@ -305,7 +310,8 @@ public class Data {
 	/**
 	 * Removes a Drink in the DrinkTable.
 	 * 
-	 * @param iD an Integer _id that should be removed from the database.
+	 * @param iD
+	 *            an Integer _id that should be removed from the database.
 	 * @return 0 if successful, 1 if error. See LogCat.
 	 */
 	public static int dropDrink(int iD) {
@@ -313,7 +319,7 @@ public class Data {
 		String[] projection = { DrinkTable.COLUMN_ID, DrinkTable.COLUMN_NAME };
 
 		// Query database.
-		Cursor cursor = MyBarApplication.ContentResolver().query(
+		Cursor cursor = MyBarApplication.contentResolver().query(
 				MyBarContentProvider.CONTENTURI_DRINK, projection,
 				DrinkTable.COLUMN_ID + "=" + iD, null, null);
 
@@ -323,7 +329,7 @@ public class Data {
 			// Is there any data from the requested Query.
 			if (cursor.moveToFirst()) {
 
-				MyBarApplication.ContentResolver().delete(
+				MyBarApplication.contentResolver().delete(
 						MyBarContentProvider.CONTENTURI_DRINK,
 						DrinkTable.COLUMN_ID + "=" + iD, null);
 
@@ -365,7 +371,7 @@ public class Data {
 		LinkedList<MyBar> mybarList = new LinkedList<MyBar>();
 
 		// Query database.
-		Cursor cursor = MyBarApplication.ContentResolver().query(
+		Cursor cursor = MyBarApplication.contentResolver().query(
 				MyBarContentProvider.CONTENTURI_MYBAR, null, null, null, null);
 
 		// Successful query?.
@@ -409,7 +415,7 @@ public class Data {
 		LinkedList<Drink> drinkList = new LinkedList<Drink>();
 
 		// Query database.
-		Cursor cursor = MyBarApplication.ContentResolver().query(
+		Cursor cursor = MyBarApplication.contentResolver().query(
 				MyBarContentProvider.CONTENTURI_DRINK, null, null, null,
 				DrinkTable.COLUMN_NAME + " COLLATE NOCASE ASC");
 
@@ -466,7 +472,7 @@ public class Data {
 		LinkedList<Ingredient> ingredientList = new LinkedList<Ingredient>();
 
 		// Query database. No projection.
-		Cursor cursor = MyBarApplication.ContentResolver().query(
+		Cursor cursor = MyBarApplication.contentResolver().query(
 				MyBarContentProvider.CONTENTURI_INGREDIENT, null, null, null,
 				IngredientTable.COLUMN_NAME + " COLLATE NOCASE ASC");
 
@@ -516,12 +522,13 @@ public class Data {
 	/**
 	 * Returns a Drink object by ID. Query: SELECT * WHERE _id = id.
 	 * 
-	 * @param iD the _id of the Drink to return
+	 * @param iD
+	 *            the _id of the Drink to return
 	 * @return aDrink
 	 */
 	public static Drink getDrinkByID(int iD) {
 		// Query database.
-		Cursor cursor = MyBarApplication.ContentResolver().query(
+		Cursor cursor = MyBarApplication.contentResolver().query(
 				MyBarContentProvider.CONTENTURI_DRINK, null,
 				DrinkTable.COLUMN_ID + "=" + iD, null, null);
 
@@ -573,12 +580,13 @@ public class Data {
 	/**
 	 * Returns an Ingredient object by ID. Query: SELECT * WHERE _id = id.
 	 * 
-	 * @param iD the _id of the Ingredient to return
+	 * @param iD
+	 *            the _id of the Ingredient to return
 	 * @return anIngredient
 	 */
 	public static Ingredient getIngredientByID(int iD) {
 		// Query database. No projection.
-		Cursor cursor = MyBarApplication.ContentResolver().query(
+		Cursor cursor = MyBarApplication.contentResolver().query(
 				MyBarContentProvider.CONTENTURI_INGREDIENT, null,
 				IngredientTable.COLUMN_ID + "=" + iD, null, null);
 
@@ -634,7 +642,7 @@ public class Data {
 		LinkedList<Drink> drinkList = new LinkedList<Drink>();
 
 		// Query database. No Projection
-		Cursor cursor = MyBarApplication.ContentResolver().query(
+		Cursor cursor = MyBarApplication.contentResolver().query(
 				MyBarContentProvider.CONTENTURI_DRINK, null, "favorite=1",
 				null, DrinkTable.COLUMN_NAME + " COLLATE NOCASE ASC");
 
@@ -685,7 +693,8 @@ public class Data {
 	/**
 	 * Sets the favorite row in a Drink to 1.
 	 * 
-	 * @param iD _id of the Drink.
+	 * @param iD
+	 *            _id of the Drink.
 	 * @return 0 if OK. 1 if ID doesn't exist.
 	 */
 	public static int setFavoriteByID(int iD) {
@@ -695,7 +704,7 @@ public class Data {
 		String[] projection = { DrinkTable.COLUMN_ID, DrinkTable.COLUMN_NAME };
 
 		// Query database.
-		Cursor cursor = MyBarApplication.ContentResolver().query(
+		Cursor cursor = MyBarApplication.contentResolver().query(
 				MyBarContentProvider.CONTENTURI_DRINK, projection,
 				DrinkTable.COLUMN_ID + "=" + iD, null, null);
 
@@ -706,7 +715,7 @@ public class Data {
 			if (cursor.moveToFirst()) {
 
 				values.put("favorite", 1);
-				int rowUpdated = MyBarApplication.ContentResolver().update(
+				int rowUpdated = MyBarApplication.contentResolver().update(
 						MyBarContentProvider.CONTENTURI_DRINK, values,
 						DrinkTable.COLUMN_ID + "=" + iD, null);
 
@@ -736,7 +745,8 @@ public class Data {
 	/**
 	 * Sets the favorite row in a Drink to 1.
 	 * 
-	 * @param name the name of the Drink.
+	 * @param name
+	 *            the name of the Drink.
 	 * @return 0 if OK. 1 if name doesn't exist.
 	 */
 	public static int setFavoriteByName(String name) {
@@ -746,7 +756,7 @@ public class Data {
 		String[] projection = { DrinkTable.COLUMN_ID, DrinkTable.COLUMN_NAME };
 
 		// Query database.
-		Cursor cursor = MyBarApplication.ContentResolver().query(
+		Cursor cursor = MyBarApplication.contentResolver().query(
 				MyBarContentProvider.CONTENTURI_DRINK, projection,
 				DrinkTable.COLUMN_NAME + " = ? ", new String[] { name }, null);
 
@@ -757,7 +767,7 @@ public class Data {
 			if (cursor.moveToFirst()) {
 
 				values.put("favorite", 1);
-				int rowUpdated = MyBarApplication.ContentResolver()
+				int rowUpdated = MyBarApplication.contentResolver()
 						.update(MyBarContentProvider.CONTENTURI_DRINK, values,
 								DrinkTable.COLUMN_NAME + " = ? ",
 								new String[] { name });
@@ -788,9 +798,12 @@ public class Data {
 	/**
 	 * Sets the columns in the Drink table to different values.
 	 * 
-	 * @param name name of the Drink to update.
-	 * @param column the column to update.
-	 * @param set the value to update the column with.
+	 * @param name
+	 *            name of the Drink to update.
+	 * @param column
+	 *            the column to update.
+	 * @param set
+	 *            the value to update the column with.
 	 * @return 0 if successful. 1 if error. See LogCat
 	 */
 	public static int setDrink(String name, String column, int set) {
@@ -800,7 +813,7 @@ public class Data {
 		String[] projection = { DrinkTable.COLUMN_ID, DrinkTable.COLUMN_NAME };
 
 		// Query database.
-		Cursor cursor = MyBarApplication.ContentResolver().query(
+		Cursor cursor = MyBarApplication.contentResolver().query(
 				MyBarContentProvider.CONTENTURI_DRINK, projection,
 				DrinkTable.COLUMN_NAME + " = ? ", new String[] { name }, null);
 
@@ -811,7 +824,7 @@ public class Data {
 			if (cursor.moveToFirst()) {
 
 				values.put(column, set);
-				int rowUpdated = MyBarApplication.ContentResolver()
+				int rowUpdated = MyBarApplication.contentResolver()
 						.update(MyBarContentProvider.CONTENTURI_DRINK, values,
 								DrinkTable.COLUMN_NAME + " = ? ",
 								new String[] { name });
@@ -845,9 +858,12 @@ public class Data {
 	/**
 	 * Sets the columns in the Drink table to different values.
 	 * 
-	 * @param iD _id of the Drink to update.
-	 * @param column The column to update.
-	 * @param set The value to update the column with.
+	 * @param iD
+	 *            _id of the Drink to update.
+	 * @param column
+	 *            The column to update.
+	 * @param set
+	 *            The value to update the column with.
 	 * @return 0 if successful. 1 if error. See LogCat
 	 */
 	public static int setDrink(int iD, String column, int set) {
@@ -857,7 +873,7 @@ public class Data {
 		String[] projection = { DrinkTable.COLUMN_ID, DrinkTable.COLUMN_NAME };
 
 		// Query database.
-		Cursor cursor = MyBarApplication.ContentResolver().query(
+		Cursor cursor = MyBarApplication.contentResolver().query(
 				MyBarContentProvider.CONTENTURI_DRINK, projection,
 				DrinkTable.COLUMN_ID + "=" + iD, null, null);
 
@@ -868,7 +884,7 @@ public class Data {
 			if (cursor.moveToFirst()) {
 
 				values.put(column, set);
-				int rowUpdated = MyBarApplication.ContentResolver().update(
+				int rowUpdated = MyBarApplication.contentResolver().update(
 						MyBarContentProvider.CONTENTURI_DRINK, values,
 						DrinkTable.COLUMN_ID + "=" + iD, null);
 
@@ -918,8 +934,10 @@ public class Data {
 	/**
 	 * Search for ingredients in the database.
 	 * 
-	 * @param search Search for ingredient.
-	 * @param limit Limit returned ingredients.
+	 * @param search
+	 *            Search for ingredient.
+	 * @param limit
+	 *            Limit returned ingredients.
 	 * @return A LinkedList with the ingredients containing the searchName
 	 *         string.
 	 */
@@ -928,7 +946,7 @@ public class Data {
 		LinkedList<Ingredient> ingredientList = new LinkedList<Ingredient>();
 
 		// Query database.
-		Cursor cursor = MyBarApplication.ContentResolver().query(
+		Cursor cursor = MyBarApplication.contentResolver().query(
 				MyBarContentProvider.CONTENTURI_INGREDIENT,
 				null,
 				IngredientTable.COLUMN_NAME + " LIKE ? ",
@@ -982,14 +1000,15 @@ public class Data {
 	/**
 	 * Search for ingredientID's in MyBarTable.
 	 * 
-	 * @param search Search for ingredientID's.
+	 * @param search
+	 *            Search for ingredientID's.
 	 * @return A LinkedList with MyBar objects.
 	 */
 	public static LinkedList<MyBar> searchMyBar(int iD) {
 		LinkedList<MyBar> myBarList = new LinkedList<MyBar>();
 
 		// Query database.
-		Cursor cursor = MyBarApplication.ContentResolver().query(
+		Cursor cursor = MyBarApplication.contentResolver().query(
 				MyBarContentProvider.CONTENTURI_MYBAR, null,
 				MyBarTable.COLUMN_INGREDIENTID + "=" + iD, null, null);
 

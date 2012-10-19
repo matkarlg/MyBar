@@ -65,27 +65,6 @@ public class AddIngredientActivity extends ListActivity {
 			else Toast.makeText(AddIngredientActivity.this, adapter.getName(position) + " is already added!!!", Toast.LENGTH_SHORT).show();
 		}
 	}
-	
-	/*@Override
-	public void onListItemClick(ListView parent, View v, int position, long id) { 
-
-		{
-			if(save != position && parent.getChildAt(position) != null && !(Controller.isInMyBar(adapter.getId(position))))
-			{
-		    adapter.setBackgroundBlue(position, v);
- 		    Controller.addMyBarIngredient(adapter.getId(position));
-		    save = position;
-			}
-			
-			else if(parent.getChildAt(position) != null)
-			{
-			adapter.setBackgroundTrans(position, v);
-			Controller.removeMyBarIngredient(adapter.getId(position), adapter.getPosition(position));		
-			save = -1;
-			}	
-		}
-	}
-	*/
 
 
 }

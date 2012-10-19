@@ -5,12 +5,12 @@ mybar@turbotorsk.se
 
 Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
-* Redistributions of source code must retain the above copyright notice,
+ * Redistributions of source code must retain the above copyright notice,
   this list of conditions and the following disclaimer.
-* Redistributions in binary form must reproduce the above copyright notice,
+ * Redistributions in binary form must reproduce the above copyright notice,
   this list of conditions and the following disclaimer in the documentation
   and/or other materials provided with the distribution.
-* Neither the name of the MyBar nor the names of its contributors may be 
+ * Neither the name of the MyBar nor the names of its contributors may be 
   used to endorse or promote products derived from this software without
   specific prior written permission.
 
@@ -45,7 +45,7 @@ import android.widget.TextView;
  * who made the application.
  */
 public class AboutBox {
-	static String versionName(Context context) {
+	private static String versionName(Context context) {
 		return "0.5";
 	}
 
@@ -66,9 +66,10 @@ public class AboutBox {
 		} catch (InflateException e) {
 			// Inflater can throw exception, unlikely but default to TextView if
 			// it occurs.
-			about = tvAbout = new TextView(callingActivity);
+			tvAbout = new TextView(callingActivity);
+			about = tvAbout;
 		}
-		
+
 		// Set the about text.
 		tvAbout.setText(aboutText);
 		// Now Linkify the text.

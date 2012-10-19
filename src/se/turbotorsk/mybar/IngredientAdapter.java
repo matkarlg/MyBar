@@ -28,9 +28,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package se.turbotorsk.mybar;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-
 import se.turbotorsk.mybar.model.Ingredient;
 import android.content.Context;
 import android.graphics.Color;

@@ -51,6 +51,9 @@ import android.net.Uri;
 import android.os.StrictMode;
 import android.util.Log;
 
+/**
+ * This class is responsible for getting data from the external MySQL Database.
+ */
 public class JsonParse {
 	//Sets the timeout for the web server. 	
 	private static final int TIMEOUT_MILLISEC = 999; 
@@ -90,7 +93,7 @@ public class JsonParse {
 						jObject.getString("description")		
 						).getContentValues();						
 				//Insets the data into the SQLite.
-				Uri myBarUriIngredient = MyBarApplication.ContentResolver().insert(MyBarContentProvider.CONTENTURI_INGREDIENT, values);
+				Uri myBarUriIngredient = MyBarApplication.contentResolver().insert(MyBarContentProvider.CONTENTURI_INGREDIENT, values);
 				Log.d(Data.class.getClass().getName(), "Inserted Ingredient. Created row: " + myBarUriIngredient.toString());
 			}
 			ingredientOK = true; 
@@ -124,7 +127,7 @@ public class JsonParse {
 					//Sets favorite to 0 and gets the content values. 
 					0).getContentValues();									
 			//Insets the data into the SQLite
-			Uri myBarUriDrink = MyBarApplication.ContentResolver().insert(
+			Uri myBarUriDrink = MyBarApplication.contentResolver().insert(
 					MyBarContentProvider.CONTENTURI_DRINK, values);	
 			Log.d(Data.class.getClass().getName(),
 					"Inserted Drink. Created row: " + myBarUriDrink.toString());

@@ -29,7 +29,6 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 package se.turbotorsk.mybar.model;
 
 import android.content.ContentValues;
-import android.util.Log;
 
 /**
  * Drink is a simple class that contains variables describing, among other
@@ -79,17 +78,15 @@ public class Drink {
 	public String getIngredientPreViewString() {
 		int maxStringLength = (40 - 4);
 		StringBuffer nameBuff = new StringBuffer();
-		String name = "";
+		String nameString = "";
 		String[] array = ingredient.split(";"); 
 		nameBuff.append("| ");
 		int i = 0;
 		while( i < array.length -1){
-				
-				Log.d("Searcing for", array[i]);
-				name = Data.getIngredientByID(Integer.parseInt(array[i])).getName();
-				if ((maxStringLength - name.length()) > 0){
-					nameBuff.append(name + " | ");
-					maxStringLength = maxStringLength - name.length();
+				nameString = Data.getIngredientByID(Integer.parseInt(array[i])).getName();
+				if ((maxStringLength - nameString.length()) > 0){
+					nameBuff.append(nameString + " | ");
+					maxStringLength = maxStringLength - nameString.length();
 				}
 				i = i + 2; 
 		}
@@ -98,14 +95,12 @@ public class Drink {
 	
 	public String getIngredientString() {
 		StringBuffer nameBuff = new StringBuffer();
-		String name = "";
+		String nameString = "";
 		String[] array = ingredient.split(";"); 
 		int i = 0;
 		while( i < array.length -1){
-				
-				Log.d("Searcing for", array[i]);
-				name = Data.getIngredientByID(Integer.parseInt(array[i])).getName();
-				nameBuff.append(name + "\n");
+				nameString = Data.getIngredientByID(Integer.parseInt(array[i])).getName();
+				nameBuff.append(nameString + "\n");
 				i = i + 2; 
 		}
 		return nameBuff.toString(); 
