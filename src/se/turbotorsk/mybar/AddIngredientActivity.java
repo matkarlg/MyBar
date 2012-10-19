@@ -29,35 +29,44 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 package se.turbotorsk.mybar;
 
 import se.turbotorsk.mybar.controller.Controller;
-import se.turbotorsk.mybar.model.Ingredient;
 import android.app.ListActivity;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * This activity handles the functions that add ingredients.
  */
 public class AddIngredientActivity extends ListActivity {
 	
-	private TextView text;
 	private IngredientAdapter adapter;
 	public static int save = -1;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setText((TextView) findViewById(R.id.drink));
 		adapter = new IngredientAdapter(this, R.layout.rowlayout,
 				Controller.getAllIngredients());
 
 		setListAdapter(adapter);
 
 	}
-
+	
 	@Override
+	public void onListItemClick(ListView parent, View v, int position, long id) { 
+
+		{
+			if(!(Controller.isInMyBar(adapter.getId(position))))
+			{
+ 		    Controller.addMyBarIngredient(adapter.getId(position));
+ 		    Toast.makeText(AddIngredientActivity.this, adapter.getName(position) + " added", Toast.LENGTH_SHORT).show();
+			}
+			else Toast.makeText(AddIngredientActivity.this, adapter.getName(position) + " is already added!!!", Toast.LENGTH_SHORT).show();
+		}
+	}
+	
+	/*@Override
 	public void onListItemClick(ListView parent, View v, int position, long id) { 
 
 		{
@@ -70,21 +79,15 @@ public class AddIngredientActivity extends ListActivity {
 			
 			else if(parent.getChildAt(position) != null)
 			{
-			adapter.setBackgroundWhite(position, v);
+			adapter.setBackgroundTrans(position, v);
 			Controller.removeMyBarIngredient(adapter.getId(position), adapter.getPosition(position));		
 			save = -1;
 			}	
 		}
 	}
+	*/
 
-	//Needed according to sonar, feels a bit weird. Might remove?
-	public TextView getText() {
-		return text;
-	}
 
-	public void setText(TextView text) {
-		this.text = text;
-	}
 }
 
 
