@@ -34,6 +34,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
+import android.widget.Toast;
 
 /**
  * This activity handles the splash-logo that starts with the application.
@@ -52,7 +53,11 @@ public class SplashActivity extends Activity {
 
 			public void run() {
 				Controller.deleteTables();
-				Controller.dataSync();
+				if (!(Controller.dataSync())) {
+					Toast.makeText(SplashActivity.this,
+							"Sync Failed: Connection error!", Toast.LENGTH_LONG)
+							.show();
+				}
 				Intent intent = new Intent(SplashActivity.this,
 						MainActivity.class);
 				SplashActivity.this.startActivity(intent);
