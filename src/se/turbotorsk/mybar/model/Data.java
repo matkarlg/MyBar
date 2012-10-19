@@ -162,8 +162,7 @@ public class Data {
 	 * @return false
 	 */
 	public static boolean syncDatabase() {
-		JsonParse.getDb();
-		return false;
+		return JsonParse.getDb();
 	}
 
 	/**

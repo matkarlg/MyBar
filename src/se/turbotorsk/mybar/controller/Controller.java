@@ -184,8 +184,7 @@ public class Controller {
 	 * @return true if it is in the table. 
 	 */
 	public static boolean isInMyBar(int id){
-		if(Data.searchMyBar(id).size() != 0) return true;
-		else return false;
+		return (Data.searchMyBar(id).size() != 0);
 	}
 	
 	/**
