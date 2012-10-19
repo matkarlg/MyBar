@@ -43,7 +43,7 @@ import se.turbotorsk.mybar.model.MyBar;
 public class Controller {
 
 	/**
-	 * This method return the drinks that you can make with
+	 * Gets method return the drinks that you can make with
 	 * the ingredients in your bar.
 	 * @return LinkedList with drinks that you can make.
 	 */
@@ -52,8 +52,7 @@ public class Controller {
 	}
 
 	/**
-	 * This method is used for getting an ingredient by its ID.
-	 * 
+	 * Gets a ingredient by the id.
 	 * @param id
 	 * @return
 	 */
@@ -84,8 +83,7 @@ public class Controller {
 	}
 	
 	/**
-	 * This method gets the ingredients that the user
-	 * has in the MyBar table. 
+	 * Gets the ingredients that the user has in the MyBar table. 
 	 * @return 
 	 */
 	public static LinkedList<Ingredient> getMyIngredients(){

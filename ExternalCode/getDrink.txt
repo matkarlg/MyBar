@@ -1,0 +1,47 @@
+<?php
+	//@autor Dag Fridén
+	//Create db con.
+	$connection = mysql_connect("localhost","mybar","xxxxxxxxxx"); 
+	if(!$connection){
+		die("db connect faild" . mysql_error());
+	}
+	
+	//select db to use
+	$db_select = mysql_select_db("mybar",$connection);
+	if(!$db_select)
+	{
+		die("database selection failed" . mysql_error());
+	}
+	
+	$result = mysql_query("SELECT * FROM drink", $connection);
+
+	$convert = array("drinks" => array());
+
+	while($row = mysql_fetch_array($result)){
+		$jsonRow = array(
+			"_id" => $row[DID],
+			"name" => $row[NAME],
+			"url" => $row[PICTUREURL],
+			"glass" => $row[GLASTYPE],
+			"ingredient" => $row[INGREDIENT],
+			"description" => $row[INSTRUCTIONS],
+			"rating" => $row[RATING]
+			);
+		array_push($convert["drinks"],$jsonRow);
+	}
+	
+	echo json_encode($convert);
+	
+/**
+ * 	public static final String TABLE_DRINK = "drink";
+	public static final String COLUMN_ID = "_id";
+	public static final String COLUMN_NAME = "name";
+	public static final String COLUMN_URL = "url";
+	public static final String COLUMN_GLASS = "glass";
+	public static final String COLUMN_INGREDIENT = "ingredient";
+	public static final String COLUMN_DESCRIPTION = "description";
+	public static final String COLUMN_RATING = "";
+	public static final String COLUMN_FAVORITE = "favorite";
+ */
+
+?>
