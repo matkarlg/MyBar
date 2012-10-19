@@ -40,16 +40,13 @@ import se.turbotorsk.mybar.model.Ingredient;
  * @author Dag Fridén (<a href="mailto:dag@daysoft.se">email</a>)
  */
 public class DrinkManager {
-	private LinkedList<Drink> myBar;
-
-	public DrinkManager() {
-	}
+	private static LinkedList<Drink> myBar;
 
 	/**
 	 * Get the drinks in the bar. Get all drinks Check if the is a drink that
 	 * can me done with the ingredients in the bar.
 	 */
-	public LinkedList<Drink> getMyBar() {
+	public static LinkedList<Drink> getMyBar() {
 
 		LinkedList<Ingredient> myIngredientList = Controller.getMyIngredients();
 		Log.d("myIngredientList", myIngredientList.toString());

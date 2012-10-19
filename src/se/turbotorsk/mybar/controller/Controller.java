@@ -42,14 +42,17 @@ import se.turbotorsk.mybar.model.MyBar;
  */
 public class Controller {
 
+	/**
+	 * Gets method return the drinks that you can make with
+	 * the ingredients in your bar.
+	 * @return LinkedList with drinks that you can make.
+	 */
 	public static LinkedList<Drink> getMyBarDrinks() {
-		DrinkManager dm = new DrinkManager();
-		return dm.getMyBar();
+		return DrinkManager.getMyBar();
 	}
 
 	/**
-	 * This method is used for getting an ingredient by its ID.
-	 * 
+	 * Gets a ingredient by the id.
 	 * @param id
 	 * @return
 	 */
@@ -59,16 +62,30 @@ public class Controller {
 
 	// ---------- Methods for get and set favorites ----------
 
+	/**
+	 * Returns if a given drink is set as a favorite. 
+	 * @param id of drink.
+	 * @return true if the drinks is in the favorite database.
+	 */
 	public static int isFavorite(int id) {
 		Drink drink = Data.getDrinkByID(id);
 		return drink.getFavorite();
 	}
 
+	/**
+	 * Returns the rating for a given drink. 
+	 * @param id of a drink.
+	 * @return the rating of the the given drink. 
+	 */
 	public static int rating(int id) {
 		Drink drink = Data.getDrinkByID(id);
 		return drink.getRating();
 	}
 	
+	/**
+	 * Gets the ingredients that the user has in the MyBar table. 
+	 * @return 
+	 */
 	public static LinkedList<Ingredient> getMyIngredients(){
 		LinkedList<Ingredient> list = new LinkedList<Ingredient>(); 
 		for(MyBar mybar: Data.getAllMyBar()){
@@ -77,59 +94,104 @@ public class Controller {
 		return list;
 	}
 	
-	public static void dataSync()
+	/**
+	 * Sync the database with info from the external database.  
+	 * @return true if the sync was okej. False if a error happened. 
+	 */
+	public static boolean dataSync()
 	{
-		Data.syncDatabase();
+		return Data.syncDatabase();
 	}
 	
+	/**
+	 * Gets all the drinks form data.
+	 * @return a linkeList with all drinks. 
+	 */
 	public static LinkedList<Drink> getAllDrinks()
 	{
 		return Data.getAllDrinks();
 	}
 	
+	/**
+	 * Gets all the favorites from the data.
+	 * @return a linkedList with all the drinks that is favorites. 
+	 */
 	public static LinkedList<Drink> getAllFavorites()
 	{
 		return Data.getAllFavorites();
 	}
 	
+	/**
+	 * Sets the rating in data.
+	 * @param name of the drink to be updated. 
+	 * @param rating 
+	 * @return
+	 */
 	public static int setRatingByName(String name, int rating)
 	{
 		return Data.setDrink(name, "rating", (int) rating);
 	}
 
+	/**
+	 * Sets the drink as a favorite.  
+	 * @param name of the drink. 
+	 */
 	public static void setFavorite(String name)
 	{
 		Data.setDrink(name, "favorite", 1);
 	}
 	
+	/**
+	 * Removes a drink from favorites.
+	 * @param name of the drink. 
+	 */
 	public static void setNotFavorite(String name)
 	{
 		Data.setDrink(name, "favorite", 0);
 	}
 	
+	/**
+	 * Gets all ingredients from data.
+	 * @return a linkedList of Drink-object. 
+	 */
 	public static LinkedList<Ingredient> getAllIngredients()
 	{
 		return Data.getAllIngredients();
 		
 	}
 	
+	/**
+	 * Add an ingredient to the myBar table given the id of the ingredient. 
+	 * @param id of the ingredient. 
+	 */
 	public static void addMyBarIngredient(int id){
 		Data.addMyBar(id, "home");
 	}
 	
+	/**
+	 * Removes an ingredient from the myBar
+	 * table given the id of the ingredient.
+	 * @param id of the ingredient.
+	 * @param location of the bar.
+	 */
 	public static void removeMyBarIngredient(int id, String location){
 		Data.dropMyBar(id, location);
 	}
 
+	/**
+	 * Checks if an ingredient is in the myBar table. 
+	 * @param id of the ingredient. 
+	 * @return true if it is in the table. 
+	 */
 	public static boolean isInMyBar(int id){
-		if(Data.searchMyBar(id).size() != 0){
-			return true;
-		}
-		else{
-			return false;
-		}
+		if(Data.searchMyBar(id).size() != 0) return true;
+		else return false;
 	}
 	
+	/**
+	 * Deletes all the ingredients and drinks from the database. 
+	 * Muse be run before a sync can be performed.
+	 */
 	public static void deleteTables(){
 		Data.deleteData();
 	}
