@@ -29,9 +29,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 package se.turbotorsk.mybar;
 
 import se.turbotorsk.mybar.controller.Controller;
-import se.turbotorsk.mybar.model.Ingredient;
 import android.app.ListActivity;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
@@ -44,7 +42,7 @@ public class AddIngredientActivity extends ListActivity {
 	
 	private TextView text;
 	private IngredientAdapter adapter;
-	public static int save = -1;
+	private static int save = -1;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

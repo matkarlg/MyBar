@@ -57,8 +57,6 @@ public class SettingsActivity extends Activity {
 				Intent intent1 = new Intent(SettingsActivity.this,
 						Profiles.class);
 				startActivity(intent1);
-				Intent i = getIntent();
-				Bundle bundle = i.getExtras();
 				profile1.setText("home");
 			}
 		});
@@ -74,7 +72,7 @@ public class SettingsActivity extends Activity {
 	}
 
 	/**
-	 * This method handles what to happend when pressing a item in the
+	 * This method handles what to happens when pressing a item in the
 	 * options-menu.
 	 */
 	public boolean onOptionsItemSelected(MenuItem item) {

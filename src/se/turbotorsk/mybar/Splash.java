@@ -38,7 +38,7 @@ import android.view.Window;
 
 public class Splash extends Activity {
 
-    private final int SPLASH_LENGHT = 1200;
+    private static final int SPLASH_LENGHT = 1200;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

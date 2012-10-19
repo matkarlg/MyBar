@@ -30,7 +30,6 @@ package se.turbotorsk.mybar;
 
 import java.util.LinkedList;
 
-import se.turbotorsk.mybar.controller.Controller;
 import se.turbotorsk.mybar.model.Ingredient;
 import android.content.Context;
 import android.graphics.Color;

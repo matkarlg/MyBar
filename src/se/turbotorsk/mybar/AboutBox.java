@@ -45,7 +45,7 @@ import android.widget.TextView;
  * who made the application.
  */
 public class AboutBox {
-	static String versionName(Context context) {
+	private static String versionName(Context context) {
 		return "0.5";
 	}
 
@@ -66,7 +66,8 @@ public class AboutBox {
 		} catch (InflateException e) {
 			// Inflater can throw exception, unlikely but default to TextView if
 			// it occurs.
-			about = tvAbout = new TextView(callingActivity);
+			tvAbout = new TextView(callingActivity);
+			about = tvAbout;
 		}
 		
 		// Set the about text.

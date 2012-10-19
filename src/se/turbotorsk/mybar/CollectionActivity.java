@@ -29,7 +29,6 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 package se.turbotorsk.mybar;
 
 import se.turbotorsk.mybar.controller.Controller;
-import se.turbotorsk.mybar.model.Data;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -47,7 +46,7 @@ import android.widget.ListView;
  */
 public class CollectionActivity extends ListActivity {
 
-	DrinkAdapter adapter;
+	private DrinkAdapter adapter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
