@@ -38,7 +38,7 @@ import android.widget.ListView;
 /**
  * This activity handles the MyFavorites-section.
  */
-public class MyFavorites extends ListActivity {
+public class MyFavoritesActivity extends ListActivity {
 
 	private DrinkAdapter adapter;
 

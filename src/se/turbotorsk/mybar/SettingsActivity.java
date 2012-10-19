@@ -56,7 +56,7 @@ public class SettingsActivity extends Activity {
 
 			public void onClick(View v) {
 				Intent intent1 = new Intent(SettingsActivity.this,
-						Profiles.class);
+						ProfilesActivity.class);
 				startActivity(intent1);
 				profile1.setText("home");
 			}

@@ -43,13 +43,13 @@
         </activity>
         <activity android:name=".view_drink_activity" >
         </activity>
-        <activity android:name=".Profiles" >
+        <activity android:name=".ProfilesActivity" >
         </activity>
-        <activity android:name=".MyBarTabHost" >
+        <activity android:name=".MyBarTabHostActivity" >
         </activity>
         <activity android:name=".MyDrinksActivity" >
         </activity>
-        <activity android:name=".Splash" >
+        <activity android:name=".SplashActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -61,7 +61,7 @@
             android:label="@string/title_activity_drinks_list" >
         </activity>
         <activity
-            android:name=".MyFavorites"
+            android:name=".MyFavoritesActivity"
             android:label="@string/title_activity_my_favorites" >
         </activity>
         <activity android:name=".ViewDrinkActivity" >
