@@ -52,7 +52,13 @@ import android.os.StrictMode;
 import android.util.Log;
 
 /**
- * This class is responsible for getting data from the external MySQL Database.
+ * This class is responsible for getting data from the external MySQL Database. 
+ * This includes the HTTP-get and parsing the JSON-formated data.
+ * The class also puts the parsed data into the local SQLlite-database.
+ * 
+ * The class requiers network and internet accees. 
+ * @author Dag Fridén (<a
+ *         href="mailto:dag@daysoft.se">email</a>)
  */
 public class JsonParse {
 	//Sets the timeout for the web server. 	
@@ -68,13 +74,18 @@ public class JsonParse {
 	public boolean getPreInit() {
 		return true;
 	}
+	
 	/**
-	 * This method populates the drink and ingredient database. 
-	 * @return
+	 * This method populates the drink and ingredient database with the parsed JSON-
+	 * data. 
+	 * @return boolena: true if all no errors was encountered. 
 	 */
 	public static boolean getDb() {
 		boolean drinkOK = false, ingredientOK = false;
 		String responseBody = getWebData("getIngredients.php");
+		//If the getWebData returns error the HTTP-get has failed and 
+		//the paring shall not be done. 
+		if(responseBody.equals("error")) return false; 
 		Log.d("getDB",responseBody);
 		try{
 			// Prepare the JSON to be parsed.

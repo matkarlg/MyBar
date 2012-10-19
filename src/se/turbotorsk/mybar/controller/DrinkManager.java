@@ -36,6 +36,8 @@ import se.turbotorsk.mybar.model.Ingredient;
 
 /**
  * This activity handles the Drinks.
+ * @author Dag Fridén (<a
+ *         href="mailto:dag@daysoft.se">email</a>)
  */
 public class DrinkManager {
 	private LinkedList<Drink> myBar;
@@ -82,8 +84,7 @@ public class DrinkManager {
 																		// found,
 																		// stop
 																		// the
-																		// serch.
-						Log.d("ID:ID", ingredient.get_id() + ":" + ingredientID);
+																		// search.
 						if (ingredient.get_id() == ingredientID) {
 							Log.d("Found", ingredientID + "");
 							found = true;
