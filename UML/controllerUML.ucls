@@ -2,7 +2,7 @@
   generalizations="false" realizations="false" associations="false" dependencies="false" nesting-relationships="false">  
   <class id="1" corner="BOTTOM_RIGHT" language="java" name="se.turbotorsk.mybar.controller.MyBarApplication" 
     project="MyBar" file="/MyBar/src/se/turbotorsk/mybar/controller/MyBarApplication.java" binary="false">    
-    <position height="-1" width="-1" x="144" y="200"/>    
+    <position height="-1" width="-1" x="172" y="237"/>    
     <display autosize="false" stereotype="false" package="false" initial-value="false" signature="false" 
       visibility="false">      
       <attributes public="false" package="false" protected="false" private="false"/>      
@@ -11,7 +11,7 @@
   </class>  
   <class id="2" corner="BOTTOM_RIGHT" language="java" name="se.turbotorsk.mybar.controller.DrinkManager" project="MyBar" 
     file="/MyBar/src/se/turbotorsk/mybar/controller/DrinkManager.java" binary="false">    
-    <position height="-1" width="-1" x="168" y="88"/>    
+    <position height="-1" width="-1" x="244" y="113"/>    
     <display autosize="false" stereotype="false" package="false" initial-value="false" signature="false" 
       visibility="false">      
       <attributes public="false" package="false" protected="false" private="false"/>      
@@ -20,33 +20,25 @@
   </class>  
   <class id="3" corner="BOTTOM_RIGHT" language="java" name="se.turbotorsk.mybar.controller.Controller" project="MyBar" 
     file="/MyBar/src/se/turbotorsk/mybar/controller/Controller.java" binary="false">    
-    <position height="-1" width="-1" x="333" y="168"/>    
+    <position height="-1" width="-1" x="377" y="231"/>    
     <display autosize="false" stereotype="false" package="false" initial-value="false" signature="false" 
       visibility="false">      
       <attributes public="false" package="false" protected="false" private="false"/>      
       <operations public="false" package="false" protected="false" private="false"/>    
     </display>  
   </class>  
-  <association id="4">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="5" name="dm"/>      
-      <multiplicity id="6" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="false" multiplicity="false"/>  
-  </association>  
-  <association id="7">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="8" name="dm"/>      
-      <multiplicity id="9" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="false" multiplicity="false"/>  
-  </association>  
-  <association id="10">    
+  <dependency id="4">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <dependency id="5">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <association id="6">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="11" name="mApplication"/>      
-      <multiplicity id="12" minimum="0" maximum="1"/>    
+      <attribute id="7" name="mApplication"/>      
+      <multiplicity id="8" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="false" multiplicity="false"/>  
