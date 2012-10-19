@@ -151,20 +151,6 @@ public class MyBarRobotiumBasicTests extends
 		solo.goBack();	
 	}
 	
-	//Not done yet. Needs to go to FAVORITES tab and verify that the drink is there
-	public void test8AddFavoriteAndVerify(){
-		solo.assertCurrentActivity("First activity", MainActivity.class);
-		solo.sendKey(Solo.UP);
-		solo.sendKey(Solo.RIGHT);
-		solo.assertCurrentActivity("Ska ha bytt activity",
-				CollectionActivity.class);
-		solo.clickLongOnText("Angel Face");
-		solo.assertCurrentActivity("Nu ska vi se drinken", ViewDrinkActivity.class);
-		solo.clickOnCheckBox(0); //This is the fav checkbox
-		solo.goBack();
-		//solo.clickOnText("FAVORITES");
-	}
-	
 //	public void test7_OpenAddSpirits(){
 //		solo.clickOnMenuItem("Add Spirits");
 //		solo.assertCurrentActivity("Detta ska vara", AddIngredientActivity.class);
