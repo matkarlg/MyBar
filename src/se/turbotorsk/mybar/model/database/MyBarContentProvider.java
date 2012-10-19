@@ -60,36 +60,37 @@ public class MyBarContentProvider extends ContentProvider {
 	private static final int INGREDIENT_ID = 4;
 	private static final int MYBAR = 5;
 	private static final int MYBAR_ID = 6;
-	// private static final String DEFAULT_SORT_ORDER = "_id" + " ASC";
 
 	// Create the URI matcher
-	private static final UriMatcher sUriMatcher = new UriMatcher(
+	private static final UriMatcher SURIMATCHER = new UriMatcher(
 			UriMatcher.NO_MATCH);
 	static {
 		// Sets the integer value for multiple rows in DrinkTable to DRINK.
-		sUriMatcher.addURI(AUTHORITY, DrinkTable.TABLE_DRINK, DRINK);
+		SURIMATCHER.addURI(AUTHORITY, DrinkTable.TABLE_DRINK, DRINK);
 
 		// Sets the code for a single row to DRINK_ID.
-		sUriMatcher.addURI(AUTHORITY, DrinkTable.TABLE_DRINK + "/#", DRINK_ID);
+		SURIMATCHER.addURI(AUTHORITY, DrinkTable.TABLE_DRINK + "/#", DRINK_ID);
 
 		// Sets the integer value for multiple rows in IngredientTable to
 		// INGREDIENT.
-		sUriMatcher.addURI(AUTHORITY, IngredientTable.TABLE_INGREDIENT,
+		SURIMATCHER.addURI(AUTHORITY, IngredientTable.TABLE_INGREDIENT,
 				INGREDIENT);
 
 		// Sets the code for a single row to INGREDIENT_ID.
-		sUriMatcher.addURI(AUTHORITY, IngredientTable.TABLE_INGREDIENT + "/#",
+		SURIMATCHER.addURI(AUTHORITY, IngredientTable.TABLE_INGREDIENT + "/#",
 				INGREDIENT_ID);
 
 		// Sets the integer value for multiple rows in MyBarTable to MYBAR.
-		sUriMatcher.addURI(AUTHORITY, MyBarTable.TABLE_MYBAR, MYBAR);
+		SURIMATCHER.addURI(AUTHORITY, MyBarTable.TABLE_MYBAR, MYBAR);
 
 		// Sets the code for a single row to MYBAR_ID.
-		sUriMatcher.addURI(AUTHORITY, MyBarTable.TABLE_MYBAR + "/#", MYBAR_ID);
+		SURIMATCHER.addURI(AUTHORITY, MyBarTable.TABLE_MYBAR + "/#", MYBAR_ID);
 	}
 
 	@Override
 	public int delete(Uri uri, String selection, String[] selectionArgs) {
+		// To avoid pass by reference
+		String whereClause = selection;
 
 		// Get read/write permissions to the database
 		SQLiteDatabase sqlDB = database.getWritableDatabase();
@@ -98,53 +99,55 @@ public class MyBarContentProvider extends ContentProvider {
 
 		// Choose the table to query based on the code returned for the incoming
 		// URI
-		switch (sUriMatcher.match(uri)) {
+		switch (SURIMATCHER.match(uri)) {
 		// If the incoming URI was for the whole table
 		case DRINK:
-			rowsAffected = sqlDB.delete(DrinkTable.TABLE_DRINK, selection,
+			rowsAffected = sqlDB.delete(DrinkTable.TABLE_DRINK, whereClause,
 					selectionArgs);
 			break;
 
 		// If the incoming URI was for a single row
 		case DRINK_ID:
 			// Add ID to query statement
-			selection += DrinkTable.COLUMN_ID + "=" + uri.getLastPathSegment();
+			whereClause += DrinkTable.COLUMN_ID + "="
+					+ uri.getLastPathSegment();
 
 			// Add rows that should be updated
 			// Example: SELECT * FROM drink WHERE name='Margarita' AND
 			// glass='Whiskey Glass'
-			selection += TextUtils.isEmpty(selection) ? "" : " AND ("
-					+ selection + ")";
+			whereClause += TextUtils.isEmpty(whereClause) ? "" : " AND ("
+					+ whereClause + ")";
 
 			// Call the code to actually do the query
-			rowsAffected = sqlDB.delete(DrinkTable.TABLE_DRINK, selection,
+			rowsAffected = sqlDB.delete(DrinkTable.TABLE_DRINK, whereClause,
 					selectionArgs);
 			break;
 
 		case INGREDIENT:
 			rowsAffected = sqlDB.delete(IngredientTable.TABLE_INGREDIENT,
-					selection, selectionArgs);
+					whereClause, selectionArgs);
 			break;
 
 		case INGREDIENT_ID:
-			selection += IngredientTable.COLUMN_ID + "="
+			whereClause += IngredientTable.COLUMN_ID + "="
 					+ uri.getLastPathSegment();
-			selection += TextUtils.isEmpty(selection) ? "" : " AND ("
-					+ selection + ")";
+			whereClause += TextUtils.isEmpty(whereClause) ? "" : " AND ("
+					+ whereClause + ")";
 			rowsAffected = sqlDB.delete(IngredientTable.TABLE_INGREDIENT,
-					selection, selectionArgs);
+					whereClause, selectionArgs);
 			break;
 
 		case MYBAR:
-			rowsAffected = sqlDB.delete(MyBarTable.TABLE_MYBAR, selection,
+			rowsAffected = sqlDB.delete(MyBarTable.TABLE_MYBAR, whereClause,
 					selectionArgs);
 			break;
 
 		case MYBAR_ID:
-			selection += MyBarTable.COLUMN_ID + "=" + uri.getLastPathSegment();
-			selection += TextUtils.isEmpty(selection) ? "" : " AND ("
-					+ selection + ")";
-			rowsAffected = sqlDB.delete(MyBarTable.TABLE_MYBAR, selection,
+			whereClause += MyBarTable.COLUMN_ID + "="
+					+ uri.getLastPathSegment();
+			whereClause += TextUtils.isEmpty(whereClause) ? "" : " AND ("
+					+ whereClause + ")";
+			rowsAffected = sqlDB.delete(MyBarTable.TABLE_MYBAR, whereClause,
 					selectionArgs);
 			break;
 		default:
@@ -175,7 +178,7 @@ public class MyBarContentProvider extends ContentProvider {
 
 		// Choose the table to query based on the code returned for the incoming
 		// URI
-		switch (sUriMatcher.match(uri)) {
+		switch (SURIMATCHER.match(uri)) {
 		// If the incoming URI was for the whole table
 		case DRINK:
 			rowAffected = sqlDB.insert(DrinkTable.TABLE_DRINK, null, values);
@@ -201,7 +204,7 @@ public class MyBarContentProvider extends ContentProvider {
 		getContext().getContentResolver().notifyChange(uri, null);
 
 		// Insert method should return the new rows _id value
-		switch (sUriMatcher.match(uri)) {
+		switch (SURIMATCHER.match(uri)) {
 		case DRINK:
 			return Uri.parse(DrinkTable.TABLE_DRINK + "/" + rowAffected);
 		case INGREDIENT:
@@ -226,7 +229,7 @@ public class MyBarContentProvider extends ContentProvider {
 
 		// Create convenience class to help with creation of our SQL queries
 		SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
-		switch (sUriMatcher.match(uri)) {
+		switch (SURIMATCHER.match(uri)) {
 		case DRINK:
 		case DRINK_ID:
 			queryBuilder.setTables(DrinkTable.TABLE_DRINK);
@@ -243,17 +246,12 @@ public class MyBarContentProvider extends ContentProvider {
 
 		// Choose the table to query based on the code returned for the incoming
 		// URI
-		switch (sUriMatcher.match(uri)) {
+		switch (SURIMATCHER.match(uri)) {
 		// If the incoming URI was for the whole table
 		case DRINK:
 			break;
 		// If the incoming URI was for a single row
 		case DRINK_ID:
-			/*
-			 * Alternative without queryBuilder: selection = selection +
-			 * "_ID = " + uri.getLastPathSegment();
-			 */
-
 			// Adding the ID to the original query
 			queryBuilder.appendWhere(DrinkTable.COLUMN_ID + "="
 					+ uri.getLastPathSegment());
@@ -295,6 +293,8 @@ public class MyBarContentProvider extends ContentProvider {
 	@Override
 	public int update(Uri uri, ContentValues values, String selection,
 			String[] selectionArgs) {
+		// To avoid pass by reference
+		String whereClause = selection;
 
 		// Get read/write permissions to the database
 		SQLiteDatabase sqlDB = database.getWritableDatabase();
@@ -303,52 +303,54 @@ public class MyBarContentProvider extends ContentProvider {
 
 		// Choose the table to query based on the code returned for the incoming
 		// URI
-		switch (sUriMatcher.match(uri)) {
+		switch (SURIMATCHER.match(uri)) {
 		// If the incoming URI was for the whole table
 		case DRINK:
 			rowsAffected = sqlDB.update(DrinkTable.TABLE_DRINK, values,
-					selection, selectionArgs);
+					whereClause, selectionArgs);
 			break;
 		// If the incoming URI was for a single row
 		case DRINK_ID:
 
 			// Add ID to query statement
-			selection += DrinkTable.COLUMN_ID + "=" + uri.getLastPathSegment();
+			whereClause += DrinkTable.COLUMN_ID + "="
+					+ uri.getLastPathSegment();
 
 			// Add rows that should be updated
 			// Example: SELECT * FROM drink WHERE name='Margarita' AND
 			// glass='Whiskey Glass'
-			selection += TextUtils.isEmpty(selection) ? "" : " AND ("
-					+ selection + ")";
+			whereClause += TextUtils.isEmpty(whereClause) ? "" : " AND ("
+					+ whereClause + ")";
 
 			// Call the code to actually do the query
 			rowsAffected = sqlDB.update(DrinkTable.TABLE_DRINK, values,
-					selection, selectionArgs);
+					whereClause, selectionArgs);
 			break;
 
 		case INGREDIENT:
 			rowsAffected = sqlDB.update(IngredientTable.TABLE_INGREDIENT,
-					values, selection, selectionArgs);
+					values, whereClause, selectionArgs);
 			break;
 		case INGREDIENT_ID:
-			selection += IngredientTable.COLUMN_ID + "="
+			whereClause += IngredientTable.COLUMN_ID + "="
 					+ uri.getLastPathSegment();
-			selection += TextUtils.isEmpty(selection) ? "" : " AND ("
-					+ selection + ")";
+			whereClause += TextUtils.isEmpty(whereClause) ? "" : " AND ("
+					+ whereClause + ")";
 			rowsAffected = sqlDB.update(IngredientTable.TABLE_INGREDIENT,
-					values, selection, selectionArgs);
+					values, whereClause, selectionArgs);
 			break;
 
 		case MYBAR:
 			rowsAffected = sqlDB.update(MyBarTable.TABLE_MYBAR, values,
-					selection, selectionArgs);
+					whereClause, selectionArgs);
 			break;
 		case MYBAR_ID:
-			selection += MyBarTable.COLUMN_ID + "=" + uri.getLastPathSegment();
-			selection += TextUtils.isEmpty(selection) ? "" : " AND ("
-					+ selection + ")";
+			whereClause += MyBarTable.COLUMN_ID + "="
+					+ uri.getLastPathSegment();
+			whereClause += TextUtils.isEmpty(whereClause) ? "" : " AND ("
+					+ whereClause + ")";
 			rowsAffected = sqlDB.update(MyBarTable.TABLE_MYBAR, values,
-					selection, selectionArgs);
+					whereClause, selectionArgs);
 			break;
 
 		default:

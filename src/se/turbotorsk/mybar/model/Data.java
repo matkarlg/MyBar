@@ -29,6 +29,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 package se.turbotorsk.mybar.model;
 
 import java.util.LinkedList;
+import java.util.List;
 
 import se.turbotorsk.mybar.controller.Controller;
 import se.turbotorsk.mybar.controller.MyBarApplication;
@@ -51,6 +52,16 @@ import android.util.Log;
  *         href="mailto:mathias.karlgren@gmail.com">email</a>)
  */
 public class Data {
+	// Hide Utility Class Constructor.
+	private Data() throws UnsupportedOperationException {
+	};
+
+	// Define duplicate literals.
+	private static final String DEFAULT_URL = "http://repro.mybar.turbotorsk.se/img/no_img.png";
+	private static final String DEFAULT_INGREDIENTS = "test ingredients";
+	private static final int DEFAULT_RATING = 5;
+	private static final int DEFAULT_FAVORITE = 0;
+
 	/**
 	 * Inserts TestData in the database.
 	 * 
@@ -61,30 +72,24 @@ public class Data {
 
 		// Drinks uses autoincrement in the _id field.
 		Drink[] testDrinks = {
-				new Drink(1, "Margarita",
-						"http://repro.mybar.turbotorsk.se/img/no_img.png",
-						"Martini Glass", "ingredients here",
-						"Margarita instructions", 5, 0),
-				new Drink(2, "Tequila",
-						"http://repro.mybar.turbotorsk.se/img/no_img.png",
-						"Shot Glass", "ingredients here",
-						"Pour Tequila in shot glass", 5, 0),
-				new Drink(3, "Cosmopolitan",
-						"http://repro.mybar.turbotorsk.se/img/no_img.png",
-						"Martini Glass", "ingredients here",
-						"Cosmopolitan instructions", 5, 0),
-				new Drink(4, "Cuba Libre",
-						"http://repro.mybar.turbotorsk.se/img/no_img.png",
-						"Highball Glass", "ingredients here",
-						"Cuba Libre instructions", 5, 0),
-				new Drink(5, "Martini",
-						"http://repro.mybar.turbotorsk.se/img/no_img.png",
-						"Martini Glass", "ingredients here",
-						"Pour Martini in glass", 5, 0),
-				new Drink(6, "Irish Coffee",
-						"http://repro.mybar.turbotorsk.se/img/no_img.png",
-						"Coffee Glass", "ingredients here",
-						"Irish Coffee instructions", 5, 0) };
+				new Drink(1, "Margarita", DEFAULT_URL, "Martini Glass",
+						DEFAULT_INGREDIENTS, "Margarita instructions",
+						DEFAULT_RATING, DEFAULT_FAVORITE),
+				new Drink(2, "Tequila", DEFAULT_URL, "Shot Glass",
+						DEFAULT_INGREDIENTS, "Pour Tequila in shot glass",
+						DEFAULT_RATING, DEFAULT_FAVORITE),
+				new Drink(3, "Cosmopolitan", DEFAULT_URL, "Martini Glass",
+						DEFAULT_INGREDIENTS, "Cosmopolitan instructions",
+						DEFAULT_RATING, DEFAULT_FAVORITE),
+				new Drink(4, "Cuba Libre", DEFAULT_URL, "Highball Glass",
+						DEFAULT_INGREDIENTS, "Cuba Libre instructions",
+						DEFAULT_RATING, DEFAULT_FAVORITE),
+				new Drink(5, "Martini", DEFAULT_URL, "Martini Glass",
+						DEFAULT_INGREDIENTS, "Pour Martini in glass",
+						DEFAULT_RATING, DEFAULT_FAVORITE),
+				new Drink(6, "Irish Coffee", DEFAULT_URL, "Coffee Glass",
+						DEFAULT_INGREDIENTS, "Irish Coffee instructions",
+						DEFAULT_RATING, DEFAULT_FAVORITE) };
 
 		// Insert testDrinks.
 		for (Drink testDrink : testDrinks) {
@@ -97,21 +102,16 @@ public class Data {
 
 		// No autoincrement in Ingredients. Set the _id field manually.
 		Ingredient[] testIngredients = {
-				new Ingredient(1, "Koskenkorva Vodka",
-						"http://repro.mybar.turbotorsk.se/img/no_img.png",
-						"Vodka", 40, "<insert description>"),
-				new Ingredient(2, "Baileys",
-						"http://repro.mybar.turbotorsk.se/img/no_img.png",
-						"Liqueur", 20, "<insert description>"),
-				new Ingredient(3, "Dark Rum",
-						"http://repro.mybar.turbotorsk.se/img/no_img.png",
-						"Rum", 40, "<insert description>"),
-				new Ingredient(4, "Light Rum",
-						"http://repro.mybar.turbotorsk.se/img/no_img.png",
-						"Rum", 40, "<insert description>"),
-				new Ingredient(5, "Gordon's Gin",
-						"http://repro.mybar.turbotorsk.se/img/no_img.png",
-						"Gin", 40, "<insert description>") };
+				new Ingredient(1, "Koskenkorva Vodka", DEFAULT_URL, "Vodka",
+						40, "<insert description>"),
+				new Ingredient(2, "Baileys", DEFAULT_URL, "Liqueur", 20,
+						"<insert description>"),
+				new Ingredient(3, "Dark Rum", DEFAULT_URL, "Rum", 40,
+						"<insert description>"),
+				new Ingredient(4, "Light Rum", DEFAULT_URL, "Rum", 40,
+						"<insert description>"),
+				new Ingredient(5, "Gordon's Gin", DEFAULT_URL, "Gin", 40,
+						"<insert description>") };
 
 		// Insert testIngredients.
 		for (Ingredient testIngredient : testIngredients) {
@@ -157,7 +157,7 @@ public class Data {
 	}
 
 	/**
-	 * Syncs remote datastore (JSON) with local SQLite database
+	 * Syncs remote datastore (JSON) with local SQLite database.
 	 * 
 	 * @return false
 	 */
@@ -166,12 +166,10 @@ public class Data {
 	}
 
 	/**
-	 * Adds a new ingredient to MyBarTable
+	 * Adds a new ingredient to MyBarTable.
 	 * 
-	 * @param ingredientID
-	 *            _id column of the ingredient.
-	 * @param location
-	 *            "Home", "Work".
+	 * @param ingredientID _id column of the ingredient.
+	 * @param location "Home", "Work".
 	 * @return 0 if successful.
 	 */
 	public static int addMyBar(int ingredientID, String location) {
@@ -189,12 +187,10 @@ public class Data {
 	}
 
 	/**
-	 * Removes a row in MyBarTable
+	 * Removes a row in MyBarTable.
 	 * 
-	 * @param ingredientID
-	 *            _id column of the ingredient.
-	 * @param location
-	 *            "Home", "Work".
+	 * @param ingredientID _id column of the ingredient.
+	 * @param location "Home", "Work".
 	 * @return 0 if successful. 1 if error. See LogCat.
 	 */
 	public static int dropMyBar(int ingredientID, String location) {
@@ -257,8 +253,7 @@ public class Data {
 	 * Inserts a new Drink in the DrinkTable. Trying to insert another Drink
 	 * with the same name yields an error message.
 	 * 
-	 * @param name
-	 *            Drink object that should be inserted into the database.
+	 * @param name Drink object that should be inserted into the database.
 	 * @return 0 if successful, 1 if error. See LogCat.
 	 */
 	public static int addDrink(Drink name) {
@@ -309,8 +304,7 @@ public class Data {
 	/**
 	 * Removes a Drink in the DrinkTable.
 	 * 
-	 * @param iD
-	 *            an Integer _id that should be removed from the database.
+	 * @param iD an Integer _id that should be removed from the database.
 	 * @return 0 if successful, 1 if error. See LogCat.
 	 */
 	public static int dropDrink(int iD) {
@@ -366,7 +360,7 @@ public class Data {
 	 * 
 	 * @return LinkedList<MyBar>.
 	 */
-	public static LinkedList<MyBar> getAllMyBar() {
+	public static List<MyBar> getAllMyBar() {
 		LinkedList<MyBar> mybarList = new LinkedList<MyBar>();
 
 		// Query database.
@@ -410,7 +404,7 @@ public class Data {
 	 * 
 	 * @return LinkedList<Drink>.
 	 */
-	public static LinkedList<Drink> getAllDrinks() {
+	public static List<Drink> getAllDrinks() {
 		LinkedList<Drink> drinkList = new LinkedList<Drink>();
 
 		// Query database.
@@ -467,7 +461,7 @@ public class Data {
 	 * 
 	 * @return LinkedList<Ingredient>.
 	 */
-	public static LinkedList<Ingredient> getAllIngredients() {
+	public static List<Ingredient> getAllIngredients() {
 		LinkedList<Ingredient> ingredientList = new LinkedList<Ingredient>();
 
 		// Query database. No projection.
@@ -521,8 +515,7 @@ public class Data {
 	/**
 	 * Returns a Drink object by ID. Query: SELECT * WHERE _id = id.
 	 * 
-	 * @param iD
-	 *            the _id of the Drink to return
+	 * @param iD the _id of the Drink to return
 	 * @return aDrink
 	 */
 	public static Drink getDrinkByID(int iD) {
@@ -579,8 +572,7 @@ public class Data {
 	/**
 	 * Returns an Ingredient object by ID. Query: SELECT * WHERE _id = id.
 	 * 
-	 * @param iD
-	 *            the _id of the Ingredient to return
+	 * @param iD the _id of the Ingredient to return
 	 * @return anIngredient
 	 */
 	public static Ingredient getIngredientByID(int iD) {
@@ -637,7 +629,7 @@ public class Data {
 	 * 
 	 * @return LinkedList<Drink>.
 	 */
-	public static LinkedList<Drink> getAllFavorites() {
+	public static List<Drink> getAllFavorites() {
 		LinkedList<Drink> drinkList = new LinkedList<Drink>();
 
 		// Query database. No Projection
@@ -692,8 +684,7 @@ public class Data {
 	/**
 	 * Sets the favorite row in a Drink to 1.
 	 * 
-	 * @param iD
-	 *            _id of the Drink.
+	 * @param iD _id of the Drink.
 	 * @return 0 if OK. 1 if ID doesn't exist.
 	 */
 	public static int setFavoriteByID(int iD) {
@@ -744,8 +735,7 @@ public class Data {
 	/**
 	 * Sets the favorite row in a Drink to 1.
 	 * 
-	 * @param name
-	 *            the name of the Drink.
+	 * @param name the name of the Drink.
 	 * @return 0 if OK. 1 if name doesn't exist.
 	 */
 	public static int setFavoriteByName(String name) {
@@ -797,12 +787,9 @@ public class Data {
 	/**
 	 * Sets the columns in the Drink table to different values.
 	 * 
-	 * @param name
-	 *            name of the Drink to update.
-	 * @param column
-	 *            the column to update.
-	 * @param set
-	 *            the value to update the column with.
+	 * @param name name of the Drink to update.
+	 * @param column the column to update.
+	 * @param set the value to update the column with.
 	 * @return 0 if successful. 1 if error. See LogCat
 	 */
 	public static int setDrink(String name, String column, int set) {
@@ -857,12 +844,9 @@ public class Data {
 	/**
 	 * Sets the columns in the Drink table to different values.
 	 * 
-	 * @param iD
-	 *            _id of the Drink to update.
-	 * @param column
-	 *            The column to update.
-	 * @param set
-	 *            The value to update the column with.
+	 * @param iD _id of the Drink to update.
+	 * @param column The column to update.
+	 * @param set The value to update the column with.
 	 * @return 0 if successful. 1 if error. See LogCat
 	 */
 	public static int setDrink(int iD, String column, int set) {
@@ -919,9 +903,9 @@ public class Data {
 		for (int i = 0; i < getAllDrinks().size(); i++) {
 			nameList.add(getAllDrinks().get(i).getName());
 
-			Log.d(Controller.class.getClass().getName(), ""
-					+ getAllDrinks().get(i).getId() + " "
-					+ getAllDrinks().get(i).getName());
+			Log.d(Controller.class.getClass().getName(),
+					"" + getAllDrinks().get(i).getId() + " "
+							+ getAllDrinks().get(i).getName());
 		}
 
 		String[] array = new String[nameList.size()];
@@ -933,15 +917,12 @@ public class Data {
 	/**
 	 * Search for ingredients in the database.
 	 * 
-	 * @param search
-	 *            Search for ingredient.
-	 * @param limit
-	 *            Limit returned ingredients.
+	 * @param search Search for ingredient.
+	 * @param limit Limit returned ingredients.
 	 * @return A LinkedList with the ingredients containing the searchName
 	 *         string.
 	 */
-	public static LinkedList<Ingredient> searchIngredients(String search,
-			int limit) {
+	public static List<Ingredient> searchIngredients(String search, int limit) {
 		LinkedList<Ingredient> ingredientList = new LinkedList<Ingredient>();
 
 		// Query database.
@@ -999,11 +980,10 @@ public class Data {
 	/**
 	 * Search for ingredientID's in MyBarTable.
 	 * 
-	 * @param search
-	 *            Search for ingredientID's.
+	 * @param iD Search for ingredientID's.
 	 * @return A LinkedList with MyBar objects.
 	 */
-	public static LinkedList<MyBar> searchMyBar(int iD) {
+	public static List<MyBar> searchMyBar(int iD) {
 		LinkedList<MyBar> myBarList = new LinkedList<MyBar>();
 
 		// Query database.

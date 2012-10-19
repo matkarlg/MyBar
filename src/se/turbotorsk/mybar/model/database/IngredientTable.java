@@ -39,6 +39,10 @@ import android.util.Log;
  *         href="mailto:mathias.karlgren@gmail.com">email</a>)
  */
 public class IngredientTable {
+	// Hide Utility Class Constructor.
+	private IngredientTable() throws UnsupportedOperationException {
+	};
+
 	// Database table template.
 	public static final String TABLE_INGREDIENT = "ingredient";
 	public static final String COLUMN_ID = "_id";

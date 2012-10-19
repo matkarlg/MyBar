@@ -87,8 +87,8 @@ public class Ingredient {
 	 * 
 	 * @param id
 	 */
-	public void setId(int _id) {
-		this.id = _id;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	/**
