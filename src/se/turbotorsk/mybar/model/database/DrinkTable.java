@@ -39,6 +39,13 @@ import android.util.Log;
  *         href="mailto:mathias.karlgren@gmail.com">email</a>)
  */
 public class DrinkTable {
+	// Hide Utility Class Constructor.
+	private DrinkTable() throws UnsupportedOperationException {
+	};
+
+	// Define duplicate literals.
+	private static final String DEFAULT_TEXT = " TEXT NOT NULL, ";
+
 	// Database table template.
 	public static final String TABLE_DRINK = "drink";
 	public static final String COLUMN_ID = "_id";
@@ -53,11 +60,11 @@ public class DrinkTable {
 	// Database table creation SQL statement.
 	private static final String DATABASE_CREATE = "CREATE TABLE " + TABLE_DRINK
 			+ "(" + COLUMN_ID + " INTEGER PRIMARY KEY, " + COLUMN_NAME
-			+ " TEXT NOT NULL, " + COLUMN_URL + " TEXT NOT NULL, "
-			+ COLUMN_GLASS + " TEXT NOT NULL, " + COLUMN_INGREDIENT
-			+ " TEXT NOT NULL, " + COLUMN_DESCRIPTION + " TEXT NOT NULL, "
-			+ COLUMN_RATING + " INTEGER NOT NULL, " + COLUMN_FAVORITE
-			+ " INTEGER NOT NULL" + ");";
+			+ DEFAULT_TEXT + COLUMN_URL + DEFAULT_TEXT + COLUMN_GLASS
+			+ DEFAULT_TEXT + COLUMN_INGREDIENT + DEFAULT_TEXT
+			+ COLUMN_DESCRIPTION + DEFAULT_TEXT + COLUMN_RATING
+			+ " INTEGER NOT NULL, " + COLUMN_FAVORITE + " INTEGER NOT NULL"
+			+ ");";
 
 	/**
 	 * Executes the table creation SQL statement.

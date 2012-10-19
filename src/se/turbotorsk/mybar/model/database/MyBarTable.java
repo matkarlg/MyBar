@@ -39,6 +39,10 @@ import android.util.Log;
  *         href="mailto:mathias.karlgren@gmail.com">email</a>)
  */
 public class MyBarTable {
+	// Hide Utility Class Constructor.
+	private MyBarTable() throws UnsupportedOperationException {
+	};
+
 	// Database table template.
 	public static final String TABLE_MYBAR = "mybar";
 	public static final String COLUMN_ID = "_id";

@@ -67,7 +67,7 @@ public class MyBar {
 	 * 
 	 * @return id
 	 */
-	public int get_id() {
+	public int getId() {
 		return id;
 	}
 
@@ -76,8 +76,8 @@ public class MyBar {
 	 * 
 	 * @param id
 	 */
-	public void set_id(int _id) {
-		this.id = _id;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	/**

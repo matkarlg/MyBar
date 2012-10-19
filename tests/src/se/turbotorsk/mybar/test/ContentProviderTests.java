@@ -52,6 +52,12 @@ public class ContentProviderTests extends
 	public ContentProviderTests() {
 		super(MyBarContentProvider.class, "se.turbotorsk.mybar.model.database");
 	}
+	
+	// Define duplicate literals.
+	private static final String DEFAULT_URL = "http://repro.mybar.turbotorsk.se/img/no_img.png";
+	private static final String DEFAULT_INGREDIENTS = "ingredients here";
+	private static final int DEFAULT_RATING = 5;
+	private static final int DEFAULT_FAVORITE = 0;
 
 	// Reference to the mocked ContentResolver for MyBarContentProvider.
 	private MockContentResolver mMockResolver;
@@ -60,31 +66,31 @@ public class ContentProviderTests extends
 	private SQLiteDatabase testDB;
 
 	// Contains the test data, as an array of Drinks.
-	final Drink[] testDrinks = {
+	private final Drink[] testDrinks = {
 			new Drink(1, "Margarita",
-					"http://repro.mybar.turbotorsk.se/img/no_img.png",
-					"Martini Glass", "ingredients here",
-					"Margarita instructions", 5, 0),
+					DEFAULT_URL,
+					"Martini Glass", DEFAULT_INGREDIENTS,
+					"Margarita instructions", DEFAULT_RATING, DEFAULT_FAVORITE),
 			new Drink(2, "Tequila",
-					"http://repro.mybar.turbotorsk.se/img/no_img.png",
-					"Shot Glass", "ingredients here",
-					"Pour Tequila in shot glass", 5, 0),
+					DEFAULT_URL,
+					"Shot Glass", DEFAULT_INGREDIENTS,
+					"Pour Tequila in shot glass", DEFAULT_RATING, DEFAULT_FAVORITE),
 			new Drink(3, "Cosmopolitan",
-					"http://repro.mybar.turbotorsk.se/img/no_img.png",
-					"Martini Glass", "ingredients here",
-					"Cosmopolitan instructions", 5, 0),
+					DEFAULT_URL,
+					"Martini Glass", DEFAULT_INGREDIENTS,
+					"Cosmopolitan instructions", DEFAULT_RATING, DEFAULT_FAVORITE),
 			new Drink(4, "Cuba Libre",
-					"http://repro.mybar.turbotorsk.se/img/no_img.png",
-					"Highball Glass", "ingredients here",
-					"Cuba Libre instructions", 5, 0),
+					DEFAULT_URL,
+					"Highball Glass", DEFAULT_INGREDIENTS,
+					"Cuba Libre instructions", DEFAULT_RATING, DEFAULT_FAVORITE),
 			new Drink(5, "Martini",
-					"http://repro.mybar.turbotorsk.se/img/no_img.png",
-					"Martini Glass", "ingredients here",
-					"Pour Martini in glass", 5, 0),
+					DEFAULT_URL,
+					"Martini Glass", DEFAULT_INGREDIENTS,
+					"Pour Martini in glass", DEFAULT_RATING, DEFAULT_FAVORITE),
 			new Drink(6, "Irish Coffee",
-					"http://repro.mybar.turbotorsk.se/img/no_img.png",
-					"Coffee Glass", "ingredients here",
-					"Irish Coffee instructions", 5, 0) };
+					DEFAULT_URL,
+					"Coffee Glass", DEFAULT_INGREDIENTS,
+					"Irish Coffee instructions", DEFAULT_RATING, DEFAULT_FAVORITE) };
 
 	@Override
 	protected void setUp() throws Exception {
@@ -93,11 +99,6 @@ public class ContentProviderTests extends
 		mMockResolver = getMockContentResolver();
 		// Gets the database.
 		testDB = getProvider().getDatabaseHandle().getWritableDatabase();
-	}
-
-	@Override
-	protected void tearDown() throws Exception {
-		super.tearDown();
 	}
 
 	private void insertTestData() {
@@ -136,10 +137,10 @@ public class ContentProviderTests extends
 
 	public void testInserts() {
 		// Create a new Drink.
-		final Drink testOneDrink = new Drink(1, "Tequila",
-				"http://repro.mybar.turbotorsk.se/img/no_img.png",
-				"Shot Glass", "ingredients here", "Pour Tequila in shot glass",
-				5, 0);
+		final Drink testOneDrink = new Drink(1, "Vodka",
+				DEFAULT_URL,
+				"Shot Glass", DEFAULT_INGREDIENTS, "Pour Vodka in shot glass",
+				DEFAULT_RATING, DEFAULT_FAVORITE);
 
 		// Insert Test 1. Inserts one Drink into DrinkTable.
 		Uri rowUri = null;
@@ -201,7 +202,7 @@ public class ContentProviderTests extends
 
 	public void testUpdates() {
 		final String selection = DrinkTable.COLUMN_NAME + " = ? ";
-		final String[] selectionArgs = { "Tequila" };
+		final String[] selectionArgs = { "Cuba Libre" };
 		ContentValues values = new ContentValues();
 
 		// Update Test 1. Update empty table.

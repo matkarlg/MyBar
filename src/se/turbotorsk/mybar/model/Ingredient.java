@@ -78,7 +78,7 @@ public class Ingredient {
 	 * 
 	 * @return id
 	 */
-	public int get_id() {
+	public int getId() {
 		return id;
 	}
 
@@ -87,8 +87,8 @@ public class Ingredient {
 	 * 
 	 * @param id
 	 */
-	public void set_id(int _id) {
-		this.id = _id;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	/**
