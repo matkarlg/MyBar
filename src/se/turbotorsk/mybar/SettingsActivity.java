@@ -78,7 +78,6 @@ public class SettingsActivity extends Activity{
 	}
 	
 	public void clearDB(View view){
-		Controller.deleteTables(); //needs something else to clear mybar. fix this tomorrow
 		Toast.makeText(getApplicationContext(), "You have now flushed your database. Please restart your application.", Toast.LENGTH_LONG).show();
 	}	
 }
