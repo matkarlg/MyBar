@@ -46,6 +46,7 @@ import android.text.TextUtils;
  *         href="mailto:mathias.karlgren@gmail.com">email</a>)
  */
 public class MyBarContentProvider extends ContentProvider {
+    // Content Provider specific constants
     public static final String AUTHORITY = "se.turbotorsk.mybar.model.database";
     public static final Uri CONTENTURI_DRINK = Uri.parse("content://" + AUTHORITY + "/"
             + DrinkTable.TABLE_DRINK);
@@ -53,8 +54,11 @@ public class MyBarContentProvider extends ContentProvider {
             + IngredientTable.TABLE_INGREDIENT);
     public static final Uri CONTENTURI_MYBAR = Uri.parse("content://" + AUTHORITY + "/"
             + MyBarTable.TABLE_MYBAR);
-
+    
+    // SQLite database object
     private MyBarDatabaseHelper database;
+    
+    // URI constants
     private static final int DRINK = 1;
     private static final int DRINK_ID = 2;
     private static final int INGREDIENT = 3;
