@@ -5,12 +5,12 @@ mybar@turbotorsk.se
 
 Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
-* Redistributions of source code must retain the above copyright notice,
+ * Redistributions of source code must retain the above copyright notice,
   this list of conditions and the following disclaimer.
-* Redistributions in binary form must reproduce the above copyright notice,
+ * Redistributions in binary form must reproduce the above copyright notice,
   this list of conditions and the following disclaimer in the documentation
   and/or other materials provided with the distribution.
-* Neither the name of the MyBar nor the names of its contributors may be 
+ * Neither the name of the MyBar nor the names of its contributors may be 
   used to endorse or promote products derived from this software without
   specific prior written permission.
 
@@ -38,81 +38,81 @@ import android.content.ContentValues;
  *         href="mailto:mathias.karlgren@gmail.com">email</a>)
  */
 public class MyBar {
-	private int id = 0;
-	private int ingredientID = 0;
-	private String location = "";
-	private ContentValues values = null;
+    private int id = 0;
+    private int ingredientID = 0;
+    private String location = "";
+    private ContentValues values = null;
 
-	public MyBar(int id, int ingredientID, String location) {
-		this.id = id;
-		this.ingredientID = ingredientID;
-		this.location = location;
+    public MyBar(int id, int ingredientID, String location) {
+        this.id = id;
+        this.ingredientID = ingredientID;
+        this.location = location;
 
-		values = new ContentValues();
-		values.put("ingredientid", ingredientID);
-		values.put("location", location);
-	}
+        values = new ContentValues();
+        values.put("ingredientid", ingredientID);
+        values.put("location", location);
+    }
 
-	/**
-	 * Gets the ContentValues.
-	 * 
-	 * @return values
-	 */
-	public ContentValues getContentValues() {
-		return values;
-	}
+    /**
+     * Gets the ContentValues.
+     * 
+     * @return values
+     */
+    public ContentValues getContentValues() {
+        return values;
+    }
 
-	/**
-	 * Gets the id.
-	 * 
-	 * @return id
-	 */
-	public int getId() {
-		return id;
-	}
+    /**
+     * Gets the id.
+     * 
+     * @return id
+     */
+    public int getId() {
+        return id;
+    }
 
-	/**
-	 * Sets the id.
-	 * 
-	 * @param id
-	 */
-	public void setId(int id) {
-		this.id = id;
-	}
+    /**
+     * Sets the id.
+     * 
+     * @param id
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	/**
-	 * Gets the ingredientID.
-	 * 
-	 * @return ingredientID
-	 */
-	public int getIngredientID() {
-		return ingredientID;
-	}
+    /**
+     * Gets the ingredientID.
+     * 
+     * @return ingredientID
+     */
+    public int getIngredientID() {
+        return ingredientID;
+    }
 
-	/**
-	 * Sets the location.
-	 * 
-	 * @param location
-	 */
-	public void setLocation(String location) {
-		this.location = location;
-	}
+    /**
+     * Sets the location.
+     * 
+     * @param location
+     */
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
-	/**
-	 * Gets the location.
-	 * 
-	 * @return location
-	 */
-	public String getLocation() {
-		return location;
-	}
+    /**
+     * Gets the location.
+     * 
+     * @return location
+     */
+    public String getLocation() {
+        return location;
+    }
 
-	/**
-	 * Sets the ingredientID.
-	 * 
-	 * @param ingredientID
-	 */
-	public void setIngredientid(int ingredientID) {
-		this.ingredientID = ingredientID;
-	}
+    /**
+     * Sets the ingredientID.
+     * 
+     * @param ingredientID
+     */
+    public void setIngredientid(int ingredientID) {
+        this.ingredientID = ingredientID;
+    }
 }

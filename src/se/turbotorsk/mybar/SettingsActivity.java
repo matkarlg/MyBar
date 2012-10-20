@@ -26,7 +26,6 @@ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISE
 OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-
 /**
  * 
  * This activity shows all the settings you can do. It is far from complete but
@@ -38,20 +37,17 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package se.turbotorsk.mybar;
 
-import se.turbotorsk.mybar.controller.Controller;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 /**
  * This activity handles the Settings-view from Options-menu.
  */
-public class SettingsActivity extends Activity{
+public class SettingsActivity extends Activity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -60,24 +56,42 @@ public class SettingsActivity extends Activity{
 		createLocationSpinner();
 		createThemeSpinner();
 	}
-	
-	private void createLocationSpinner(){
+
+	/**
+	 * Creates a spinner for the user to pick the location of the bar.
+	 */
+	private void createLocationSpinner() {
 		Spinner locationSpinner = (Spinner) findViewById(R.id.locationSpinner);
-		ArrayAdapter<CharSequence> locationAdapter = ArrayAdapter.createFromResource(this,
-		        R.array.locations, android.R.layout.simple_spinner_item);
-		locationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		ArrayAdapter<CharSequence> locationAdapter = ArrayAdapter
+				.createFromResource(this, R.array.locations,
+						android.R.layout.simple_spinner_item);
+		locationAdapter
+				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		locationSpinner.setAdapter(locationAdapter);
 	}
-	
-	private void createThemeSpinner(){
+
+	/**
+	 * Creates a spinner for the user to pick a theme for the app.
+	 */
+	private void createThemeSpinner() {
 		Spinner themeSpinner = (Spinner) findViewById(R.id.themeSpinner);
-		ArrayAdapter<CharSequence> themeAdapter = ArrayAdapter.createFromResource(this,
-		        R.array.themes, android.R.layout.simple_spinner_item);
-		themeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		ArrayAdapter<CharSequence> themeAdapter = ArrayAdapter
+				.createFromResource(this, R.array.themes,
+						android.R.layout.simple_spinner_item);
+		themeAdapter
+				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		themeSpinner.setAdapter(themeAdapter);
 	}
-	
-	public void clearDB(View view){
-		Toast.makeText(getApplicationContext(), "You have now flushed your database. Please restart your application.", Toast.LENGTH_LONG).show();
-	}	
+
+	/**
+	 * Does not do much at the moment.
+	 * 
+	 * @param view
+	 */
+	public void clearDB(View view) {
+		Toast.makeText(
+				getApplicationContext(),
+				"You have now flushed your database. Please restart your application.",
+				Toast.LENGTH_LONG).show();
+	}
 }

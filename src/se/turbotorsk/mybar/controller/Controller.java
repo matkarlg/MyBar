@@ -40,7 +40,10 @@ import se.turbotorsk.mybar.model.MyBar;
  * @author Dag Fridén (<a
  *         href="mailto:dag@daysoft.se">email</a>)
  */
-public class Controller {
+public final class Controller {
+	// Hide Utility Class Constructor.
+	private Controller() {
+	};
 
 	/**
 	 * Gets method return the drinks that you can make with

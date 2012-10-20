@@ -5,12 +5,12 @@ mybar@turbotorsk.se
 
 Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
-* Redistributions of source code must retain the above copyright notice,
+ * Redistributions of source code must retain the above copyright notice,
   this list of conditions and the following disclaimer.
-* Redistributions in binary form must reproduce the above copyright notice,
+ * Redistributions in binary form must reproduce the above copyright notice,
   this list of conditions and the following disclaimer in the documentation
   and/or other materials provided with the distribution.
-* Neither the name of the MyBar nor the names of its contributors may be 
+ * Neither the name of the MyBar nor the names of its contributors may be 
   used to endorse or promote products derived from this software without
   specific prior written permission.
 
@@ -39,145 +39,145 @@ import android.content.ContentValues;
  *         href="mailto:mathias.karlgren@gmail.com">email</a>)
  */
 public class Ingredient {
-	private int id = 0;
-	private String name = "";
-	private String url = "";
-	private String type = "";
-	private int alcoholcontent = 0;
-	private String description = "";
-	private ContentValues values = null;
+    private int id = 0;
+    private String name = "";
+    private String url = "";
+    private String type = "";
+    private int alcoholcontent = 0;
+    private String description = "";
+    private ContentValues values = null;
 
-	public Ingredient(int id, String name, String url, String type,
-			int alcoholcontent, String description) {
-		this.id = id;
-		this.name = name;
-		this.url = url;
-		this.type = type;
-		this.alcoholcontent = alcoholcontent;
-		this.description = description;
+    public Ingredient(int id, String name, String url, String type, int alcoholcontent,
+            String description) {
+        this.id = id;
+        this.name = name;
+        this.url = url;
+        this.type = type;
+        this.alcoholcontent = alcoholcontent;
+        this.description = description;
 
-		values = new ContentValues();
-		values.put("name", name);
-		values.put("url", url);
-		values.put("type", type);
-		values.put("alcoholcontent", alcoholcontent);
-		values.put("description", description);
-	}
+        values = new ContentValues();
+        values.put("name", name);
+        values.put("url", url);
+        values.put("type", type);
+        values.put("alcoholcontent", alcoholcontent);
+        values.put("description", description);
+    }
 
-	/**
-	 * Gets the ContentValues.
-	 * 
-	 * @return values
-	 */
-	public ContentValues getContentValues() {
-		return values;
-	}
+    /**
+     * Gets the ContentValues.
+     * 
+     * @return values
+     */
+    public ContentValues getContentValues() {
+        return values;
+    }
 
-	/**
-	 * Gets the id.
-	 * 
-	 * @return id
-	 */
-	public int getId() {
-		return id;
-	}
+    /**
+     * Gets the id.
+     * 
+     * @return id
+     */
+    public int getId() {
+        return id;
+    }
 
-	/**
-	 * Sets the id.
-	 * 
-	 * @param id
-	 */
-	public void setId(int id) {
-		this.id = id;
-	}
+    /**
+     * Sets the id.
+     * 
+     * @param id
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	/**
-	 * Gets the name.
-	 * 
-	 * @return name
-	 */
-	public String getName() {
-		return name;
-	}
+    /**
+     * Gets the name.
+     * 
+     * @return name
+     */
+    public String getName() {
+        return name;
+    }
 
-	/**
-	 * Sets the name.
-	 * 
-	 * @param name
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
+    /**
+     * Sets the name.
+     * 
+     * @param name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	/**
-	 * Gets the URL.
-	 * 
-	 * @return URL
-	 */
-	public String getUrl() {
-		return url;
-	}
+    /**
+     * Gets the URL.
+     * 
+     * @return URL
+     */
+    public String getUrl() {
+        return url;
+    }
 
-	/**
-	 * Sets the URL.
-	 * 
-	 * @param URL
-	 */
-	public void setUrl(String url) {
-		this.url = url;
-	}
+    /**
+     * Sets the URL.
+     * 
+     * @param URL
+     */
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
-	/**
-	 * Gets the type.
-	 * 
-	 * @return type
-	 */
-	public String getType() {
-		return type;
-	}
+    /**
+     * Gets the type.
+     * 
+     * @return type
+     */
+    public String getType() {
+        return type;
+    }
 
-	/**
-	 * Sets the type.
-	 * 
-	 * @param type
-	 */
-	public void setType(String type) {
-		this.type = type;
-	}
+    /**
+     * Sets the type.
+     * 
+     * @param type
+     */
+    public void setType(String type) {
+        this.type = type;
+    }
 
-	/**
-	 * Gets the alcoholcontent.
-	 * 
-	 * @return alcoholcontent
-	 */
-	public int getAlcoholcontent() {
-		return alcoholcontent;
-	}
+    /**
+     * Gets the alcoholcontent.
+     * 
+     * @return alcoholcontent
+     */
+    public int getAlcoholcontent() {
+        return alcoholcontent;
+    }
 
-	/**
-	 * Sets the alcoholcontent.
-	 * 
-	 * @param alcoholcontent
-	 */
-	public void setAlcoholcontent(int alcoholcontent) {
-		this.alcoholcontent = alcoholcontent;
-	}
+    /**
+     * Sets the alcoholcontent.
+     * 
+     * @param alcoholcontent
+     */
+    public void setAlcoholcontent(int alcoholcontent) {
+        this.alcoholcontent = alcoholcontent;
+    }
 
-	/**
-	 * Gets the description.
-	 * 
-	 * @return description
-	 */
-	public String getDescription() {
-		return description;
-	}
+    /**
+     * Gets the description.
+     * 
+     * @return description
+     */
+    public String getDescription() {
+        return description;
+    }
 
-	/**
-	 * Sets the description.
-	 * 
-	 * @param description
-	 */
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    /**
+     * Sets the description.
+     * 
+     * @param description
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

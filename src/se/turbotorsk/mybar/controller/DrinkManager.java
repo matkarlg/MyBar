@@ -30,27 +30,28 @@ package se.turbotorsk.mybar.controller;
 
 import java.util.LinkedList;
 
-import android.util.Log;
 import se.turbotorsk.mybar.model.Drink;
 import se.turbotorsk.mybar.model.Ingredient;
+import android.util.Log;
 
 /**
  * This activity handles the Drinks.
  * 
  * @author Dag Fridén (<a href="mailto:dag@daysoft.se">email</a>)
  */
-public class DrinkManager {
-	private static LinkedList<Drink> myBar;
+public final class DrinkManager {
+	// Hide Utility Class Constructor.
+	private DrinkManager() {
+	};
 
 	/**
 	 * Get the drinks in the bar. Get all drinks Check if the is a drink that
 	 * can me done with the ingredients in the bar.
 	 */
 	public static LinkedList<Drink> getMyBar() {
-
+		LinkedList<Drink> myBar = new LinkedList<Drink>();
 		LinkedList<Ingredient> myIngredientList = Controller.getMyIngredients();
 		Log.d("myIngredientList", myIngredientList.toString());
-		myBar = new LinkedList<Drink>();
 		LinkedList<Drink> drinkList = Controller.getAllDrinks();
 		Log.d("drinkList", drinkList.toString());
 		Log.d("getFrist", drinkList.getFirst().getName());
@@ -79,8 +80,9 @@ public class DrinkManager {
 					// So lets stop
 					// checking the current drink and move on to the next
 					// one in the list.
-					if (!found)
+					if (!found){
 						break;
+					}	
 				}
 				if (found) {
 					myBar.add(drink);
