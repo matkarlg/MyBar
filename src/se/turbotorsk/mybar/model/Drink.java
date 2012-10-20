@@ -47,6 +47,7 @@ public class Drink {
     private int rating = 0;
     private int favorite = 0;
     private ContentValues values = null;
+    private final static int MAXSTRINGLENGTH = 36;
 
     public Drink(int id, String name, String url, String glass, String ingredient,
             String description, int rating, int favorite) {
@@ -76,11 +77,11 @@ public class Drink {
      * @return
      */
     public String getIngredientPreViewString() {
-        int maxStringLength = (40 - 4);
         StringBuffer nameBuff = new StringBuffer();
         String nameString = "";
         String[] array = ingredient.split(";");
         nameBuff.append("| ");
+        int maxStringLength = MAXSTRINGLENGTH; 
         int i = 0;
         while (i < array.length - 1) {
             nameString = Data.getIngredientByID(Integer.parseInt(array[i])).getName();
