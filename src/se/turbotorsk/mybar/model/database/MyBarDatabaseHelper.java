@@ -5,12 +5,12 @@ mybar@turbotorsk.se
 
 Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
-* Redistributions of source code must retain the above copyright notice,
+ * Redistributions of source code must retain the above copyright notice,
   this list of conditions and the following disclaimer.
-* Redistributions in binary form must reproduce the above copyright notice,
+ * Redistributions in binary form must reproduce the above copyright notice,
   this list of conditions and the following disclaimer in the documentation
   and/or other materials provided with the distribution.
-* Neither the name of the MyBar nor the names of its contributors may be 
+ * Neither the name of the MyBar nor the names of its contributors may be 
   used to endorse or promote products derived from this software without
   specific prior written permission.
 
@@ -43,31 +43,30 @@ import android.util.Log;
  *         href="mailto:mathias.karlgren@gmail.com">email</a>)
  */
 public class MyBarDatabaseHelper extends SQLiteOpenHelper {
-	private static final String DATABASE_NAME = "turbotorsk_mybar.db";
-	private static final int DATABASE_VERSION = 5;
+    private static final String DATABASE_NAME = "turbotorsk_mybar.db";
+    private static final int DATABASE_VERSION = 5;
 
-	public MyBarDatabaseHelper(Context context) {
-		super(context, DATABASE_NAME, null, DATABASE_VERSION);
-	}
+    public MyBarDatabaseHelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
 
-	// Called during creation of the database.
-	@Override
-	public void onCreate(SQLiteDatabase database) {
-		// Populate the database using our table classes.
-		DrinkTable.onCreate(database);
-		IngredientTable.onCreate(database);
-		MyBarTable.onCreate(database);
-	}
+    // Called during creation of the database.
+    @Override
+    public void onCreate(SQLiteDatabase database) {
+        // Populate the database using our table classes.
+        DrinkTable.onCreate(database);
+        IngredientTable.onCreate(database);
+        MyBarTable.onCreate(database);
+    }
 
-	// Called during an upgrade of the database.
-	@Override
-	public void onUpgrade(SQLiteDatabase database, int oldVersion,
-			int newVersion) {
-		// Upgrade our database with the new table versions.
-		Log.w(this.getClass().getName(), "Upgrading database from version "
-				+ oldVersion + " to " + newVersion);
-		DrinkTable.onUpgrade(database, oldVersion, newVersion);
-		IngredientTable.onUpgrade(database, oldVersion, newVersion);
-		MyBarTable.onUpgrade(database, oldVersion, newVersion);
-	}
+    // Called during an upgrade of the database.
+    @Override
+    public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
+        // Upgrade our database with the new table versions.
+        Log.w(this.getClass().getName(), "Upgrading database from version " + oldVersion + " to "
+                + newVersion);
+        DrinkTable.onUpgrade(database, oldVersion, newVersion);
+        IngredientTable.onUpgrade(database, oldVersion, newVersion);
+        MyBarTable.onUpgrade(database, oldVersion, newVersion);
+    }
 }
