@@ -41,7 +41,6 @@ import android.widget.Toast;
 public class AddIngredientActivity extends ListActivity {
 
 	private IngredientAdapter adapter;
-	public static int save = -1;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -66,8 +65,8 @@ public class AddIngredientActivity extends ListActivity {
 				Toast.makeText(AddIngredientActivity.this,
 						adapter.getName(position) + " added",
 						Toast.LENGTH_SHORT).show();
-			} 
-			
+			}
+
 			else {
 				Toast.makeText(AddIngredientActivity.this,
 						adapter.getName(position) + " is already added!",
