@@ -46,6 +46,9 @@ import android.widget.TextView;
  * the about box example on http://tekeye.biz/
  */
 public final class AboutBox {
+	// Hide Utility Class Constructor.
+	private AboutBox() {
+	};
 
 	private static final String VERSION_NAME = "0.5";
 

@@ -41,6 +41,9 @@ import se.turbotorsk.mybar.model.MyBar;
  *         href="mailto:dag@daysoft.se">email</a>)
  */
 public final class Controller {
+	// Hide Utility Class Constructor.
+	private Controller() {
+	};
 
 	/**
 	 * Gets method return the drinks that you can make with
