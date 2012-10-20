@@ -30,9 +30,9 @@ package se.turbotorsk.mybar.controller;
 
 import java.util.LinkedList;
 
-import android.util.Log;
 import se.turbotorsk.mybar.model.Drink;
 import se.turbotorsk.mybar.model.Ingredient;
+import android.util.Log;
 
 /**
  * This activity handles the Drinks.
@@ -40,6 +40,9 @@ import se.turbotorsk.mybar.model.Ingredient;
  * @author Dag Fridén (<a href="mailto:dag@daysoft.se">email</a>)
  */
 public final class DrinkManager {
+	// Hide Utility Class Constructor.
+	private DrinkManager() {
+	};
 
 	/**
 	 * Get the drinks in the bar. Get all drinks Check if the is a drink that
