@@ -42,9 +42,10 @@ import android.widget.TextView;
 /**
  * This activity handles the AboutBox that is a part of the Options-menu. It
  * shows the current version number and also the name of the developing group
- * who made the application.
+ * who made the application. The structure of this code is similar to that of
+ * the about box example on http://tekeye.biz/
  */
-public class AboutBox {
+public final class AboutBox {
 
 	private static final String VERSION_NAME = "0.5";
 
@@ -53,7 +54,7 @@ public class AboutBox {
 	}
 
 	public static void show(Activity callingActivity) {
-		// Use a Spannable to allow for links highlighting.
+		// Using Spannable to allow links highlighting.
 		SpannableString aboutText = new SpannableString("Version "
 				+ versionName(callingActivity) + "\n\n"
 				+ callingActivity.getString(R.string.about));
@@ -67,15 +68,14 @@ public class AboutBox {
 					(ViewGroup) callingActivity.findViewById(R.id.aboutView));
 			tvAbout = (TextView) about.findViewById(R.id.aboutText);
 		} catch (InflateException e) {
-			// Inflater can throw exception, unlikely but default to TextView if
-			// it occurs.
+			// If Inflater throws exception it goes back to default view.
 			tvAbout = new TextView(callingActivity);
 			about = tvAbout;
 		}
 
-		// Set the about text.
+		// Sets the about text.
 		tvAbout.setText(aboutText);
-		// Now Linkify the text.
+		// Linkify the text.
 		Linkify.addLinks(tvAbout, Linkify.ALL);
 		// Build and show the dialog.
 		new AlertDialog.Builder(callingActivity)
