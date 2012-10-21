@@ -74,7 +74,7 @@ public class DrinkAdapter extends ArrayAdapter<LinkedList> {
 	public View getView(int position, View convertView, ViewGroup parent) {
 
 		View v = convertView;
-
+		
 		if (v == null) {
 
 			LayoutInflater vi;
