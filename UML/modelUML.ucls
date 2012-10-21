@@ -2,7 +2,7 @@
   generalizations="false" realizations="false" associations="false" dependencies="false" nesting-relationships="false">  
   <class id="1" corner="BOTTOM_RIGHT" language="java" name="se.turbotorsk.mybar.model.MyBar" project="MyBar" 
     file="/MyBar/src/se/turbotorsk/mybar/model/MyBar.java" binary="false">    
-    <position height="-1" width="-1" x="194" y="87"/>    
+    <position height="-1" width="-1" x="433" y="120"/>    
     <display autosize="false" stereotype="false" package="false" initial-value="false" signature="false" 
       visibility="false">      
       <attributes public="false" package="false" protected="false" private="false"/>      
@@ -11,7 +11,7 @@
   </class>  
   <class id="2" corner="BOTTOM_RIGHT" language="java" name="se.turbotorsk.mybar.model.Ingredient" project="MyBar" 
     file="/MyBar/src/se/turbotorsk/mybar/model/Ingredient.java" binary="false">    
-    <position height="-1" width="-1" x="363" y="320"/>    
+    <position height="-1" width="-1" x="534" y="337"/>    
     <display autosize="false" stereotype="false" package="false" initial-value="false" signature="false" 
       visibility="false">      
       <attributes public="false" package="false" protected="false" private="false"/>      
@@ -20,7 +20,7 @@
   </class>  
   <class id="3" corner="BOTTOM_RIGHT" language="java" name="se.turbotorsk.mybar.model.Data" project="MyBar" 
     file="/MyBar/src/se/turbotorsk/mybar/model/Data.java" binary="false">    
-    <position height="-1" width="-1" x="249" y="204"/>    
+    <position height="-1" width="-1" x="438" y="229"/>    
     <display autosize="false" stereotype="false" package="false" initial-value="false" signature="false" 
       visibility="false">      
       <attributes public="false" package="false" protected="false" private="false"/>      
@@ -29,7 +29,7 @@
   </class>  
   <class id="4" corner="BOTTOM_RIGHT" language="java" name="se.turbotorsk.mybar.model.Drink" project="MyBar" 
     file="/MyBar/src/se/turbotorsk/mybar/model/Drink.java" binary="false">    
-    <position height="-1" width="-1" x="89" y="326"/>    
+    <position height="-1" width="-1" x="311" y="334"/>    
     <display autosize="false" stereotype="false" package="false" initial-value="false" signature="false" 
       visibility="false">      
       <attributes public="false" package="false" protected="false" private="false"/>      
@@ -38,35 +38,35 @@
   </class>  
   <dependency id="5">    
     <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="1"/>  
+    <end type="TARGET" refId="4"/>  
   </dependency>  
   <dependency id="6">    
     <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="2"/>  
+    <end type="TARGET" refId="3"/>  
   </dependency>  
   <dependency id="7">    
-    <end type="SOURCE" refId="3"/>    
+    <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="2"/>  
   </dependency>  
   <dependency id="8">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="3"/>  
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="1"/>  
   </dependency>  
   <dependency id="9">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="2"/>  
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="1"/>  
   </dependency>  
   <dependency id="10">    
     <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="4"/>  
+    <end type="TARGET" refId="2"/>  
   </dependency>  
   <dependency id="11">    
-    <end type="SOURCE" refId="3"/>    
+    <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="2"/>  
   </dependency>  
   <dependency id="12">    
     <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="1"/>  
+    <end type="TARGET" refId="2"/>  
   </dependency>  
   <classifier-display autosize="false" stereotype="false" package="false" initial-value="false" signature="false" 
     visibility="false">    

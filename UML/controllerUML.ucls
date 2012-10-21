@@ -2,7 +2,7 @@
   generalizations="false" realizations="false" associations="false" dependencies="false" nesting-relationships="false">  
   <class id="1" corner="BOTTOM_RIGHT" language="java" name="se.turbotorsk.mybar.controller.MyBarApplication" 
     project="MyBar" file="/MyBar/src/se/turbotorsk/mybar/controller/MyBarApplication.java" binary="false">    
-    <position height="-1" width="-1" x="172" y="237"/>    
+    <position height="-1" width="-1" x="321" y="293"/>    
     <display autosize="false" stereotype="false" package="false" initial-value="false" signature="false" 
       visibility="false">      
       <attributes public="false" package="false" protected="false" private="false"/>      
@@ -11,7 +11,7 @@
   </class>  
   <class id="2" corner="BOTTOM_RIGHT" language="java" name="se.turbotorsk.mybar.controller.DrinkManager" project="MyBar" 
     file="/MyBar/src/se/turbotorsk/mybar/controller/DrinkManager.java" binary="false">    
-    <position height="-1" width="-1" x="244" y="113"/>    
+    <position height="-1" width="-1" x="396" y="176"/>    
     <display autosize="false" stereotype="false" package="false" initial-value="false" signature="false" 
       visibility="false">      
       <attributes public="false" package="false" protected="false" private="false"/>      
@@ -20,7 +20,7 @@
   </class>  
   <class id="3" corner="BOTTOM_RIGHT" language="java" name="se.turbotorsk.mybar.controller.Controller" project="MyBar" 
     file="/MyBar/src/se/turbotorsk/mybar/controller/Controller.java" binary="false">    
-    <position height="-1" width="-1" x="377" y="231"/>    
+    <position height="-1" width="-1" x="529" y="294"/>    
     <display autosize="false" stereotype="false" package="false" initial-value="false" signature="false" 
       visibility="false">      
       <attributes public="false" package="false" protected="false" private="false"/>      
@@ -28,12 +28,12 @@
     </display>  
   </class>  
   <dependency id="4">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <dependency id="5">    
     <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <dependency id="5">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="3"/>  
   </dependency>  
   <association id="6">    
     <end type="SOURCE" refId="1" navigable="false">      

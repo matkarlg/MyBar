@@ -2,7 +2,7 @@
   generalizations="false" realizations="false" associations="false" dependencies="false" nesting-relationships="false">  
   <class id="1" corner="BOTTOM_RIGHT" language="java" name="se.turbotorsk.mybar.model.externaldata.JsonParse" 
     project="MyBar" file="/MyBar/src/se/turbotorsk/mybar/model/externaldata/JsonParse.java" binary="false">    
-    <position height="-1" width="-1" x="275" y="144"/>    
+    <position height="-1" width="-1" x="419" y="238"/>    
     <display autosize="false" stereotype="false" package="false" initial-value="false" signature="false" 
       visibility="false">      
       <attributes public="false" package="false" protected="false" private="false"/>      
