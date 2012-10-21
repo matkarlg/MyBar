@@ -75,7 +75,7 @@ public class Drink {
      * Return a representation of the ingredients in the drink for the the drink
      * view activity.
      * 
-     * @return
+     * @return a string that can be used to preview the ingredients.
      */
     public String getIngredientPreViewString() {
         StringBuffer nameBuff = new StringBuffer();
@@ -95,6 +95,10 @@ public class Drink {
         return nameBuff.toString();
     }
 
+    /**
+     * Gets all the ingredients in a String format.
+     * @return a string with all the ingredient names in. 
+     */
     public String getIngredientString() {
         StringBuffer nameBuff = new StringBuffer();
         String nameString = "";
