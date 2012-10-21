@@ -63,16 +63,13 @@ import android.util.Log;
 public class JsonParse {
 	//Sets the timeout for the web server. 	
 	private static final int TIMEOUT_MILLISEC = 999; 
+	private static final String WEBSERVER_ADDRESS = "http://dbaccess.mybar.turbotorsk.se/";
 	
 	//Gives the Class access to the network. 
 	static {
 		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
 				.permitAll().build();
 		StrictMode.setThreadPolicy(policy);
-	}
-
-	public boolean getPreInit() {
-		return true;
 	}
 	
 	/**
@@ -125,9 +122,8 @@ public class JsonParse {
 			//Print the json to the Log.d.
 			Log.d("getDrinks.php",jArray.toString());
 			for (int i = 0; i < jArray.length(); ++i) {
-				JSONObject jObject;								
-				jObject = jArray.getJSONObject(i);
-				//
+				JSONObject jObject = jArray.getJSONObject(i);
+				//Gets the values from the JSON-data. 
 				ContentValues values = new Drink(jObject.getInt("_id"),
 					jObject.getString("name"), 	
 					jObject.getString("url"),		
@@ -164,15 +160,18 @@ public class JsonParse {
 		
 	    try {
 	        Log.d(JsonParse.class.getSimpleName(), "Start the web-get documnet");
+	        //Creates the parameters. 
 	        HttpParams httpParams = new BasicHttpParams();
+	        //TIMEOUT_MILLISEC sets the timeout. If bad network higher liver is needed.
 	        HttpConnectionParams.setConnectionTimeout(httpParams,TIMEOUT_MILLISEC);
 	        HttpConnectionParams.setSoTimeout(httpParams, TIMEOUT_MILLISEC);
 	        HttpParams p = new BasicHttpParams();
+	        //Sets parameters. For future use.
 	        p.setParameter("user", "1");
-
 	        // Instantiate an HttpClient.
 	        HttpClient httpclient = new DefaultHttpClient(p);
-	        String url = "http://dbaccess.mybar.turbotorsk.se/" + wepDocumet;
+	        //WEBSERVER_ADDRESS, the address to the webserver. DO NOT USE IP!.
+	        String url = WEBSERVER_ADDRESS + wepDocumet;
 	        HttpPost httppost = new HttpPost(url);
 	        // Instantiate a GET HTTP method.
     		try{
@@ -181,10 +180,12 @@ public class JsonParse {
     		
     		} catch (ClientProtocolException e) {    			
     			Log.e("Error", e.toString());
+    			//Return a string with error to indicate that an error has happened. 
     			return "error";
     		}
 	    } catch (Exception e) {
 			Log.e("Error", e.toString());
+			//Return a string with error to indicate that an error has happened. 
 			return "error";
     	}	
 	}
