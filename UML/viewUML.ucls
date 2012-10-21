@@ -2,7 +2,7 @@
   generalizations="false" realizations="false" associations="false" dependencies="false" nesting-relationships="false">  
   <class id="1" corner="TOP_LEFT" language="java" name="se.turbotorsk.mybar.MyDrinksActivity" project="MyBar" 
     file="/MyBar/src/se/turbotorsk/mybar/MyDrinksActivity.java" binary="false">    
-    <position height="-1" width="-1" x="110" y="75"/>    
+    <position height="-1" width="-1" x="149" y="140"/>    
     <display autosize="false" stereotype="false" package="false" initial-value="false" signature="false" 
       visibility="false">      
       <attributes public="false" package="false" protected="false" private="false"/>      
@@ -11,7 +11,7 @@
   </class>  
   <class id="2" corner="TOP_LEFT" language="java" name="se.turbotorsk.mybar.DrinkAdapter" project="MyBar" 
     file="/MyBar/src/se/turbotorsk/mybar/DrinkAdapter.java" binary="false">    
-    <position height="-1" width="-1" x="52" y="297"/>    
+    <position height="-1" width="-1" x="153" y="351"/>    
     <display autosize="false" stereotype="false" package="false" initial-value="false" signature="false" 
       visibility="false">      
       <attributes public="false" package="false" protected="false" private="false"/>      
@@ -20,7 +20,7 @@
   </class>  
   <class id="3" corner="BOTTOM_RIGHT" language="java" name="se.turbotorsk.mybar.MyBarActivity" project="MyBar" 
     file="/MyBar/src/se/turbotorsk/mybar/MyBarActivity.java" binary="false">    
-    <position height="-1" width="-1" x="444" y="44"/>    
+    <position height="-1" width="-1" x="385" y="110"/>    
     <display autosize="false" stereotype="false" package="false" initial-value="false" signature="false" 
       visibility="false">      
       <attributes public="false" package="false" protected="false" private="false"/>      
@@ -29,7 +29,7 @@
   </class>  
   <class id="4" corner="BOTTOM_RIGHT" language="java" name="se.turbotorsk.mybar.Share" project="MyBar" 
     file="/MyBar/src/se/turbotorsk/mybar/Share.java" binary="false">    
-    <position height="-1" width="-1" x="735" y="362"/>    
+    <position height="-1" width="-1" x="698" y="359"/>    
     <display autosize="false" stereotype="false" package="false" initial-value="false" signature="false" 
       visibility="false">      
       <attributes public="false" package="false" protected="false" private="false"/>      
@@ -38,7 +38,7 @@
   </class>  
   <class id="5" corner="BOTTOM_RIGHT" language="java" name="se.turbotorsk.mybar.MainActivity" project="MyBar" 
     file="/MyBar/src/se/turbotorsk/mybar/MainActivity.java" binary="false">    
-    <position height="-1" width="-1" x="569" y="275"/>    
+    <position height="-1" width="-1" x="527" y="299"/>    
     <display autosize="false" stereotype="false" package="false" initial-value="false" signature="false" 
       visibility="false">      
       <attributes public="false" package="false" protected="false" private="false"/>      
@@ -47,7 +47,7 @@
   </class>  
   <class id="6" corner="BOTTOM_RIGHT" language="java" name="se.turbotorsk.mybar.IngredientAdapter" project="MyBar" 
     file="/MyBar/src/se/turbotorsk/mybar/IngredientAdapter.java" binary="false">    
-    <position height="-1" width="-1" x="592" y="40"/>    
+    <position height="-1" width="-1" x="535" y="110"/>    
     <display autosize="false" stereotype="false" package="false" initial-value="false" signature="false" 
       visibility="false">      
       <attributes public="false" package="false" protected="false" private="false"/>      
@@ -56,7 +56,7 @@
   </class>  
   <class id="7" corner="BOTTOM_RIGHT" language="java" name="se.turbotorsk.mybar.ViewDrinkActivity" project="MyBar" 
     file="/MyBar/src/se/turbotorsk/mybar/ViewDrinkActivity.java" binary="false">    
-    <position height="-1" width="-1" x="223" y="206"/>    
+    <position height="-1" width="-1" x="288" y="196"/>    
     <display autosize="false" stereotype="false" package="false" initial-value="false" signature="false" 
       visibility="false">      
       <attributes public="false" package="false" protected="false" private="false"/>      
@@ -65,7 +65,7 @@
   </class>  
   <class id="8" corner="BOTTOM_RIGHT" language="java" name="se.turbotorsk.mybar.AboutBox" project="MyBar" 
     file="/MyBar/src/se/turbotorsk/mybar/AboutBox.java" binary="false">    
-    <position height="-1" width="-1" x="665" y="140"/>    
+    <position height="-1" width="-1" x="699" y="191"/>    
     <display autosize="false" stereotype="false" package="false" initial-value="false" signature="false" 
       visibility="false">      
       <attributes public="false" package="false" protected="false" private="false"/>      
@@ -74,7 +74,7 @@
   </class>  
   <class id="9" corner="BOTTOM_RIGHT" language="java" name="se.turbotorsk.mybar.SettingsActivity" project="MyBar" 
     file="/MyBar/src/se/turbotorsk/mybar/SettingsActivity.java" binary="false">    
-    <position height="-1" width="-1" x="815" y="196"/>    
+    <position height="-1" width="-1" x="779" y="249"/>    
     <display autosize="false" stereotype="false" package="false" initial-value="false" signature="false" 
       visibility="false">      
       <attributes public="false" package="false" protected="false" private="false"/>      
@@ -83,7 +83,7 @@
   </class>  
   <class id="10" corner="BOTTOM_RIGHT" language="java" name="se.turbotorsk.mybar.AddIngredientActivity" project="MyBar" 
     file="/MyBar/src/se/turbotorsk/mybar/AddIngredientActivity.java" binary="false">    
-    <position height="-1" width="-1" x="567" y="105"/>    
+    <position height="-1" width="-1" x="539" y="192"/>    
     <display autosize="false" stereotype="false" package="false" initial-value="false" signature="false" 
       visibility="false">      
       <attributes public="false" package="false" protected="false" private="false"/>      
@@ -92,7 +92,7 @@
   </class>  
   <class id="11" corner="BOTTOM_RIGHT" language="java" name="se.turbotorsk.mybar.CollectionActivity" project="MyBar" 
     file="/MyBar/src/se/turbotorsk/mybar/CollectionActivity.java" binary="false">    
-    <position height="-1" width="-1" x="398" y="248"/>    
+    <position height="-1" width="-1" x="345" y="298"/>    
     <display autosize="false" stereotype="false" package="false" initial-value="false" signature="false" 
       visibility="false">      
       <attributes public="false" package="false" protected="false" private="false"/>      
@@ -100,112 +100,112 @@
     </display>  
   </class>  
   <association id="12">    
-    <end type="SOURCE" refId="1" navigable="false">      
+    <end type="SOURCE" refId="11" navigable="false">      
       <attribute id="13" name="adapter"/>      
       <multiplicity id="14" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="false" multiplicity="false"/>  
   </association>  
-  <dependency id="15">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="10"/>  
-  </dependency>  
-  <association id="16">    
+  <association id="15">    
     <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="17" name="adapter"/>      
-      <multiplicity id="18" minimum="0" maximum="1"/>    
+      <attribute id="16" name="adapter"/>      
+      <multiplicity id="17" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="false" multiplicity="false"/>  
   </association>  
-  <association id="19">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="20" name="adapter"/>      
-      <multiplicity id="21" minimum="0" maximum="1"/>    
+  <association id="18">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="19" name="adapter"/>      
+      <multiplicity id="20" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="false" multiplicity="false"/>  
   </association>  
-  <dependency id="22">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="8"/>  
+  <association id="21">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="22" name="adapter"/>      
+      <multiplicity id="23" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <dependency id="24">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="7"/>  
   </dependency>  
-  <dependency id="23">    
+  <dependency id="25">    
     <end type="SOURCE" refId="11"/>    
     <end type="TARGET" refId="7"/>  
   </dependency>  
-  <association id="24">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="25" name="adapter"/>      
-      <multiplicity id="26" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
-    <display labels="false" multiplicity="false"/>  
-  </association>  
-  <association id="27">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="28" name="adapter"/>      
-      <multiplicity id="29" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="false" multiplicity="false"/>  
-  </association>  
+  <dependency id="26">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="10"/>  
+  </dependency>  
+  <dependency id="27">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
+  <dependency id="28">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <dependency id="29">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
   <dependency id="30">    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="10"/>  
   </dependency>  
   <dependency id="31">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="7"/>  
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="9"/>  
   </dependency>  
   <dependency id="32">    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="11"/>  
   </dependency>  
-  <dependency id="33">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="11"/>  
-  </dependency>  
-  <dependency id="34">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <association id="35">    
+  <association id="33">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="36" name="adapter"/>      
-      <multiplicity id="37" minimum="0" maximum="1"/>    
+      <attribute id="34" name="adapter"/>      
+      <multiplicity id="35" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="false" multiplicity="false"/>  
   </association>  
-  <association id="38">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="39" name="adapter"/>      
-      <multiplicity id="40" minimum="0" maximum="1"/>    
+  <association id="36">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="37" name="adapter"/>      
+      <multiplicity id="38" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="false" multiplicity="false"/>  
   </association>  
-  <dependency id="41">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <dependency id="42">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="9"/>  
-  </dependency>  
-  <dependency id="43">    
-    <end type="SOURCE" refId="1"/>    
+  <dependency id="39">    
+    <end type="SOURCE" refId="11"/>    
     <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <association id="40">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="41" name="adapter"/>      
+      <multiplicity id="42" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <dependency id="43">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="8"/>  
   </dependency>  
   <dependency id="44">    
     <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="9"/>  
+    <end type="TARGET" refId="4"/>  
   </dependency>  
   <dependency id="45">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="7"/>  
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="11"/>  
   </dependency>  
   <association id="46">    
     <end type="SOURCE" refId="1" navigable="false">      
