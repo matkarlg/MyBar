@@ -41,7 +41,8 @@ public class Share extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-
+		
+		// Call the share method.
 		share();
 	}
 
@@ -49,13 +50,20 @@ public class Share extends Activity {
 	 * This method is used to send the information that will be sent.
 	 */
 	private void share() {
+		// Create a new intent for sharing.
 		Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
+		// Set the type of text to be shared
 		shareIntent.setType("text/plain");
+		// Set the message to be shared.
 		String shareMessage = "Get the awesome app 'MyBar' from mybar.turbotorsk.se!";
+		// Add subject to the intent.
 		shareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,
 				"Subject Here");
+		// Add the message to be shared into the intent.
 		shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareMessage);
+		// Start the share activity and send intents.
 		startActivity(Intent.createChooser(shareIntent, "Share via"));
+		// Finish this activity.
 		finish();
 	}
 

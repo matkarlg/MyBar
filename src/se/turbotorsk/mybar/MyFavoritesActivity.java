@@ -39,17 +39,19 @@ import android.widget.ListView;
  * This activity handles the MyFavorites-section.
  */
 public class MyFavoritesActivity extends ListActivity {
-
+	// Create a new DrinkAdapter object to dynamically
+	// populate list views.
 	private DrinkAdapter adapter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		// Create a new DrinkAdapter object to dynamically
+		// populate list views.
 		setAdapter(new DrinkAdapter(this, R.layout.rowlayout,
 				Controller.getAllFavorites()));
 
-		// Sets the adapter that we just did.
+		// Sets the adapter that we just created.
 		setListAdapter(getAdapter());
 	}
 
@@ -58,13 +60,17 @@ public class MyFavoritesActivity extends ListActivity {
 	 */
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
+		// Create a new intent to send to the ViewDrikActivity class.
 		Intent intent = new Intent(this, ViewDrinkActivity.class);
+		// Add drinkname, rating, ingredients, description, url, and id
+		// of the list item clicked to the intent.
 		intent.putExtra("drinkname", getAdapter().getDrinkName(position));
 		intent.putExtra("rating", getAdapter().getRating(position));
 		intent.putExtra("ingredients", getAdapter().getIngredients(position));
 		intent.putExtra("descrip", getAdapter().getDescrip(position));
 		intent.putExtra("url", getAdapter().getUrl(position));
 		intent.putExtra("id", getAdapter().getId(position));
+		// Start the ViewDrinkActivity with the created intent.
 		startActivity(intent);
 	}
 
@@ -73,9 +79,12 @@ public class MyFavoritesActivity extends ListActivity {
 	 */
 	@Override
 	public void onResume() {
+		// Call the extended onResume method.
 		super.onResume();
+		// Reset the adapter, load in everything again.
 		setAdapter(new DrinkAdapter(this, R.layout.rowlayout,
 				Controller.getAllFavorites()));
+		// Set the adapter that we just re-created.
 		setListAdapter(getAdapter());
 	}
 

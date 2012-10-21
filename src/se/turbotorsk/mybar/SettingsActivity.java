@@ -53,6 +53,7 @@ public class SettingsActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.view_settings);
+		// Create the spinners.
 		createLocationSpinner();
 		createThemeSpinner();
 	}
@@ -61,12 +62,15 @@ public class SettingsActivity extends Activity {
 	 * Creates a spinner for the user to pick the location of the bar.
 	 */
 	private void createLocationSpinner() {
+		// Set the locationspinner from the R file.
 		Spinner locationSpinner = (Spinner) findViewById(R.id.locationSpinner);
+		// Create an ArrayAdapter for the locationspinner.
 		ArrayAdapter<CharSequence> locationAdapter = ArrayAdapter
 				.createFromResource(this, R.array.locations,
 						android.R.layout.simple_spinner_item);
 		locationAdapter
 				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		// Set the adapter that we just created.
 		locationSpinner.setAdapter(locationAdapter);
 	}
 
@@ -74,12 +78,15 @@ public class SettingsActivity extends Activity {
 	 * Creates a spinner for the user to pick a theme for the app.
 	 */
 	private void createThemeSpinner() {
+		// Set the Themespinner from the R file.
 		Spinner themeSpinner = (Spinner) findViewById(R.id.themeSpinner);
+		// Create an ArrayAdapter for the Themespinner.
 		ArrayAdapter<CharSequence> themeAdapter = ArrayAdapter
 				.createFromResource(this, R.array.themes,
 						android.R.layout.simple_spinner_item);
 		themeAdapter
 				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		// Set the adapter that we just created.
 		themeSpinner.setAdapter(themeAdapter);
 	}
 
@@ -89,6 +96,7 @@ public class SettingsActivity extends Activity {
 	 * @param view
 	 */
 	public void clearDB(View view) {
+		// Display a toast that the database has been flushed.
 		Toast.makeText(
 				getApplicationContext(),
 				"You have now flushed your database. Please restart your application.",
