@@ -57,7 +57,9 @@ public class IngredientAdapter extends ArrayAdapter<LinkedList> {
 	 * @param items
 	 */
 	public IngredientAdapter(Context context, int resource, LinkedList items) {
+		// Call the extended constructor.
 		super(context, resource, items);
+		// initialize variables.
 		this.items = items;
 
 	}
@@ -67,9 +69,9 @@ public class IngredientAdapter extends ArrayAdapter<LinkedList> {
 	 */
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-
+		// Set the view that was received through the method call.
 		View v = convertView;
-
+		// If the view is not null, inflate the layout.
 		if (v == null) {
 
 			LayoutInflater vi;
@@ -77,9 +79,10 @@ public class IngredientAdapter extends ArrayAdapter<LinkedList> {
 			v = vi.inflate(R.layout.rowlayout, null);
 
 		}
-
+		// Initialize an ingredient object to the list item.
 		Ingredient p = items.get(position);
-
+		// If the ingredient object is not null, set the different
+		// parts of the list item to their respective XML-part.
 		if (p != null) {
 			TextView tt = (TextView) v.findViewById(R.id.drink);
 			TextView tt2 = (TextView) v.findViewById(R.id.ingredients);
@@ -87,15 +90,19 @@ public class IngredientAdapter extends ArrayAdapter<LinkedList> {
 			ImageView iv = (ImageView) v.findViewById(R.id.list_image);
 
 			if (tt != null) {
+				// Sets the name of the ingredients to the text view.
 				tt.setText(p.getName());
 			}
 			if (tt2 != null) {
+				// Sets the type of the ingredients to the text view.
 				tt2.setText(p.getType());
 			}
 			if (tt3 != null) {
+				// Sets the ABV of the ingredients to the text view.
 				tt3.setText("ABV: " + p.getAlcoholcontent() + "%");
 			}
 			if (iv != null) {
+				// Sets the image of the ingredient to the image view.
 				iv.setImageResource(R.drawable.bottle);
 			}
 		}

@@ -153,11 +153,15 @@ public class ViewDrinkActivity extends Activity implements
 			public void onClick(View v) {
 				// is the checkbox checked?
 				if (((CheckBox) v).isChecked()) {
+					// If not, set the drink as a favorite.
 					Controller.setFavorite(getName());
+					// Display a toast that it has been added to favorites.
 					Toast.makeText(ViewDrinkActivity.this,
 							"Added to Favorites", Toast.LENGTH_SHORT).show();
 				} else {
+					// Otherwise if the checkbox is checked, remove favorite.
 					Controller.setNotFavorite(getName());
+					// Display Toast that it has been removed from favorites.
 					Toast.makeText(ViewDrinkActivity.this,
 							"Removed from Favorites", Toast.LENGTH_SHORT)
 							.show();
@@ -171,7 +175,9 @@ public class ViewDrinkActivity extends Activity implements
 	 */
 	public void onRatingChanged(RatingBar ratingBar, float rating,
 			boolean fromUser) {
+		// Get user input and change the rating in the view.
 		getdRating().setRating((int) rating);
+		// Set the rating in the database.
 		Controller.setRatingByName(getName(), (int) rating);
 	}
 

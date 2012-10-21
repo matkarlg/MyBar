@@ -106,15 +106,19 @@ public class MainActivity extends TabActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.menu_add_drink:
+			// Start the AddIngredientActivity.
 			startActivity(new Intent(this, AddIngredientActivity.class));
 			return true;
 		case R.id.menu_share:
+			// Start the Share class.
 			startActivity(new Intent(this, Share.class));
 			return true;
 		case R.id.menu_about:
+			// Start the AboutBox class.
 			AboutBox.show(MainActivity.this);
 			return true;
 		case R.id.menu_settings:
+			// Start the SettingsActivity.
 			startActivity(new Intent(this, SettingsActivity.class));
 			return true;
 		default:

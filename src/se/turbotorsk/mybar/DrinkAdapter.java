@@ -62,7 +62,9 @@ public class DrinkAdapter extends ArrayAdapter<LinkedList> {
 	 * @param items
 	 */
 	public DrinkAdapter(Context context, int resource, LinkedList items) {
+		// Call the extended constructor.
 		super(context, resource, items);
+		// initialize variables.
 		this.items = items;
 
 	}
@@ -72,9 +74,9 @@ public class DrinkAdapter extends ArrayAdapter<LinkedList> {
 	 */
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-
+		// Set the view that was received through the method call.
 		View v = convertView;
-		
+		// If the view is null, inflate the layout.
 		if (v == null) {
 
 			LayoutInflater vi;
@@ -82,9 +84,10 @@ public class DrinkAdapter extends ArrayAdapter<LinkedList> {
 			v = vi.inflate(R.layout.rowlayout, null);
 
 		}
-
+		// Initialize a drink object to the list item.
 		Drink p = items.get(position);
-
+		// If the drink object is not null, set the different
+		// parts of the list item to their respective XML-part.
 		if (p != null) {
 
 			TextView tt = (TextView) v.findViewById(R.id.drink);
@@ -94,21 +97,23 @@ public class DrinkAdapter extends ArrayAdapter<LinkedList> {
 			ImageView iv = (ImageView) v.findViewById(R.id.list_image);
 
 			if (tt != null) {
-
+				// Sets the name of the drinks to the text view.
 				tt.setText(p.getName());
 			}
 			if (tt1 != null) {
-
+				// Sets the ingredients of the drinks to the text view.
 				tt1.setText(p.getIngredientPreViewString());
 			}
 			if (tt3 != null) {
-
+				// Sets the rating of the drinks to the text view.
 				tt3.setText("Rating: " + Integer.toString(p.getRating()));
 			}
 			if (tt4 != null) {
+				// Sets the description of the drink to the text view.
 				tt4.setText(p.getDescription());
 			}
 			if (iv != null) {
+				// Sets the image of the drink to the image view.
 				iv.setImageResource(R.drawable.no_img);
 			}
 		}
