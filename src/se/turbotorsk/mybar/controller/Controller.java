@@ -63,8 +63,6 @@ public final class Controller {
 		return Data.getIngredientByID(id); 
 	}
 
-	// ---------- Methods for get and set favorites ----------
-
 	/**
 	 * Returns if a given drink is set as a favorite. 
 	 * @param id of drink.
@@ -91,6 +89,8 @@ public final class Controller {
 	 */
 	public static LinkedList<Ingredient> getMyIngredients(){
 		LinkedList<Ingredient> list = new LinkedList<Ingredient>(); 
+		//Gets all the Ingredients in a list. Ittertes the list and gets the
+		//all the ingredients with the correct ID.
 		for(MyBar mybar: Data.getAllMyBar()){
 			list.add( Data.getIngredientByID(mybar.getIngredientID()));	
 		}
@@ -99,7 +99,7 @@ public final class Controller {
 	
 	/**
 	 * Sync the database with info from the external database.  
-	 * @return true if the sync was okej. False if a error happened. 
+	 * @return true if the sync was ok. False if a error happened. 
 	 */
 	public static boolean dataSync()
 	{
