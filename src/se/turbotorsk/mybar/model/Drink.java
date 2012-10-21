@@ -38,6 +38,7 @@ import android.content.ContentValues;
  *         href="mailto:mathias.karlgren@gmail.com">email</a>)
  */
 public class Drink {
+    private static final int MAXSTRINGLENGTH = 36;
     private int id = 0;
     private String name = "";
     private String url = "";
@@ -47,7 +48,7 @@ public class Drink {
     private int rating = 0;
     private int favorite = 0;
     private ContentValues values = null;
-    private final static int MAXSTRINGLENGTH = 36;
+
 
     public Drink(int id, String name, String url, String glass, String ingredient,
             String description, int rating, int favorite) {
