@@ -1,11 +1,11 @@
 package se.turbotorsk.mybar.test;
 
-import com.jayway.android.robotium.solo.Solo;
-
 import se.turbotorsk.mybar.CollectionActivity;
 import se.turbotorsk.mybar.MainActivity;
 import se.turbotorsk.mybar.ViewDrinkActivity;
 import android.test.ActivityInstrumentationTestCase2;
+
+import com.jayway.android.robotium.solo.Solo;
 
 public class MyBarRobotiumAddFavTest extends
 		ActivityInstrumentationTestCase2<MainActivity> {
@@ -32,7 +32,5 @@ public class MyBarRobotiumAddFavTest extends
 		solo.clickLongOnText("Angel Face");
 		solo.assertCurrentActivity("Nu ska vi se drinken", ViewDrinkActivity.class);
 		solo.clickOnCheckBox(0); //This is the fav checkbox
-		solo.goBack();
-		//solo.clickOnText("FAVORITES"); This is what i "want" to do
 	}
 }

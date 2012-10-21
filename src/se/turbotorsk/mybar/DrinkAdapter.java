@@ -76,7 +76,7 @@ public class DrinkAdapter extends ArrayAdapter<LinkedList> {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// Set the view that was received through the method call.
 		View v = convertView;
-		// If the view is not null, inflate the layout.
+		// If the view is null, inflate the layout.
 		if (v == null) {
 
 			LayoutInflater vi;

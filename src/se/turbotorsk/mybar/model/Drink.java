@@ -38,6 +38,7 @@ import android.content.ContentValues;
  *         href="mailto:mathias.karlgren@gmail.com">email</a>)
  */
 public class Drink {
+    private static final int MAXSTRINGLENGTH = 36;
     private int id = 0;
     private String name = "";
     private String url = "";
@@ -47,7 +48,7 @@ public class Drink {
     private int rating = 0;
     private int favorite = 0;
     private ContentValues values = null;
-    private final static int MAXSTRINGLENGTH = 36;
+
 
     public Drink(int id, String name, String url, String glass, String ingredient,
             String description, int rating, int favorite) {
@@ -74,7 +75,7 @@ public class Drink {
      * Return a representation of the ingredients in the drink for the the drink
      * view activity.
      * 
-     * @return
+     * @return a string that can be used to preview the ingredients.
      */
     public String getIngredientPreViewString() {
         StringBuffer nameBuff = new StringBuffer();
@@ -94,6 +95,10 @@ public class Drink {
         return nameBuff.toString();
     }
 
+    /**
+     * Gets all the ingredients in a String format.
+     * @return a string with all the ingredient names in. 
+     */
     public String getIngredientString() {
         StringBuffer nameBuff = new StringBuffer();
         String nameString = "";
