@@ -40,7 +40,8 @@ import android.test.ProviderTestCase2;
 import android.test.mock.MockContentResolver;
 
 /**
- * Tests MyBar's ContentProvider.
+ * Tests MyBar's ContentProvider in an isolated context using
+ * MockContentResolver from ProviderTestCase2.
  * 
  * @author Mathias Karlgren (<a
  *         href="mailto:mathias.karlgren@gmail.com">email</a>)
