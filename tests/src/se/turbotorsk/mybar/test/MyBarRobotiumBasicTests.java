@@ -64,32 +64,16 @@ public class MyBarRobotiumBasicTests extends
 		solo = new Solo(getInstrumentation(), getActivity());
 	}
 
-	// In some way this method breaks everything, I'm keeping it so I won't forget
-	// to do a good one.
-	// This method is nothing we should prioritize.
-	// public void tearDown() throws Exception {
-	// try {
-	// solo.finalize();
-	// } catch (Throwable e) {
-	// e.printStackTrace();
-	// }
-	// getActivity().finish();
-	// super.tearDown();
-	// System.exit(0);
-	// }
-
-	// This basic test tries to start the application and checks weather it
-	// started
-	// or not.
+	// This basic test tries to start the application, and checks weather it
+	// is started or not.
 	public void test1StartApplication() {
 		solo.assertCurrentActivity("Nu blev det fel activity",
 				MainActivity.class);
 	}
 
-	// This test will press an emulated right button, it is not a clean or good
-	// way to try this
-	// but i haven't managed to get Robotium to press the COLLECTION tab. This
-	// has to do for now.
+	// This test will press an emulated up and right button, it is not a clean or good
+	// way to try this but i haven't managed to get Robotium to press the COLLECTION tab. 
+	// This test is better than not testing at all.
 	public void test2ChangeTabToCollection() {
 		solo.assertCurrentActivity("First activity", MainActivity.class);
 		solo.sendKey(Solo.UP);
@@ -112,8 +96,7 @@ public class MyBarRobotiumBasicTests extends
 	// This test opens the Settings menu and makes sure that the right activity
 	// starts.
 	// My goal is to expand this and do more tests, or maybe do another test
-	// that is build on
-	// this one.
+	// that is built on this one.
 	public void test4OpenSettingsButton() {
 		solo.clickOnMenuItem("Settings");
 		solo.assertCurrentActivity("Ska vara settings aktiviteten",
@@ -140,6 +123,7 @@ public class MyBarRobotiumBasicTests extends
 		solo.assertMemoryNotLow();
 	}
 	
+	//This test tries to open a drink.
 	public void test7OpenDrink(){
 		solo.assertCurrentActivity("First activity", MainActivity.class);
 		solo.sendKey(Solo.UP);
