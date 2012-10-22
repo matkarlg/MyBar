@@ -8,6 +8,8 @@ Limitation - Profiles is not yet implemented visually.
 Limitation - There is no way to search the database, only browse.
 Limitation - There are only a few pictures for drinks and ingredients.
 Limitation - There is no way to sort the lists.
+Limitation - The settings activity is yet to be implemented.
+Limitation - The database is not fully populated yet.
 
 v0.6
 Bug - Lists don't refresh on data change.
