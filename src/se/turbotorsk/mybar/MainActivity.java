@@ -98,6 +98,7 @@ public class MainActivity extends TabActivity {
     /**
      * This method generates the options-menu in the main window.
      */
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
         case R.id.menu_add_drink:
@@ -114,7 +115,7 @@ public class MainActivity extends TabActivity {
             return true;
         case R.id.menu_settings:
             // Start the SettingsActivity.
-            startActivity(new Intent(this, SettingsActivity.class));
+//            startActivity(new Intent(this, SettingsActivity.class));
             return true;
         default:
             return true;

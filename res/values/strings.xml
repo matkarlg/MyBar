@@ -19,5 +19,12 @@
     <string name="title_activity_share">Share</string>
     <string name="title_activity_my_bar">MyBarActivity</string>
     <string name="title_activity_image">ImageActivity</string>
+    <string name="splash_desc">Splash Logo Screen</string>
+    <string name="image_view_desc">Image</string>
+    <string name="ingredient">ing1, ing2, ing3, ing4, ing5</string>
+    <string name="rating">4/5</string>
+    <string name="drinkName">Name of Drink</string>
+    <string name="drinkIngredients">ingredients</string><string name="drinkDescription">Description of Drink</string>
+    
 
 </resources>

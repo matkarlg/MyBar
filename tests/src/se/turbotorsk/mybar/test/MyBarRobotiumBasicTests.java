@@ -31,7 +31,6 @@ package se.turbotorsk.mybar.test;
 import se.turbotorsk.mybar.AddIngredientActivity;
 import se.turbotorsk.mybar.CollectionActivity;
 import se.turbotorsk.mybar.MainActivity;
-import se.turbotorsk.mybar.SettingsActivity;
 import se.turbotorsk.mybar.ViewDrinkActivity;
 
 import android.test.ActivityInstrumentationTestCase2;
@@ -59,7 +58,8 @@ public class MyBarRobotiumBasicTests extends
 		super(MainActivity.class);
 	}
 
-	protected void setUp() throws Exception {
+	@Override
+    protected void setUp() throws Exception {
 		super.setUp();
 		solo = new Solo(getInstrumentation(), getActivity());
 	}
@@ -97,12 +97,12 @@ public class MyBarRobotiumBasicTests extends
 	// starts.
 	// My goal is to expand this and do more tests, or maybe do another test
 	// that is built on this one.
-	public void test4OpenSettingsButton() {
-		solo.clickOnMenuItem("Settings");
-		solo.assertCurrentActivity("Ska vara settings aktiviteten",
-				SettingsActivity.class);
-		solo.goBack();
-	}
+//	public void test4OpenSettingsButton() {
+//		solo.clickOnMenuItem("Settings");
+//		solo.assertCurrentActivity("Ska vara settings aktiviteten",
+//				SettingsActivity.class);
+//		solo.goBack();
+//	}
 
 	// Almost working, in some way i have to assert that it is working. The
 	// about box is showing,

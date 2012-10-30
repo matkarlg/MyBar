@@ -11,11 +11,13 @@
         android:padding="3dip"
         android:layout_alignParentRight="true"
         android:layout_marginRight="5dip">
- 
+ 
         <ImageView
             android:id="@+id/list_image"
             android:layout_width="50dip"
-            android:layout_height="50dip"/>
+            android:layout_height="50dip"
+            android:contentDescription="@@string/image_view_desc" />
+
     </LinearLayout>
     
     
@@ -38,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/drink"
         android:layout_marginTop="1dip"
-        android:text="ing1, ing2, ing3, ing4, ing5"
+        android:text="@string/ingredient"
         android:textColor="#10bcc9"
         android:textSize="10dip" />
     
@@ -49,7 +51,7 @@
          android:layout_below="@+id/ingredients"
          android:layout_marginRight="5dip"
          android:gravity="left"
-         android:text="4/5"
+         android:text="@string/rating"
          android:textColor="#343434"
          android:textSize="10dip"
          android:textStyle="bold" />

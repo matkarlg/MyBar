@@ -3,14 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/spaces" >
-
-    <RelativeLayout
+    <RelativeLayout
         android:id="@+id/dLayout"
         android:layout_width="match_parent"
         android:layout_height="440dp" >
 
         <!-- AC added some stuff -->
-
+        
         <TextView
             android:id="@+id/drinkName"
             android:layout_width="wrap_content"
@@ -18,7 +17,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:text="Drinkname"
+            android:text="@string/drinkName"
             android:textColor="#040404"
             android:textSize="30dip"
             android:textStyle="bold"
@@ -42,7 +41,7 @@
             android:layout_marginTop="18dp"
             android:textColor="#34B4E3"
             android:textStyle="bold"
-            android:text="Ingredients" />
+            android:text="@string/drinkIngredients" />
 
         <TextView
             android:id="@+id/drinkDescription"
@@ -51,7 +50,7 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/drinkIngredients"
             android:layout_marginTop="24dp"
-            android:text="Description" />
+            android:text="@string/drinkDescription" />
 
         <RatingBar
             android:id="@+id/ratingBar1"
