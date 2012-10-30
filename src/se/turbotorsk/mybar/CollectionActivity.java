@@ -45,52 +45,50 @@ import android.widget.ListView;
  * file can be found where all of the other layout files are.
  */
 public class CollectionActivity extends ListActivity {
-	// Create a new DrinkAdapter object to dynamically
-	// populate list views.
-	private DrinkAdapter adapter;
+    // Create a new DrinkAdapter object to dynamically
+    // populate list views.
+    private DrinkAdapter adapter;
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		// Initiate the adapter, send in the layout of choice and
-		// also send in the LinkedList of Drinks.
-		adapter = new DrinkAdapter(this, R.layout.rowlayout,
-				Controller.getAllDrinks());
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // Initiate the adapter, send in the layout of choice and
+        // also send in the LinkedList of Drinks.
+        adapter = new DrinkAdapter(this, R.layout.rowlayout, Controller.getAllDrinks());
 
-		// Set the adapter that we just created.
-		setListAdapter(adapter);
-	}
+        // Set the adapter that we just created.
+        setListAdapter(adapter);
+    }
 
-	/**
-	 * This method handles what happens when pressing a item in the list.
-	 */
-	@Override
-	protected void onListItemClick(ListView l, View v, int position, long id) {
-		// Create a new intent to send to the ViewDrikActivity class.
-		Intent intent = new Intent(this, ViewDrinkActivity.class);
-		// Add drinkname, rating, ingredients, description, url, and id
-		// of the list item clicked to the intent.
-		intent.putExtra("drinkname", adapter.getDrinkName(position));
-		intent.putExtra("rating", adapter.getRating(position));
-		intent.putExtra("ingredients", adapter.getIngredients(position));
-		intent.putExtra("descrip", adapter.getDescrip(position));
-		intent.putExtra("url", adapter.getUrl(position));
-		intent.putExtra("id", adapter.getId(position));
-		// Start the ViewDrinkActivity with the created intent.
-		startActivity(intent);
-	}
+    /**
+     * This method handles what happens when pressing a item in the list.
+     */
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        // Create a new intent to send to the ViewDrikActivity class.
+        Intent intent = new Intent(this, ViewDrinkActivity.class);
+        // Add drinkname, rating, ingredients, description, url, and id
+        // of the list item clicked to the intent.
+        intent.putExtra("drinkname", adapter.getDrinkName(position));
+        intent.putExtra("rating", adapter.getRating(position));
+        intent.putExtra("ingredients", adapter.getIngredients(position));
+        intent.putExtra("descrip", adapter.getDescrip(position));
+        intent.putExtra("url", adapter.getUrl(position));
+        intent.putExtra("id", adapter.getId(position));
+        // Start the ViewDrinkActivity with the created intent.
+        startActivity(intent);
+    }
 
-	/**
-	 * This method refreshes the list-view.
-	 */
-	@Override
-	public void onResume() {
-		// Call the extended onResume method.
-		super.onResume();
-		// Reset the adapter, load in everything again.
-		adapter = new DrinkAdapter(this, R.layout.rowlayout,
-				Controller.getAllDrinks());
-		// Set the adapter that we just re-created.
-		setListAdapter(adapter);
-	}
+    /**
+     * This method refreshes the list-view.
+     */
+    @Override
+    public void onResume() {
+        // Call the extended onResume method.
+        super.onResume();
+        // Reset the adapter, load in everything again.
+        adapter = new DrinkAdapter(this, R.layout.rowlayout, Controller.getAllDrinks());
+        // Set the adapter that we just re-created.
+        setListAdapter(adapter);
+    }
 }

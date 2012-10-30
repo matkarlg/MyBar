@@ -40,35 +40,31 @@ import android.widget.TextView;
  * This activity creates tabs for the mybar view.
  */
 public class MyBarTabHostActivity extends TabActivity {
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
-		TabHost tabHost = getTabHost();
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+        TabHost tabHost = getTabHost();
 
-		// MyBar tab.
-		Intent intentMySpirits = new Intent().setClass(this,
-				MyBarActivity.class);
-		TabSpec tabSpecMySpirits = tabHost.newTabSpec("MySpirits")
-				.setIndicator("My Spirits").setContent(intentMySpirits);
+        // MyBar tab.
+        Intent intentMySpirits = new Intent().setClass(this, MyBarActivity.class);
+        TabSpec tabSpecMySpirits = tabHost.newTabSpec("MySpirits").setIndicator("My Spirits")
+                .setContent(intentMySpirits);
 
-		// Search tab.
-		Intent intentMyDrinks = new Intent().setClass(this,
-				MyDrinksActivity.class);
-		TabSpec tabSpecMyDrinks = tabHost.newTabSpec("MyDrinks")
-				.setIndicator("My Drinks").setContent(intentMyDrinks);
+        // Search tab.
+        Intent intentMyDrinks = new Intent().setClass(this, MyDrinksActivity.class);
+        TabSpec tabSpecMyDrinks = tabHost.newTabSpec("MyDrinks").setIndicator("My Drinks").setContent(intentMyDrinks);
 
-		// Add all tabs.
-		tabHost.addTab(tabSpecMySpirits);
-		tabHost.addTab(tabSpecMyDrinks);
+        // Add all tabs.
+        tabHost.addTab(tabSpecMySpirits);
+        tabHost.addTab(tabSpecMyDrinks);
 
-		for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++) {
-			TextView tv = (TextView) tabHost.getTabWidget().getChildAt(i)
-					.findViewById(android.R.id.title);
-			tv.setTextColor(Color.parseColor("#10bcc9"));
-		}
+        for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++) {
+            TextView tv = (TextView) tabHost.getTabWidget().getChildAt(i).findViewById(android.R.id.title);
+            tv.setTextColor(Color.parseColor("#10bcc9"));
+        }
 
-		// Set Mybar as default tab (the middle tab).
-		tabHost.setCurrentTab(0);
-	}
+        // Set Mybar as default tab (the middle tab).
+        tabHost.setCurrentTab(0);
+    }
 }

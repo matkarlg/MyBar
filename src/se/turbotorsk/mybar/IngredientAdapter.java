@@ -43,125 +43,125 @@ import android.widget.TextView;
  */
 public class IngredientAdapter extends ArrayAdapter<LinkedList> {
 
-	public IngredientAdapter(Context context, int textViewResourceId) {
-		super(context, textViewResourceId);
-	}
+    public IngredientAdapter(Context context, int textViewResourceId) {
+        super(context, textViewResourceId);
+    }
 
-	private LinkedList<Ingredient> items;
+    private LinkedList<Ingredient> items;
 
-	/**
-	 * Constructor for IngredientAdapter.
-	 * 
-	 * @param context
-	 * @param resource
-	 * @param items
-	 */
-	public IngredientAdapter(Context context, int resource, LinkedList items) {
-		// Call the extended constructor.
-		super(context, resource, items);
-		// initialize variables.
-		this.items = items;
+    /**
+     * Constructor for IngredientAdapter.
+     * 
+     * @param context
+     * @param resource
+     * @param items
+     */
+    public IngredientAdapter(Context context, int resource, LinkedList items) {
+        // Call the extended constructor.
+        super(context, resource, items);
+        // initialize variables.
+        this.items = items;
 
-	}
+    }
 
-	/**
-	 * This method gets the view for all ingredients.
-	 */
-	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
-		// Set the view that was received through the method call.
-		View v = convertView;
-		// If the view is not null, inflate the layout.
-		if (v == null) {
+    /**
+     * This method gets the view for all ingredients.
+     */
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        // Set the view that was received through the method call.
+        View v = convertView;
+        // If the view is not null, inflate the layout.
+        if (v == null) {
 
-			LayoutInflater vi;
-			vi = LayoutInflater.from(getContext());
-			v = vi.inflate(R.layout.rowlayout, null);
+            LayoutInflater vi;
+            vi = LayoutInflater.from(getContext());
+            v = vi.inflate(R.layout.rowlayout, null);
 
-		}
-		// Initialize an ingredient object to the list item.
-		Ingredient p = items.get(position);
-		// If the ingredient object is not null, set the different
-		// parts of the list item to their respective XML-part.
-		if (p != null) {
-			TextView tt = (TextView) v.findViewById(R.id.drink);
-			TextView tt2 = (TextView) v.findViewById(R.id.ingredients);
-			TextView tt3 = (TextView) v.findViewById(R.id.rating);
-			ImageView iv = (ImageView) v.findViewById(R.id.list_image);
+        }
+        // Initialize an ingredient object to the list item.
+        Ingredient p = items.get(position);
+        // If the ingredient object is not null, set the different
+        // parts of the list item to their respective XML-part.
+        if (p != null) {
+            TextView tt = (TextView) v.findViewById(R.id.drink);
+            TextView tt2 = (TextView) v.findViewById(R.id.ingredients);
+            TextView tt3 = (TextView) v.findViewById(R.id.rating);
+            ImageView iv = (ImageView) v.findViewById(R.id.list_image);
 
-			if (tt != null) {
-				// Sets the name of the ingredients to the text view.
-				tt.setText(p.getName());
-			}
-			if (tt2 != null) {
-				// Sets the type of the ingredients to the text view.
-				tt2.setText(p.getType());
-			}
-			if (tt3 != null) {
-				// Sets the ABV of the ingredients to the text view.
-				tt3.setText("ABV: " + p.getAlcoholcontent() + "%");
-			}
-			if (iv != null) {
-				// Sets the image of the ingredient to the image view.
-				iv.setImageResource(R.drawable.bottle);
-			}
-		}
+            if (tt != null) {
+                // Sets the name of the ingredients to the text view.
+                tt.setText(p.getName());
+            }
+            if (tt2 != null) {
+                // Sets the type of the ingredients to the text view.
+                tt2.setText(p.getType());
+            }
+            if (tt3 != null) {
+                // Sets the ABV of the ingredients to the text view.
+                tt3.setText("ABV: " + p.getAlcoholcontent() + "%");
+            }
+            if (iv != null) {
+                // Sets the image of the ingredient to the image view.
+                iv.setImageResource(R.drawable.bottle);
+            }
+        }
 
-		return v;
-	}
+        return v;
+    }
 
-	/**
-	 * This method is fetching the name of an ingredient.
-	 * 
-	 * @param position
-	 * @return name of ingredient
-	 */
-	public String getIngredientName(int position) {
-		Ingredient ingredient = items.get(position);
-		return ingredient.getName();
-	}
+    /**
+     * This method is fetching the name of an ingredient.
+     * 
+     * @param position
+     * @return name of ingredient
+     */
+    public String getIngredientName(int position) {
+        Ingredient ingredient = items.get(position);
+        return ingredient.getName();
+    }
 
-	/**
-	 * This method is fetching the description of an ingredient.
-	 * 
-	 * @param position
-	 * @return ingredient description
-	 */
-	public String getDescription(int position) {
-		Ingredient ingredient = items.get(position);
-		return ingredient.getDescription();
-	}
+    /**
+     * This method is fetching the description of an ingredient.
+     * 
+     * @param position
+     * @return ingredient description
+     */
+    public String getDescription(int position) {
+        Ingredient ingredient = items.get(position);
+        return ingredient.getDescription();
+    }
 
-	/**
-	 * This method gets the name of an ingredient.
-	 * 
-	 * @param position
-	 * @return name of ingredient
-	 */
-	public String getName(int position) {
-		Ingredient ingredient = items.get(position);
-		return ingredient.getName();
-	}
+    /**
+     * This method gets the name of an ingredient.
+     * 
+     * @param position
+     * @return name of ingredient
+     */
+    public String getName(int position) {
+        Ingredient ingredient = items.get(position);
+        return ingredient.getName();
+    }
 
-	/**
-	 * This method gets the id of an ingredient.
-	 * 
-	 * @param position
-	 * @return id of ingredient
-	 */
-	public int getId(int position) {
-		Ingredient ingredient = items.get(position);
-		return ingredient.getId();
-	}
+    /**
+     * This method gets the id of an ingredient.
+     * 
+     * @param position
+     * @return id of ingredient
+     */
+    public int getId(int position) {
+        Ingredient ingredient = items.get(position);
+        return ingredient.getId();
+    }
 
-	/**
-	 * This method gets the position.
-	 * 
-	 * @param position
-	 * @return home
-	 */
-	public String getPosition(int position) {
-		return "home";
-	}
+    /**
+     * This method gets the position.
+     * 
+     * @param position
+     * @return home
+     */
+    public String getPosition(int position) {
+        return "home";
+    }
 
 }

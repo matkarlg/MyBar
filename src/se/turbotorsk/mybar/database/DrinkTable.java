@@ -59,10 +59,9 @@ public final class DrinkTable {
 
     // Database table creation SQL statement.
     private static final String DATABASE_CREATE = "CREATE TABLE " + TABLE_DRINK + "(" + COLUMN_ID
-            + " INTEGER PRIMARY KEY, " + COLUMN_NAME + DEFAULT_TEXT + COLUMN_URL + DEFAULT_TEXT
-            + COLUMN_GLASS + DEFAULT_TEXT + COLUMN_INGREDIENT + DEFAULT_TEXT + COLUMN_DESCRIPTION
-            + DEFAULT_TEXT + COLUMN_RATING + " INTEGER NOT NULL, " + COLUMN_FAVORITE
-            + " INTEGER NOT NULL" + ");";
+            + " INTEGER PRIMARY KEY, " + COLUMN_NAME + DEFAULT_TEXT + COLUMN_URL + DEFAULT_TEXT + COLUMN_GLASS
+            + DEFAULT_TEXT + COLUMN_INGREDIENT + DEFAULT_TEXT + COLUMN_DESCRIPTION + DEFAULT_TEXT + COLUMN_RATING
+            + " INTEGER NOT NULL, " + COLUMN_FAVORITE + " INTEGER NOT NULL" + ");";
 
     /**
      * Executes the table creation SQL statement.
@@ -82,8 +81,8 @@ public final class DrinkTable {
      */
     public static void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
         // Print upgrade warning to LogCat.
-        Log.w(DrinkTable.class.getName(), "Upgrading " + TABLE_DRINK + " table from version "
-                + oldVersion + " to " + newVersion + ", which will destroy all old data");
+        Log.w(DrinkTable.class.getName(), "Upgrading " + TABLE_DRINK + " table from version " + oldVersion + " to "
+                + newVersion + ", which will destroy all old data");
 
         // Drops the table and existing data.
         database.execSQL("DROP TABLE IF EXISTS " + TABLE_DRINK);

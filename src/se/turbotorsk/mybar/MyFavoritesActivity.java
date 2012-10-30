@@ -39,70 +39,68 @@ import android.widget.ListView;
  * This activity handles the MyFavorites-section.
  */
 public class MyFavoritesActivity extends ListActivity {
-	// Create a new DrinkAdapter object to dynamically
-	// populate list views.
-	private DrinkAdapter adapter;
+    // Create a new DrinkAdapter object to dynamically
+    // populate list views.
+    private DrinkAdapter adapter;
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		// Create a new DrinkAdapter object to dynamically
-		// populate list views.
-		setAdapter(new DrinkAdapter(this, R.layout.rowlayout,
-				Controller.getAllFavorites()));
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // Create a new DrinkAdapter object to dynamically
+        // populate list views.
+        setAdapter(new DrinkAdapter(this, R.layout.rowlayout, Controller.getAllFavorites()));
 
-		// Sets the adapter that we just created.
-		setListAdapter(getAdapter());
-	}
+        // Sets the adapter that we just created.
+        setListAdapter(getAdapter());
+    }
 
-	/**
-	 * This method handles what happens when pressing a item in the list.
-	 */
-	@Override
-	protected void onListItemClick(ListView l, View v, int position, long id) {
-		// Create a new intent to send to the ViewDrikActivity class.
-		Intent intent = new Intent(this, ViewDrinkActivity.class);
-		// Add drinkname, rating, ingredients, description, url, and id
-		// of the list item clicked to the intent.
-		intent.putExtra("drinkname", getAdapter().getDrinkName(position));
-		intent.putExtra("rating", getAdapter().getRating(position));
-		intent.putExtra("ingredients", getAdapter().getIngredients(position));
-		intent.putExtra("descrip", getAdapter().getDescrip(position));
-		intent.putExtra("url", getAdapter().getUrl(position));
-		intent.putExtra("id", getAdapter().getId(position));
-		// Start the ViewDrinkActivity with the created intent.
-		startActivity(intent);
-	}
+    /**
+     * This method handles what happens when pressing a item in the list.
+     */
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        // Create a new intent to send to the ViewDrikActivity class.
+        Intent intent = new Intent(this, ViewDrinkActivity.class);
+        // Add drinkname, rating, ingredients, description, url, and id
+        // of the list item clicked to the intent.
+        intent.putExtra("drinkname", getAdapter().getDrinkName(position));
+        intent.putExtra("rating", getAdapter().getRating(position));
+        intent.putExtra("ingredients", getAdapter().getIngredients(position));
+        intent.putExtra("descrip", getAdapter().getDescrip(position));
+        intent.putExtra("url", getAdapter().getUrl(position));
+        intent.putExtra("id", getAdapter().getId(position));
+        // Start the ViewDrinkActivity with the created intent.
+        startActivity(intent);
+    }
 
-	/**
-	 * This method updates the list in MyFavorites.
-	 */
-	@Override
-	public void onResume() {
-		// Call the extended onResume method.
-		super.onResume();
-		// Reset the adapter, load in everything again.
-		setAdapter(new DrinkAdapter(this, R.layout.rowlayout,
-				Controller.getAllFavorites()));
-		// Set the adapter that we just re-created.
-		setListAdapter(getAdapter());
-	}
+    /**
+     * This method updates the list in MyFavorites.
+     */
+    @Override
+    public void onResume() {
+        // Call the extended onResume method.
+        super.onResume();
+        // Reset the adapter, load in everything again.
+        setAdapter(new DrinkAdapter(this, R.layout.rowlayout, Controller.getAllFavorites()));
+        // Set the adapter that we just re-created.
+        setListAdapter(getAdapter());
+    }
 
-	/**
-	 * This method gets the DrinkAdapter.
-	 * 
-	 * @return adapter
-	 */
-	public DrinkAdapter getAdapter() {
-		return adapter;
-	}
+    /**
+     * This method gets the DrinkAdapter.
+     * 
+     * @return adapter
+     */
+    public DrinkAdapter getAdapter() {
+        return adapter;
+    }
 
-	/**
-	 * This method sets the DrinkAdapter.
-	 * 
-	 * @param adapter
-	 */
-	public void setAdapter(DrinkAdapter adapter) {
-		this.adapter = adapter;
-	}
+    /**
+     * This method sets the DrinkAdapter.
+     * 
+     * @param adapter
+     */
+    public void setAdapter(DrinkAdapter adapter) {
+        this.adapter = adapter;
+    }
 }

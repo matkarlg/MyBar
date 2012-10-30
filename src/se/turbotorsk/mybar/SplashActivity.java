@@ -40,36 +40,33 @@ import android.widget.Toast;
  * This activity handles the splash-logo that starts with the application.
  */
 public class SplashActivity extends Activity {
-	//Set the length for the splash shown after sync.
-	private static final int SPLASH_LENGTH = 1200;
+    // Set the length for the splash shown after sync.
+    private static final int SPLASH_LENGTH = 1200;
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		super.onCreate(savedInstanceState);
-		// Set the content view to the respective XML file.
-		setContentView(R.layout.splash);
-		// Create a new handler for the new runnable.
-		new Handler().postDelayed(new Runnable() {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        super.onCreate(savedInstanceState);
+        // Set the content view to the respective XML file.
+        setContentView(R.layout.splash);
+        // Create a new handler for the new runnable.
+        new Handler().postDelayed(new Runnable() {
 
-			public void run() {
-				// Delete the Drink and Ingredient tables in SQLite.
-				Controller.deleteTables();
-				// If the sync is unsuccessful...
-				if (!(Controller.dataSync())) {
-					// Display a Toast that the sync failed.
-					Toast.makeText(SplashActivity.this,
-							"Sync Failed: Connection error!", Toast.LENGTH_LONG)
-							.show();
-				}
-				// Create a new intent to send into the MainActivity.
-				Intent intent = new Intent(SplashActivity.this,
-						MainActivity.class);
-				// Start the MainActivity.
-				SplashActivity.this.startActivity(intent);
-				// Finish this activity.
-				SplashActivity.this.finish();
-			}
-		}, SPLASH_LENGTH);
-	}
+            public void run() {
+                // Delete the Drink and Ingredient tables in SQLite.
+                Controller.deleteTables();
+                // If the sync is unsuccessful...
+                if (!(Controller.dataSync())) {
+                    // Display a Toast that the sync failed.
+                    Toast.makeText(SplashActivity.this, "Sync Failed: Connection error!", Toast.LENGTH_LONG).show();
+                }
+                // Create a new intent to send into the MainActivity.
+                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                // Start the MainActivity.
+                SplashActivity.this.startActivity(intent);
+                // Finish this activity.
+                SplashActivity.this.finish();
+            }
+        }, SPLASH_LENGTH);
+    }
 }

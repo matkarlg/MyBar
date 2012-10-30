@@ -47,8 +47,7 @@ public class Ingredient {
     private String description = "";
     private ContentValues values = null;
 
-    public Ingredient(int id, String name, String url, String type, int alcoholcontent,
-            String description) {
+    public Ingredient(int id, String name, String url, String type, int alcoholcontent, String description) {
         this.id = id;
         this.name = name;
         this.url = url;

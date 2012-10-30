@@ -49,9 +49,8 @@ public class Drink {
     private int favorite = 0;
     private ContentValues values = null;
 
-
-    public Drink(int id, String name, String url, String glass, String ingredient,
-            String description, int rating, int favorite) {
+    public Drink(int id, String name, String url, String glass, String ingredient, String description, int rating,
+            int favorite) {
         this.id = id;
         this.name = name;
         this.url = url;
@@ -82,7 +81,7 @@ public class Drink {
         String nameString = "";
         String[] array = ingredient.split(";");
         nameBuff.append("| ");
-        int maxStringLength = MAXSTRINGLENGTH; 
+        int maxStringLength = MAXSTRINGLENGTH;
         int i = 0;
         while (i < array.length - 1) {
             nameString = Data.getIngredientByID(Integer.parseInt(array[i])).getName();
@@ -97,7 +96,8 @@ public class Drink {
 
     /**
      * Gets all the ingredients in a String format.
-     * @return a string with all the ingredient names in. 
+     * 
+     * @return a string with all the ingredient names in.
      */
     public String getIngredientString() {
         StringBuffer nameBuff = new StringBuffer();

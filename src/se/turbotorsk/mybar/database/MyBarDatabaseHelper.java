@@ -63,8 +63,7 @@ public class MyBarDatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
         // Upgrade our database with the new table versions.
-        Log.w(this.getClass().getName(), "Upgrading database from version " + oldVersion + " to "
-                + newVersion);
+        Log.w(this.getClass().getName(), "Upgrading database from version " + oldVersion + " to " + newVersion);
         DrinkTable.onUpgrade(database, oldVersion, newVersion);
         IngredientTable.onUpgrade(database, oldVersion, newVersion);
         MyBarTable.onUpgrade(database, oldVersion, newVersion);

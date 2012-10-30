@@ -54,75 +54,70 @@ import android.widget.TabHost.TabSpec;
 // instead of tabs
 @SuppressWarnings("deprecation")
 public class MainActivity extends TabActivity {
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
 
-		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-				.permitAll().build();
-		StrictMode.setThreadPolicy(policy);
-		TabHost tabHost = getTabHost();
-		// Favorites tab
-		// We should rename MyFavorites to Favorites, but thats not a big issue.
-		Intent intentFavorites = new Intent().setClass(this,
-				MyFavoritesActivity.class);
-		TabSpec tabSpecFavorites = tabHost.newTabSpec("Favorites")
-				.setIndicator("Favorites").setContent(intentFavorites);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        TabHost tabHost = getTabHost();
+        // Favorites tab
+        // We should rename MyFavorites to Favorites, but thats not a big issue.
+        Intent intentFavorites = new Intent().setClass(this, MyFavoritesActivity.class);
+        TabSpec tabSpecFavorites = tabHost.newTabSpec("Favorites").setIndicator("Favorites")
+                .setContent(intentFavorites);
 
-		// MyBar tab.
-		Intent intentMyBar = new Intent().setClass(this,
-				MyBarTabHostActivity.class);
-		TabSpec tabSpecMyBarTabHost = tabHost.newTabSpec("MyBar")
-				.setIndicator("My Bar").setContent(intentMyBar);
+        // MyBar tab.
+        Intent intentMyBar = new Intent().setClass(this, MyBarTabHostActivity.class);
+        TabSpec tabSpecMyBarTabHost = tabHost.newTabSpec("MyBar").setIndicator("My Bar").setContent(intentMyBar);
 
-		// MyBar tab.
-		Intent intentCollection = new Intent().setClass(this,
-				CollectionActivity.class);
-		TabSpec tabSpecCollection = tabHost.newTabSpec("Collection")
-				.setIndicator("Collection").setContent(intentCollection);
+        // MyBar tab.
+        Intent intentCollection = new Intent().setClass(this, CollectionActivity.class);
+        TabSpec tabSpecCollection = tabHost.newTabSpec("Collection").setIndicator("Collection")
+                .setContent(intentCollection);
 
-		// Add all tabs.
-		tabHost.addTab(tabSpecFavorites);
-		tabHost.addTab(tabSpecMyBarTabHost);
-		tabHost.addTab(tabSpecCollection);
+        // Add all tabs.
+        tabHost.addTab(tabSpecFavorites);
+        tabHost.addTab(tabSpecMyBarTabHost);
+        tabHost.addTab(tabSpecCollection);
 
-		// Set Mybar as default tab (the middle tab).
-		tabHost.setCurrentTab(1);
-	}
+        // Set Mybar as default tab (the middle tab).
+        tabHost.setCurrentTab(1);
+    }
 
-	/**
-	 * This method creates the Options-menu.
-	 */
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.activity_main, menu);
-		return true;
-	}
+    /**
+     * This method creates the Options-menu.
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_main, menu);
+        return true;
+    }
 
-	/**
-	 * This method generates the options-menu in the main window.
-	 */
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case R.id.menu_add_drink:
-			// Start the AddIngredientActivity.
-			startActivity(new Intent(this, AddIngredientActivity.class));
-			return true;
-		case R.id.menu_share:
-			// Start the Share class.
-			startActivity(new Intent(this, Share.class));
-			return true;
-		case R.id.menu_about:
-			// Start the AboutBox class.
-			AboutBox.show(MainActivity.this);
-			return true;
-		case R.id.menu_settings:
-			// Start the SettingsActivity.
-			startActivity(new Intent(this, SettingsActivity.class));
-			return true;
-		default:
-			return true;
-		}
-	}
+    /**
+     * This method generates the options-menu in the main window.
+     */
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        case R.id.menu_add_drink:
+            // Start the AddIngredientActivity.
+            startActivity(new Intent(this, AddIngredientActivity.class));
+            return true;
+        case R.id.menu_share:
+            // Start the Share class.
+            startActivity(new Intent(this, Share.class));
+            return true;
+        case R.id.menu_about:
+            // Start the AboutBox class.
+            AboutBox.show(MainActivity.this);
+            return true;
+        case R.id.menu_settings:
+            // Start the SettingsActivity.
+            startActivity(new Intent(this, SettingsActivity.class));
+            return true;
+        default:
+            return true;
+        }
+    }
 }

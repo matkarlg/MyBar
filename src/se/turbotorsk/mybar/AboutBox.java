@@ -46,46 +46,42 @@ import android.widget.TextView;
  * the about box example on http://tekeye.biz/
  */
 public final class AboutBox {
-	// Hide Utility Class Constructor.
-	private AboutBox() {
-	};
+    // Hide Utility Class Constructor.
+    private AboutBox() {
+    };
 
-	private static final String VERSION_NAME = "0.5";
+    private static final String VERSION_NAME = "0.5";
 
-	private static String versionName(Context context) {
-		return VERSION_NAME;
-	}
+    private static String versionName(Context context) {
+        return VERSION_NAME;
+    }
 
-	public static void show(Activity callingActivity) {
-		// Using Spannable to allow links highlighting.
-		SpannableString aboutText = new SpannableString("Version "
-				+ versionName(callingActivity) + "\n\n"
-				+ callingActivity.getString(R.string.about));
-		// Generate views to pass to AlertDialog.Builder and to set the text.
-		View about;
-		TextView tvAbout;
-		try {
-			// Inflate the custom view.
-			LayoutInflater inflater = callingActivity.getLayoutInflater();
-			about = inflater.inflate(R.layout.aboutbox,
-					(ViewGroup) callingActivity.findViewById(R.id.aboutView));
-			tvAbout = (TextView) about.findViewById(R.id.aboutText);
-		} catch (InflateException e) {
-			// If Inflater throws exception it goes back to default view.
-			tvAbout = new TextView(callingActivity);
-			about = tvAbout;
-		}
+    public static void show(Activity callingActivity) {
+        // Using Spannable to allow links highlighting.
+        SpannableString aboutText = new SpannableString("Version " + versionName(callingActivity) + "\n\n"
+                + callingActivity.getString(R.string.about));
+        // Generate views to pass to AlertDialog.Builder and to set the text.
+        View about;
+        TextView tvAbout;
+        try {
+            // Inflate the custom view.
+            LayoutInflater inflater = callingActivity.getLayoutInflater();
+            about = inflater.inflate(R.layout.aboutbox, (ViewGroup) callingActivity.findViewById(R.id.aboutView));
+            tvAbout = (TextView) about.findViewById(R.id.aboutText);
+        } catch (InflateException e) {
+            // If Inflater throws exception it goes back to default view.
+            tvAbout = new TextView(callingActivity);
+            about = tvAbout;
+        }
 
-		// Sets the about text.
-		tvAbout.setText(aboutText);
-		// Linkify the text.
-		Linkify.addLinks(tvAbout, Linkify.ALL);
-		// Build and show the dialog.
-		new AlertDialog.Builder(callingActivity)
-				.setTitle(
-						"About " + callingActivity.getString(R.string.app_name))
-				.setCancelable(true).setIcon(R.drawable.ic_drinkicon)
-				.setPositiveButton("OK", null).setView(about).show();
-		// Builder method returns allow for method chaining.
-	}
+        // Sets the about text.
+        tvAbout.setText(aboutText);
+        // Linkify the text.
+        Linkify.addLinks(tvAbout, Linkify.ALL);
+        // Build and show the dialog.
+        new AlertDialog.Builder(callingActivity).setTitle("About " + callingActivity.getString(R.string.app_name))
+                .setCancelable(true).setIcon(R.drawable.ic_drinkicon).setPositiveButton("OK", null).setView(about)
+                .show();
+        // Builder method returns allow for method chaining.
+    }
 }

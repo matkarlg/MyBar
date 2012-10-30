@@ -48,16 +48,14 @@ import android.text.TextUtils;
 public class MyBarContentProvider extends ContentProvider {
     // Content Provider specific constants
     public static final String AUTHORITY = "se.turbotorsk.mybar.model.database";
-    public static final Uri CONTENTURI_DRINK = Uri.parse("content://" + AUTHORITY + "/"
-            + DrinkTable.TABLE_DRINK);
+    public static final Uri CONTENTURI_DRINK = Uri.parse("content://" + AUTHORITY + "/" + DrinkTable.TABLE_DRINK);
     public static final Uri CONTENTURI_INGREDIENT = Uri.parse("content://" + AUTHORITY + "/"
             + IngredientTable.TABLE_INGREDIENT);
-    public static final Uri CONTENTURI_MYBAR = Uri.parse("content://" + AUTHORITY + "/"
-            + MyBarTable.TABLE_MYBAR);
-    
+    public static final Uri CONTENTURI_MYBAR = Uri.parse("content://" + AUTHORITY + "/" + MyBarTable.TABLE_MYBAR);
+
     // SQLite database object
     private MyBarDatabaseHelper database;
-    
+
     // URI constants
     private static final int DRINK = 1;
     private static final int DRINK_ID = 2;
@@ -122,15 +120,13 @@ public class MyBarContentProvider extends ContentProvider {
             break;
 
         case INGREDIENT:
-            rowsAffected = sqlDB.delete(IngredientTable.TABLE_INGREDIENT, whereClause,
-                    selectionArgs);
+            rowsAffected = sqlDB.delete(IngredientTable.TABLE_INGREDIENT, whereClause, selectionArgs);
             break;
 
         case INGREDIENT_ID:
             whereClause += IngredientTable.COLUMN_ID + "=" + uri.getLastPathSegment();
             whereClause += TextUtils.isEmpty(whereClause) ? "" : " AND (" + whereClause + ")";
-            rowsAffected = sqlDB.delete(IngredientTable.TABLE_INGREDIENT, whereClause,
-                    selectionArgs);
+            rowsAffected = sqlDB.delete(IngredientTable.TABLE_INGREDIENT, whereClause, selectionArgs);
             break;
 
         case MYBAR:
@@ -216,8 +212,7 @@ public class MyBarContentProvider extends ContentProvider {
     }
 
     @Override
-    public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,
-            String sortOrder) {
+    public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
 
         // Create convenience class to help with creation of our SQL queries
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
@@ -251,8 +246,7 @@ public class MyBarContentProvider extends ContentProvider {
         case INGREDIENT:
             break;
         case INGREDIENT_ID:
-            queryBuilder.appendWhere(IngredientTable.TABLE_INGREDIENT + "="
-                    + uri.getLastPathSegment());
+            queryBuilder.appendWhere(IngredientTable.TABLE_INGREDIENT + "=" + uri.getLastPathSegment());
             break;
 
         case MYBAR:
@@ -269,8 +263,7 @@ public class MyBarContentProvider extends ContentProvider {
         SQLiteDatabase sqlDB = database.getWritableDatabase();
 
         // Call the code to actually do the query
-        Cursor cursor = queryBuilder.query(sqlDB, projection, selection, selectionArgs, null, null,
-                sortOrder);
+        Cursor cursor = queryBuilder.query(sqlDB, projection, selection, selectionArgs, null, null, sortOrder);
 
         // Tell the cursor which URI to watch over, to make sure it catches
         // changes in source data
@@ -312,14 +305,12 @@ public class MyBarContentProvider extends ContentProvider {
             break;
 
         case INGREDIENT:
-            rowsAffected = sqlDB.update(IngredientTable.TABLE_INGREDIENT, values, whereClause,
-                    selectionArgs);
+            rowsAffected = sqlDB.update(IngredientTable.TABLE_INGREDIENT, values, whereClause, selectionArgs);
             break;
         case INGREDIENT_ID:
             whereClause += IngredientTable.COLUMN_ID + "=" + uri.getLastPathSegment();
             whereClause += TextUtils.isEmpty(whereClause) ? "" : " AND (" + whereClause + ")";
-            rowsAffected = sqlDB.update(IngredientTable.TABLE_INGREDIENT, values, whereClause,
-                    selectionArgs);
+            rowsAffected = sqlDB.update(IngredientTable.TABLE_INGREDIENT, values, whereClause, selectionArgs);
             break;
 
         case MYBAR:

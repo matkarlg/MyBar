@@ -39,50 +39,47 @@ import android.widget.Toast;
  * This activity handles the functions that add ingredients.
  */
 public class AddIngredientActivity extends ListActivity {
-	// Create a new IngredientAdapter object to dynamically
-	// populate list views.
-	private IngredientAdapter adapter;
+    // Create a new IngredientAdapter object to dynamically
+    // populate list views.
+    private IngredientAdapter adapter;
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		// Initiate the adapter, send in the layout of choice and
-		// also send in the LinkedList of Ingredients.
-		adapter = new IngredientAdapter(this, R.layout.rowlayout,
-				Controller.getAllIngredients());
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // Initiate the adapter, send in the layout of choice and
+        // also send in the LinkedList of Ingredients.
+        adapter = new IngredientAdapter(this, R.layout.rowlayout, Controller.getAllIngredients());
 
-		// Set the adapter that we just created.
-		setListAdapter(adapter);
+        // Set the adapter that we just created.
+        setListAdapter(adapter);
 
-	}
+    }
 
-	/**
-	 * When clicking on an list item (ingredient) this method will add the
-	 * ingredient to the MyBar-table in SQLite database.
-	 */
-	@Override
-	public void onListItemClick(ListView parent, View v, int position, long id) {
+    /**
+     * When clicking on an list item (ingredient) this method will add the
+     * ingredient to the MyBar-table in SQLite database.
+     */
+    @Override
+    public void onListItemClick(ListView parent, View v, int position, long id) {
 
-		{
-			// If the ingredient is not already added in the database,
-			// add it.
-			if (!(Controller.isInMyBar(adapter.getId(position)))) {
-				Controller.addMyBarIngredient(adapter.getId(position));
-				// Display a Toast that the ingredient has been added.
-				Toast.makeText(AddIngredientActivity.this,
-						adapter.getName(position) + " added",
-						Toast.LENGTH_SHORT).show();
-			}
+        {
+            // If the ingredient is not already added in the database,
+            // add it.
+            if (!(Controller.isInMyBar(adapter.getId(position)))) {
+                Controller.addMyBarIngredient(adapter.getId(position));
+                // Display a Toast that the ingredient has been added.
+                Toast.makeText(AddIngredientActivity.this, adapter.getName(position) + " added", Toast.LENGTH_SHORT)
+                        .show();
+            }
 
-			else {
-				// If the ingredient is already added in the database,
-				// display a Toast that lets the user know it is
-				// already added.
-				Toast.makeText(AddIngredientActivity.this,
-						adapter.getName(position) + " is already added!",
-						Toast.LENGTH_SHORT).show();
-			}
-		}
-	}
+            else {
+                // If the ingredient is already added in the database,
+                // display a Toast that lets the user know it is
+                // already added.
+                Toast.makeText(AddIngredientActivity.this, adapter.getName(position) + " is already added!",
+                        Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 
 }

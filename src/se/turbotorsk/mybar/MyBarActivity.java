@@ -39,55 +39,49 @@ import android.widget.Toast;
  * This activity handles the MyBar-section.
  */
 public class MyBarActivity extends ListActivity {
-	// Create a new IngredientAdapter object to dynamically
-	// populate list views.
-	private IngredientAdapter adapter;
+    // Create a new IngredientAdapter object to dynamically
+    // populate list views.
+    private IngredientAdapter adapter;
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		// Initiate the adapter, send in the layout of choice and
-		// also send in the LinkedList of Ingredients.
-		adapter = new IngredientAdapter(this, R.layout.rowlayout,
-				Controller.getMyIngredients());
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // Initiate the adapter, send in the layout of choice and
+        // also send in the LinkedList of Ingredients.
+        adapter = new IngredientAdapter(this, R.layout.rowlayout, Controller.getMyIngredients());
 
-		// Set the adapter that we just created.
-		setListAdapter(adapter);
+        // Set the adapter that we just created.
+        setListAdapter(adapter);
 
-	}
+    }
 
-	/**
-	 * When pressing an item in the list (ingredient) this method is deleting
-	 * the current ingredient from the MyBar-view (refreshes the list).
-	 */
-	@Override
-	protected void onListItemClick(ListView l, View v, int position, long id) {
-		// If a list item is clicked on, remove that ingredient.
-		Controller.removeMyBarIngredient(adapter.getId(position),
-				adapter.getPosition(position));
-		// Display a toast that it has been removed.
-		Toast.makeText(MyBarActivity.this,
-				adapter.getName(position) + " removed", Toast.LENGTH_SHORT)
-				.show();
-		// Reset the adapter to refresh the list view.
-		adapter = new IngredientAdapter(this, R.layout.rowlayout,
-				Controller.getMyIngredients());
-		// Set the adapter that we just recreated.
-		setListAdapter(adapter);
-	}
+    /**
+     * When pressing an item in the list (ingredient) this method is deleting
+     * the current ingredient from the MyBar-view (refreshes the list).
+     */
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        // If a list item is clicked on, remove that ingredient.
+        Controller.removeMyBarIngredient(adapter.getId(position), adapter.getPosition(position));
+        // Display a toast that it has been removed.
+        Toast.makeText(MyBarActivity.this, adapter.getName(position) + " removed", Toast.LENGTH_SHORT).show();
+        // Reset the adapter to refresh the list view.
+        adapter = new IngredientAdapter(this, R.layout.rowlayout, Controller.getMyIngredients());
+        // Set the adapter that we just recreated.
+        setListAdapter(adapter);
+    }
 
-	/**
-	 * This method refreshes the list.
-	 */
-	@Override
-	public void onResume() {
-		// Call the extended onResume method.
-		super.onResume();
-		// Reset the adapter, load in everything again.
-		adapter = new IngredientAdapter(this, R.layout.rowlayout,
-				Controller.getMyIngredients());
-		// Set the adapter that we just re-created.
-		setListAdapter(adapter);
-	}
+    /**
+     * This method refreshes the list.
+     */
+    @Override
+    public void onResume() {
+        // Call the extended onResume method.
+        super.onResume();
+        // Reset the adapter, load in everything again.
+        adapter = new IngredientAdapter(this, R.layout.rowlayout, Controller.getMyIngredients());
+        // Set the adapter that we just re-created.
+        setListAdapter(adapter);
+    }
 
 }

@@ -48,143 +48,143 @@ import android.widget.TextView;
  */
 public class DrinkAdapter extends ArrayAdapter<LinkedList> {
 
-	public DrinkAdapter(Context context, int textViewResourceId) {
-		super(context, textViewResourceId);
-	}
+    public DrinkAdapter(Context context, int textViewResourceId) {
+        super(context, textViewResourceId);
+    }
 
-	private LinkedList<Drink> items;
+    private LinkedList<Drink> items;
 
-	/**
-	 * Constructor for DrinkAdapter.
-	 * 
-	 * @param context
-	 * @param resource
-	 * @param items
-	 */
-	public DrinkAdapter(Context context, int resource, LinkedList items) {
-		// Call the extended constructor.
-		super(context, resource, items);
-		// initialize variables.
-		this.items = items;
+    /**
+     * Constructor for DrinkAdapter.
+     * 
+     * @param context
+     * @param resource
+     * @param items
+     */
+    public DrinkAdapter(Context context, int resource, LinkedList items) {
+        // Call the extended constructor.
+        super(context, resource, items);
+        // initialize variables.
+        this.items = items;
 
-	}
+    }
 
-	/**
-	 * This method gets the view for all drinks.
-	 */
-	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
-		// Set the view that was received through the method call.
-		View v = convertView;
-		// If the view is null, inflate the layout.
-		if (v == null) {
+    /**
+     * This method gets the view for all drinks.
+     */
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        // Set the view that was received through the method call.
+        View v = convertView;
+        // If the view is null, inflate the layout.
+        if (v == null) {
 
-			LayoutInflater vi;
-			vi = LayoutInflater.from(getContext());
-			v = vi.inflate(R.layout.rowlayout, null);
+            LayoutInflater vi;
+            vi = LayoutInflater.from(getContext());
+            v = vi.inflate(R.layout.rowlayout, null);
 
-		}
-		// Initialize a drink object to the list item.
-		Drink p = items.get(position);
-		// If the drink object is not null, set the different
-		// parts of the list item to their respective XML-part.
-		if (p != null) {
+        }
+        // Initialize a drink object to the list item.
+        Drink p = items.get(position);
+        // If the drink object is not null, set the different
+        // parts of the list item to their respective XML-part.
+        if (p != null) {
 
-			TextView tt = (TextView) v.findViewById(R.id.drink);
-			TextView tt1 = (TextView) v.findViewById(R.id.ingredients);
-			TextView tt3 = (TextView) v.findViewById(R.id.rating);
-			TextView tt4 = (TextView) v.findViewById(R.id.drinkDescription);
-			ImageView iv = (ImageView) v.findViewById(R.id.list_image);
+            TextView tt = (TextView) v.findViewById(R.id.drink);
+            TextView tt1 = (TextView) v.findViewById(R.id.ingredients);
+            TextView tt3 = (TextView) v.findViewById(R.id.rating);
+            TextView tt4 = (TextView) v.findViewById(R.id.drinkDescription);
+            ImageView iv = (ImageView) v.findViewById(R.id.list_image);
 
-			if (tt != null) {
-				// Sets the name of the drinks to the text view.
-				tt.setText(p.getName());
-			}
-			if (tt1 != null) {
-				// Sets the ingredients of the drinks to the text view.
-				tt1.setText(p.getIngredientPreViewString());
-			}
-			if (tt3 != null) {
-				// Sets the rating of the drinks to the text view.
-				tt3.setText("Rating: " + Integer.toString(p.getRating()));
-			}
-			if (tt4 != null) {
-				// Sets the description of the drink to the text view.
-				tt4.setText(p.getDescription());
-			}
-			if (iv != null) {
-				// Sets the image of the drink to the image view.
-				iv.setImageResource(R.drawable.no_img);
-			}
-		}
+            if (tt != null) {
+                // Sets the name of the drinks to the text view.
+                tt.setText(p.getName());
+            }
+            if (tt1 != null) {
+                // Sets the ingredients of the drinks to the text view.
+                tt1.setText(p.getIngredientPreViewString());
+            }
+            if (tt3 != null) {
+                // Sets the rating of the drinks to the text view.
+                tt3.setText("Rating: " + Integer.toString(p.getRating()));
+            }
+            if (tt4 != null) {
+                // Sets the description of the drink to the text view.
+                tt4.setText(p.getDescription());
+            }
+            if (iv != null) {
+                // Sets the image of the drink to the image view.
+                iv.setImageResource(R.drawable.no_img);
+            }
+        }
 
-		return v;
-	}
+        return v;
+    }
 
-	/**
-	 * This method is fetching the name of the drink.
-	 * 
-	 * @param position
-	 * @return name
-	 */
-	public String getDrinkName(int position) {
-		Drink drink = items.get(position);
-		return drink.getName();
-	}
+    /**
+     * This method is fetching the name of the drink.
+     * 
+     * @param position
+     * @return name
+     */
+    public String getDrinkName(int position) {
+        Drink drink = items.get(position);
+        return drink.getName();
+    }
 
-	/**
-	 * This method is fetching the ingredients of the drink.
-	 * 
-	 * @param position
-	 * @return ingredients
-	 */
-	public String getIngredients(int position) {
-		Drink drink = items.get(position);
-		return drink.getIngredientString();
-	}
+    /**
+     * This method is fetching the ingredients of the drink.
+     * 
+     * @param position
+     * @return ingredients
+     */
+    public String getIngredients(int position) {
+        Drink drink = items.get(position);
+        return drink.getIngredientString();
+    }
 
-	/**
-	 * This method is fetching the rating of the drink.
-	 * 
-	 * @param position
-	 * @return rating
-	 */
-	public int getRating(int position) {
-		Drink drink = items.get(position);
-		return drink.getRating();
-	}
+    /**
+     * This method is fetching the rating of the drink.
+     * 
+     * @param position
+     * @return rating
+     */
+    public int getRating(int position) {
+        Drink drink = items.get(position);
+        return drink.getRating();
+    }
 
-	/**
-	 * This method is fetching the description of the drink.
-	 * 
-	 * @param position
-	 * @return description
-	 */
-	public String getDescrip(int position) {
-		Drink drink = items.get(position);
-		return drink.getDescription();
-	}
+    /**
+     * This method is fetching the description of the drink.
+     * 
+     * @param position
+     * @return description
+     */
+    public String getDescrip(int position) {
+        Drink drink = items.get(position);
+        return drink.getDescription();
+    }
 
-	/**
-	 * This method gets the url.
-	 * 
-	 * @param position
-	 * @return url
-	 */
-	public String getUrl(int position) {
-		Drink drink = items.get(position);
-		return drink.getUrl();
-	}
+    /**
+     * This method gets the url.
+     * 
+     * @param position
+     * @return url
+     */
+    public String getUrl(int position) {
+        Drink drink = items.get(position);
+        return drink.getUrl();
+    }
 
-	/**
-	 * This method gets the id.
-	 * 
-	 * @param position
-	 * @return drink id
-	 */
-	public int getId(int position) {
-		Drink drink = items.get(position);
-		return drink.getId();
-	}
+    /**
+     * This method gets the id.
+     * 
+     * @param position
+     * @return drink id
+     */
+    public int getId(int position) {
+        Drink drink = items.get(position);
+        return drink.getId();
+    }
 
 }

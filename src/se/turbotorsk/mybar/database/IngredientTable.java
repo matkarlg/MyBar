@@ -53,10 +53,10 @@ public final class IngredientTable {
     public static final String COLUMN_DESCRIPTION = "description";
 
     // Database table creation SQL statement.
-    private static final String DATABASE_CREATE = "CREATE TABLE " + TABLE_INGREDIENT + "("
-            + COLUMN_ID + " INTEGER PRIMARY KEY, " + COLUMN_NAME + " TEXT NOT NULL, " + COLUMN_URL
-            + " TEXT NOT NULL, " + COLUMN_TYPE + " TEXT NOT NULL, " + COLUMN_ALCOHOLCONTENT
-            + " INT NOT NULL, " + COLUMN_DESCRIPTION + " TEXT NOT NULL" + ");";
+    private static final String DATABASE_CREATE = "CREATE TABLE " + TABLE_INGREDIENT + "(" + COLUMN_ID
+            + " INTEGER PRIMARY KEY, " + COLUMN_NAME + " TEXT NOT NULL, " + COLUMN_URL + " TEXT NOT NULL, "
+            + COLUMN_TYPE + " TEXT NOT NULL, " + COLUMN_ALCOHOLCONTENT + " INT NOT NULL, " + COLUMN_DESCRIPTION
+            + " TEXT NOT NULL" + ");";
 
     /**
      * Executes the table creation SQL statement.
@@ -76,9 +76,8 @@ public final class IngredientTable {
      */
     public static void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
         // Print upgrade warning to LogCat.
-        Log.w(IngredientTable.class.getName(), "Upgrading " + TABLE_INGREDIENT
-                + " table from version " + oldVersion + " to " + newVersion
-                + ", which will destroy all old data");
+        Log.w(IngredientTable.class.getName(), "Upgrading " + TABLE_INGREDIENT + " table from version " + oldVersion
+                + " to " + newVersion + ", which will destroy all old data");
 
         // Drops the table and existing data.
         database.execSQL("DROP TABLE IF EXISTS " + TABLE_INGREDIENT);
