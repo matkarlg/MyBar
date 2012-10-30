@@ -28,9 +28,9 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package se.turbotorsk.mybar.test;
 
+import se.turbotorsk.mybar.database.DrinkTable;
+import se.turbotorsk.mybar.database.MyBarContentProvider;
 import se.turbotorsk.mybar.model.Drink;
-import se.turbotorsk.mybar.model.database.DrinkTable;
-import se.turbotorsk.mybar.model.database.MyBarContentProvider;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.database.Cursor;

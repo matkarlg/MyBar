@@ -33,11 +33,11 @@ import java.util.List;
 
 import se.turbotorsk.mybar.controller.Controller;
 import se.turbotorsk.mybar.controller.MyBarApplication;
-import se.turbotorsk.mybar.model.database.DrinkTable;
-import se.turbotorsk.mybar.model.database.IngredientTable;
-import se.turbotorsk.mybar.model.database.MyBarContentProvider;
-import se.turbotorsk.mybar.model.database.MyBarTable;
-import se.turbotorsk.mybar.model.externaldata.JsonParse;
+import se.turbotorsk.mybar.database.DrinkTable;
+import se.turbotorsk.mybar.database.IngredientTable;
+import se.turbotorsk.mybar.database.JsonParse;
+import se.turbotorsk.mybar.database.MyBarContentProvider;
+import se.turbotorsk.mybar.database.MyBarTable;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;

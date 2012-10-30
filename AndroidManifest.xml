@@ -7,7 +7,7 @@
     
 
     <uses-sdk
-        android:minSdkVersion="14"
+        android:minSdkVersion="4"
         android:targetSdkVersion="16" />
 
     <supports-screens
@@ -30,7 +30,7 @@
         </activity>
 
         <provider
-            android:name=".model.database.MyBarContentProvider"
+            android:name=".database.MyBarContentProvider"
             android:authorities="se.turbotorsk.mybar.model.database"
             android:exported="false" >
         </provider>
