@@ -54,7 +54,7 @@ public class SplashActivity extends Activity {
 
             public void run() {
                 // Delete the Drink and Ingredient tables in SQLite.
-//                Controller.deleteTables();
+                Controller.deleteTables();
                 // If the sync is unsuccessful...
                 if (!(Controller.dataSync())) {
                     // Display a Toast that the sync failed.
